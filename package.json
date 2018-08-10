@@ -1,0 +1,79 @@
+{
+  "name": "react-token-input",
+  "version": "0.1.0",
+  "description": "React TokenInput",
+  "main": "lib/index.js",
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "scripts": {
+    "prepublish": "npm run eslint && npm test && npm run clean && npm run build && npm run build-examples",
+    "build": "webpack && npm run cleancss",
+    "build-examples": "cd examples; webpack",
+    "clean": "rm -f {lib,dist}/*",
+    "cleancss": "cleancss -o dist/react-token-input.min.css dist/react-token-input.css",
+    "demo": "http-server -p 8000 docs/",
+    "eslint": "eslint --ext .js --ext .jsx *.js examples src test",
+    "test": "tap test/*.js --node-arg=--require --node-arg=babel-register --node-arg=--require --node-arg=babel-polyfill",
+    "coveralls": "tap test/*.js --coverage --coverage-report=text-lcov --nyc-arg=--require --nyc-arg=babel-register --nyc-arg=--require --nyc-arg=babel-polyfill | coveralls",
+    "dev": "cd examples; webpack-dev-server --hot --inline --host 0.0.0.0 --port 8000 --content-base ../docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:seawind543/react-token-input.git"
+  },
+  "author": "Mark Lin <marklin1106@gmail.com>",
+  "homepage": "https://github.com/seawind543/react-token-input",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "react-token-input",
+    "token-input"
+  ],
+  "dependencies": {
+    "classnames": "2.2.5",
+    "prop-types": "15.6.2",
+    "react": "16.4.2"
+  },
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-core": "6.26.3",
+    "babel-eslint": "8.2.3",
+    "babel-loader": "7.1.4",
+    "babel-plugin-transform-decorators-legacy": "1.3.4",
+    "babel-preset-env": "1.7.0",
+    "babel-preset-react": "6.24.1",
+    "babel-preset-stage-0": "6.24.1",
+    "clean-css": "4.1.11",
+    "clean-css-cli": "4.1.11",
+    "coveralls": "3.0.1",
+    "css-loader": "0.28.11",
+    "enzyme": "3.3.0",
+    "enzyme-adapter-react-16": "1.1.1",
+    "eslint": "4.19.1",
+    "eslint-config-trendmicro": "1.3.1",
+    "eslint-loader": "2.0.0",
+    "eslint-plugin-import": "2.12.0",
+    "eslint-plugin-jsx-a11y": "6.0.3",
+    "eslint-plugin-react": "7.8.2",
+    "extract-text-webpack-plugin": "3.0.2",
+    "file-loader": "1.1.11",
+    "find-imports": "0.5.2",
+    "html-webpack-plugin": "3.2.0",
+    "http-server": "0.10.0",
+    "jsdom": "11.11.0",
+    "nib": "1.1.2",
+    "react": "16.4.2",
+    "react-dom": "16.4.2",
+    "style-loader": "0.21.0",
+    "stylint": "1.5.9",
+    "stylint-loader": "1.0.0",
+    "stylus-loader": "3.0.2",
+    "tap": "12.0.1",
+    "trendmicro-ui": "0.5.2",
+    "url-loader": "1.0.1",
+    "webpack": "3.11.0",
+    "webpack-dev-server": "2.11.2"
+  }
+}

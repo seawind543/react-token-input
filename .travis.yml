@@ -1,0 +1,20 @@
+sudo: required
+dist: trusty
+group: edge
+
+language: node_js
+
+os:
+  - linux
+
+node_js:
+  - '8'
+  - '6'
+
+before_install:
+  - npm install -g npm
+  - npm --version
+
+after_success:
+  - npm run coveralls
+  - npm run coverage-clean
