@@ -1,6 +1,6 @@
 {
   "name": "react-customize-token-input",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "A react token input component. Allow customize data structure and render functions",
   "main": "lib/index.js",
   "files": [
