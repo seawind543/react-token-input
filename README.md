@@ -1,6 +1,6 @@
 # React TokenInput [![build status](https://travis-ci.org/seawind543/react-token-input.svg?branch=master)](https://travis-ci.org/seawind543/react-token-input) [![Coverage Status](https://coveralls.io/repos/github/seawind543/react-token-input/badge.svg?branch=master)](https://coveralls.io/github/seawind543/react-token-input?branch=master)
 
-[![NPM](https://nodei.co/npm/react-token-input.png?downloads=true&stars=true)](https://www.npmjs.com/package/react-token-input/)
+[![NPM](https://nodei.co/npm/react-customize-token-input.png?downloads=true&stars=true)](https://www.npmjs.com/package/react-customize-token-input/)
 
 A react token input component, which allow:
 1. Apply **customize data structure**.
@@ -10,7 +10,7 @@ A react token input component, which allow:
 It could be helpful to reproduce a single value into multiple values too.
 5. **Validate** function.
 
-Demo: https://seawind543.github.io/react-token-input
+Demo: https://seawind543.github.io/react-token-input/
 
 ## Installation
 
