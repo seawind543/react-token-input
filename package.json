@@ -1,6 +1,6 @@
 {
   "name": "react-token-input",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "description": "React TokenInput",
   "main": "lib/index.js",
   "files": [
@@ -34,7 +34,8 @@
   "dependencies": {
     "classnames": "2.2.5",
     "prop-types": "15.6.2",
-    "react": "16.4.2"
+    "react": "16.4.2",
+    "react-input-autosize": "2.2.1"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
