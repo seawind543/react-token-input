@@ -14,19 +14,19 @@ Demo: https://seawind543.github.io/react-token-input
 
 ## Installation
 
-1. Install the latest version of [react](https://github.com/facebook/react) and [react-token-input](https://github.com/seawind543/react-token-input):
+1. Install the latest version of [react](https://github.com/facebook/react) and [react-customize-token-input](https://github.com/seawind543/react-token-input):
 
   ```
-  npm install --save react react-token-input
+  npm install --save react react-customize-token-input
   ```
 
 2. At this point you can import `react-token-input` and its styles in your application as follows:
 
   ```javascript
-  import TokenInput from 'react-token-input';
+  import TokenInput from 'react-customize-token-input';
 
   // Be sure to include styles at some point, probably during your bootstraping
-  import 'react-token-input/dist/react-token-input.css';
+  import 'react-customize-token-input/dist/react-customize-token-input.css';
   ```
 
 

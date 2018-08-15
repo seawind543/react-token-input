@@ -1,7 +1,7 @@
 {
-  "name": "react-token-input",
-  "version": "0.5.0",
-  "description": "React TokenInput",
+  "name": "react-customize-token-input",
+  "version": "0.5.1",
+  "description": "A react token input component. Allow customize data structure and render functions",
   "main": "lib/index.js",
   "files": [
     "dist",
@@ -12,7 +12,7 @@
     "build": "webpack && npm run cleancss",
     "build-examples": "cd examples; webpack",
     "clean": "rm -f {lib,dist}/*",
-    "cleancss": "cleancss -o dist/react-token-input.min.css dist/react-token-input.css",
+    "cleancss": "cleancss -o dist/react-customize-token-input.min.css dist/react-customize-token-input.css",
     "demo": "http-server -p 8000 docs/",
     "eslint": "eslint --ext .js --ext .jsx *.js examples src test",
     "test": "tap test/*.js --node-arg=--require --node-arg=babel-register --node-arg=--require --node-arg=babel-polyfill",
@@ -29,7 +29,13 @@
   "keywords": [
     "react",
     "react-token-input",
-    "token-input"
+    "react-customize-token-input",
+    "token-input",
+    "customize",
+    "customize data structure",
+    "Customize render functions",
+    "pre-processs",
+    "preprocesss"
   ],
   "dependencies": {
     "classnames": "2.2.5",
