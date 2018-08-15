@@ -2,4 +2,133 @@
 
 .container {
     reset-context();
+
+    // color: #666;
+
+    cursor: text;
+    overflow-y: auto;
+    height: 200px;
+
+    padding: 4px;
+
+    background-color: #ffffff;
+
+    // outline: none; // remove focuse border style of mac sysytem
+    outline: 0; // remove focuse border style of mac sysytem
+    border-radius: 3px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #cccccc;
+
+    &.focused {
+        border-color: #0096cc;
+    }
+    &&.errors {
+        border-color: #db3d44;
+    }
+
+    transition: all .2s linear 0s;
+
+    .token-list {
+        .token {
+            float: left;
+
+            margin-right: 4px;
+            margin-bottom: 4px;
+
+            padding-top: 2px;
+            padding-right: 8px;
+            padding-bottom: 2px;
+            padding-left: 8px;
+
+            max-width: 100%;
+            height: 24px;
+            line-height: 20px;
+
+            white-space: nowrap;
+
+            border-radius: 3px;
+
+            color: #0096cc;
+
+            background-color: #cceaf5;
+            &:hover {
+                cursor: pointer;
+                background-color: #e6f4fc;
+            }
+
+            &.active {
+                background-color: transparent;
+            }
+
+            &.error {
+                background-color: #f9b5b5;
+                &:hover {
+                    background-color: #ffdada;
+                }
+            }
+
+            &.read-only {
+                color: #000000;
+
+                &:hover {
+                    cursor: default;
+                }
+            }
+
+            .label-wrapper {
+                display: inline-block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                width: 100%;
+                max-width: calc(100% - 10px);
+                vertical-align: middle;
+            }
+
+            &.read-only {
+                .label-wrapper {
+                    max-width: 100%;
+                }
+            }
+            
+            .delete-button {
+                font-size: 14px;
+                line-height: 20px;
+                padding: 2px 0 2px 4px;
+                cursor: pointer;
+                color: #222222;
+                opacity: .5;
+
+                &:hover {
+                    opacity: 1;
+                }
+
+                &:after {
+                    content: 'x';
+                }
+            }
+        }
+    }
+
+    .autosized-wrapper {
+        display: block;
+        float: left;
+        overflow: hidden;
+        margin-right: 4px;
+        height: 24px;
+        vertical-align: middle;
+
+        input {
+            height: 24px;
+            vertical-align: inherit;
+            border: 0;
+            outline: 0; // remove focuse border style of mac sysytem
+            padding: 0;
+            margin: 0;
+            cursor: text;
+            box-shadow: none;
+            background: none;
+            color: #222222;
+        }
+    }
 }
