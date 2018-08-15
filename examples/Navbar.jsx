@@ -5,11 +5,12 @@ import styles from './Navbar.styl';
 
 export default class extends PureComponent {
     static propTypes = {
+        url: PropTypes.string,
         name: PropTypes.string
     };
 
     render() {
-        const { name } = this.props;
+        const { name, url } = this.props;
 
         return (
             <nav
@@ -18,7 +19,7 @@ export default class extends PureComponent {
             >
                 <div className={styles.containerFluid}>
                     <div className={styles.navbarHeader}>
-                        <span className={styles.navbarBrand}>{name}</span>
+                        <a href={url} className={styles.navbarBrand}>{name}</a>
                     </div>
                 </div>
             </nav>
