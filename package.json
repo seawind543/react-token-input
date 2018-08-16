@@ -35,7 +35,8 @@
     "customize data structure",
     "Customize render functions",
     "pre-processs",
-    "preprocesss"
+    "preprocesss",
+    "inline-edit"
   ],
   "dependencies": {
     "classnames": "2.2.5",
