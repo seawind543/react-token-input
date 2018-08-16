@@ -9,6 +9,8 @@ A react token input component, which allow:
 4. **Pre-processs** function for **normalized** user input value .
 It could be helpful to reproduce a single value into multiple values too.
 5. **Validate** function.
+6. **Inline editing** on exist token.
+7. **Past** values.
 
 Demo: https://seawind543.github.io/react-token-input/
 
@@ -101,6 +103,8 @@ webpack: Compiled with warnings.
     /**
      * Array of characters for separate user input string.
      * For example, separate user input string 'abc;def' into [abc, def] by separators [';']
+     * Note: It take string split() function and RegExp to separate input string,
+     *       so that make sure your costmize separators could be use with RegExp.
      */
     separators: PropTypes.array,
 

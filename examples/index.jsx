@@ -231,7 +231,8 @@ class App extends PureComponent {
                     <div className="row">
                         <div className="col-md-12">
                             <Section className="row-md-6">
-                                <h2>Simple sample. Take default, data is array of string</h2>
+                                <h2>Simple example: Take default</h2>
+                                <p>By default, TokenInput will assume data is array of strings.</p>
                                 <TokenInput
                                     className="example"
                                     // readOnly={true}
@@ -246,6 +247,66 @@ class App extends PureComponent {
                                     // tokenLabelRender={this.actions.tokenLabelRender}
                                     // validator={this.actions.validator}
                                     // onInputValueChange={this.actions.handleInputValueChange}
+                                    onTokensUpdate={this.actions.handleVlauesUpdate}
+                                />
+                            </Section>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-6">
+                            <Section className="row-md-6">
+                                <h2>Customize data structure and validator</h2>
+                                <p>Note: TokenInput allow you to inline editing token by mouse click on it.</p>
+                                <TokenInput
+                                    defaultData={this.state.cData}
+                                    buildDataFromValue={this.actions.cData.buildDataFromValue}
+                                    dataValue={this.actions.cData.dataValue}
+                                    tokenLabelRender={this.actions.cData.tokenLabelRender}
+                                    validator={this.actions.cData.validator}
+                                    // tokenErrorMessage={this.actions.cData.tokenErrorMessage}
+                                    onTokensUpdate={this.actions.cData.handleTokensUpdate}
+                                />
+                            </Section>
+                        </div>
+                        <div className="col-md-6">
+                            <Section className="row-md-6">
+                                <h2>Reproduce value by preprocessor</h2>
+                                <p>Type any value without https:// and http:// to see reproduce effect.</p>
+                                <p>Example: google.com</p>
+                                <TokenInput
+                                    defaultData={this.state.urls}
+                                    preprocessor={this.actions.urls.preprocessor}
+                                    buildDataFromValue={this.actions.urls.buildDataFromValue}
+                                    dataValue={this.actions.urls.dataValue}
+                                    tokenLabelRender={this.actions.urls.tokenLabelRender}
+                                    validator={this.actions.urls.validator}
+                                    tokenErrorMessage={this.actions.urls.tokenErrorMessage}
+                                    onTokensUpdate={this.actions.urls.handleTokensUpdate}
+                                />
+                            </Section>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-6">
+                            <Section className="row-md-6">
+                                <h2>Customize separators</h2>
+                                <p>In this example, you can use Plus-symbol, Blank or Enter to separate input into tokens.</p>
+                                <p>Forllowing input will be separate into 3 tokens: aaa+bbbb cc</p>
+                                <TokenInput
+                                    separators={[
+                                        '\\+',
+                                        ' '
+                                    ]}
+                                />
+                            </Section>
+                        </div>
+                        <div className="col-md-6">
+                            <Section className="row-md-6">
+                                <h2>Customize token render</h2>
+                                <p>This example demonstrate that the complete token could be customize by render prop <b>tokenRender</b>.</p>
+                                <TokenInput
+                                    defaultData={this.state.values}
+                                    tokenRender={this.actions.tokenRender}
                                     onTokensUpdate={this.actions.handleVlauesUpdate}
                                 />
                             </Section>
@@ -269,63 +330,6 @@ class App extends PureComponent {
                                     defaultData={this.state.values}
                                     validator={this.actions.validator}
                                     // tokenErrorMessage={this.actions.tokenErrorMessage}
-                                />
-                            </Section>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-6">
-                            <Section className="row-md-6">
-                                <h2>Customize data structure and validator</h2>
-                                <TokenInput
-                                    defaultData={this.state.cData}
-                                    buildDataFromValue={this.actions.cData.buildDataFromValue}
-                                    dataValue={this.actions.cData.dataValue}
-                                    tokenLabelRender={this.actions.cData.tokenLabelRender}
-                                    validator={this.actions.cData.validator}
-                                    // tokenErrorMessage={this.actions.cData.tokenErrorMessage}
-                                    onTokensUpdate={this.actions.cData.handleTokensUpdate}
-                                />
-                            </Section>
-                        </div>
-                        <div className="col-md-6">
-                            <Section className="row-md-6">
-                                <h2>Reproduce value by preprocessor</h2>
-                                <p>Type any value without https:// and http:// to see reproduce</p>
-                                <p>Example: google.com</p>
-                                <TokenInput
-                                    defaultData={this.state.urls}
-                                    preprocessor={this.actions.urls.preprocessor}
-                                    buildDataFromValue={this.actions.urls.buildDataFromValue}
-                                    dataValue={this.actions.urls.dataValue}
-                                    tokenLabelRender={this.actions.urls.tokenLabelRender}
-                                    validator={this.actions.urls.validator}
-                                    tokenErrorMessage={this.actions.urls.tokenErrorMessage}
-                                    onTokensUpdate={this.actions.urls.handleTokensUpdate}
-                                />
-                            </Section>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-6">
-                            <Section className="row-md-6">
-                                <h2>Customize separators</h2>
-                                <p>In this example, you can use Plus-symbol, Blank and Enter to separate input</p>
-                                <TokenInput
-                                    separators={[
-                                        '\\+',
-                                        ' '
-                                    ]}
-                                />
-                            </Section>
-                        </div>
-                        <div className="col-md-6">
-                            <Section className="row-md-6">
-                                <h2>Customize token render</h2>
-                                <TokenInput
-                                    defaultData={this.state.values}
-                                    tokenRender={this.actions.tokenRender}
-                                    onTokensUpdate={this.actions.handleVlauesUpdate}
                                 />
                             </Section>
                         </div>
