@@ -104,7 +104,7 @@ webpack: Compiled with warnings.
      * Array of characters for separate user input string.
      * For example, separate user input string 'abc;def' into [abc, def] by separators [';']
      * Note: It take string split() function and RegExp to separate input string,
-     *       so that make sure your costmize separators could be use with RegExp.
+     *       so that make sure your customize separators could be use with RegExp.
      */
     separators: PropTypes.array,
 
@@ -317,7 +317,7 @@ webpack: Compiled with warnings.
 
 ### Priority of props
 
-When ```tokenRender``` is provide, following props will be ignored.
+When ```tokenRender``` is providing, following props will be ignored.
 ```javascript
 buildDataFromValue
 dataValue
