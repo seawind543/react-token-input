@@ -8,8 +8,8 @@
     "lib"
   ],
   "scripts": {
-    "prepublish": "npm run eslint && npm test && npm run clean && npm run build && npm run build-examples",
-    "build": "webpack && npm run cleancss",
+    "prepublish": "yarn run eslint && yarn test && yarn run clean && yarn run build && yarn run build-examples",
+    "build": "webpack && yarn run cleancss",
     "build-examples": "cd examples; webpack",
     "clean": "rm -f {lib,dist}/*",
     "cleancss": "cleancss -o dist/react-customize-token-input.min.css dist/react-customize-token-input.css",
