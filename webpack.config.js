@@ -1,5 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const nib = require('nib');
 const pkg = require('./package.json');
 
 const publicName = pkg.name; // package name
@@ -9,6 +11,7 @@ const banner = [
   pkg.license,
   pkg.homepage,
 ].join(' | ');
+const localClassPrefix = publicName.replace(/^react-/, ''); // Strip out "react-" from publicName
 
 module.exports = {
   mode: 'production',
@@ -29,6 +32,36 @@ module.exports = {
           loader: 'babel-loader',
         },
       },
+      {
+        test: /\.styl$/,
+        // extract-text-webpack-plugin not support
+        // Apply mini-css-extract-plugin instead
+        // https://bbs.huaweicloud.com/blogs/detail/241981
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          {
+            loader: 'css-loader', // translates CSS into CommonJS
+            options: {
+              importLoaders: 1,
+              modules: {
+                exportLocalsConvention: 'camelCase',
+                localIdentName: `${localClassPrefix}---[local]---[hash:base64:5]`,
+              },
+            },
+          },
+          {
+            loader: 'stylus-loader', // compiles Stylus to CSS
+            options: {
+              stylusOptions: {
+                use: [nib()],
+                import: ['nib'],
+              },
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
@@ -37,6 +70,9 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
     new webpack.NoEmitOnErrorsPlugin(),
+    new MiniCssExtractPlugin({
+      filename: `../dist/${publicName}.css`,
+    }),
     new webpack.BannerPlugin(banner),
   ],
   resolve: {

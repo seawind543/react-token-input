@@ -1,9 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const nib = require('nib');
 const pkg = require('../package.json');
 
 const publicName = pkg.name; // package name
+const localClassPrefix = publicName.replace(/^react-/, ''); // Strip out "react-" from publicName
 
 module.exports = {
   mode: 'development',
@@ -27,6 +29,48 @@ module.exports = {
         use: {
           loader: 'babel-loader',
         },
+      },
+      {
+        test: /\.styl$/,
+        // extract-text-webpack-plugin not support
+        // Apply mini-css-extract-plugin instead
+        // https://bbs.huaweicloud.com/blogs/detail/241981
+        use: [
+          {
+            loader: 'style-loader', // creates style nodes from JS strings
+          },
+          {
+            loader: 'css-loader', // translates CSS into CommonJS
+            options: {
+              modules: {
+                exportLocalsConvention: 'camelCase',
+                localIdentName: `${localClassPrefix}---[local]---[hash:base64:5]`,
+              },
+            },
+          },
+          {
+            loader: 'stylus-loader', // compiles Stylus to CSS
+            options: {
+              stylusOptions: {
+                // nib - CSS3 extensions for Stylus
+                use: [nib()],
+                // no need to have a '@import "nib"' in the stylesheet
+                import: ['~nib/lib/nib/index.styl'],
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'style-loader', // creates style nodes from JS strings
+          },
+          {
+            loader: 'css-loader', // translates CSS into CommonJS
+          },
+        ],
       },
     ],
   },
