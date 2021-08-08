@@ -20,6 +20,14 @@ module.exports = {
   },
   module: {
     rules: [
+      // Process JS with Babel
+      {
+        test: /\.(js|jsx)?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
     ],
   },
   plugins: [
