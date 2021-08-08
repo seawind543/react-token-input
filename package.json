@@ -1,6 +1,6 @@
 {
   "name": "react-customize-token-input",
-  "version": "0.5.2",
+  "version": "1.0.0",
   "description": "A react token input component. Allow customize data structure and render functions",
   "main": "lib/index.js",
   "files": [
@@ -26,15 +26,15 @@
   "license": "MIT",
   "keywords": [
     "react",
-    "react-token-input",
-    "react-customize-token-input",
-    "token-input",
+    "token",
+    "tag",
+    "token input",
+    "tag input",
+    "preprocess",
+    "inline edit",
     "customize",
     "customize data structure",
-    "Customize render functions",
-    "pre-processs",
-    "preprocesss",
-    "inline-edit"
+    "customize render"
   ],
   "dependencies": {
     "classnames": "2.2.5",
