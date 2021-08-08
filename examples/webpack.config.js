@@ -1,6 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
+const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const nib = require('nib');
 const pkg = require('../package.json');
 
@@ -79,6 +81,10 @@ module.exports = {
       debug: true,
     }),
     new webpack.NoEmitOnErrorsPlugin(),
+    new ESLintPlugin({
+      formatter: eslintFormatter,
+      eslintPath: require.resolve('eslint'),
+    }),
     new HtmlWebpackPlugin({
       template: 'index.html',
       filename: '../docs/index.html',

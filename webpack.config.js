@@ -1,5 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
+const ESLintPlugin = require('eslint-webpack-plugin');
+const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const nib = require('nib');
 const pkg = require('./package.json');
@@ -70,6 +72,13 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
     new webpack.NoEmitOnErrorsPlugin(),
+    new ESLintPlugin({
+      formatter: eslintFormatter,
+      eslintPath: require.resolve('eslint'),
+      exclude: ['node_modules', 'docs', 'dist', 'lib'],
+      emitWarning: true,
+      cache: false,
+    }),
     new MiniCssExtractPlugin({
       filename: `../dist/${publicName}.css`,
     }),
