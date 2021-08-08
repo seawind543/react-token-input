@@ -1,28 +1,28 @@
-import classNames from 'classnames';
+import React from 'react';
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+import classNames from 'classnames';
 import styles from './Navbar.styl';
 
-export default class extends PureComponent {
-    static propTypes = {
-        url: PropTypes.string,
-        name: PropTypes.string
-    };
+const Navbar = ({ url, name }) => {
+  return (
+    <nav
+      className={classNames(styles.navbar, styles.navbarDefault)}
+      style={{ borderRadius: 0 }}
+    >
+      <div className={styles.containerFluid}>
+        <div className={styles.navbarHeader}>
+          <a href={url} className={styles.navbarBrand}>
+            {name}
+          </a>
+        </div>
+      </div>
+    </nav>
+  );
+};
 
-    render() {
-        const { name, url } = this.props;
+Navbar.propTypes = {
+  url: PropTypes.string,
+  name: PropTypes.string,
+};
 
-        return (
-            <nav
-                className={classNames(styles.navbar, styles.navbarDefault)}
-                style={{ borderRadius: 0 }}
-            >
-                <div className={styles.containerFluid}>
-                    <div className={styles.navbarHeader}>
-                        <a href={url} className={styles.navbarBrand}>{name}</a>
-                    </div>
-                </div>
-            </nav>
-        );
-    }
-}
+export default Navbar;
