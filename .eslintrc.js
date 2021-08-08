@@ -42,6 +42,7 @@ module.exports = {
       // No auto-fix. https://github.com/facebook/react/issues/18235#issuecomment-598256997
       // { enableDangerousAutofixThisMayCauseInfiniteLoops: true },
     ],
+    'no-shadow': 0,
     // Allow deprecated react lifecycle's methods, eg: UNSAFE_componentWillMount
     camelcase: [
       'error',
