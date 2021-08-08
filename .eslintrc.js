@@ -31,12 +31,9 @@ module.exports = {
     'airbnb-base',
     'plugin:jsx-a11y/recommended',
     'plugin:react/recommended',
+    'plugin:prettier/recommended',
   ],
-  plugins: [
-    '@babel',
-    'jsx-a11y',
-    'react',
-  ],
+  plugins: ['@babel', 'jsx-a11y', 'react', 'prettier'],
   rules: {
     // Allow deprecated react lifecycle's methods, eg: UNSAFE_componentWillMount
     camelcase: [
