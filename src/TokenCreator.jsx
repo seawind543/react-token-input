@@ -1,162 +1,175 @@
-import React, { PureComponent } from 'react';
+import React, { useState, useMemo, useCallback, forwardRef } from 'react';
 import PropTypes from 'prop-types';
-import Autosized from 'react-input-autosize';
-import { dataItemToTokenData } from './utils';
+import AutosizeInput from 'react-input-autosize';
+import keyDownHandler from './utils/keyDownHandler';
 
 import styles from './styles.styl';
 
-class TokenCreator extends PureComponent {
-    constructor (props) {
-        super(props);
+import { DEFAULT_INPUT_INIT_VALUE } from './constants';
 
-        this.state = {
-            value: '',
-        };
-    }
+const TokenCreator = forwardRef((props, ref) => {
+  const {
+    separators,
+    onPreprocess,
+    onBuildTokenValue,
+    onNewTokenValuesAppend,
+    onLastTokenDelete,
+    placeholder,
+    autoFocus,
+    onFocus,
+    onBlur,
+    onInputValueChange,
+  } = props;
+  const [inputValue, setInputValue] = useState(DEFAULT_INPUT_INIT_VALUE);
 
-    actions = {
-        updateValue: (value = '') => {
-            this.setState({ value }, () => {
-                this.props.onInputValueChange(value);
-            });
+  const splitPattens = useMemo(
+    () => new RegExp(separators.join('|')),
+    [separators]
+  );
+
+  const handleInputValueUpdate = useCallback(
+    (newValue) => {
+      // console.log(
+      //   'handleInputValueUpdate; newValue',
+      //   `${newValue}`,
+      //   'previousValue',
+      //   `${inputValue}`
+      // );
+      setInputValue(newValue);
+      onInputValueChange(newValue, inputValue);
+    },
+    [onInputValueChange, inputValue, setInputValue]
+  );
+
+  const handleTokensCreate = useCallback(
+    (inputString) => {
+      // console.log('handleTokensCreate', `${inputString}`);
+
+      /**
+       * Do not perform `trim`. Leave the trim for customize data to handle.
+       * Could handle by either `onPreprocess` or `onBuildTokenValue`
+       */
+      if (inputString.length === 0) {
+        // Skip empty
+        return;
+      }
+
+      // Split string into values by `separators`
+      const inputValues = inputString.split(splitPattens);
+      const processedValues = onPreprocess(inputValues);
+      const appendTokenValues = processedValues.map((value) => {
+        return onBuildTokenValue(value);
+      });
+      onNewTokenValuesAppend(appendTokenValues);
+
+      // Rest the input value after token created
+      handleInputValueUpdate(DEFAULT_INPUT_INIT_VALUE);
+    },
+    [
+      splitPattens,
+      onPreprocess,
+      onBuildTokenValue,
+      onNewTokenValuesAppend,
+      handleInputValueUpdate,
+    ]
+  );
+
+  /*
+   * Event handlers
+   */
+  const handleInputValueChange = useCallback(
+    (e) => {
+      // console.log('TokenCreator > handleInputValueChange');
+      const { value: newInputValue } = e.target;
+      const lastChar = newInputValue.substr(-1);
+
+      const isTypingSeparators = splitPattens.test(lastChar);
+      if (isTypingSeparators === true) {
+        // User input a `Separator`, so create a token
+        handleTokensCreate(inputValue);
+        return;
+      }
+
+      handleInputValueUpdate(newInputValue);
+    },
+    [splitPattens, handleTokensCreate, inputValue, handleInputValueUpdate]
+  );
+
+  const handleKeyDown = useCallback(
+    (e) => {
+      // console.log('TokenCreator > handleKeyDown');
+      keyDownHandler(e, {
+        onBackspace: () => {
+          if (inputValue.length === 0) {
+            // Delete the latest token when `Backspace`
+            onLastTokenDelete();
+          }
         },
-        // event handler
-        handleChangeValue: (e) => {
-            const { value } = e.target;
-            const lastChar = value.substr(-1);
-            const pattens = new RegExp(this.props.separators.join('|'));
+        onEscape: () => handleInputValueUpdate(DEFAULT_INPUT_INIT_VALUE), // Reset the input value
+        onEnter: () => handleTokensCreate(inputValue),
+      });
+    },
+    [inputValue, onLastTokenDelete, handleInputValueUpdate, handleTokensCreate]
+  );
 
-            if (pattens.test(lastChar) === true) {
-                this.actions.createTokens();
-                return;
-            }
+  const handleBlur = useCallback(
+    (e) => {
+      // console.log('TokenCreator > handleBlur');
+      handleTokensCreate(inputValue);
+      onBlur(e);
+    },
+    [handleTokensCreate, inputValue, onBlur]
+  );
 
-            this.actions.updateValue(value);
-        },
-        createTokens: (value = this.state.value) => {
-            const {
-                separators,
-                preprocessor,
-                buildDataFromValue,
-                addTokens
-            } = this.props;
+  const handlePaste = useCallback(
+    (e) => {
+      // console.log('TokenCreator > handlePaste');
+      e.preventDefault();
+      const pastedText = e.clipboardData.getData('text');
+      handleTokensCreate(pastedText);
+    },
+    [handleTokensCreate]
+  );
 
-            const trimmedValue = value.trim();
+  return (
+    <div className={styles['autosized-wrapper']}>
+      <AutosizeInput
+        ref={ref}
+        autoFocus={autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
+        placeholder={placeholder}
+        value={inputValue}
+        onChange={handleInputValueChange}
+        onKeyDown={handleKeyDown}
+        onPaste={handlePaste}
+        onFocus={onFocus}
+        onBlur={handleBlur}
+      />
+    </div>
+  );
+});
 
-            // Skip empty
-            if (trimmedValue === '') {
-                return;
-            }
-
-            const inputValues = trimmedValue.split(new RegExp(separators.join('|')));
-            const values = preprocessor(inputValues);
-            const tokens = values
-                .map((value, index) => {
-                    const data = buildDataFromValue(value);
-                    return dataItemToTokenData(data, index);
-                });
-
-            addTokens(tokens);
-            this.actions.updateValue(''); // clear value
-        },
-        handleKeyDown: (e) => {
-            // const { value } = e.target;
-            const { value } = this.state;
-
-            let eventKey;
-
-            // https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key
-            const eventKeys = [
-                'Backspace',
-                'Enter',
-                'Escape'
-            ];
-            const keyIndex = eventKeys.indexOf(e.key);
-            eventKey = eventKeys[keyIndex];
-
-            // backward compatibility for browser not support event.key, such as safari
-            // https://www.w3schools.com/jsref/event_key_key.asp
-            if (eventKey === undefined) {
-                eventKey = {
-                    8: 'Backspace',
-                    13: 'Enter',
-                    27: 'Escape'
-                }[e.keyCode];
-            }
-
-            // TODO: Fix me. check functional
-            if (value.length === 0 && eventKey === 'Backspace') {
-                this.props.onDeleteLastToken();
-            }
-
-            if (eventKey === 'Escape') {
-                this.actions.updateValue(''); // clear value
-                return;
-            }
-
-            if (eventKey === 'Enter') {
-                this.actions.createTokens();
-                return;
-            }
-        },
-        handleFocus: (e) => {
-            this.props.onFocus(e);
-        },
-        handleBlur: (e) => {
-            this.actions.createTokens();
-            this.props.onBlur(e);
-        },
-        handlePaste: (e) => {
-            e.preventDefault();
-            const pastedText = e.clipboardData.getData('text');
-
-            this.actions.createTokens(pastedText);
-        }
-    };
-
-    focus = () => {
-        this.tokenCreator.input && this.tokenCreator.input.focus();
-    }
-
-    render() {
-        const {
-            placeholder,
-            autoFocus,
-        } = this.props;
-
-        const { value } = this.state;
-
-        return (
-            <div className={styles['autosized-wrapper']}>
-                <Autosized
-                    ref={node => {
-                        this.tokenCreator = node;
-                    }}
-                    placeholder={placeholder}
-                    value={value}
-                    autoFocus={autoFocus}
-                    onFocus={this.actions.handleFocus}
-                    onBlur={this.actions.handleBlur}
-                    onChange={this.actions.handleChangeValue}
-                    onKeyDown={this.actions.handleKeyDown}
-                    onPaste={this.actions.handlePaste}
-                />
-            </div>
-        );
-    }
-}
+/**
+ * Fix the eslint 'react/display-name' issue with forwardRef
+ * https://stackoverflow.com/questions/59716140/using-forwardref-with-proptypes-and-eslint
+ */
+TokenCreator.displayName = 'TokenCreator';
 
 TokenCreator.propTypes = {
-    separators: PropTypes.array.isRequired,
-    placeholder: PropTypes.string.isRequired,
-    autoFocus: PropTypes.bool.isRequired,
-    onFocus: PropTypes.func.isRequired,
-    onBlur: PropTypes.func.isRequired,
-    addTokens: PropTypes.func.isRequired,
-    onDeleteLastToken: PropTypes.func.isRequired,
-    buildDataFromValue: PropTypes.func.isRequired,
-    onInputValueChange: PropTypes.func.isRequired,
-    preprocessor: PropTypes.func.isRequired
+  placeholder: PropTypes.string.isRequired,
+  autoFocus: PropTypes.bool.isRequired,
+  onFocus: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired,
+
+  /**
+   * Token
+   */
+  separators: PropTypes.array.isRequired,
+
+  onInputValueChange: PropTypes.func.isRequired,
+  onPreprocess: PropTypes.func.isRequired,
+  onBuildTokenValue: PropTypes.func.isRequired,
+  onNewTokenValuesAppend: PropTypes.func.isRequired,
+  onLastTokenDelete: PropTypes.func.isRequired,
 };
 
 export default TokenCreator;
