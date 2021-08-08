@@ -1,9 +1,7 @@
-@import "reset-context";
-
 .container {
-    reset-context();
-
-    // color: #666;
+    /* https://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
+    box-sizing: border-box;
+    line-height: 20px;
 
     cursor: text;
     overflow-y: auto;
@@ -11,14 +9,16 @@
 
     padding: 4px;
 
-    background-color: #ffffff;
+    background-color: #fff;
 
-    // outline: none; // remove focuse border style of mac sysytem
-    outline: 0; // remove focuse border style of mac sysytem
-    border-radius: 3px;
+    // remove focuse border style of mac sysytem
+    // outline: none; 
+    outline: 0;
+
     border-width: 1px;
     border-style: solid;
-    border-color: #cccccc;
+    border-color: #ccc;
+    border-radius: 4px;
 
     &.focused {
         border-color: #0096cc;
@@ -42,16 +42,14 @@
             padding-left: 8px;
 
             max-width: 100%;
-            height: 24px;
-            line-height: 20px;
 
             white-space: nowrap;
 
-            border-radius: 3px;
+            border-radius: 4px;
 
             color: #0096cc;
-
             background-color: #cceaf5;
+
             &:hover {
                 cursor: pointer;
                 background-color: #e6f4fc;
@@ -69,10 +67,14 @@
             }
 
             &.read-only {
-                color: #000000;
+                color: #000;
 
                 &:hover {
                     cursor: default;
+                }
+
+                .label-wrapper {
+                    max-width: 100%;
                 }
             }
 
@@ -83,12 +85,6 @@
                 width: 100%;
                 max-width: calc(100% - 10px);
                 vertical-align: middle;
-            }
-
-            &.read-only {
-                .label-wrapper {
-                    max-width: 100%;
-                }
             }
             
             .delete-button {
@@ -128,7 +124,7 @@
             cursor: text;
             box-shadow: none;
             background: none;
-            color: #222222;
+            color: #222;
         }
     }
 }
