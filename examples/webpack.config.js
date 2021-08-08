@@ -1,99 +1,112 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const stylusLoader = require('stylus-loader');
+const ESLintPlugin = require('eslint-webpack-plugin');
+const eslintFormatter = require('react-dev-utils/eslintFormatter');
+const StylelintPlugin = require('stylelint-webpack-plugin');
 const nib = require('nib');
+const pkg = require('../package.json');
+
+const publicName = pkg.name; // package name
+const localClassPrefix = publicName.replace(/^react-/, ''); // Strip out "react-" from publicName
 
 module.exports = {
-    devtool: 'cheap-module-eval-source-map',
-    entry: path.resolve(__dirname, 'index.jsx'),
-    output: {
-        path: path.join(__dirname, '../docs'),
-        filename: 'bundle.js?[hash]'
-    },
-    module: {
-        rules: [
-            // http://survivejs.com/webpack_react/linting_in_webpack/
-            {
-                test: /\.jsx?$/,
-                loader: 'eslint-loader',
-                enforce: 'pre',
-                exclude: /node_modules/
+  mode: 'development',
+  devtool: 'eval-cheap-module-source-map',
+  entry: path.resolve(__dirname, 'index.jsx'),
+  output: {
+    path: path.join(__dirname, '../docs'),
+    filename: 'bundle.js?[hash]',
+  },
+  optimization: {
+    moduleIds: 'named',
+    minimize: false,
+    emitOnErrors: false,
+  },
+  module: {
+    rules: [
+      // Process JS with Babel
+      {
+        test: /\.(js|jsx)?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+      {
+        test: /\.styl$/,
+        // extract-text-webpack-plugin not support
+        // Apply mini-css-extract-plugin instead
+        // https://bbs.huaweicloud.com/blogs/detail/241981
+        use: [
+          {
+            loader: 'style-loader', // creates style nodes from JS strings
+          },
+          {
+            loader: 'css-loader', // translates CSS into CommonJS
+            options: {
+              modules: {
+                exportLocalsConvention: 'camelCase',
+                localIdentName: `${localClassPrefix}---[local]---[hash:base64:5]`,
+              },
             },
-            {
-                test: /\.styl$/,
-                loader: 'stylint-loader',
-                enforce: 'pre'
-            },
-            {
-                test: /\.jsx?$/,
-                loader: 'babel-loader',
-                exclude: /(node_modules|bower_components)/
-            },
-            {
-                test: /\.styl$/,
-                use: [
-                    'style-loader',
-                    'css-loader?camelCase&modules&importLoaders=1&localIdentName=[local]---[hash:base64:5]',
-                    'stylus-loader'
-                ]
-            },
-            {
-                test: /\.css$/,
-                loader: 'style-loader!css-loader'
-            },
-            {
-                test: /\.(png|jpg)$/,
-                loader: 'url-loader',
-                options: {
-                    limit: 8192
-                }
-            },
-            {
-                test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                loader: 'url-loader',
-                options: {
-                    limit: 10000,
-                    mimetype: 'application/font-woff'
-                }
-            },
-            {
-                test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                loader: 'file-loader'
-            }
-        ]
-    },
-    plugins: [
-        new webpack.LoaderOptionsPlugin({
-            debug: true
-        }),
-        new webpack.NamedModulesPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
-        new stylusLoader.OptionsPlugin({
-            default: {
+          },
+          {
+            loader: 'stylus-loader', // compiles Stylus to CSS
+            options: {
+              stylusOptions: {
                 // nib - CSS3 extensions for Stylus
                 use: [nib()],
                 // no need to have a '@import "nib"' in the stylesheet
-                import: ['~nib/lib/nib/index.styl']
-            }
-        }),
-        new HtmlWebpackPlugin({
-            filename: '../docs/index.html',
-            template: 'index.html'
-        })
+                import: ['~nib/lib/nib/index.styl'],
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'style-loader', // creates style nodes from JS strings
+          },
+          {
+            loader: 'css-loader', // translates CSS into CommonJS
+          },
+        ],
+      },
     ],
-    resolve: {
-        extensions: ['.js', '.json', '.jsx']
+  },
+  plugins: [
+    new webpack.LoaderOptionsPlugin({
+      debug: true,
+    }),
+    new webpack.NoEmitOnErrorsPlugin(),
+    new ESLintPlugin({
+      formatter: eslintFormatter,
+      eslintPath: require.resolve('eslint'),
+    }),
+    new StylelintPlugin({
+      configFile: './stylelint.config.js',
+      files: ['src/**/*.styl'],
+    }),
+    new HtmlWebpackPlugin({
+      template: 'index.html',
+      filename: '../docs/index.html',
+    }),
+  ],
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+  // https://webpack.github.io/docs/webpack-dev-server.html#additional-configuration-options
+  devServer: {
+    disableHostCheck: true,
+    noInfo: false,
+    lazy: false,
+    // https://webpack.github.io/docs/node.js-api.html#compiler
+    watchOptions: {
+      poll: true, // use polling instead of native watchers
+      ignored: /node_modules/,
     },
-    // https://webpack.github.io/docs/webpack-dev-server.html#additional-configuration-options
-    devServer: {
-        disableHostCheck: true,
-        noInfo: false,
-        lazy: false,
-        // https://webpack.github.io/docs/node.js-api.html#compiler
-        watchOptions: {
-            poll: true, // use polling instead of native watchers
-            ignored: /node_modules/
-        }
-    }
+  },
 };

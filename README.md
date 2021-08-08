@@ -2,27 +2,30 @@
 
 [![NPM](https://nodei.co/npm/react-customize-token-input.png?downloads=true&stars=true)](https://www.npmjs.com/package/react-customize-token-input/)
 
-A react token input component, which allow:
-1. Apply **customize data structure**.
-2. **Customize render functions** for `token label part` or `the complete token`.
-3. Customize **separate characters** for separate user input.
-4. **Pre-processs** function for **normalized** user input value .
-It could be helpful to reproduce a single value into multiple values too.
-5. **Validate** function.
-6. **Inline editing** on exist token.
-7. **Past** values.
+React TokenInput (react-customize-token-input)
 
-Demo: https://seawind543.github.io/react-token-input/
+A react token (tag) `controlled` input component, which support:
+
+- Apply to **customize data structure**.
+- **Customize token component** for `label of token` or `the complete token`.
+- Customize **separate characters** for separate end-user input string.
+- **Inline editing** on exist token.
+- **Paste** on values.
+- **Preprocessing** function for **normalized** user input value.
+It could be helpful to reproduce a single value into multiple values too.
+- **Validate** function.
+
+Live Demo: https://seawind543.github.io/react-token-input/
 
 ## Installation
 
 1. Install the latest version of [react](https://github.com/facebook/react) and [react-customize-token-input](https://github.com/seawind543/react-token-input):
 
   ```
-  npm install --save react react-customize-token-input
+  yarn install react react-customize-token-input
   ```
 
-2. At this point you can import `react-token-input` and its styles in your application as follows:
+2. At this point you can import `react-token-input` and its styles in your application by:
 
   ```javascript
   import TokenInput from 'react-customize-token-input';
@@ -33,297 +36,371 @@ Demo: https://seawind543.github.io/react-token-input/
 
 
 ## Dev
-1. Run `npm install` to install required packages.
-2. Run `npm run dev` to launch `webpack-dev-server`.
-3. After step 2, you will see following message output in command console.
-```
-Project is running at http://0.0.0.0:8000/
-webpack output is served from /
-```
 
-4. It might take some time for webpack to compiled. Please wait for message below output in the command console.
+1. Run `yarn install` to install required packages.
+2. Run `yarn dev` to launch `webpack-dev-server`.
+3. After step 2, you will see following message output in command console.
+
 ```
-webpack: Compiled with warnings.
+｢wds｣: Project is running at http://0.0.0.0:8000/
+｢wds｣: webpack output is served from /
+｢wds｣: Content not from webpack is served from ../docs
 ```
 
 > Note: To stop the program, just type ```ctrl + c``` in command console.
 
+4. After step 3 complete, you could access `http://localhost:8000/` to see result.
+
 ## Usage
 
-```javascript
-    // Simple sample. 
-    // Take default, data is array of string
-    <TokenInput />
-```
+See Live Demo: https://seawind543.github.io/react-token-input/
 
-```javascript
-    // Read only
-    <TokenInput readOnly={true} />
-```
-
-```javascript
-    // Customize data structure and validator
-    <TokenInput
-        defaultData={this.state.cData}
-        buildDataFromValue={this.actions.cData.buildDataFromValue}
-        dataValue={this.actions.cData.dataValue}
-        tokenLabelRender={this.actions.cData.tokenLabelRender}
-        validator={this.actions.cData.validator}
-        tokenErrorMessage={this.actions.cData.tokenErrorMessage}
-        onTokensUpdate={this.actions.cData.handleTokensUpdate}
-    />
-```
-
-```javascript
-    // Reproduce value
-    <TokenInput
-        reproduceValue={this.actions.urls.reproduceValue}
-        onTokensUpdate={this.actions.urls.handleTokensUpdate}
-    />
-```
+(Examples in the folder `examples`)
 
 ## Props
 
 ```javascript
-    // style: PropTypes.object,
-    className: PropTypes.string,
+  // Assign style to the TokenInput
+  style: PropTypes.object,
 
-    // Specific TokenInput is readOnly or not
-    readOnly: PropTypes.bool,
+  // Assign className to the TokenInput
+  className: PropTypes.string,
 
-    // placeholder of TokenInput
-    placeholder: PropTypes.string,
+  // Specific TokenInput is `readOnly` or not
+  readOnly: PropTypes.bool,
 
-    // Specific TokenInput should be autoFocus or not
-    autoFocus: PropTypes.bool,
+  // Specific TokenInput should be autoFocus or not
+  autoFocus: PropTypes.bool,
 
-    // data for TokenInput to build pre-set tokens. Default is empty array
-    defaultData: PropTypes.array,
+  // Placeholder of TokenInput
+  placeholder: PropTypes.string,
 
-    /**
-     * Array of characters for separate user input string.
-     * For example, separate user input string 'abc;def' into [abc, def] by separators [';']
-     * Note: It take string split() function and RegExp to separate input string,
-     *       so that make sure your customize separators could be use with RegExp.
-     */
-    separators: PropTypes.array,
+  // [Required] An array of tokenValue of TokenInput
+  tokenValues: PropTypes.array.isRequired,
 
-    /**
-     * function for pre-process user input values.
-     *
-     * Case 1:
-     *  Make your normalize process in this function, such as trim.
-     *
-     * Case 2:
-     * Sometimes, we will want to auto-fit user input, this function could help on it.
-     * For example, user input is 'www.google.com',
-     * and we want to auto fit it into 'http://www.google.com' and 'https://www.google.com'
-     *
-     * preprocessor(values)
-     *
-     * @ values
-     * Type: array of string values
-     * Description: user input values // (values that input string separate by separators)
-     *
-     * @ return
-     * Type: array of string values
-     * Description: values after pre-process
-     */
-    preprocessor: PropTypes.func,
+  /**
+   * A callback function invoked when tokenValues update
+   *
+   * onTokenValuesUpdate(modifiedTokenValues)
+   *
+   * @ modifiedTokenValues
+   * Type: An array of tokenValue of TokenInput
+   * Description: Updated tokenValues
+   */
+  onTokenValuesUpdate: PropTypes.func,
 
-    /**
-     * function for TokenInput to build user input value into customize data structure.
-     * You could make your normalize process in this function too.
-     * buildDataFromValue(value)
-     *
-     * @ value
-     * Type: string
-     * Description: user input value // (value are the input string separate by separators)
-     *
-     * @ return
-     * Type: object || string || number
-     * Description: customize data
-     */
-    buildDataFromValue: PropTypes.func,
+  /**
+   * An array of characters for split the user input string.
+   * For example,
+   * Split the user input string `abc;def` into `['abc', 'def']`
+   * by separators `[';']`
+   *
+   * Note:
+   * It take the `String.prototype.split()` and `RegExp` to split the user input string.
+   * Make sure your customized separators could be used with `RegExp`.
+   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+   */
+  separators: PropTypes.array,
 
-    /**
-     * function for TokenInput to get value from customize data structure for user to perform "edit"
-     * dataValue(data)
-     *
-     * @ data
-     * Type: object || string || number
-     * Description: customize data onject
-     *
-     * @ return
-     * Type: string
-     * Description: The value for user to edit
-     */
-    dataValue: PropTypes.func,
+  /**
+   * A callback function for preprocessing the user input string
+   * (after it is split into `array of value`).
+   *
+   * Note: This function execute after `split` but before `onBuildTokenValue`
+   *
+   * [Use case 1]
+   *  Make your normalize process in this function, such as `String.prototype.trim()`.
+   *
+   * [Use case 2]
+   * Sometimes, we will want to auto-fit user input, this function could help with it.
+   * For example, the user input string is `www.google.com`,
+   * and we want to auto-fit it into `http://www.google.com` and `https://www.google.com`.
+   *
+   *
+   * onPreprocess(inputStringValues)
+   *
+   * @ inputStringValues
+   * Type: An array of string values
+   * Description:
+   * The user input string values // (split from the user input string by the `separators`)
+   *
+   * @ return
+   * Type: An array of string values
+   * Description: The values after preprocess
+   */
+  onPreprocess: PropTypes.func,
 
-    /**
-     * function for TokenInput to get className for a token
-     * tokenClassName(data, meta)
-     *
-     * @ data
-     * Type: object || string || number
-     * Description: customize data onject
-     *
-     * @ meta
-     * Description: token's meta data
-     *  {
-     *      key, // private key for render
-     *      activated, // Boolean; Specific the token is activated for edit or not
-     *      error // null or ERROR object. Specific the token's validate status
-     *  }
-     *
-     *
-     * @ return
-     * Type: string
-     * Description: The className
-     */
-    tokenClassName: PropTypes.func,
+  /**
+   * A callback function for building `user input string value` into
+   * the `tokenValue` (customize data structure).
+   *
+   * Note: You could make your normalize process in this function too.
+   *
+   * onBuildTokenValue(stringValue)
+   *
+   * @ stringValue
+   * Type: string
+   * Description: The user input value // (A value split by separators)
+   *
+   * @ return
+   * Type: any (string | number | object | customize data structure)
+   * Description: customize data structure
+   */
+  onBuildTokenValue: PropTypes.func,
 
-    /**
-     * A token label renderer for TokenInput to rendering a token's content part (label)
-     * Apply this to customize token's content. For example render token with "icon and text".
-     * tokenLabelRender(data)
-     *
-     * @ data
-     * Type: object || string || number
-     * Description: customize data onject
-     *
-     * @ return
-     * Type: string || node
-     * Description: The token's content. By default, will apply dataValue()
-     */
-    tokenLabelRender: PropTypes.func,
+  /**
+   * A callback function invoked when end-user typing but not become token yet
+   *
+   * onInputValueChange(newValue, previousValue)
+   *
+   * @ newValue
+   * Type: string
+   * Description: end-user input string
+   *
+   * @ previousValue
+   * Type: string
+   * Description: previous end-user input string
+   */
+  onInputValueChange: PropTypes.func,
 
-    /**
-     * function for TokenInput to get error message from customize error
-     * The "customize error" is generate by "validator" function
-     * tokenErrorMessage(error)
-     *
-     * @ error
-     * Type: customize error
-     * Description: customize error
-     *
-     * @ return
-     * Type: string
-     * Description: The error message to describe an invalidte token
-     */
-    tokenErrorMessage: PropTypes.func,
+  /**
+   * A callback function for validate tokenValue
+   *
+   * onTokenValueValidate(tokenValue, tokenIndex, tokenValues)
+   *
+   * @ tokenValue
+   * Type: any (string | number | object | customize data structure)
+   * Description: The tokenValue build by `onBuildTokenValue`
+   *
+   * @ tokenIndex
+   * Type: number
+   * Description: The array index for this tokenValue in tokenValues
+   *
+   * @ tokenValues
+   * Type: array
+   * Description: The array of tokenValue of TokenInput
+   *
+   * @ return
+   * Type: any (string | number | object | customize data structure)
+   * Description:
+   * The customize error.
+   * Specific the token's validate status or errorMessage.
+   * Could be an error message to display or error object
+   *
+   * Will be use by `onGetTokenErrorMessage`
+   */
+  onTokenValueValidate: PropTypes.func,
 
-    /**
-     * A token renderer for TokenInput to rendering a token
-     * Apply this to customize all token.
-     * tokenRender(props)
-     *
-     * @ props.key
-     * Type: string
-     * Description: Each child in an array or iterator should have a unique "key" prop.
-     *
-     * @ props.data
-     * Type: object || string || number
-     * Description: customize data onject
-     *
-     * @ props.meta
-     * Description: token's meta data
-     *  {
-     *      key, // private key for render
-     *      activated, // Boolean; Specific the token is activated for edit or not
-     *      error // null or ERROR object. Specific the token's validate status
-     *  }
-     *
-     * @ props.readOnly
-     * Type: boolean
-     * Description: Is readOnly or not
-     *
-     * @ props.onStartEdit
-     * Type: function
-     * Description: Callback function invoked when user start edit the token
-     *
-     * @ props.onEndEdit(data)
-     * Type: function
-     * Description: Callback function invoked when user end edit the token
-     * parameter:
-     *  data => customize data onject for update result of edit.
-     *          Make no change, in case do not provide data.
-     *
-     * @ props.onDelete
-     * Type: function
-     * Description: Callback function invoked when user delete the token
-     *
-     *
-     * @ return
-     * Type: node
-     * Description: The token's content.
-     */
-    tokenRender: PropTypes.func,
+  /**
+   * A callback function for getting customizes `className` for a token
+   *
+   * onGetTokenClassName(tokenValue, tokenMeta)
+   *
+   * @ tokenValue
+   * Type: any (string | number | object | customize data structure)
+   * Description: The tokenValue build by `onBuildTokenValue`
+   *
+   * @ tokenMeta
+   * Description: token's meta data
+   *  {
+   *    // A private key for render
+   *    key: string,
+   *
+   *    // Specific the token is activated for `edit` or not
+   *    activated: boolean,
+   *
+   *    // Customize data structure built by `onTokenValue Validate`
+   *    // Specific the token's validate status or errorMessage
+   *    error: any,
+   *  }
+   *
+   * @ return
+   * Type: string
+   * Description: The customizes className
+   */
+  onGetTokenClassName: PropTypes.func,
 
-    /**
-     * function for validate data
-     * validator(data, index, allData)
-     *
-     * @ data
-     * Type: object || string || number
-     * Description: customize data onject
-     *
-     * @ index
-     * Type: number
-     * Description: data's array index in allData
-     *
-     * @ allData
-     * Type: array
-     * Description: array of allData
-     *
-     * @ return
-     * Type: null || customize error
-     * Description: The error.
-     *      Could be error message to display or error object
-     *      return null means "validate"
-     */
-    validator: PropTypes.func,
+  /**
+   * A callback function for getting displayable `label` for a token
+   * Apply this to customize the token's content
+   * For example, render token with `icon` or `Additional text`
+   *
+   * onGetTokenDisplayLabel(tokenValue, tokenMeta)
+   *
+   * @ tokenValue
+   * Type: any (string | number | object | customize data structure)
+   * Description: The tokenValue build by `onBuildTokenValue`
+   *
+   * @ tokenMeta
+   * Description: token's meta data
+   *  {
+   *    // A private key for render
+   *    key: string,
+   *
+   *    // Specific the token is activated for `edit` or not
+   *    activated: boolean,
+   *
+   *    // Customize data structure built by `onTokenValue Validate`
+   *    // Specific the token's validate status or errorMessage
+   *    error: any,
+   *  }
+   *
+   * @ return
+   * Type: string || react node
+   * Description: The token's content.
+   * By default, will apply `getDefaultTokenEditableValue`
+   */
+  onGetTokenDisplayLabel: PropTypes.func,
 
-    /**
-     * Callback function invoked when user typing but not become token yet
-     * onInputValueChange(value)
-     *
-     * @ value
-     * Type: string
-     * Description: user input string
-     */
-    onInputValueChange: PropTypes.func,
+  /**
+   * A callback function for getting `string input value`
+   * from `tokenValue` for the end-user to perform `edit`
+   *
+   * onGetTokenEditableValue(tokenValue)
+   *
+   * @ tokenValue
+   * Type: any (string | number | object | customize data structure)
+   * Description: The tokenValue build by `onBuildTokenValue`
+   *
+   * @ return
+   * Type: string
+   * Description: The value for end-user to `edit` in an input field
+   */
+  onGetTokenEditableValue: PropTypes.func,
 
-    /**
-     * Callback function invoked data updated
-     * onTokensUpdate(tokens)
-     *
-     * @ tokens
-     * Type: Array
-     * Description: Array of token data
-     *
-     * token data
-     *  {
-     *      value, // customize data
-     *      meta: {
-     *          key, // private key for render
-     *          activated, // Boolean; Specific the token is activated for edit or not
-     *          error // null or ERROR object. Specific the token's validate status
-     *      }
-     *  }
-     */
-    onTokensUpdate: PropTypes.func
+  /**
+   * A callback function for getting the error message from the customize error
+   * The `customize error` is generate by `onTokenValueValidate`
+   *
+   * onGetTokenErrorMessage(tokenValue, tokenMeta)
+   *
+   * @ error
+   * Type: customize error
+   * Description: customize error
+   *
+   * @ return
+   * Type: string | any
+   * Description: The error message to describe an invalid token
+   */
+  onGetTokenErrorMessage: PropTypes.func,
+
+  /**
+   * A customize react functional component for rendering a token
+   * Apply this to customize all token function.
+   *
+   * customizeTokenComponent={MyToken}
+   */
+  customizeTokenComponent: PropTypes.func,
 ```
 
-### Priority of props
+## Default value of optional Props
 
-When ```tokenRender``` is providing, following props will be ignored.
 ```javascript
-buildDataFromValue
-dataValue
-tokenClassName
-tokenLabelRender
-tokenErrorMessage
+
+    className: '',
+    readOnly: false,
+    autoFocus: false,
+    placeholder: '',
+
+    // TokenCreator
+    separators: [
+        ',',
+        ';',
+        '\n', // for copy past
+        '\r', // for copy past
+        '\r\n', // for copy past
+    ];
+
+    onBuildTokenValue: buildDefaultTokenValue,
+
+    onInputValueChange: () => {}, // Dummy function
+  
+    onTokenValueValidate: () => undefined,
+
+    // Token
+    onGetTokenClassName: () => '',
+    onGetTokenDisplayLabel: getDefaultTokenEditableValue,
+    onGetTokenEditableValue: getDefaultTokenEditableValue,
+    onGetTokenErrorMessage: getDefaultTokenErrorMessage,
+```
+
+## Props of customizeTokenComponent
+
+```javascript
+  // Same as props of TokenInput
+  readOnly: PropTypes.bool.isRequired,
+  // tokenValue of token
+  tokenValue: PropTypes.any.isRequired,
+  // tokenMeta of token
+  tokenMeta: PropTypes.object.isRequired,
+
+  // Same as props `onGetTokenClassName` of TokenInput
+  onGetClassName: PropTypes.func.isRequired,
+  // Same as props `onGetTokenDisplayLabel` of TokenInput
+  onGetDisplayLabel: PropTypes.func.isRequired,
+  // Same as props `onGetTokenEditableValue` of TokenInput
+  onGetEditableValue: PropTypes.func.isRequired,
+  // Same as props `onGetTokenErrorMessage` of TokenInput
+  onGetErrorMessage: PropTypes.func.isRequired,
+
+  // Editing
+  // Same as props `onBuildTokenValue` of TokenInput
+  onBuildTokenValue: PropTypes.func.isRequired,
+
+  /**
+   * A callback function, which should be `invoked` when end-user `start editing`
+   *
+   * Note:
+   * Call this function to tell TokenInput it is start to editing the token.
+   * As result, TokenInput will set `tokenMeta.activate` to `true`
+   *
+   * onEditStart()
+   *
+   * @ return
+   * Type: void
+   */
+  onEditStart: PropTypes.func.isRequired,
+
+  /**
+   * A callback function, which should be `invoked` when end-user `end editing`
+   *
+   * Note:
+   * Call this function to tell TokenInput it is finish editing the token.
+   * As result, TokenInput will set `tokenMeta.activate` to `false`
+   *
+   * onEditEnd(newTokenValue?)
+   *
+   * @ newTokenValue
+   * Type: undefined | any (string | number | object | customize data structure)
+   * Description:
+   * The new tokenValue build by `onBuildTokenValue.
+   * TokenInput will update it, and
+   * TokenInput will call `onTokenValuesUpdate`
+   *
+   * Note:
+   * When newTokenValue is `undefined`,
+   * TokenInput will treat as `Cancel` (End without update newTokenValue).
+   * The `onTokenValuesUpdate` will not be called.
+   *
+   * @ return
+   * Type: void
+   */
+  onEditEnd: PropTypes.func.isRequired,
+
+  /**
+   * A callback function, which should be `invoked` when end-user `delete` the token
+   *
+   * Note:
+   * Call this function to tell TokenInput to delete the token.
+   * As result, TokenInput will remove it, and
+   * TokenInput will call `onTokenValuesUpdate` to update tokenValues.
+   *
+   * onDelete()
+   *
+   * @ return
+   * Type: void
+   */
+  onDelete: PropTypes.func.isRequired,
 ```
 
 ## License
