@@ -31,4 +31,7 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.BannerPlugin(banner),
   ],
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
 };

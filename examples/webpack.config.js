@@ -32,6 +32,9 @@ module.exports = {
       filename: '../docs/index.html',
     }),
   ],
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
   // https://webpack.github.io/docs/webpack-dev-server.html#additional-configuration-options
   devServer: {
     disableHostCheck: true,
