@@ -31,10 +31,17 @@ module.exports = {
     'airbnb-base',
     'plugin:jsx-a11y/recommended',
     'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
     'plugin:prettier/recommended',
   ],
-  plugins: ['@babel', 'jsx-a11y', 'react', 'prettier'],
+  plugins: ['@babel', 'jsx-a11y', 'react', 'react-hooks', 'prettier'],
   rules: {
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': [
+      'error',
+      // No auto-fix. https://github.com/facebook/react/issues/18235#issuecomment-598256997
+      // { enableDangerousAutofixThisMayCauseInfiniteLoops: true },
+    ],
     // Allow deprecated react lifecycle's methods, eg: UNSAFE_componentWillMount
     camelcase: [
       'error',
