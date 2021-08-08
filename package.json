@@ -35,17 +35,21 @@
     "customize render"
   ],
   "dependencies": {
+    "react": "^16.10.2"
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",
     "@babel/eslint-parser": "^7.14.9",
     "@babel/eslint-plugin": "^7.14.5",
     "@babel/preset-env": "^7.14.9",
+    "@babel/preset-react": "^7.14.5",
     "babel-loader": "^8.2.2",
     "css-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
     "mini-css-extract-plugin": "^2.1.0",
     "nib": "^1.1.2",
+    "react-dev-utils": "^11.0.4",
+    "react-dom": "^16.14.0",
     "style-loader": "^3.2.1",
     "stylus": "^0.54.8",
     "stylus-loader": "^6.1.0",
