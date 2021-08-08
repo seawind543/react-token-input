@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
+const StylelintPlugin = require('stylelint-webpack-plugin');
 const nib = require('nib');
 const pkg = require('../package.json');
 
@@ -84,6 +85,10 @@ module.exports = {
     new ESLintPlugin({
       formatter: eslintFormatter,
       eslintPath: require.resolve('eslint'),
+    }),
+    new StylelintPlugin({
+      configFile: './stylelint.config.js',
+      files: ['src/**/*.styl'],
     }),
     new HtmlWebpackPlugin({
       template: 'index.html',

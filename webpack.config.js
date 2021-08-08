@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
+const StylelintPlugin = require('stylelint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const nib = require('nib');
 const pkg = require('./package.json');
@@ -78,6 +79,10 @@ module.exports = {
       exclude: ['node_modules', 'docs', 'dist', 'lib'],
       emitWarning: true,
       cache: false,
+    }),
+    new StylelintPlugin({
+      configFile: './stylelint.config.js',
+      files: ['*.styl'],
     }),
     new MiniCssExtractPlugin({
       filename: `../dist/${publicName}.css`,
