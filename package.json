@@ -8,15 +8,13 @@
     "lib"
   ],
   "scripts": {
-    "prepublish": "yarn run eslint && yarn test && yarn run clean && yarn run build && yarn run build-examples",
+    "prepublish": "yarn run eslint && yarn run clean && yarn run build && yarn run build-examples",
     "build": "webpack && yarn run cleancss",
     "build-examples": "cd examples; webpack",
     "clean": "rm -f {lib,dist}/*",
     "cleancss": "cleancss -o dist/react-customize-token-input.min.css dist/react-customize-token-input.css",
     "demo": "http-server -p 8000 docs/",
     "eslint": "eslint --ext .js --ext .jsx *.js examples src test",
-    "test": "tap test/*.js --node-arg=--require --node-arg=babel-register --node-arg=--require --node-arg=babel-polyfill",
-    "coveralls": "tap test/*.js --coverage --coverage-report=text-lcov --nyc-arg=--require --nyc-arg=babel-register --nyc-arg=--require --nyc-arg=babel-polyfill | coveralls",
     "dev": "cd examples; webpack-dev-server --hot --inline --host 0.0.0.0 --port 8000 --content-base ../docs"
   },
   "repository": {
@@ -55,7 +53,6 @@
     "babel-preset-stage-0": "6.24.1",
     "clean-css": "4.1.11",
     "clean-css-cli": "4.1.11",
-    "coveralls": "3.0.1",
     "css-loader": "0.28.11",
     "enzyme": "3.3.0",
     "enzyme-adapter-react-16": "1.1.1",
@@ -78,7 +75,6 @@
     "stylint": "1.5.9",
     "stylint-loader": "1.0.0",
     "stylus-loader": "3.0.2",
-    "tap": "12.0.1",
     "trendmicro-ui": "0.5.2",
     "url-loader": "1.0.1",
     "webpack": "3.11.0",
