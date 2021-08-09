@@ -25,6 +25,20 @@ module.exports = {
     filename: 'index.js',
     libraryTarget: 'commonjs2',
   },
+  /**
+   * Fix issue `Minified React error #321` when import from npm
+   * https://reactjs.org/docs/error-decoder.html?invariant=321
+   *
+   * Solution:https://github.com/facebook/react/issues/16029#issuecomment-570912067
+   */
+  externals: {
+    react: {
+      root: 'React',
+      commonjs2: 'react',
+      commonjs: 'react',
+      amd: 'react',
+    },
+  },
   module: {
     rules: [
       // Process JS with Babel

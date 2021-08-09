@@ -1,5 +1,12 @@
 import React from 'react';
+
+/**
+ * Disable the ESLint `import/no-extraneous-dependencies` for import ReactDOM
+ * ReactDOM is only use for build the `live demo page` and `dev`,
+ * so keep it in devDependencies
+ */
 import ReactDOM from 'react-dom'; // eslint-disable-line import/no-extraneous-dependencies
+
 import Navbar from './Navbar';
 import Section from './Section';
 
