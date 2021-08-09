@@ -81,13 +81,13 @@ See Live Demo: https://seawind543.github.io/react-token-input/
   /**
    * A callback function invoked when tokenValues update
    *
-   * onTokenValuesUpdate(modifiedTokenValues)
+   * onTokenValuesChange(modifiedTokenValues)
    *
    * @ modifiedTokenValues
    * Type: An array of tokenValue of TokenInput
    * Description: Updated tokenValues
    */
-  onTokenValuesUpdate: PropTypes.func,
+  onTokenValuesChange: PropTypes.func,
 
   /**
    * An array of characters for split the user input string.
@@ -375,12 +375,12 @@ See Live Demo: https://seawind543.github.io/react-token-input/
    * Description:
    * The new tokenValue build by `onBuildTokenValue.
    * TokenInput will update it, and
-   * TokenInput will call `onTokenValuesUpdate`
+   * TokenInput will call `onTokenValuesChange`
    *
    * Note:
    * When newTokenValue is `undefined`,
    * TokenInput will treat as `Cancel` (End without update newTokenValue).
-   * The `onTokenValuesUpdate` will not be called.
+   * The `onTokenValuesChange` will not be called.
    *
    * @ return
    * Type: void
@@ -393,7 +393,7 @@ See Live Demo: https://seawind543.github.io/react-token-input/
    * Note:
    * Call this function to tell TokenInput to delete the token.
    * As result, TokenInput will remove it, and
-   * TokenInput will call `onTokenValuesUpdate` to update tokenValues.
+   * TokenInput will call `onTokenValuesChange` to update tokenValues.
    *
    * onDelete()
    *

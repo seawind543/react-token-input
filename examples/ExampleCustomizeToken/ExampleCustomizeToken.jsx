@@ -28,9 +28,9 @@ const handleTokenValueValidate = (tokenValue, index, tokenValues) => {
 const ExampleCustomizeToken = () => {
   const [values, setValues] = useState(DEMO_VALUES);
 
-  const handleTokenValuesUpdate = useCallback(
+  const handleTokenValuesChange = useCallback(
     (newTokenValues) => {
-      console.log('handleTokenValuesUpdate; newTokenValues', newTokenValues);
+      console.log('handleTokenValuesChange; newTokenValues', newTokenValues);
 
       setValues(newTokenValues);
     },
@@ -47,7 +47,7 @@ const ExampleCustomizeToken = () => {
 
       <TokenInput
         tokenValues={values}
-        onTokenValuesUpdate={handleTokenValuesUpdate}
+        onTokenValuesChange={handleTokenValuesChange}
         onTokenValueValidate={handleTokenValueValidate}
         customizeTokenComponent={MyToken}
       />
@@ -56,7 +56,7 @@ const ExampleCustomizeToken = () => {
         {`
 <TokenInput
   tokenValues={values}
-  onTokenValuesUpdate={handleTokenValuesUpdate}
+  onTokenValuesChange={handleTokenValuesChange}
   onTokenValueValidate={handleTokenValueValidate}
   customizeTokenComponent={MyToken}
 />

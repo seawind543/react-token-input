@@ -207,12 +207,12 @@ Token.propTypes = {
    * Description:
    * The new tokenValue build by `onBuildTokenValue.
    * TokenInput will update it, and
-   * TokenInput will call `onTokenValuesUpdate`
+   * TokenInput will call `onTokenValuesChange`
    *
    * Note:
    * When newTokenValue is `undefined`,
    * TokenInput will treat as `Cancel` (End without update newTokenValue).
-   * The `onTokenValuesUpdate` will not be called.
+   * The `onTokenValuesChange` will not be called.
    *
    * @ return
    * Type: void
@@ -225,7 +225,7 @@ Token.propTypes = {
    * Note:
    * Call this function to tell TokenInput to delete the token.
    * As result, TokenInput will remove it, and
-   * TokenInput will call `onTokenValuesUpdate` to update tokenValues.
+   * TokenInput will call `onTokenValuesChange` to update tokenValues.
    *
    * onDelete()
    *

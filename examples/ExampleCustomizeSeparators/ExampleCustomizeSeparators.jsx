@@ -5,7 +5,7 @@ import TokenInput from '../../src';
 const ExampleCustomizeSeparators = () => {
   const [values, setValues] = useState([]);
 
-  const handleTokenValuesUpdate = useCallback(
+  const handleTokenValuesChange = useCallback(
     (newTokenValues) => {
       console.log('tokenValues before', values);
 
@@ -33,7 +33,7 @@ const ExampleCustomizeSeparators = () => {
           ' ', // Blank
         ]}
         tokenValues={values}
-        onTokenValuesUpdate={handleTokenValuesUpdate}
+        onTokenValuesChange={handleTokenValuesChange}
       />
 
       <pre>
@@ -44,7 +44,7 @@ const ExampleCustomizeSeparators = () => {
     ' ', // Blank
   ]}
   tokenValues={values}
-  onTokenValuesUpdate={handleTokenValuesUpdate}
+  onTokenValuesChange={handleTokenValuesChange}
 />
         `}
       </pre>

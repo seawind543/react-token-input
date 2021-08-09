@@ -62,9 +62,9 @@ const handleGetTokenErrorMessage = (error) => {
 const ExampleCustomizeDataStructure = () => {
   const [customizeData, setCustomizeData] = useState(CUSTOMIZE_DATA_STRUCTURE);
 
-  const handleTokenValuesUpdate = useCallback(
+  const handleTokenValuesChange = useCallback(
     (newTokenValues) => {
-      console.log('handleTokenValuesUpdate; newTokenValues', newTokenValues);
+      console.log('handleTokenValuesChange; newTokenValues', newTokenValues);
 
       setCustomizeData(newTokenValues);
     },
@@ -86,7 +86,7 @@ const ExampleCustomizeDataStructure = () => {
 
       <TokenInput
         tokenValues={customizeData}
-        onTokenValuesUpdate={handleTokenValuesUpdate}
+        onTokenValuesChange={handleTokenValuesChange}
         onBuildTokenValue={handleBuildTokenValue}
         onGetTokenEditableValue={handleGetTokenEditableValue}
         onTokenValueValidate={handleTokenValueValidate}
@@ -98,7 +98,7 @@ const ExampleCustomizeDataStructure = () => {
         {`
 <TokenInput
   tokenValues={customizeData}
-  onTokenValuesUpdate={handleTokenValuesUpdate}
+  onTokenValuesChange={handleTokenValuesChange}
   onBuildTokenValue={handleBuildTokenValue}
   onGetTokenEditableValue={handleGetTokenEditableValue}
   onTokenValueValidate={handleTokenValueValidate}

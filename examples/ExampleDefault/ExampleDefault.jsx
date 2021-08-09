@@ -5,7 +5,7 @@ import TokenInput from '../../src';
 const ExampleDefault = () => {
   const [values, setValues] = useState([]);
 
-  const handleTokenValuesUpdate = useCallback(
+  const handleTokenValuesChange = useCallback(
     (newTokenValues) => {
       console.log('tokenValues before', values);
 
@@ -22,7 +22,7 @@ const ExampleDefault = () => {
       <TokenInput
         className="example--default"
         tokenValues={values}
-        onTokenValuesUpdate={handleTokenValuesUpdate}
+        onTokenValuesChange={handleTokenValuesChange}
       />
 
       <pre>
@@ -30,7 +30,7 @@ const ExampleDefault = () => {
 <TokenInput
   className="example--default"
   tokenValues={values}
-  onTokenValuesUpdate={handleTokenValuesUpdate}
+  onTokenValuesChange={handleTokenValuesChange}
 />
         `}
       </pre>

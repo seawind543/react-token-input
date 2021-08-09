@@ -83,9 +83,9 @@ const handleGetTokenErrorMessage = (error) => {
 const ExamplePreprocessor = () => {
   const [urls, setUrls] = useState(URLS);
 
-  const handleTokenValuesUpdate = useCallback(
+  const handleTokenValuesChange = useCallback(
     (newTokenValues) => {
-      console.log('handleTokenValuesUpdate; newTokenValues', newTokenValues);
+      console.log('handleTokenValuesChange; newTokenValues', newTokenValues);
 
       setUrls(newTokenValues);
     },
@@ -102,7 +102,7 @@ const ExamplePreprocessor = () => {
       <p>Example: google.com</p>
       <TokenInput
         tokenValues={urls}
-        onTokenValuesUpdate={handleTokenValuesUpdate}
+        onTokenValuesChange={handleTokenValuesChange}
         onPreprocess={handlePreprocess}
         onBuildTokenValue={handleBuildTokenValue}
         onTokenValueValidate={handleTokenValueValidate}
@@ -115,7 +115,7 @@ const ExamplePreprocessor = () => {
         {`
 <TokenInput
   tokenValues={urls}
-  onTokenValuesUpdate={handleTokenValuesUpdate}
+  onTokenValuesChange={handleTokenValuesChange}
   onPreprocess={handlePreprocess}
   onBuildTokenValue={handleBuildTokenValue}
   onGetTokenEditableValue={handleGetTokenEditableValue}

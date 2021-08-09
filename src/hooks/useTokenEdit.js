@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 function useTokenEdit({
   tokenValues,
-  onTokenValuesUpdate,
+  onTokenValuesChange,
   setTokenActivated,
   handleTokenInputFocus,
   handleTokenInputBlur,
@@ -40,11 +40,11 @@ function useTokenEdit({
 
       const modifiedTokenValues = [...tokenValues];
       modifiedTokenValues[targetIndex] = newTokenValue;
-      onTokenValuesUpdate(modifiedTokenValues);
+      onTokenValuesChange(modifiedTokenValues);
     },
     [
       tokenValues,
-      onTokenValuesUpdate,
+      onTokenValuesChange,
       setTokenActivated,
       handleTokenInputBlur,
       focusTokenCreator,

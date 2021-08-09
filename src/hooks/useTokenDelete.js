@@ -2,14 +2,14 @@ import { useCallback } from 'react';
 
 function useTokenDelete({
   tokenValues,
-  onTokenValuesUpdate,
+  onTokenValuesChange,
   focusTokenCreator,
 }) {
   const deleteToken = useCallback(
     (targetIndex) => {
       const newTokenValues = [...tokenValues];
       newTokenValues.splice(targetIndex, 1);
-      onTokenValuesUpdate(newTokenValues);
+      onTokenValuesChange(newTokenValues);
 
       /**
        * Keep focus when remove a token.
@@ -17,7 +17,7 @@ function useTokenDelete({
        */
       focusTokenCreator();
     },
-    [tokenValues, onTokenValuesUpdate, focusTokenCreator]
+    [tokenValues, onTokenValuesChange, focusTokenCreator]
   );
 
   const handleTokenDelete = useCallback(
