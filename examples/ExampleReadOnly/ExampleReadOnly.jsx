@@ -16,9 +16,9 @@ const handleTokenValueValidate = (tokenValue, index, tokenValues) => {
 const ExampleReadOnly = () => {
   const [values, setValues] = useState(DEMO_VALUES);
 
-  const handleTokenValuesUpdate = useCallback(
+  const handleTokenValuesChange = useCallback(
     (newTokenValues) => {
-      console.log('handleTokenValuesUpdate; newTokenValues', newTokenValues);
+      console.log('handleTokenValuesChange; newTokenValues', newTokenValues);
 
       setValues(newTokenValues);
     },
@@ -33,7 +33,7 @@ const ExampleReadOnly = () => {
       <TokenInput
         readOnly={true}
         tokenValues={values}
-        onTokenValuesUpdate={handleTokenValuesUpdate}
+        onTokenValuesChange={handleTokenValuesChange}
         onTokenValueValidate={handleTokenValueValidate}
       />
 
@@ -42,7 +42,7 @@ const ExampleReadOnly = () => {
 <TokenInput
   readOnly={true}
   tokenValues={values}
-  onTokenValuesUpdate={handleTokenValuesUpdate}
+  onTokenValuesChange={handleTokenValuesChange}
   onTokenValueValidate={handleTokenValueValidate}
 />
         `}

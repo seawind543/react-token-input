@@ -22,7 +22,7 @@ Live Demo: https://seawind543.github.io/react-token-input/
 1. Install the latest version of [react](https://github.com/facebook/react) and [react-customize-token-input](https://github.com/seawind543/react-token-input):
 
   ```
-  yarn install react react-customize-token-input
+  yarn add react react-customize-token-input
   ```
 
 2. At this point you can import `react-token-input` and its styles in your application by:
@@ -81,13 +81,13 @@ See Live Demo: https://seawind543.github.io/react-token-input/
   /**
    * A callback function invoked when tokenValues update
    *
-   * onTokenValuesUpdate(modifiedTokenValues)
+   * onTokenValuesChange(modifiedTokenValues)
    *
    * @ modifiedTokenValues
    * Type: An array of tokenValue of TokenInput
    * Description: Updated tokenValues
    */
-  onTokenValuesUpdate: PropTypes.func,
+  onTokenValuesChange: PropTypes.func,
 
   /**
    * An array of characters for split the user input string.
@@ -375,12 +375,12 @@ See Live Demo: https://seawind543.github.io/react-token-input/
    * Description:
    * The new tokenValue build by `onBuildTokenValue.
    * TokenInput will update it, and
-   * TokenInput will call `onTokenValuesUpdate`
+   * TokenInput will call `onTokenValuesChange`
    *
    * Note:
    * When newTokenValue is `undefined`,
    * TokenInput will treat as `Cancel` (End without update newTokenValue).
-   * The `onTokenValuesUpdate` will not be called.
+   * The `onTokenValuesChange` will not be called.
    *
    * @ return
    * Type: void
@@ -393,7 +393,7 @@ See Live Demo: https://seawind543.github.io/react-token-input/
    * Note:
    * Call this function to tell TokenInput to delete the token.
    * As result, TokenInput will remove it, and
-   * TokenInput will call `onTokenValuesUpdate` to update tokenValues.
+   * TokenInput will call `onTokenValuesChange` to update tokenValues.
    *
    * onDelete()
    *

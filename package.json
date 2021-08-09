@@ -12,7 +12,6 @@
     "build": "webpack",
     "build:examples": "cd examples; webpack",
     "clean": "rm -f {lib,dist}/*",
-    "demo": "http-server -p 8000 docs/",
     "eslint": "eslint --max-warnings 0 --ext .jsx,.js,.ts,.tsx examples src test",
     "dev": "cd examples; webpack && webpack serve --hot --inline --host 0.0.0.0 --port 8000 --content-base ../docs"
   },

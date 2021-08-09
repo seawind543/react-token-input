@@ -25,7 +25,7 @@ const TokenInput = ({
   placeholder,
 
   tokenValues,
-  onTokenValuesUpdate,
+  onTokenValuesChange,
   onBuildTokenValue,
 
   // Token
@@ -60,7 +60,7 @@ const TokenInput = ({
 
   const { handleTokenEditStart, handleTokenEditEnd } = useTokenEdit({
     tokenValues,
-    onTokenValuesUpdate,
+    onTokenValuesChange,
     setTokenActivated,
     handleTokenInputFocus,
     handleTokenInputBlur,
@@ -69,7 +69,7 @@ const TokenInput = ({
 
   const { handleTokenDelete, handleLastTokenDelete } = useTokenDelete({
     tokenValues,
-    onTokenValuesUpdate,
+    onTokenValuesChange,
     focusTokenCreator,
   });
 
@@ -81,9 +81,9 @@ const TokenInput = ({
       }
 
       const newTokenValues = [...tokenValues, ...appendTokenValues];
-      onTokenValuesUpdate(newTokenValues);
+      onTokenValuesChange(newTokenValues);
     },
-    [tokenValues, onTokenValuesUpdate]
+    [tokenValues, onTokenValuesChange]
   );
 
   const handleInputValuesPreprocess = useCallback(
@@ -179,13 +179,13 @@ TokenInput.propTypes = {
   /**
    * A callback function invoked when tokenValues update
    *
-   * onTokenValuesUpdate(modifiedTokenValues)
+   * onTokenValuesChange(modifiedTokenValues)
    *
    * @ modifiedTokenValues
    * Type: An array of tokenValue of TokenInput
    * Description: Updated tokenValues
    */
-  onTokenValuesUpdate: PropTypes.func,
+  onTokenValuesChange: PropTypes.func,
 
   /**
    * An array of characters for split the user input string.

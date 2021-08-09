@@ -53,7 +53,7 @@ const handleGetTokenErrorMessage = (error) => {
 const ExampleTest = () => {
   const [values, setValues] = useState(INIT_VALUES);
 
-  const handleTokenValuesUpdate = useCallback(
+  const handleTokenValuesChange = useCallback(
     (newTokenValues) => {
       console.log('tokenValues before', values);
 
@@ -68,7 +68,7 @@ const ExampleTest = () => {
 
       <TokenInput
         tokenValues={values}
-        onTokenValuesUpdate={handleTokenValuesUpdate}
+        onTokenValuesChange={handleTokenValuesChange}
         onBuildTokenValue={handleBuildTokenValue}
         onGetTokenDisplayLabel={handleGetTokenDisplayLabel}
         onGetTokenEditableValue={handleGetTokenEditableValue}
