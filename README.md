@@ -22,7 +22,7 @@ Live Demo: https://seawind543.github.io/react-token-input/
 1. Install the latest version of [react](https://github.com/facebook/react) and [react-customize-token-input](https://github.com/seawind543/react-token-input):
 
   ```
-  yarn install react react-customize-token-input
+  yarn add react react-customize-token-input
   ```
 
 2. At this point you can import `react-token-input` and its styles in your application by:
