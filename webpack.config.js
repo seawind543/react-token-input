@@ -23,7 +23,14 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'lib'),
     filename: 'index.js',
-    libraryTarget: 'commonjs2',
+    /**
+     * An object with { root, amd, commonjs, ... } is only allowed for libraryTarget: 'umd'.
+     * It's not allowed for other library targets.
+     * https://webpack.js.org/configuration/externals/#object
+     */
+    library: {
+      type: 'umd',
+    },
   },
   /**
    * Fix issue `Minified React error #321` when import from npm
