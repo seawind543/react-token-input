@@ -28,7 +28,9 @@ module.exports = {
      * It's not allowed for other library targets.
      * https://webpack.js.org/configuration/externals/#object
      */
-    libraryTarget: 'umd',
+    library: {
+      type: 'umd',
+    },
   },
   /**
    * Fix issue `Minified React error #321` when import from npm
