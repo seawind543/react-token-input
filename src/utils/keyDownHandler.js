@@ -24,12 +24,18 @@ const keyDownHandler = (keyDownEvent, actions) => {
     onEscape = () => {},
   } = actions;
 
-  let eventKey;
-
   // https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key
-  const eventKeys = ['Backspace', 'Enter', 'Escape'];
-  const keyIndex = eventKeys.indexOf(keyDownEvent.key);
-  eventKey = eventKeys[keyIndex];
+  let eventKey = {
+    Backspace: 'Backspace',
+    Enter: 'Enter',
+    Escape: 'Escape',
+  }[keyDownEvent.key];
+
+  // Issue: https://github.com/seawind543/react-token-input/issues/1#issuecomment-896190656
+  // https://developer.mozilla.org/en-US/docs/Web/API/Document/keydown_event#ignoring_keydown_during_ime_composition
+  if (keyDownEvent.keyCode && keyDownEvent.keyCode === 229) {
+    eventKey = 'Process';
+  }
 
   // backward compatibility for browser not support event.key, such as safari
   // https://www.w3schools.com/jsref/event_key_key.asp
