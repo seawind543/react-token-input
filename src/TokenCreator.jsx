@@ -81,7 +81,7 @@ const TokenCreator = forwardRef((props, ref) => {
     (e) => {
       // console.log('TokenCreator > handleInputValueChange');
       const { value: newInputValue } = e.target;
-      const lastChar = newInputValue.substr(-1);
+      const lastChar = newInputValue.substring(newInputValue.length - 1);
 
       const isTypingSeparators = splitPattens.test(lastChar);
       if (isTypingSeparators === true) {
