@@ -18,12 +18,13 @@ const ExampleCustomizeSeparators = () => {
     <>
       <h2>Customize separators</h2>
       <p>
-        In this example, you can use Plus-symbol (+), Blank ( ) or `Enter` to
-        separate the input string into tokens.
+        In this example, you can use the <b>Plus-symbol</b> (+), the{' '}
+        <b>Blank</b> ( ) or the <b>Enter</b> to separate the input string into
+        tokens.
       </p>
       <p>
-        Following input string will be separate into 3 tokens. Copy and Paste to
-        see result.
+        Hint: Following input string will be separate into 3 tokens. Copy and
+        Paste to see result.
       </p>
       <pre>aaa+bbbb cc</pre>
 
