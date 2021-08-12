@@ -6,12 +6,12 @@ import TokenInput from '../../src';
  * Customize data structure
  */
 const URLS = [
-  { url: 'https://www.google.com' },
-  { url: 'http://www.google.com' },
-  {
-    url: 'http://www.google.comABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
-  },
+  'https://developer.mozilla.org/',
+  'https://www.w3schools.com/',
+  'https://github.com/seawind543/react-token-input/',
 ];
+
+const urlProtocolPattern = /^(https:\/\/|http:\/\/)/i;
 
 const handlePreprocess = (inputValues) => {
   const values = [];
@@ -23,8 +23,7 @@ const handlePreprocess = (inputValues) => {
     })
     .forEach((value) => {
       const url = value.trim();
-      const protocolPattern = /^(https:\/\/|http:\/\/)/i;
-      if (protocolPattern.test(url) === false) {
+      if (urlProtocolPattern.test(url) === false) {
         values.push(`https://${url}`, `http://${url}`);
       } else {
         values.push(url);
@@ -32,52 +31,6 @@ const handlePreprocess = (inputValues) => {
     });
 
   return values;
-};
-
-const handleBuildTokenValue = (inputValue) => {
-  return { url: inputValue };
-};
-
-const handleGetTokenDisplayLabel = (tokenValue, tokenMeta) => {
-  console.log(
-    'handleGetTokenDisplayLabel',
-    'tokenValue',
-    tokenValue,
-    'tokenMeta',
-    tokenMeta
-  );
-  return tokenValue.url;
-};
-
-const handleGetTokenEditableValue = (tokenValue) => {
-  return tokenValue.url;
-};
-
-const handleTokenValueValidate = (tokenValue, index, tokenValues) => {
-  const url = handleGetTokenEditableValue(tokenValue);
-
-  const protocolPattern = /^(https:\/\/|http:\/\/)/i;
-  if (protocolPattern.test(url) === false) {
-    return 'Invalid url';
-  }
-
-  // Check duplicated
-  const matched = tokenValues.filter((value, idx) => {
-    return idx !== index && handleGetTokenEditableValue(value) === url;
-  });
-  if (matched.length > 0) {
-    return 'Duplicated';
-  }
-
-  if (tokenValues.length > 5) {
-    return 'Max entry is 5';
-  }
-
-  return null;
-};
-
-const handleGetTokenErrorMessage = (error) => {
-  return error;
 };
 
 const ExamplePreprocessor = () => {
@@ -96,19 +49,18 @@ const ExamplePreprocessor = () => {
     <>
       <h2>Reproduce value by preprocessor</h2>
       <p>
-        Type any value without https:// and http:// to see reproduce effect.
+        Use props <b>onPreprocess</b> to make preprocess before become a token.
+        <br />
+        <br />
+        Hint: Type any value without <b>https://</b> and <b>http://</b> to see
+        reproduce effect. Following value will become 2 URL. Copy and Paste to
+        see result.
       </p>
-
-      <p>Example: google.com</p>
+      <pre>google.com</pre>
       <TokenInput
         tokenValues={urls}
         onTokenValuesChange={handleTokenValuesChange}
         onPreprocess={handlePreprocess}
-        onBuildTokenValue={handleBuildTokenValue}
-        onTokenValueValidate={handleTokenValueValidate}
-        onGetTokenEditableValue={handleGetTokenEditableValue}
-        onGetTokenDisplayLabel={handleGetTokenDisplayLabel}
-        onGetTokenErrorMessage={handleGetTokenErrorMessage}
       />
 
       <pre>
@@ -117,10 +69,6 @@ const ExamplePreprocessor = () => {
   tokenValues={urls}
   onTokenValuesChange={handleTokenValuesChange}
   onPreprocess={handlePreprocess}
-  onBuildTokenValue={handleBuildTokenValue}
-  onGetTokenEditableValue={handleGetTokenEditableValue}
-  onGetTokenDisplayLabel={handleGetTokenDisplayLabel}
-  onGetTokenErrorMessage={handleGetTokenErrorMessage}
 />
         `}
       </pre>
