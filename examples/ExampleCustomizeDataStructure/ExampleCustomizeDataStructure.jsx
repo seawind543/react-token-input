@@ -10,6 +10,7 @@ const CUSTOMIZE_DATA_STRUCTURE = [
   { num: 456 },
   { num: 789 },
   { num: 100 },
+  { num: 'abc' },
 ];
 
 const handleBuildTokenValue = (inputValue) => {
@@ -26,6 +27,11 @@ const handleGetTokenDisplayLabel = (tokenValue, tokenMeta) => {
     'tokenMeta',
     tokenMeta
   );
+
+  if (tokenMeta.error) {
+    return tokenValue.num;
+  }
+
   return `Number: ${tokenValue.num}`;
 };
 
@@ -33,30 +39,18 @@ const handleGetTokenEditableValue = (tokenValue) => {
   return tokenValue.num;
 };
 
-const handleTokenValueValidate = (tokenValue, index, tokenValues) => {
+const handleTokenValueValidate = (tokenValue) => {
   const num = handleGetTokenEditableValue(tokenValue);
 
   if (typeof num !== 'number' || Number.isNaN(num) === true) {
-    return 'Input value is not number';
-  }
-
-  // Check duplicated
-  const matched = tokenValues.filter((value, idx) => {
-    return idx !== index && handleGetTokenEditableValue(value) === num;
-  });
-  if (matched.length > 0) {
-    return 'Duplicated';
-  }
-
-  if (tokenValues.length > 5) {
-    return 'Max entry is 5';
+    return 'Input value is not a number';
   }
 
   return null;
 };
 
-const handleGetTokenErrorMessage = (error) => {
-  return error;
+const handleGetTokenErrorMessage = (tokenValue, tokenMeta) => {
+  return tokenMeta.error;
 };
 
 const ExampleCustomizeDataStructure = () => {
@@ -74,14 +68,24 @@ const ExampleCustomizeDataStructure = () => {
   return (
     <>
       <h2>Customize data structure and validator</h2>
-      <p>In this example, the tokeValue will be customized structure</p>
+      <p>
+        In this example, the tokeValues will be array of customized structure.
+      </p>
       <pre>{`{ "num": number }`}</pre>
       <p>
-        Note:
+        When use customize structure, following are required for TonkeInput to
+        know how to handle tokenValues.
+      </p>
+      <ul>
+        <li>onBuildTokenValue</li>
+        <li>onGetTokenDisplayLabel</li>
+        <li>onGetTokenEditableValue</li>
+      </ul>
+      <p>
+        Hint: TokenInput allow you to inline editing a token by mouse click on
+        it.
         <br />
-        TokenInput allow you to inline editing token by mouse click on it.
-        <br />
-        Try to edit as not number data. To see invalid token.
+        Try to edit as not number type to see the invalid token.
       </p>
 
       <TokenInput
