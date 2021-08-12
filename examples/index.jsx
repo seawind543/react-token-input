@@ -13,6 +13,7 @@ import Section from './Section';
 // import ExampleTest from './ExampleTest';
 import ExampleDefault from './ExampleDefault';
 import ExampleCustomizeDataStructure from './ExampleCustomizeDataStructure';
+import ExampleCustomizeTokenLabel from './ExampleCustomizeTokenLabel';
 import ExamplePreprocessor from './ExamplePreprocessor';
 import ExampleCustomizeSeparators from './ExampleCustomizeSeparators';
 import ExampleCustomizeToken from './ExampleCustomizeToken';
@@ -37,6 +38,12 @@ const App = () => {
         <div className="row">
           <Section>
             <ExampleDefault />
+          </Section>
+        </div>
+
+        <div className="row">
+          <Section>
+            <ExampleCustomizeTokenLabel />
           </Section>
         </div>
 
