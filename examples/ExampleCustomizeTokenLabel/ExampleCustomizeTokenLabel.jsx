@@ -29,6 +29,7 @@ const handleGetTokenDisplayLabel = (tokenValue, tokenMeta) => {
       Rain: '🌧️',
     }[tokenValue] || '🪙';
 
+  // Could return any react node
   return (
     <>
       <span style={{ color: '#ff9900', marginRight: '4px' }}>{emoji}</span>
@@ -51,9 +52,10 @@ const ExampleCustomizeTokenLabel = () => {
 
   return (
     <>
-      <h2>Customize Token label</h2>
+      <h2>Customize Token Label</h2>
       <p>
-        Apply `onGetTokenDisplayLabel` to customize the token look and feel.
+        Use prop <b>onGetTokenDisplayLabel</b> to customize the token look and
+        feel.
         <br />
         Hint: Input `sunny` and `good` to see what will be.
       </p>
@@ -75,7 +77,13 @@ const handleGetTokenDisplayLabel = (tokenValue, tokenMeta) => {
       Rain: '🌧️',
     }[tokenValue] || '🪙';
 
-  return \`$\{emoji} $\{tokenValue}\`;
+  // Could return any react node
+  return (
+    <>
+      <span style={{ color: '#ff9900', marginRight: '4px' }}>{emoji}</span>
+      {\`\${tokenValue}\`}
+    </>
+  );
 };
 
 // ... omit
