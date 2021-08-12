@@ -1,5 +1,6 @@
 /* eslint no-console: 0 */
 import React, { useState, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import TokenInput from '../../src';
 
 /**
@@ -15,8 +16,15 @@ const handleBuildTokenValue = (inputValue) => {
   return inputValue.trim();
 };
 
+const Token = ({ tokenValue }) => {
+  return <div>{tokenValue}</div>;
+};
+Token.propTypes = {
+  tokenValue: PropTypes.string.isRequired,
+};
+
 const handleGetTokenDisplayLabel = (tokenValue) => {
-  return `Data: ${tokenValue};`;
+  return <Token tokenValue={tokenValue} />;
 };
 
 const handleGetTokenEditableValue = (tokenValue) => {
@@ -44,6 +52,30 @@ const handleTokenValueValidate = (tokenValue, index, tokenValues) => {
 
   return null;
 };
+
+/*
+const handleTokenValueValidate = (url, index, urls) => {
+  const urlProtocolPattern = /^(https:\/\/|http:\/\/)/i;
+
+  if (urlProtocolPattern.test(url) === false) {
+    return 'Invalid url';
+  }
+
+  // Check duplicated
+  const matched = urls.filter((value, idx) => {
+    return idx !== index && value === url;
+  });
+  if (matched.length > 0) {
+    return 'Duplicated';
+  }
+
+  if (urls.length > 5) {
+    return 'Maximum allow 5 URLs only';
+  }
+
+  return null;
+};
+*/
 
 const handleGetTokenErrorMessage = (error) => {
   console.log('handleGetTokenErrorMessage', error);
