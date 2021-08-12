@@ -67,8 +67,9 @@ const MyToken = ({
         return;
       }
 
-      const { className = '' } = e.target;
-      const isDeleteButton = className.indexOf(styles['delete-button']) !== -1;
+      const { target } = e;
+      const isDeleteButton =
+        target.getAttribute('data-component-name') === 'DeleteButton';
       if (isDeleteButton) {
         onDelete();
         return;
@@ -132,7 +133,13 @@ const MyToken = ({
 
   if (activated) {
     return (
-      <div className={className}>
+      <div
+        role="presentation"
+        className={className}
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
         <input
           ref={inputRef}
           value={inputValue}
