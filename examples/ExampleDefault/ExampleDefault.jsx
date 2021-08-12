@@ -7,8 +7,12 @@ const ExampleDefault = () => {
 
   const handleTokenValuesChange = useCallback(
     (newTokenValues) => {
-      console.log('tokenValues before', values);
-
+      console.log(
+        'tokenValues before',
+        values,
+        'newTokenValues',
+        newTokenValues
+      );
       setValues(newTokenValues);
     },
     [values]
@@ -17,7 +21,7 @@ const ExampleDefault = () => {
   return (
     <>
       <h2>Simple example: Take default</h2>
-      <p>By default, TokenInput will assume data is array of strings.</p>
+      <p>By default, TokenInput will assume tokenValues is array of strings.</p>
 
       <TokenInput
         className="example--default"
@@ -33,6 +37,17 @@ const ExampleDefault = () => {
   onTokenValuesChange={handleTokenValuesChange}
 />
         `}
+      </pre>
+      <pre>
+        <div>{`values = [`}</div>
+        {values.map((value, index) => {
+          return (
+            <div key={index} style={{ marginLeft: '8px' }}>
+              {index + 1 !== values.length ? `'${value}'` : `'${value}',`}
+            </div>
+          );
+        })}
+        <div>{`];`}</div>
       </pre>
     </>
   );
