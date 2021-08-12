@@ -1,4 +1,6 @@
 /* eslint no-console: 0 */
+/* eslint no-unused-vars: 0 */
+
 import React, { useState, useCallback } from 'react';
 import TokenInput from '../../src';
 import MyToken from './MyToken';
@@ -6,20 +8,8 @@ import MyToken from './MyToken';
 import DEMO_VALUES from '../demoValues';
 
 const handleTokenValueValidate = (tokenValue, index, tokenValues) => {
-  if (tokenValue === '456') {
-    return '456 is not allow';
-  }
-
-  // Check duplicated
-  const matched = tokenValues.filter((value, idx) => {
-    return idx !== index && value === tokenValue;
-  });
-  if (matched.length > 0) {
-    return 'Duplicated';
-  }
-
-  if (tokenValues.length > 5) {
-    return 'Max entry is 5';
+  if (tokenValue === '789') {
+    return '789 is not allow';
   }
 
   return undefined;
