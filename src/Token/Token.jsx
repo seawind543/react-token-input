@@ -28,6 +28,7 @@ const Token = ({
   tokenMeta,
   onGetClassName,
   onGetDisplayLabel,
+  onRenderDeleteButtonContent,
   onGetEditableValue,
   onGetErrorMessage,
   onBuildTokenValue,
@@ -161,7 +162,9 @@ const Token = ({
       <div className={styles['label-wrapper']}>
         {onGetDisplayLabel(tokenValue, tokenMeta)}
       </div>
-      {!readOnly && <DeleteButton />}
+      {!readOnly && (
+        <DeleteButton onRenderContent={onRenderDeleteButtonContent} />
+      )}
     </div>
   );
 };
@@ -178,6 +181,8 @@ Token.propTypes = {
   onGetClassName: PropTypes.func.isRequired,
   // Same as props `onGetTokenDisplayLabel` of TokenInput
   onGetDisplayLabel: PropTypes.func.isRequired,
+  // Same as props `onRenderTokenDeleteButtonContent` of TokenInput
+  onRenderDeleteButtonContent: PropTypes.func,
   // Same as props `onGetTokenEditableValue` of TokenInput
   onGetEditableValue: PropTypes.func.isRequired,
   // Same as props `onGetTokenErrorMessage` of TokenInput
