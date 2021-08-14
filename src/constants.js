@@ -7,3 +7,9 @@ export const DEFAULT_SEPARATORS = [
   '\r', // for copy past
   '\r\n', // for copy past
 ];
+
+/**
+ * For customize the `delete button`
+ * in the `TokenLabel` (onGetTokenDisplayLabel)
+ */
+export const HARD_CODE_DELETE_BUTTON_CLASS_NAME = 'token-delete-button';

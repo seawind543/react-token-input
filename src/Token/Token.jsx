@@ -9,7 +9,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import AutosizeInput from 'react-input-autosize';
 import keyDownHandler from '../utils/keyDownHandler';
-import { DEFAULT_INPUT_INIT_VALUE } from '../constants';
+import {
+  DEFAULT_INPUT_INIT_VALUE,
+  HARD_CODE_DELETE_BUTTON_CLASS_NAME,
+} from '../constants';
 
 import DeleteButton from './DeleteButton';
 
@@ -76,9 +79,14 @@ const Token = ({
         return;
       }
 
-      const { className = '' } = e.target;
-      const isDeleteButton = className.indexOf(styles['delete-button']) !== -1;
-      if (isDeleteButton) {
+      /**
+       * Check does the click on the delete button
+       * That is, the Element or its parents matched the `selector`
+       */
+      const isOnDeleteButton = !!e.target.closest(
+        `.${styles.token} .${HARD_CODE_DELETE_BUTTON_CLASS_NAME}`
+      );
+      if (isOnDeleteButton) {
         onDelete();
         return;
       }
@@ -111,7 +119,7 @@ const Token = ({
     handleEditEnd();
   }, [handleEditEnd]);
 
-  const className = useMemo(() => {
+  const tokenClassName = useMemo(() => {
     return classNames(onGetClassName(tokenValue, tokenMeta), styles.token, {
       [styles.active]: activated,
       [styles.error]: error && !activated,
@@ -127,7 +135,7 @@ const Token = ({
     return (
       <div
         role="presentation"
-        className={className}
+        className={tokenClassName}
         onClick={handleInlineEditClick}
       >
         <div className={styles['autosized-wrapper']}>
@@ -146,7 +154,7 @@ const Token = ({
   return (
     <div
       role="presentation"
-      className={className}
+      className={tokenClassName}
       onClick={handleTokenClick}
       title={errorMessage}
     >
