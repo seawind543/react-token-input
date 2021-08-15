@@ -46,16 +46,20 @@ const TokenCreator = forwardRef((props, ref) => {
       // console.log('handleTokensCreate', `${inputString}`);
 
       /**
-       * Do not perform `trim`. Leave the trim for customize data to handle.
-       * Could handle by either `onPreprocess` or `onBuildTokenValue`
+       * Do not change inputString by `trim`.
+       * Leave customize to decide how to handle the blank.
+       * Note: The trim could be handled by either `onPreprocess` or `onBuildTokenValue`
        */
-      if (inputString.length === 0) {
-        // Skip empty
+      if (inputString.trim().length === 0) {
+        // Skip the empty
         return;
       }
 
       // Split string into values by `separators`
-      const inputValues = inputString.split(splitPattens);
+      const inputValues = inputString
+        .split(splitPattens)
+        // Filter out empty
+        .filter((inputValue) => inputValue.trim().length > 0);
       const processedValues = onPreprocess(inputValues);
       const appendTokenValues = processedValues.map((value) => {
         return onBuildTokenValue(value);

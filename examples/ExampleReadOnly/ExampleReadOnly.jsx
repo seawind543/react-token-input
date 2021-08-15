@@ -1,14 +1,19 @@
 /* eslint no-console: 0 */
 /* eslint no-unused-vars: 0 */
+
 import React, { useState } from 'react';
 import TokenInput from '../../src';
 
-import DEMO_VALUES from '../demoValues';
+import CopyAnchor from '../share/CopyAnchor';
 
-const ERROR_VALUE = 'Invalid token in read-only mode';
+import {
+  DEMO_VALUES,
+  INVALID_VALUE,
+  DEMO_VALUES_WITH_INVALID,
+} from '../demoValues';
 
 const handleTokenValueValidate = (tokenValue, index, tokenValues) => {
-  if (tokenValue === ERROR_VALUE) {
+  if (tokenValue === INVALID_VALUE) {
     return "I'm an error token";
   }
 
@@ -20,7 +25,10 @@ const ExampleReadOnly = () => {
 
   return (
     <>
-      <h2>Read only</h2>
+      <h2>
+        Read only
+        <CopyAnchor hashTag="example-read-only" />
+      </h2>
       <p>
         When under read-only, the tokens will not be able to either <b>edit</b>{' '}
         or <b>delete</b>.
@@ -38,7 +46,7 @@ const ExampleReadOnly = () => {
 
       <TokenInput
         readOnly={true}
-        tokenValues={[...values, ERROR_VALUE]}
+        tokenValues={DEMO_VALUES_WITH_INVALID}
         onTokenValueValidate={handleTokenValueValidate}
       />
 

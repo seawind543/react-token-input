@@ -2,6 +2,8 @@
 import React, { useState, useCallback } from 'react';
 import TokenInput from '../../src';
 
+import CopyAnchor from '../share/CopyAnchor';
+
 const ExampleCustomizeSeparators = () => {
   const [values, setValues] = useState([]);
 
@@ -16,7 +18,10 @@ const ExampleCustomizeSeparators = () => {
 
   return (
     <>
-      <h2>Customize separators</h2>
+      <h2>
+        Customize Separators
+        <CopyAnchor hashTag="example-customize-separators" />
+      </h2>
       <p>
         In this example, you can use the <b>Plus-symbol</b> (+), the{' '}
         <b>Blank</b> ( ) or the <b>Enter</b> to separate the input string into

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 /**
  * Disable the ESLint `import/no-extraneous-dependencies` for import ReactDOM
@@ -14,6 +14,8 @@ import Section from './Section';
 import ExampleDefault from './ExampleDefault';
 import ExampleCustomizeDataStructure from './ExampleCustomizeDataStructure';
 import ExampleCustomizeTokenLabel from './ExampleCustomizeTokenLabel';
+import ExampleCustomizeDeleteButton from './ExampleCustomizeDeleteButton';
+import ExampleCustomizeTokenVisualTrick from './ExampleCustomizeTokenVisualTrick';
 import ExamplePreprocessor from './ExamplePreprocessor';
 import ExampleCustomizeSeparators from './ExampleCustomizeSeparators';
 import ExampleCustomizeToken from './ExampleCustomizeToken';
@@ -21,61 +23,67 @@ import ExampleReadOnly from './ExampleReadOnly';
 
 import './index.styl';
 
-const name = 'React TokenInput (react-customize-token-input)';
+const name =
+  'React TokenInput (react-customize-token-input). Visit GitHub here';
 const url = 'https://github.com/seawind543/react-token-input';
 
+const examples = [
+  // <ExampleTest key="ExampleTest" />,
+  <ExampleDefault key="ExampleDefault" />,
+  <ExampleCustomizeTokenLabel key="ExampleCustomizeTokenLabel" />,
+  <ExampleCustomizeDeleteButton key="ExampleCustomizeDeleteButton" />,
+  <ExampleCustomizeTokenVisualTrick key="ExampleCustomizeTokenVisualTrick" />,
+  <ExampleCustomizeDataStructure key="ExampleCustomizeDataStructure" />,
+  <ExamplePreprocessor key="ExamplePreprocessor" />,
+  <ExampleCustomizeSeparators key="ExampleCustomizeSeparators" />,
+  <ExampleCustomizeToken key="ExampleCustomizeToken" />,
+  <ExampleReadOnly key="ExampleReadOnly" />,
+];
+
 const App = () => {
+  const [titles, setTitles] = useState([]);
+
+  useEffect(() => {
+    const titles = [];
+    (document.querySelectorAll('h2') || []).forEach((h2) => {
+      const url = (h2.lastChild.className || '').split(' ').includes('hashTag')
+        ? h2.lastChild.href
+        : '#';
+
+      titles.push({
+        label: h2.firstChild.textContent || '',
+        url,
+      });
+    });
+    setTitles(titles);
+  }, []);
+
   return (
     <div>
       <Navbar name={name} url={url} />
       <div className="container-fluid" style={{ padding: '20px 20px 0' }}>
-        {/* <div className="row">
-          <Section>
-            <ExampleTest />
-          </Section>
-        </div> */}
-
         <div className="row">
-          <Section>
-            <ExampleDefault />
-          </Section>
+          <h1>Table of contents</h1>
+          <ul>
+            {titles.map((title, index) => {
+              const { label, url } = title;
+
+              const isUrlExist = url !== '#';
+              return (
+                <li key={index}>
+                  {isUrlExist && <a href={url}>{label}</a>}
+                  {!isUrlExist && <span>{label}</span>}
+                </li>
+              );
+            })}
+          </ul>
         </div>
 
-        <div className="row">
-          <Section>
-            <ExampleCustomizeTokenLabel />
-          </Section>
-        </div>
-
-        <div className="row">
-          <Section>
-            <ExampleCustomizeDataStructure />
-          </Section>
-        </div>
-
-        <div className="row">
-          <Section>
-            <ExamplePreprocessor />
-          </Section>
-        </div>
-
-        <div className="row">
-          <Section>
-            <ExampleCustomizeSeparators />
-          </Section>
-        </div>
-
-        <div className="row">
-          <Section>
-            <ExampleCustomizeToken />
-          </Section>
-        </div>
-
-        <div className="row">
-          <Section>
-            <ExampleReadOnly />
-          </Section>
-        </div>
+        {examples.map((example, index) => (
+          <div className="row" key={index}>
+            <Section>{example}</Section>
+          </div>
+        ))}
       </div>
     </div>
   );

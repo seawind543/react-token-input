@@ -2,6 +2,8 @@
 import React, { useState, useCallback } from 'react';
 import TokenInput from '../../src';
 
+import CopyAnchor from '../share/CopyAnchor';
+
 /**
  * Customize data structure
  */
@@ -67,20 +69,14 @@ const ExampleCustomizeDataStructure = () => {
 
   return (
     <>
-      <h2>Customize data structure and validator</h2>
+      <h2>
+        Customize Data Structure and Validator
+        <CopyAnchor hashTag="example-customize-data-structure" />
+      </h2>
       <p>
         In this example, the tokeValues will be array of customized structure.
       </p>
       <pre>{`{ "num": number }`}</pre>
-      <p>
-        When use customize structure, following are required for TonkeInput to
-        know how to handle tokenValues.
-      </p>
-      <ul>
-        <li>onBuildTokenValue</li>
-        <li>onGetTokenDisplayLabel</li>
-        <li>onGetTokenEditableValue</li>
-      </ul>
       <p>
         Hint: TokenInput allow you to inline editing a token by mouse click on
         it.
@@ -97,6 +93,16 @@ const ExampleCustomizeDataStructure = () => {
         onGetTokenDisplayLabel={handleGetTokenDisplayLabel}
         onGetTokenErrorMessage={handleGetTokenErrorMessage}
       />
+
+      <p>
+        When use customize data structure, following are <b>required</b> for
+        TokenInput to know how to handle tokenValues with the structure.
+      </p>
+      <ul>
+        <li>onBuildTokenValue</li>
+        <li>onGetTokenDisplayLabel</li>
+        <li>onGetTokenEditableValue</li>
+      </ul>
 
       <pre>
         {`

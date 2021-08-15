@@ -32,6 +32,7 @@ const TokenInput = ({
   customizeTokenComponent,
   onGetTokenClassName,
   onGetTokenDisplayLabel,
+  onRenderTokenDeleteButtonContent,
   onGetTokenEditableValue,
   onGetTokenErrorMessage,
 
@@ -127,6 +128,7 @@ const TokenInput = ({
               tokenMeta={tokenMeta}
               onGetClassName={onGetTokenClassName}
               onGetDisplayLabel={onGetTokenDisplayLabel}
+              onRenderDeleteButtonContent={onRenderTokenDeleteButtonContent}
               onGetEditableValue={onGetTokenEditableValue}
               onGetErrorMessage={onGetTokenErrorMessage}
               onBuildTokenValue={onBuildTokenValue}
@@ -349,6 +351,20 @@ TokenInput.propTypes = {
    * By default, will apply `getDefaultTokenEditableValue`
    */
   onGetTokenDisplayLabel: PropTypes.func,
+
+  /**
+   * A callback function for render content of the delete button for a token
+   * Apply this to customize the token's content of delete button
+   * For example, replace the build-in x by Google font material-icons
+   *
+   * onRenderTokenDeleteButtonContent()
+   *
+   * @ return
+   * Type: react node
+   * Description: The content of the delete button of the token.
+   * By default, TokenInput render a build-in x icon
+   */
+  onRenderTokenDeleteButtonContent: PropTypes.func,
 
   /**
    * A callback function for getting `string input value`

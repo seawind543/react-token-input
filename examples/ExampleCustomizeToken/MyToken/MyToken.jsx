@@ -1,3 +1,6 @@
+/* eslint no-console: 0 */
+/* eslint no-unused-vars: 0 */
+
 import React, {
   useState,
   useCallback,
@@ -12,28 +15,57 @@ import DeleteButton from './DeleteButton';
 
 import styles from '../myToken.styl';
 
+const handleTokenClick = (e) => {
+  // console.log('handleTokenClick');
+  e.stopPropagation();
+};
+
 const MyToken = ({
-  readOnly,
   tokenValue,
   tokenMeta,
-  onGetClassName,
-  onGetDisplayLabel,
-  onGetEditableValue,
-  onGetErrorMessage,
-  onBuildTokenValue,
   onEditStart,
   onEditEnd,
   onDelete,
+
+  /**
+   * Could ignore below props(Replace by self implementation)
+   * when override build-in Token component.
+   *
+   * Because basically they are as same as what you passed into the TokenInput.
+   * That is, you already know what is their implementation.
+   */
+  readOnly,
+  onGetClassName,
+  onGetDisplayLabel,
+  onRenderDeleteButtonContent,
+  onGetEditableValue,
+  onGetErrorMessage,
+  onBuildTokenValue,
 }) => {
   const inputRef = useRef(null);
   const [inputValue, setInputValue] = useState('');
   const { activated, error } = tokenMeta;
 
+  // Could use self implementation and ignore props `readOnly`
+  const isReadOnlyToken = useMemo(() => {
+    return tokenValue === 'Example: ReadOnly Token';
+  }, [tokenValue]);
+
+  const displayLabel = useMemo(() => {
+    return tokenValue;
+
+    // Could use self implementation and ignore props `onGetDisplayLabel`
+    // return onGetDisplayLabel(tokenValue, tokenMeta);
+  }, [tokenValue]);
+
   const handleEditStart = useCallback(() => {
-    const tokenEditableValue = onGetEditableValue(tokenValue, tokenMeta);
+    // Could use self implementation and ignore props `onGetEditableValue`
+    // const tokenEditableValue = onGetEditableValue(tokenValue, tokenMeta);
+    const tokenEditableValue = tokenValue;
+
     setInputValue(tokenEditableValue);
     onEditStart();
-  }, [setInputValue, tokenValue, tokenMeta, onGetEditableValue, onEditStart]);
+  }, [setInputValue, tokenValue, onEditStart]);
   useEffect(() => {
     if (activated && inputRef.current) {
       inputRef.current.focus();
@@ -49,23 +81,21 @@ const MyToken = ({
         return;
       }
 
-      const newTokenValue = onBuildTokenValue(inputValue);
+      // Could use self implementation and ignore props `onBuildTokenValue`
+      // const newTokenValue = onBuildTokenValue(inputValue);
+      const newTokenValue = inputValue.trim();
+
       onEditEnd(newTokenValue);
     },
-    [inputValue, onBuildTokenValue, onEditEnd]
+    [inputValue, onEditEnd]
   );
 
   /*
    * Event handlers
    */
-  const handleTokenClick = useCallback(
+  const handleEditIconClick = useCallback(
     (e) => {
-      // console.log('handleTokenClick');
       e.stopPropagation();
-
-      if (readOnly) {
-        return;
-      }
 
       const { target } = e;
       const isDeleteButton =
@@ -77,7 +107,7 @@ const MyToken = ({
 
       handleEditStart();
     },
-    [readOnly, onDelete, handleEditStart]
+    [onDelete, handleEditStart]
   );
 
   const handleTokenDelete = useCallback(
@@ -113,49 +143,88 @@ const MyToken = ({
 
   const className = useMemo(() => {
     return classNames(
-      onGetClassName(tokenValue, tokenMeta),
+      // Could use self implementation and ignore props `onGetClassName`
+      // onGetClassName(tokenValue, tokenMeta),
       styles['customize-token'],
       {
-        [styles.active]: activated,
-        [styles.error]: error && !activated,
-        [styles['read-only']]: readOnly,
+        [styles.error]: error,
+        [styles.pass]: !error,
       }
     );
-  }, [readOnly, onGetClassName, tokenValue, tokenMeta, error, activated]);
+  }, [error]);
 
   const errorMessage = useMemo(() => {
     if (error === undefined) {
       return undefined;
     }
 
-    return `Error: ${onGetErrorMessage(tokenValue, tokenMeta)}`;
-  }, [onGetErrorMessage, error, tokenValue, tokenMeta]);
+    return tokenMeta.error;
 
-  if (activated) {
-    return (
-      <div
-        role="presentation"
-        className={className}
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
-      >
-        <input
-          ref={inputRef}
-          value={inputValue}
-          onChange={handleInputValueChange}
-          onKeyDown={handleKeyDown}
-          onBlur={handleBlur}
-        />
-      </div>
-    );
-  }
+    // Could use self implementation and ignore props `onGetErrorMessage`
+    // return `Error: ${onGetErrorMessage(tokenValue, tokenMeta)}`;
+  }, [error, tokenMeta]);
 
   return (
-    <div className={className} onClick={handleTokenClick} role="presentation">
-      <DeleteButton onClick={handleTokenDelete} />
-      {onGetDisplayLabel(tokenValue, tokenMeta)}
-      <div>{errorMessage && errorMessage}</div>
+    <div className={className} role="presentation" onClick={handleTokenClick}>
+      {!activated && (
+        <div className={styles['token-body']}>
+          {!isReadOnlyToken && <DeleteButton onClick={handleTokenDelete} />}
+
+          <div className={styles['display-label']}>{displayLabel}</div>
+
+          {!isReadOnlyToken && (
+            <span
+              className={classNames(
+                'material-icons',
+                styles['button-icon'],
+                styles['edit-icon']
+              )}
+              role="button"
+              aria-hidden="true"
+              onClick={handleEditIconClick}
+            >
+              mode_edit
+            </span>
+          )}
+        </div>
+      )}
+
+      {activated && (
+        <div className={styles['token-body']}>
+          <input
+            ref={inputRef}
+            className={styles.input}
+            value={inputValue}
+            onChange={handleInputValueChange}
+            onKeyDown={handleKeyDown}
+            onBlur={handleBlur}
+          />
+        </div>
+      )}
+
+      <div className={styles.message}>
+        {errorMessage && (
+          <>
+            <span
+              className={classNames('material-icons', styles['status-icon'])}
+            >
+              highlight_off
+            </span>
+            {errorMessage}
+          </>
+        )}
+
+        {!errorMessage && (
+          <>
+            <span
+              className={classNames('material-icons', styles['status-icon'])}
+            >
+              check_circle
+            </span>
+            Valid
+          </>
+        )}
+      </div>
     </div>
   );
 };
@@ -166,6 +235,7 @@ MyToken.propTypes = {
   tokenMeta: PropTypes.object.isRequired,
   onGetClassName: PropTypes.func.isRequired,
   onGetDisplayLabel: PropTypes.func.isRequired,
+  onRenderDeleteButtonContent: PropTypes.func,
   onGetEditableValue: PropTypes.func.isRequired,
   onGetErrorMessage: PropTypes.func.isRequired,
   onEditStart: PropTypes.func.isRequired,
