@@ -1,8 +1,13 @@
 .container {
     /* https://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
     box-sizing: border-box;
-    line-height: 20px;
 
+    *, 
+    *::before, 
+    *::after {
+        box-sizing: inherit;
+    }
+    
     cursor: text;
     overflow-y: auto;
     height: 200px;
@@ -11,14 +16,12 @@
 
     background-color: #fff;
 
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
     // remove focuse border style of mac sysytem
     // outline: none; 
     outline: 0;
-
-    border-width: 1px;
-    border-style: solid;
-    border-color: #ccc;
-    border-radius: 4px;
 
     &.focused {
         border-color: #0096cc;
@@ -27,100 +30,155 @@
         border-color: #db3d44;
     }
 
-    transition: all .2s linear 0s;
+    transition: all 0.2s linear 0s;
 
     .token-list {
         .token {
             float: left;
 
-            margin-right: 4px;
-            margin-bottom: 4px;
-
-            padding-top: 2px;
-            padding-right: 8px;
-            padding-bottom: 2px;
-            padding-left: 8px;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
 
             max-width: 100%;
+            // TODO: Set minimum?
+            // min-width: 100px;
 
+            height: 32px;
+            line-height: 1.5;
             white-space: nowrap;
+            
+            margin: 0 4px 4px 0;
+            padding: 0; 
 
+            border: 0;
             border-radius: 4px;
 
             color: #0096cc;
             background-color: #cceaf5;
 
+            &.error {
+                // color: #f75757;
+                color: #db3d44;
+                background-color: #f9b5b5;
+            }
+
             &:hover {
                 cursor: pointer;
                 background-color: #e6f4fc;
+
+                &.error {
+                    background-color: #ffdada;
+                }
+
+                &.read-only {
+                    cursor: default;
+                }
             }
 
             &.active {
-                background-color: transparent;
-            }
+                .autosized-wrapper {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    align-content: center;
 
-            &.error {
-                background-color: #f9b5b5;
-                &:hover {
-                    background-color: #ffdada;
+                    margin: 4px 8px;
+                    height: 32px;
+
+                    input {
+                        height: auto;
+                        border-bottom: 1px solid #aaa;
+                    }
                 }
             }
-
-            &.read-only {
-                color: #000;
-
-                &:hover {
-                    cursor: default;
-                }
-
-                .label-wrapper {
-                    max-width: 100%;
-                }
-            }
-
+            
+            // &.read-only {
+            //     .label-wrapper {
+            //         max-width: 100%;
+            //     }
+            // }
+            
             .label-wrapper {
-                display: inline-block;
+                flex: 1 0 0;
+
+                margin: 0 8px;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                width: 100%;
-                max-width: calc(100% - 10px);
-                vertical-align: middle;
             }
             
             .delete-button {
-                font-size: 14px;
-                line-height: 20px;
-                padding: 2px 0 2px 4px;
+                flex: 0 0 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+
+                height: 100%;
+                padding: 2px 8px;
+
                 cursor: pointer;
-                color: #222222;
-                opacity: .5;
+                // font-size: 14px;
+                // color: #222;
+                opacity: 0.3;
+
+                border-left: 1px solid #aaa;
+                border-radius: 0 4px 4px 0;
 
                 &:hover {
                     opacity: 1;
+                    background-color: #aaa;
+
+                    .close-icon {
+                        &:before,
+                        &:after {
+                            border-color: #fff;
+                        }
+                    }
                 }
 
-                &:after {
-                    content: 'x';
+                .close-icon {
+                    width: 14px;
+                    height: 14px;
+                    position: relative;
+
+                    &:before,
+                    &:after {
+                        content: '';
+                        height: 14px;
+                        left: 6px;
+                        border-left: 2px solid #222;
+                        position: absolute;
+                    }
+                    &:before {
+                        transform: rotate(-45deg);
+                    }
+                    &:after {
+                        transform: rotate(45deg);
+                    }
                 }
             }
         }
     }
 
     .autosized-wrapper {
-        display: block;
         float: left;
         overflow: hidden;
         margin-right: 4px;
-        height: 24px;
-        vertical-align: middle;
-
+        
         input {
-            height: 24px;
-            vertical-align: inherit;
-            border: 0;
-            outline: 0; // remove focuse border style of mac sysytem
-            padding: 0;
+            height: 32px;
             margin: 0;
+            padding: 0;
+
+            border: 0;
+
+            // remove focuse border style of mac sysytem
+            // outline: none; 
+            outline: 0;
+
             cursor: text;
             box-shadow: none;
             background: none;

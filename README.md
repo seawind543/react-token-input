@@ -304,11 +304,11 @@ See Live Demo: https://seawind543.github.io/react-token-input/
 
     // TokenCreator
     separators: [
-        ',',
-        ';',
-        '\n', // for copy past
-        '\r', // for copy past
-        '\r\n', // for copy past
+      ',',
+      ';',
+      '\n', // for copy and paste
+      '\r', // for copy and paste
+      '\r\n', // for copy and paste
     ];
 
     onBuildTokenValue: buildDefaultTokenValue,

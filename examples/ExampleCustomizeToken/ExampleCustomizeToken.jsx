@@ -5,7 +5,7 @@ import React, { useState, useCallback } from 'react';
 import TokenInput from '../../src';
 import MyToken from './MyToken';
 
-import DEMO_VALUES from '../demoValues';
+import { DEMO_VALUES } from '../demoValues';
 
 const handleTokenValueValidate = (tokenValue, index, tokenValues) => {
   if (tokenValue === '789') {
