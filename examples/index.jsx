@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 /**
  * Disable the ESLint `import/no-extraneous-dependencies` for import ReactDOM
@@ -15,6 +15,7 @@ import ExampleDefault from './ExampleDefault';
 import ExampleCustomizeDataStructure from './ExampleCustomizeDataStructure';
 import ExampleCustomizeTokenLabel from './ExampleCustomizeTokenLabel';
 import ExampleCustomizeDeleteButton from './ExampleCustomizeDeleteButton';
+import ExampleCustomizeTokenVisualTrick from './ExampleCustomizeTokenVisualTrick';
 import ExamplePreprocessor from './ExamplePreprocessor';
 import ExampleCustomizeSeparators from './ExampleCustomizeSeparators';
 import ExampleCustomizeToken from './ExampleCustomizeToken';
@@ -31,6 +32,7 @@ const examples = [
   <ExampleDefault key="ExampleDefault" />,
   <ExampleCustomizeTokenLabel key="ExampleCustomizeTokenLabel" />,
   <ExampleCustomizeDeleteButton key="ExampleCustomizeDeleteButton" />,
+  <ExampleCustomizeTokenVisualTrick key="ExampleCustomizeTokenVisualTrick" />,
   <ExampleCustomizeDataStructure key="ExampleCustomizeDataStructure" />,
   <ExamplePreprocessor key="ExamplePreprocessor" />,
   <ExampleCustomizeSeparators key="ExampleCustomizeSeparators" />,
@@ -39,10 +41,44 @@ const examples = [
 ];
 
 const App = () => {
+  const [titles, setTitles] = useState([]);
+
+  useEffect(() => {
+    const titles = [];
+    (document.querySelectorAll('h2') || []).forEach((h2) => {
+      const url = (h2.lastChild.className || '').split(' ').includes('hashTag')
+        ? h2.lastChild.href
+        : '#';
+
+      titles.push({
+        label: h2.firstChild.textContent || '',
+        url,
+      });
+    });
+    setTitles(titles);
+  }, []);
+
   return (
     <div>
       <Navbar name={name} url={url} />
       <div className="container-fluid" style={{ padding: '20px 20px 0' }}>
+        <div className="row">
+          <h1>Table of contents</h1>
+          <ul>
+            {titles.map((title, index) => {
+              const { label, url } = title;
+
+              const isUrlExist = url !== '#';
+              return (
+                <li key={index}>
+                  {isUrlExist && <a href={url}>{label}</a>}
+                  {!isUrlExist && <span>{label}</span>}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+
         {examples.map((example, index) => (
           <div className="row" key={index}>
             <Section>{example}</Section>

@@ -1,10 +1,11 @@
 /* eslint no-console: 0 */
+/* eslint no-unused-vars: 0 */
+
 import React, { useState, useCallback } from 'react';
 import TokenInput from '../../src';
 
-/**
- * Customize data structure
- */
+import CopyAnchor from '../share/CopyAnchor';
+
 const WEATHERS = ['Sunny', 'Cloudy', 'Rain'];
 
 const handleBuildTokenValue = (inputValue) => {
@@ -38,6 +39,14 @@ const handleGetTokenDisplayLabel = (tokenValue, tokenMeta) => {
   );
 };
 
+// const handleTokenValueValidate = (tokenValue) => {
+//   if (!WEATHERS.includes(tokenValue)) {
+//     return "I'm not weather";
+//   }
+
+//   return undefined;
+// };
+
 const ExampleCustomizeTokenLabel = () => {
   const [weathers, setWeathers] = useState(WEATHERS);
 
@@ -52,10 +61,13 @@ const ExampleCustomizeTokenLabel = () => {
 
   return (
     <>
-      <h2>Customize Token Label</h2>
+      <h2>
+        Customize Token Label
+        <CopyAnchor hashTag="example-customize-label" />
+      </h2>
       <p>
-        Use prop <b>onGetTokenDisplayLabel</b> to customize the token look and
-        feel.
+        Use prop <b>onGetTokenDisplayLabel</b> to customize the look and feel of
+        token.
         <br />
         Hint: Input `sunny` and `good` to see what will be.
       </p>
@@ -65,6 +77,7 @@ const ExampleCustomizeTokenLabel = () => {
         onTokenValuesChange={handleTokenValuesChange}
         onBuildTokenValue={handleBuildTokenValue}
         onGetTokenDisplayLabel={handleGetTokenDisplayLabel}
+        // onTokenValueValidate={handleTokenValueValidate}
       />
 
       <pre>

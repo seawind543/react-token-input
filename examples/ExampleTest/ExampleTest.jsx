@@ -1,7 +1,11 @@
 /* eslint no-console: 0 */
 import React, { useState, useCallback } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import TokenInput from '../../src';
+
+import CopyAnchor from '../share/CopyAnchor';
+
+import style from './index.styl';
 
 /**
  * Customize data structure
@@ -10,21 +14,41 @@ const INIT_VALUES = [
   'abc',
   '12345',
   '01234567890123456789012345678901234567890123456789012345678901234567890123456789',
+  '123456789',
 ];
 
 const handleBuildTokenValue = (inputValue) => {
   return inputValue.trim();
 };
 
-const Token = ({ tokenValue }) => {
-  return <div>{tokenValue}</div>;
-};
-Token.propTypes = {
-  tokenValue: PropTypes.string.isRequired,
+// const Token = ({ tokenValue }) => {
+//   return <div>{tokenValue}</div>;
+// };
+// Token.propTypes = {
+//   tokenValue: PropTypes.string.isRequired,
+// };
+
+const handleRenderTokenDeleteButtonContent = () => {
+  // Google font material-icons
+  // https://fonts.google.com/icons
+  return <span className="material-icons">delete</span>;
 };
 
 const handleGetTokenDisplayLabel = (tokenValue) => {
-  return <Token tokenValue={tokenValue} />;
+  return (
+    <>
+      <span
+        role="img"
+        aria-label="Close on click"
+        style={{ marginRight: '4px' }}
+        className="token-delete-button"
+      >
+        🪙
+      </span>
+      {`${tokenValue}`}
+      {handleRenderTokenDeleteButtonContent()}
+    </>
+  );
 };
 
 const handleGetTokenEditableValue = (tokenValue) => {
@@ -39,10 +63,10 @@ const handleTokenValueValidate = (tokenValue, index, tokenValues) => {
   }
 
   // Check duplicated
-  const matched = tokenValues.filter((tokenValue, idx) => {
+  const duplicates = tokenValues.filter((tokenValue, idx) => {
     return idx !== index && handleGetTokenEditableValue(tokenValue) === value;
   });
-  if (matched.length > 0) {
+  if (duplicates.length > 0) {
     return 'Duplicated';
   }
 
@@ -96,13 +120,18 @@ const ExampleTest = () => {
 
   return (
     <>
-      <h2>Test</h2>
+      <h2>
+        Test
+        <CopyAnchor hashTag="example-test" />
+      </h2>
 
       <TokenInput
+        className={style['example-test']}
         tokenValues={values}
         onTokenValuesChange={handleTokenValuesChange}
         onBuildTokenValue={handleBuildTokenValue}
         onGetTokenDisplayLabel={handleGetTokenDisplayLabel}
+        onRenderTokenDeleteButtonContent={handleRenderTokenDeleteButtonContent}
         onGetTokenEditableValue={handleGetTokenEditableValue}
         onGetTokenErrorMessage={handleGetTokenErrorMessage}
         onTokenValueValidate={handleTokenValueValidate}
