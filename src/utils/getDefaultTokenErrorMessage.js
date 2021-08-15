@@ -17,7 +17,11 @@
  * Description: The value for user to edit in an input
  */
 const getDefaultTokenErrorMessage = (tokenValue, tokenMeta) => {
-  return tokenMeta.error;
+  if (typeof tokenMeta.error === 'string') {
+    return tokenMeta.error;
+  }
+
+  return undefined;
 };
 
 export default getDefaultTokenErrorMessage;

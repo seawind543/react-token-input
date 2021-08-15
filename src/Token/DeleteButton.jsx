@@ -7,7 +7,8 @@ import { HARD_CODE_DELETE_BUTTON_CLASS_NAME } from '../constants';
 import CloseIcon from './CloseIcon';
 
 const DeleteButton = ({ onRenderContent }) => {
-  const isCustomizeContent = !!onRenderContent;
+  const isCustomizeContent = typeof onRenderContent === 'function';
+
   return (
     <span
       role="button"
@@ -24,7 +25,7 @@ const DeleteButton = ({ onRenderContent }) => {
 };
 
 DeleteButton.propTypes = {
-  onRenderContent: PropTypes.fun,
+  onRenderContent: PropTypes.func,
 };
 
 export default DeleteButton;

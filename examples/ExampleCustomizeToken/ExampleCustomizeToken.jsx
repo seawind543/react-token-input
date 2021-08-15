@@ -18,7 +18,10 @@ const handleTokenValueValidate = (tokenValue, index, tokenValues) => {
 };
 
 const ExampleCustomizeToken = () => {
-  const [values, setValues] = useState(DEMO_VALUES_WITH_INVALID);
+  const [values, setValues] = useState([
+    ...DEMO_VALUES_WITH_INVALID,
+    'Example: ReadOnly Token',
+  ]);
 
   const handleTokenValuesChange = useCallback(
     (newTokenValues) => {

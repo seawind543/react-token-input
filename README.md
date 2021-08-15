@@ -2,20 +2,22 @@
 
 [![NPM](https://nodei.co/npm/react-customize-token-input.png?downloads=true&stars=true)](https://www.npmjs.com/package/react-customize-token-input/)
 
+Live Demo: https://seawind543.github.io/react-token-input/
+
 React TokenInput (react-customize-token-input)
 
 A react token (tag) `controlled` input component, which support:
 
-- Apply to **customize data structure**.
-- **Customize token component** for `label of token` or `the complete token`.
-- Customize **separate characters** for separate end-user input string.
+- Accept **customize data structure**.
+- **Customize token (tag) Look & Feel** on the `label` [Demo](https://seawind543.github.io/react-token-input/#example-customize-label), `delete button` [Demo](https://seawind543.github.io/react-token-input/#example-customize-delete-button), or even override `the whole Token component` [Demo](https://seawind543.github.io/react-token-input/#example-customize-token-component).
+- Customize **separate characters** for separate end-user input string. [Demo](https://seawind543.github.io/react-token-input/#example-customize-separators)
 - **Inline editing** on exist token.
-- **Paste** on values.
+- **Paste** values. [Demo](https://seawind543.github.io/react-token-input/#example-customize-separators)
 - **Preprocessing** function for **normalized** user input value.
-It could be helpful to reproduce a single value into multiple values too.
+It could be helpful to reproduce a single value into multiple values too. [Demo](https://seawind543.github.io/react-token-input/#example-preprocess)
 - **Validate** function.
 
-Live Demo: https://seawind543.github.io/react-token-input/
+
 
 ## Installation
 
@@ -53,9 +55,9 @@ Live Demo: https://seawind543.github.io/react-token-input/
 
 ## Usage
 
-See Live Demo: https://seawind543.github.io/react-token-input/
+See Live Examples: https://seawind543.github.io/react-token-input/
 
-(Examples in the folder `examples`)
+Note: Sources code of Examples in the folder `examples`
 
 ## Props
 
@@ -326,6 +328,8 @@ See Live Demo: https://seawind543.github.io/react-token-input/
 
 ## Props of customizeTokenComponent
 
+Could also reference this [Example Demo](https://seawind543.github.io/react-token-input/#example-customize-token-component) and its source code `ExampleCustomizeToken` from the folder `examples`.
+
 ```javascript
   // Same as props of TokenInput
   readOnly: PropTypes.bool.isRequired,
@@ -338,6 +342,8 @@ See Live Demo: https://seawind543.github.io/react-token-input/
   onGetClassName: PropTypes.func.isRequired,
   // Same as props `onGetTokenDisplayLabel` of TokenInput
   onGetDisplayLabel: PropTypes.func.isRequired,
+  // Same as props `onRenderTokenDeleteButtonContent` of TokenInput
+  onRenderDeleteButtonContent: PropTypes.func,
   // Same as props `onGetTokenEditableValue` of TokenInput
   onGetEditableValue: PropTypes.func.isRequired,
   // Same as props `onGetTokenErrorMessage` of TokenInput
