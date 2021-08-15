@@ -2,6 +2,8 @@
 import React, { useState, useCallback } from 'react';
 import TokenInput from '../../src';
 
+import CopyAnchor from '../share/CopyAnchor';
+
 /**
  * Customize data structure
  */
@@ -47,13 +49,16 @@ const ExamplePreprocessor = () => {
 
   return (
     <>
-      <h2>Reproduce value by preprocessor</h2>
+      <h2>
+        Reproduce value by Preprocessor
+        <CopyAnchor hashTag="example-preprocess" />
+      </h2>
       <p>
         Use props <b>onPreprocess</b> to make preprocess before become a token.
         <br />
         <br />
         Hint: Type any value without <b>https://</b> and <b>http://</b> to see
-        reproduce effect. Following value will become 2 URL. Copy and Paste to
+        reproduce effect. Following value will become 2 URLs. Copy and Paste to
         see result.
       </p>
       <pre>google.com</pre>

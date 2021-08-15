@@ -4,6 +4,7 @@
 import React, { useState, useCallback } from 'react';
 import TokenInput from '../../src';
 
+import CopyAnchor from '../share/CopyAnchor';
 import { DEMO_VALUES } from '../demoValues';
 
 import style from './index.styl';
@@ -14,7 +15,6 @@ const handleRenderTokenDeleteButtonContent = () => {
   return <span className="material-icons">delete</span>;
 };
 
-const hashTag = 'example-customize-delete-button';
 const ExampleCustomizeDeleteButton = () => {
   const [values, setValues] = useState(DEMO_VALUES);
 
@@ -29,7 +29,10 @@ const ExampleCustomizeDeleteButton = () => {
 
   return (
     <>
-      <h2>Customize Token Delete Button Content</h2>
+      <h2>
+        Customize Token Delete Button Content{' '}
+        <CopyAnchor hashTag="example-customize-delete-button" />
+      </h2>
       <p>
         Use prop <b>onRenderTokenDeleteButtonContent</b> to customize the
         content of the Delete Button of Token.

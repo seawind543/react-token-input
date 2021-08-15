@@ -2,6 +2,8 @@
 import React, { useState, useCallback } from 'react';
 import TokenInput from '../../src';
 
+import CopyAnchor from '../share/CopyAnchor';
+
 const ExampleDefault = () => {
   const [values, setValues] = useState([]);
 
@@ -20,19 +22,37 @@ const ExampleDefault = () => {
 
   return (
     <>
-      <h2>Simple example: Take default</h2>
-      <p>By default, TokenInput will assume tokenValues is array of strings.</p>
+      <h2>
+        Simple example: Take default
+        <CopyAnchor hashTag="example-default" />
+      </h2>
+      <p>
+        By default, TokenInput will assume tokenValues is array of strings.
+        <br />
+        Input anything and press <b>Enter</b> to see what will be.
+      </p>
+      <div>
+        Hint: By default TokenInput will create token when you input
+        <ul>
+          <li>
+            Character <b>Comma</b> (,) or <b>Semicolon</b> (;)
+          </li>
+          <li>
+            Press <b>Enter</b>
+          </li>
+          <li>
+            <b>Paste</b> values
+          </li>
+        </ul>
+      </div>
 
       <TokenInput
-        className="example--default"
         tokenValues={values}
         onTokenValuesChange={handleTokenValuesChange}
       />
-
       <pre>
         {`
 <TokenInput
-  className="example--default"
   tokenValues={values}
   onTokenValuesChange={handleTokenValuesChange}
 />
