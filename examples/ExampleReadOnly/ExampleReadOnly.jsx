@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import TokenInput from '../../src';
 
-import DEMO_VALUES from '../demoValues';
+import { DEMO_VALUES, DEMO_VALUES_WITH_INVALID } from '../demoValues';
 
 const ERROR_VALUE = 'Invalid token in read-only mode';
 
@@ -38,7 +38,7 @@ const ExampleReadOnly = () => {
 
       <TokenInput
         readOnly={true}
-        tokenValues={[...values, ERROR_VALUE]}
+        tokenValues={DEMO_VALUES_WITH_INVALID}
         onTokenValueValidate={handleTokenValueValidate}
       />
 
