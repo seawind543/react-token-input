@@ -10,7 +10,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import keyDownHandler from '../../../src/utils/keyDownHandler';
+import keyDownHandlerProxy from '../../../src/utils/keyDownHandlerProxy';
 import DeleteButton from './DeleteButton';
 
 import styles from '../myToken.styl';
@@ -129,7 +129,7 @@ const MyToken = ({
 
   const handleKeyDown = useCallback(
     (e) => {
-      keyDownHandler(e, {
+      keyDownHandlerProxy(e, {
         onEscape: () => handleEditEnd({ reset: true }),
         onEnter: () => handleEditEnd(),
       });

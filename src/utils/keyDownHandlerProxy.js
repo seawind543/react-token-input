@@ -1,5 +1,5 @@
 /**
- * Help function to handle keyDown event
+ * Help function to proxy keyDown event to handler
  *
  * @ keyDownEvent
  * Type: Event
@@ -7,21 +7,22 @@
  *
  * @ actions.onBackspace
  * Type: function
- * Description: callback function when keyDone on Backspace
+ * Description: callback function when `Backspace` keyDone
  *
  * @ actions.onEnter
  * Type: function
- * Description: callback function when keyDone on Enter
+ * Description: callback function when `Enter` keyDone
  *
  * @ actions.onEscape
  * Type: function
- * Description: callback function when keyDone on Escape
+ * Description: callback function when `Escape` keyDone
  */
-const keyDownHandler = (keyDownEvent, actions) => {
+const dummyFunction = () => {};
+const keyDownHandlerProxy = (keyDownEvent, actions) => {
   const {
-    onBackspace = () => {},
-    onEnter = () => {},
-    onEscape = () => {},
+    onBackspace = dummyFunction,
+    onEnter = dummyFunction,
+    onEscape = dummyFunction,
   } = actions;
 
   // https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key
@@ -49,19 +50,19 @@ const keyDownHandler = (keyDownEvent, actions) => {
 
   switch (eventKey) {
     case 'Backspace':
-      onBackspace();
+      onBackspace(keyDownEvent);
       break;
 
     case 'Enter':
-      onEnter();
+      onEnter(keyDownEvent);
       break;
 
     case 'Escape':
-      onEscape();
+      onEscape(keyDownEvent);
       break;
 
     default:
   }
 };
 
-export default keyDownHandler;
+export default keyDownHandlerProxy;

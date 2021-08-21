@@ -8,7 +8,7 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import AutosizeInput from 'react-input-autosize';
-import keyDownHandler from '../utils/keyDownHandler';
+import keyDownHandlerProxy from '../utils/keyDownHandlerProxy';
 import {
   DEFAULT_INPUT_INIT_VALUE,
   HARD_CODE_DELETE_BUTTON_CLASS_NAME,
@@ -107,7 +107,7 @@ const Token = ({
 
   const handleKeyDown = useCallback(
     (e) => {
-      keyDownHandler(e, {
+      keyDownHandlerProxy(e, {
         onEscape: () => handleEditEnd({ reset: true }),
         onEnter: () => handleEditEnd(),
       });

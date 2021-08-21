@@ -1,24 +1,28 @@
 import React, { useState, useMemo, useCallback, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import AutosizeInput from 'react-input-autosize';
-import keyDownHandler from './utils/keyDownHandler';
+import keyDownHandlerProxy from './utils/keyDownHandlerProxy';
 
-import styles from './styles.styl';
+import usePredefinedKeyDownHandlers from './hooks/usePredefinedKeyDownHandlers';
 
 import { DEFAULT_INPUT_INIT_VALUE } from './constants';
 
+import styles from './styles.styl';
+
 const TokenCreator = forwardRef((props, ref) => {
   const {
-    separators,
-    onPreprocess,
-    onBuildTokenValue,
-    onNewTokenValuesAppend,
-    onLastTokenDelete,
     placeholder,
     autoFocus,
     onFocus,
     onBlur,
+
+    separators,
+    specialKeyDown,
     onInputValueChange,
+    onPreprocess,
+    onBuildTokenValue,
+    onNewTokenValuesAppend,
+    onLastTokenDelete,
   } = props;
   const [inputValue, setInputValue] = useState(DEFAULT_INPUT_INIT_VALUE);
 
@@ -99,21 +103,26 @@ const TokenCreator = forwardRef((props, ref) => {
     [splitPattens, handleTokensCreate, inputValue, handleInputValueUpdate]
   );
 
+  const { handleBackspaceKeyDown, handleEnterKeyDown, handleEscapeKeyDown } =
+    usePredefinedKeyDownHandlers({
+      specialKeyDown,
+      inputInitValue: DEFAULT_INPUT_INIT_VALUE,
+      inputValue,
+      onLastTokenDelete,
+      handleInputValueUpdate,
+      handleTokensCreate,
+    });
+
   const handleKeyDown = useCallback(
     (e) => {
       // console.log('TokenCreator > handleKeyDown');
-      keyDownHandler(e, {
-        onBackspace: () => {
-          if (inputValue.length === 0) {
-            // Delete the latest token when `Backspace`
-            onLastTokenDelete();
-          }
-        },
-        onEscape: () => handleInputValueUpdate(DEFAULT_INPUT_INIT_VALUE), // Reset the input value
-        onEnter: () => handleTokensCreate(inputValue),
+      keyDownHandlerProxy(e, {
+        onBackspace: handleBackspaceKeyDown,
+        onEnter: handleEnterKeyDown,
+        onEscape: handleEscapeKeyDown,
       });
     },
-    [inputValue, onLastTokenDelete, handleInputValueUpdate, handleTokensCreate]
+    [handleBackspaceKeyDown, handleEnterKeyDown, handleEscapeKeyDown]
   );
 
   const handleBlur = useCallback(
@@ -168,6 +177,7 @@ TokenCreator.propTypes = {
    * Token
    */
   separators: PropTypes.array.isRequired,
+  specialKeyDown: PropTypes.object.isRequired,
 
   onInputValueChange: PropTypes.func.isRequired,
   onPreprocess: PropTypes.func.isRequired,
