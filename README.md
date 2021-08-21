@@ -102,7 +102,7 @@ Note: Sources code of Examples in the folder `examples`
    * Type: An array of tokenValue of TokenInput
    * Description: Updated tokenValues
    */
-  onTokenValuesChange: PropTypes.func.isRequired,
+  onTokenValuesChange: PropTypes.func,
 
   /**
    * A callback function for preprocessing the user input string
@@ -384,6 +384,8 @@ Enter      | End editing and apply the new value. In case the new value is an `e
     onInputValueChange: () => {}, // Dummy function
   
     onTokenValueValidate: () => {}, // Dummy function
+
+    onTokenValuesChange: () => {}, // Dummy function
 
     // Token
     onGetTokenClassName: () => {}, // Dummy function
