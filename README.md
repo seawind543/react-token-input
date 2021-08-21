@@ -102,7 +102,7 @@ Note: Sources code of Examples in the folder `examples`
    * Type: An array of tokenValue of TokenInput
    * Description: Updated tokenValues
    */
-  onTokenValuesChange: PropTypes.func,
+  onTokenValuesChange: PropTypes.func.isRequired,
 
   /**
    * A callback function for preprocessing the user input string
