@@ -321,6 +321,7 @@ Note: Sources code of Examples in the folder `examples`
    * Default setting as below.
    * specialKeyDown: {
    *   onBackspace: 1,
+   *   onTab: 0,
    *   onEnter: 1,
    *   onEscape: 1,
    * },
@@ -345,6 +346,7 @@ KeyDown    | Description   | Note
 Backspace  | In case the value is an `empty string`, the token in the list tail will be deleted. |
 Escape     | Clear the input value. | A.K.A. Reset.
 Enter      | Create the token with the inputValue and continually focused on the inputBox for next inputting. |
+Tab  | Same as onEnter.  | <ul> <li>Default not apply</li> <li>Under Beta</li> </ul>
 
 ### For Inline editing
 

@@ -29,12 +29,15 @@ const ExampleSpecialKeyDown = () => {
 
       <p>
         Input anything and press <b>Enter</b> to see what will be.
+        <br />
+        Input anything and press <b>Tab</b> to see what will be.
       </p>
       <TokenInput
         tokenValues={values}
         onTokenValuesChange={handleTokenValuesChange}
         specialKeyDown={{
           onEnter: 0, // Turn off predefined event handler on Enter
+          onTab: 1, // Turn on predefined event handler on Tab
         }}
       />
       <pre>
@@ -44,6 +47,7 @@ const ExampleSpecialKeyDown = () => {
   onTokenValuesChange={handleTokenValuesChange}
   specialKeyDown={{
     onEnter: 0, // Turn off predefined event handler on Enter
+    onTab: 1, // Turn on predefined event handler on Tab 
   }}
 />
         `}
