@@ -340,17 +340,18 @@ TokenInput have following Predefined event handlers on each Special KeyDown.
 
 ### For Token Create
 
-KeyDown    | Description | Note
----------- | ----------- | :---
-Escape   | Clear the input value. | A.K.A. Reset.
-Enter    | Create the token with the inputValue and continually focused on the inputBox for next inputting. |
+KeyDown    | Description   | Note
+---------- | :------------ | :---
+Backspace  | In case the value is an `empty string`, the token in the list tail will be deleted. |
+Escape     | Clear the input value. | A.K.A. Reset.
+Enter      | Create the token with the inputValue and continually focused on the inputBox for next inputting. |
 
 ### For Inline editing
 
 KeyDown    | Description | Note
----------- | ----------- | :---
-Escape   | End editing without change the value of the token. | A.K.A. Reset
-Enter    | End editing and apply the new value. In case the new value is an `empty string`, will perform the `onEscape`. |
+---------- | :---------- | :---
+Escape     | End editing without change the value of the token. | A.K.A. Reset
+Enter      | End editing and apply the new value. In case the new value is an `empty string`, will perform the `onEscape`. |
 
 ## Default value of optional Props
 
