@@ -14,7 +14,7 @@ import {
 
 const handleTokenValueValidate = (tokenValue, index, tokenValues) => {
   if (tokenValue === INVALID_VALUE) {
-    return "I'm an error token";
+    return "I'm an invalid token";
   }
 
   return null;

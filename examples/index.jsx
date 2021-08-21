@@ -20,6 +20,7 @@ import ExamplePreprocessor from './ExamplePreprocessor';
 import ExampleCustomizeSeparators from './ExampleCustomizeSeparators';
 import ExampleCustomizeToken from './ExampleCustomizeToken';
 import ExampleReadOnly from './ExampleReadOnly';
+import ExampleSpecialKeyDown from './ExampleSpecialKeyDown';
 
 import './index.styl';
 
@@ -38,6 +39,7 @@ const examples = [
   <ExampleCustomizeSeparators key="ExampleCustomizeSeparators" />,
   <ExampleCustomizeToken key="ExampleCustomizeToken" />,
   <ExampleReadOnly key="ExampleReadOnly" />,
+  <ExampleSpecialKeyDown key="ExampleSpecialKeyDown" />,
 ];
 
 const App = () => {

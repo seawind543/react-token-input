@@ -77,6 +77,19 @@ Note: Sources code of Examples in the folder `examples`
   // Placeholder of TokenInput
   placeholder: PropTypes.string,
 
+  /**
+   * An array of characters for split the user input string.
+   * For example,
+   * Split the user input string `abc;def` into `['abc', 'def']`
+   * by separators `[';']`
+   *
+   * Note:
+   * It take the `String.prototype.split()` and `RegExp` to split the user input string.
+   * Make sure your customized separators could be used with `RegExp`.
+   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+   */
+  separators: PropTypes.array,
+
   // [Required] An array of tokenValue of TokenInput
   tokenValues: PropTypes.array.isRequired,
 
@@ -90,19 +103,6 @@ Note: Sources code of Examples in the folder `examples`
    * Description: Updated tokenValues
    */
   onTokenValuesChange: PropTypes.func,
-
-  /**
-   * An array of characters for split the user input string.
-   * For example,
-   * Split the user input string `abc;def` into `['abc', 'def']`
-   * by separators `[';']`
-   *
-   * Note:
-   * It take the `String.prototype.split()` and `RegExp` to split the user input string.
-   * Make sure your customized separators could be used with `RegExp`.
-   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
-   */
-  separators: PropTypes.array,
 
   /**
    * A callback function for preprocessing the user input string
@@ -307,7 +307,50 @@ Note: Sources code of Examples in the folder `examples`
    * customizeTokenComponent={MyToken}
    */
   customizeTokenComponent: PropTypes.func,
+
 ```
+
+### Beta props
+
+```javascript
+  /**
+   * [Beta; Might be change in the future version]
+   * Current only apply to Token Create
+   *
+   * The config settings to control the specials keyDown event handler behavior.
+   * Default setting as below.
+   * specialKeyDown: {
+   *   onBackspace: 1,
+   *   onEnter: 1,
+   *   onEscape: 1,
+   * },
+   *
+   * `0` means turn off (Took native browser behavior. TokenInput should NOT handle it).
+   * `1` means apply TokenInput predefined event handler.
+   *
+   * Reference section below for Predefined event handlers.
+   * `Predefined KeyDown Event Handlers`
+   */
+  specialKeyDown: PropTypes.object,
+```
+
+## Predefined KeyDown Event Handlers
+
+TokenInput have following Predefined event handlers on each Special KeyDown.
+
+### For Token Create
+
+KeyDown    | Description | Note
+---------- | ----------- | :---
+Escape   | Clear the input value. | A.K.A. Reset.
+Enter    | Create the token with the inputValue and continually focused on the inputBox for next inputting. |
+
+### For Inline editing
+
+KeyDown    | Description | Note
+---------- | ----------- | :---
+Escape   | End editing without change the value of the token. | A.K.A. Reset
+Enter    | End editing and apply the new value. In case the new value is an `empty string`, will perform the `onEscape`. |
 
 ## Default value of optional Props
 
@@ -327,14 +370,20 @@ Note: Sources code of Examples in the folder `examples`
       '\r\n', // for copy and paste
     ];
 
+    specialKeyDown: {
+      onBackspace: 1,
+      onEnter: 1,
+      onEscape: 1,
+    },
+
     onBuildTokenValue: buildDefaultTokenValue,
 
     onInputValueChange: () => {}, // Dummy function
   
-    onTokenValueValidate: () => undefined,
+    onTokenValueValidate: () => {}, // Dummy function
 
     // Token
-    onGetTokenClassName: () => '',
+    onGetTokenClassName: () => {}, // Dummy function
     onGetTokenDisplayLabel: getDefaultTokenEditableValue,
     onGetTokenEditableValue: getDefaultTokenEditableValue,
     onGetTokenErrorMessage: getDefaultTokenErrorMessage,

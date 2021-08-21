@@ -38,7 +38,15 @@ const ExampleDefault = () => {
             Character <b>Comma</b> (,) or <b>Semicolon</b> (;)
           </li>
           <li>
-            Press <b>Enter</b>
+            Press <b>Enter</b>. Reference{' '}
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://github.com/seawind543/react-token-input#predefined-keydown-event-handlers"
+            >
+              Predefined KeyDown Event
+            </a>{' '}
+            for more detail.
           </li>
           <li>
             <b>Paste</b> values
