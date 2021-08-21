@@ -385,6 +385,8 @@ Enter      | End editing and apply the new value. In case the new value is an `e
   
     onTokenValueValidate: () => {}, // Dummy function
 
+    onTokenValuesChange: () => {}, // Dummy function
+
     // Token
     onGetTokenClassName: () => {}, // Dummy function
     onGetTokenDisplayLabel: getDefaultTokenEditableValue,

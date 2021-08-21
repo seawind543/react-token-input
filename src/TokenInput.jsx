@@ -450,6 +450,9 @@ TokenInput.defaultProps = {
   onInputValueChange: dummyFunc,
   onTokenValueValidate: dummyFunc,
 
+  // FixMe: ReadOnly mode do not need onTokenValuesChange, but for others need
+  onTokenValuesChange: dummyFunc,
+
   // Token
   onGetTokenClassName: dummyFunc,
   onGetTokenDisplayLabel: getDefaultTokenEditableValue,
