@@ -22,7 +22,7 @@ function usePredefinedKeyDownHandlers({
   handleTokensCreate,
 }) {
   // console.log('specialKeyDown', specialKeyDown);
-  const { onBackspace, onEnter, onEscape } = {
+  const { onBackspace, onTab, onEnter, onEscape } = {
     ...DEFAULT_SPECIAL_KEY_DOWN_SETTINGS,
     ...specialKeyDown,
   };
@@ -40,6 +40,20 @@ function usePredefinedKeyDownHandlers({
       });
     },
     [onBackspace, inputValue, onLastTokenDelete]
+  );
+
+  const handleTabKeyDown = useCallback(
+    (keyDownEvent) => {
+      handleKeyDown({
+        keyDownEvent,
+        onKey: onTab,
+        predefinedHandler: (keyDownEvent) => {
+          keyDownEvent.preventDefault();
+          handleTokensCreate(inputValue);
+        },
+      });
+    },
+    [onTab, inputValue, handleTokensCreate]
   );
 
   const handleEnterKeyDown = useCallback(
@@ -71,6 +85,7 @@ function usePredefinedKeyDownHandlers({
 
   return {
     handleBackspaceKeyDown,
+    handleTabKeyDown,
     handleEnterKeyDown,
     handleEscapeKeyDown,
   };

@@ -11,6 +11,10 @@ import keyDownEventPropsNormalizer from './keyDownEventPropsNormalizer';
  * Type: function
  * Description: callback function when `Backspace` keyDone
  *
+ * @ actions.onTab
+ * Type: function
+ * Description: callback function when `Tab` keyDone
+ *
  * @ actions.onEnter
  * Type: function
  * Description: callback function when `Enter` keyDone
@@ -23,6 +27,7 @@ const dummyFunction = () => {};
 const keyDownHandlerProxy = (keyDownEvent, actions) => {
   const {
     onBackspace = dummyFunction,
+    onTab = dummyFunction,
     onEnter = dummyFunction,
     onEscape = dummyFunction,
   } = actions;
@@ -32,6 +37,10 @@ const keyDownHandlerProxy = (keyDownEvent, actions) => {
   switch (eventKey) {
     case 'Backspace':
       onBackspace(keyDownEvent);
+      break;
+
+    case 'Tab':
+      onTab(keyDownEvent);
       break;
 
     case 'Enter':
