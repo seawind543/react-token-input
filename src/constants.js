@@ -15,6 +15,7 @@ export const DEFAULT_SEPARATORS = [
  */
 export const DEFAULT_SPECIAL_KEY_DOWN_SETTINGS = {
   onBackspace: 1,
+  onTab: 0,
   onEnter: 1,
   onEscape: 1,
 };

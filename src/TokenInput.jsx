@@ -416,6 +416,7 @@ TokenInput.propTypes = {
    * Default setting as below.
    * specialKeyDown: {
    *   onBackspace: 1,
+   *   onTab: 0,
    *   onEnter: 1,
    *   onEscape: 1,
    * },

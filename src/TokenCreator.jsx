@@ -103,26 +103,36 @@ const TokenCreator = forwardRef((props, ref) => {
     [splitPattens, handleTokensCreate, inputValue, handleInputValueUpdate]
   );
 
-  const { handleBackspaceKeyDown, handleEnterKeyDown, handleEscapeKeyDown } =
-    usePredefinedKeyDownHandlers({
-      specialKeyDown,
-      inputInitValue: DEFAULT_INPUT_INIT_VALUE,
-      inputValue,
-      onLastTokenDelete,
-      handleInputValueUpdate,
-      handleTokensCreate,
-    });
+  const {
+    handleBackspaceKeyDown,
+    handleTabKeyDown,
+    handleEnterKeyDown,
+    handleEscapeKeyDown,
+  } = usePredefinedKeyDownHandlers({
+    specialKeyDown,
+    inputInitValue: DEFAULT_INPUT_INIT_VALUE,
+    inputValue,
+    onLastTokenDelete,
+    handleInputValueUpdate,
+    handleTokensCreate,
+  });
 
   const handleKeyDown = useCallback(
     (e) => {
       // console.log('TokenCreator > handleKeyDown');
       keyDownHandlerProxy(e, {
         onBackspace: handleBackspaceKeyDown,
+        onTab: handleTabKeyDown,
         onEnter: handleEnterKeyDown,
         onEscape: handleEscapeKeyDown,
       });
     },
-    [handleBackspaceKeyDown, handleEnterKeyDown, handleEscapeKeyDown]
+    [
+      handleBackspaceKeyDown,
+      handleTabKeyDown,
+      handleEnterKeyDown,
+      handleEscapeKeyDown,
+    ]
   );
 
   const handleBlur = useCallback(
