@@ -202,7 +202,7 @@ TokenInput.propTypes = {
    * Type: An array of tokenValue of TokenInput
    * Description: Updated tokenValues
    */
-  onTokenValuesChange: PropTypes.func,
+  onTokenValuesChange: PropTypes.func.isRequired,
 
   /**
    * A callback function for preprocessing the user input string
@@ -445,6 +445,7 @@ TokenInput.defaultProps = {
     onEscape: 1,
   },
 
+  // onTokenValuesChange: dummyFunc,
   onBuildTokenValue: buildDefaultTokenValue,
   onInputValueChange: dummyFunc,
   onTokenValueValidate: dummyFunc,
