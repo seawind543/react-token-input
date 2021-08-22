@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import styles from '../styles.styl';
-import { HARD_CODE_DELETE_BUTTON_CLASS_NAME } from '../constants';
+import { JS__TOKEN__DELETE_BUTTON__CLASS_NAME } from '../constants';
 import CloseIcon from './CloseIcon';
 
 const DeleteButton = ({ onRenderContent }) => {
@@ -13,8 +13,8 @@ const DeleteButton = ({ onRenderContent }) => {
     <span
       role="button"
       className={classNames(
-        HARD_CODE_DELETE_BUTTON_CLASS_NAME,
-        styles['delete-button']
+        JS__TOKEN__DELETE_BUTTON__CLASS_NAME,
+        styles['token__delete-button']
       )}
       aria-hidden="true"
     >

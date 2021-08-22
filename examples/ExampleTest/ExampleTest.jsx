@@ -1,11 +1,15 @@
 /* eslint no-console: 0 */
+/* eslint no-unused-vars: 0 */
+
 import React, { useState, useCallback } from 'react';
 // import PropTypes from 'prop-types';
-import TokenInput from '../../src';
+// import TokenInput, { JS__TOKEN__DELETE_BUTTON__CLASS_NAME } from '../../src';
+import TokenInput, { JS__TOKEN__DELETE_BUTTON__CLASS_NAME } from '../../lib';
 
 import CopyAnchor from '../share/CopyAnchor';
 
 import style from './index.styl';
+import '../../dist/react-customize-token-input.css';
 
 /**
  * Customize data structure
@@ -41,7 +45,7 @@ const handleGetTokenDisplayLabel = (tokenValue) => {
         role="img"
         aria-label="Close on click"
         style={{ marginRight: '4px' }}
-        className="token-delete-button"
+        className={JS__TOKEN__DELETE_BUTTON__CLASS_NAME}
       >
         🪙
       </span>

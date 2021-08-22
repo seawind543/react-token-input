@@ -1,7 +1,6 @@
 .container {
-    /* https://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
+    // https://www.paulirish.com/2012/box-sizing-border-box-ftw/
     box-sizing: border-box;
-
     *, 
     *::before, 
     *::after {
@@ -23,10 +22,10 @@
     // outline: none; 
     outline: 0;
 
-    &.focused {
+    &.container--focused {
         border-color: #0096cc;
     }
-    &&.errors {
+    &&.container--errors {
         border-color: #db3d44;
     }
 
@@ -59,7 +58,7 @@
             color: #0096cc;
             background-color: #cceaf5;
 
-            &.error {
+            &.token--error {
                 // color: #f75757;
                 color: #db3d44;
                 background-color: #f9b5b5;
@@ -69,16 +68,16 @@
                 cursor: pointer;
                 background-color: #e6f4fc;
 
-                &.error {
+                &.token--error {
                     background-color: #ffdada;
                 }
 
-                &.read-only {
+                &.token--read-only {
                     cursor: default;
                 }
             }
 
-            &.active {
+            &.token--active {
                 .autosized-wrapper {
                     display: flex;
                     justify-content: center;
@@ -95,13 +94,13 @@
                 }
             }
             
-            // &.read-only {
-            //     .label-wrapper {
+            // &.token--read-only {
+            //     .token__label-wrapper {
             //         max-width: 100%;
             //     }
             // }
             
-            .label-wrapper {
+            .token__label-wrapper {
                 flex: 1 0 0;
 
                 margin: 0 8px;
@@ -109,7 +108,7 @@
                 text-overflow: ellipsis;
             }
             
-            .delete-button {
+            .token__delete-button {
                 flex: 0 0 0;
                 display: flex;
                 justify-content: center;
@@ -131,7 +130,7 @@
                     opacity: 1;
                     background-color: #aaa;
 
-                    .close-icon {
+                    .token__delete-button__close-icon {
                         &:before,
                         &:after {
                             border-color: #fff;
@@ -139,7 +138,7 @@
                     }
                 }
 
-                .close-icon {
+                .token__delete-button__close-icon {
                     width: 14px;
                     height: 14px;
                     position: relative;

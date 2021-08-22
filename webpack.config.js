@@ -15,7 +15,7 @@ const banner = [
   pkg.license,
   pkg.homepage,
 ].join(' | ');
-const localClassPrefix = publicName.replace(/^react-/, ''); // Strip out "react-" from publicName
+const localClassPrefix = 'token-input';
 
 module.exports = {
   mode: 'production',
@@ -72,7 +72,6 @@ module.exports = {
               sourceMap: false,
               importLoaders: 1,
               modules: {
-                exportLocalsConvention: 'camelCase',
                 localIdentName: `${localClassPrefix}-[local]`,
               },
             },

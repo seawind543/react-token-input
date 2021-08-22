@@ -5,10 +5,8 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const nib = require('nib');
-const pkg = require('../package.json');
 
-const publicName = pkg.name; // package name
-const localClassPrefix = publicName.replace(/^react-/, ''); // Strip out "react-" from publicName
+const localClassPrefix = 'token-input';
 
 module.exports = {
   mode: 'development',
@@ -51,7 +49,6 @@ module.exports = {
             loader: 'css-loader', // translates CSS into CommonJS
             options: {
               modules: {
-                exportLocalsConvention: 'camelCase',
                 localIdentName: `${localClassPrefix}-[local]`,
               },
             },

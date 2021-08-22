@@ -1,6 +1,5 @@
 /*! react-customize-token-input v1.3.1 | (c) 2021 Mark Lin. | MIT | https://github.com/seawind543/react-token-input */
-.customize-token-input-container {
-/* https://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
+.token-input-container {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -18,20 +17,20 @@
   -ms-transition: all 0.2s linear 0s;
   transition: all 0.2s linear 0s;
 }
-.customize-token-input-container *,
-.customize-token-input-container *::before,
-.customize-token-input-container *::after {
+.token-input-container *,
+.token-input-container *::before,
+.token-input-container *::after {
   -webkit-box-sizing: inherit;
   -moz-box-sizing: inherit;
   box-sizing: inherit;
 }
-.customize-token-input-container.customize-token-input-focused {
+.token-input-container.token-input-container--focused {
   border-color: #0096cc;
 }
-.customize-token-input-container.customize-token-input-container.customize-token-input-errors {
+.token-input-container.token-input-container.token-input-container--errors {
   border-color: #db3d44;
 }
-.customize-token-input-container .customize-token-input-token-list .customize-token-input-token {
+.token-input-container .token-input-token-list .token-input-token {
   float: left;
   display: -webkit-box;
   display: -moz-box;
@@ -74,21 +73,21 @@
   color: #0096cc;
   background-color: #cceaf5;
 }
-.customize-token-input-container .customize-token-input-token-list .customize-token-input-token.customize-token-input-error {
+.token-input-container .token-input-token-list .token-input-token.token-input-token--error {
   color: #db3d44;
   background-color: #f9b5b5;
 }
-.customize-token-input-container .customize-token-input-token-list .customize-token-input-token:hover {
+.token-input-container .token-input-token-list .token-input-token:hover {
   cursor: pointer;
   background-color: #e6f4fc;
 }
-.customize-token-input-container .customize-token-input-token-list .customize-token-input-token:hover.customize-token-input-error {
+.token-input-container .token-input-token-list .token-input-token:hover.token-input-token--error {
   background-color: #ffdada;
 }
-.customize-token-input-container .customize-token-input-token-list .customize-token-input-token:hover.customize-token-input-read-only {
+.token-input-container .token-input-token-list .token-input-token:hover.token-input-token--read-only {
   cursor: default;
 }
-.customize-token-input-container .customize-token-input-token-list .customize-token-input-token.customize-token-input-active .customize-token-input-autosized-wrapper {
+.token-input-container .token-input-token-list .token-input-token.token-input-token--active .token-input-autosized-wrapper {
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -113,11 +112,11 @@
   margin: 4px 8px;
   height: 32px;
 }
-.customize-token-input-container .customize-token-input-token-list .customize-token-input-token.customize-token-input-active .customize-token-input-autosized-wrapper input {
+.token-input-container .token-input-token-list .token-input-token.token-input-token--active .token-input-autosized-wrapper input {
   height: auto;
   border-bottom: 1px solid #aaa;
 }
-.customize-token-input-container .customize-token-input-token-list .customize-token-input-token .customize-token-input-label-wrapper {
+.token-input-container .token-input-token-list .token-input-token .token-input-token__label-wrapper {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -o-box-flex: 1;
@@ -130,7 +129,7 @@
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
 }
-.customize-token-input-container .customize-token-input-token-list .customize-token-input-token .customize-token-input-delete-button {
+.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -o-box-flex: 1;
@@ -168,49 +167,49 @@
   border-left: 1px solid #aaa;
   border-radius: 0 4px 4px 0;
 }
-.customize-token-input-container .customize-token-input-token-list .customize-token-input-token .customize-token-input-delete-button:hover {
+.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button:hover {
   opacity: 1;
   -ms-filter: none;
   filter: none;
   background-color: #aaa;
 }
-.customize-token-input-container .customize-token-input-token-list .customize-token-input-token .customize-token-input-delete-button:hover .customize-token-input-close-icon:before,
-.customize-token-input-container .customize-token-input-token-list .customize-token-input-token .customize-token-input-delete-button:hover .customize-token-input-close-icon:after {
+.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button:hover .token-input-token__delete-button__close-icon:before,
+.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button:hover .token-input-token__delete-button__close-icon:after {
   border-color: #fff;
 }
-.customize-token-input-container .customize-token-input-token-list .customize-token-input-token .customize-token-input-delete-button .customize-token-input-close-icon {
+.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-token__delete-button__close-icon {
   width: 14px;
   height: 14px;
   position: relative;
 }
-.customize-token-input-container .customize-token-input-token-list .customize-token-input-token .customize-token-input-delete-button .customize-token-input-close-icon:before,
-.customize-token-input-container .customize-token-input-token-list .customize-token-input-token .customize-token-input-delete-button .customize-token-input-close-icon:after {
+.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-token__delete-button__close-icon:before,
+.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-token__delete-button__close-icon:after {
   content: '';
   height: 14px;
   left: 6px;
   border-left: 2px solid #222;
   position: absolute;
 }
-.customize-token-input-container .customize-token-input-token-list .customize-token-input-token .customize-token-input-delete-button .customize-token-input-close-icon:before {
+.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-token__delete-button__close-icon:before {
   -webkit-transform: rotate(-45deg);
   -moz-transform: rotate(-45deg);
   -o-transform: rotate(-45deg);
   -ms-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
-.customize-token-input-container .customize-token-input-token-list .customize-token-input-token .customize-token-input-delete-button .customize-token-input-close-icon:after {
+.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-token__delete-button__close-icon:after {
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-.customize-token-input-container .customize-token-input-autosized-wrapper {
+.token-input-container .token-input-autosized-wrapper {
   float: left;
   overflow: hidden;
   margin-right: 4px;
 }
-.customize-token-input-container .customize-token-input-autosized-wrapper input {
+.token-input-container .token-input-autosized-wrapper input {
   height: 32px;
   margin: 0;
   padding: 0;

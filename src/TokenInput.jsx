@@ -110,8 +110,8 @@ const TokenInput = ({
     <div
       {...props}
       className={classNames(className, styles.container, {
-        [styles.focused]: isTokenInputFocused,
-        [styles.errors]: hasInvalidToken,
+        [styles['container-focused']]: isTokenInputFocused,
+        [styles['container-errors']]: hasInvalidToken,
       })}
       onClick={focusTokenCreator}
       role="presentation"
