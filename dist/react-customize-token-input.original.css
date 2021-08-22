@@ -1,0 +1,225 @@
+/*! react-customize-token-input v1.3.1 | (c) 2021 Mark Lin. | MIT | https://github.com/seawind543/react-token-input */
+.customize-token-input-container {
+/* https://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  cursor: text;
+  overflow-y: auto;
+  height: 200px;
+  padding: 4px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: 0;
+  -webkit-transition: all 0.2s linear 0s;
+  -moz-transition: all 0.2s linear 0s;
+  -o-transition: all 0.2s linear 0s;
+  -ms-transition: all 0.2s linear 0s;
+  transition: all 0.2s linear 0s;
+}
+.customize-token-input-container *,
+.customize-token-input-container *::before,
+.customize-token-input-container *::after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+.customize-token-input-container.customize-token-input-focused {
+  border-color: #0096cc;
+}
+.customize-token-input-container.customize-token-input-container.customize-token-input-errors {
+  border-color: #db3d44;
+}
+.customize-token-input-container .customize-token-input-token-list .customize-token-input-token {
+  float: left;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
+  -webkit-box-lines: single;
+  -moz-box-lines: single;
+  -o-box-lines: single;
+  -webkit-flex-flow: row nowrap;
+  -ms-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -ms-flex-line-pack: center;
+  -webkit-align-content: center;
+  align-content: center;
+  max-width: 100%;
+  height: 32px;
+  line-height: 1.5;
+  white-space: nowrap;
+  margin: 0 4px 4px 0;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  color: #0096cc;
+  background-color: #cceaf5;
+}
+.customize-token-input-container .customize-token-input-token-list .customize-token-input-token.customize-token-input-error {
+  color: #db3d44;
+  background-color: #f9b5b5;
+}
+.customize-token-input-container .customize-token-input-token-list .customize-token-input-token:hover {
+  cursor: pointer;
+  background-color: #e6f4fc;
+}
+.customize-token-input-container .customize-token-input-token-list .customize-token-input-token:hover.customize-token-input-error {
+  background-color: #ffdada;
+}
+.customize-token-input-container .customize-token-input-token-list .customize-token-input-token:hover.customize-token-input-read-only {
+  cursor: default;
+}
+.customize-token-input-container .customize-token-input-token-list .customize-token-input-token.customize-token-input-active .customize-token-input-autosized-wrapper {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -ms-flex-line-pack: center;
+  -webkit-align-content: center;
+  align-content: center;
+  margin: 4px 8px;
+  height: 32px;
+}
+.customize-token-input-container .customize-token-input-token-list .customize-token-input-token.customize-token-input-active .customize-token-input-autosized-wrapper input {
+  height: auto;
+  border-bottom: 1px solid #aaa;
+}
+.customize-token-input-container .customize-token-input-token-list .customize-token-input-token .customize-token-input-label-wrapper {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1 0 0;
+  -ms-flex: 1 0 0;
+  flex: 1 0 0;
+  margin: 0 8px;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+.customize-token-input-container .customize-token-input-token-list .customize-token-input-token .customize-token-input-delete-button {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 0 0 0;
+  -ms-flex: 0 0 0;
+  flex: 0 0 0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -ms-flex-line-pack: center;
+  -webkit-align-content: center;
+  align-content: center;
+  height: 100%;
+  padding: 2px 8px;
+  cursor: pointer;
+  opacity: 0.3;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+  filter: alpha(opacity=30);
+  border-left: 1px solid #aaa;
+  border-radius: 0 4px 4px 0;
+}
+.customize-token-input-container .customize-token-input-token-list .customize-token-input-token .customize-token-input-delete-button:hover {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  background-color: #aaa;
+}
+.customize-token-input-container .customize-token-input-token-list .customize-token-input-token .customize-token-input-delete-button:hover .customize-token-input-close-icon:before,
+.customize-token-input-container .customize-token-input-token-list .customize-token-input-token .customize-token-input-delete-button:hover .customize-token-input-close-icon:after {
+  border-color: #fff;
+}
+.customize-token-input-container .customize-token-input-token-list .customize-token-input-token .customize-token-input-delete-button .customize-token-input-close-icon {
+  width: 14px;
+  height: 14px;
+  position: relative;
+}
+.customize-token-input-container .customize-token-input-token-list .customize-token-input-token .customize-token-input-delete-button .customize-token-input-close-icon:before,
+.customize-token-input-container .customize-token-input-token-list .customize-token-input-token .customize-token-input-delete-button .customize-token-input-close-icon:after {
+  content: '';
+  height: 14px;
+  left: 6px;
+  border-left: 2px solid #222;
+  position: absolute;
+}
+.customize-token-input-container .customize-token-input-token-list .customize-token-input-token .customize-token-input-delete-button .customize-token-input-close-icon:before {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.customize-token-input-container .customize-token-input-token-list .customize-token-input-token .customize-token-input-delete-button .customize-token-input-close-icon:after {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.customize-token-input-container .customize-token-input-autosized-wrapper {
+  float: left;
+  overflow: hidden;
+  margin-right: 4px;
+}
+.customize-token-input-container .customize-token-input-autosized-wrapper input {
+  height: 32px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  cursor: text;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background: none;
+  color: #222;
+}
+
