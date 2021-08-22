@@ -2,7 +2,7 @@
 /* eslint no-unused-vars: 0 */
 
 import React, { useState, useCallback } from 'react';
-import TokenInput from '../../src';
+import TokenInput, { JS__TOKEN__DELETE_BUTTON__CLASS_NAME } from '../../src';
 
 import CopyAnchor from '../share/CopyAnchor';
 
@@ -20,7 +20,7 @@ const handleGetTokenDisplayLabel = (tokenValue, tokenMeta) => {
       </span> */}
       <span
         className={[
-          'token-delete-button', // A hard code className to tell TokenInput treat it as delete button
+          JS__TOKEN__DELETE_BUTTON__CLASS_NAME, // A hard code className to tell TokenInput to treat it as delete button
           'material-icons', // A hard code className to use Google icon
           style['material-icons'],
         ].join(' ')}
@@ -68,18 +68,23 @@ const ExampleCustomizeTokenVisualTrick = () => {
       />
 
       <p>
-        Bind className <b>token-delete-button</b> on the element, which you want
-        to perform the <b>Token Delete Action</b> when click on it.
+        Bind the hard code className <b>JS__TOKEN__DELETE_BUTTON__CLASS_NAME</b>{' '}
+        on the element, which you want to perform the <b>Token Delete Action</b>{' '}
+        when click on it.
       </p>
       <pre>
         {`
+import TokenInput, { JS__TOKEN__DELETE_BUTTON__CLASS_NAME } from 'react-customize-token-input';
+
+// ... omit
+
 const handleGetTokenDisplayLabel = (tokenValue, tokenMeta) => {
   // Google font material-icons
   // https://fonts.google.com/icons
   return (
     <>
       <span
-        className="material-icons token-delete-button"
+        className=\`material-icons \${JS__TOKEN__DELETE_BUTTON__CLASS_NAME}\`
         style={{ color: '#888', marginRight: '4px' }}
       >
         delete

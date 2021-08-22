@@ -34,8 +34,10 @@ It could be helpful to reproduce a single value into multiple values too. [Demo]
 
   // Be sure to include styles at some point, probably during your bootstraping
   import 'react-customize-token-input/dist/react-customize-token-input.css';
-  ```
 
+  // Could find the not minimize version for easily customize style here
+  // 'react-customize-token-input/dist/react-customize-token-input.original.css';
+  ```
 
 ## Dev
 

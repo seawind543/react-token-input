@@ -4,6 +4,7 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const nib = require('nib');
 const pkg = require('./package.json');
 
@@ -14,7 +15,7 @@ const banner = [
   pkg.license,
   pkg.homepage,
 ].join(' | ');
-const localClassPrefix = publicName.replace(/^react-/, ''); // Strip out "react-" from publicName
+const localClassPrefix = 'token-input';
 
 module.exports = {
   mode: 'production',
@@ -68,10 +69,10 @@ module.exports = {
           {
             loader: 'css-loader', // translates CSS into CommonJS
             options: {
+              sourceMap: false,
               importLoaders: 1,
               modules: {
-                exportLocalsConvention: 'camelCase',
-                localIdentName: `${localClassPrefix}---[local]---[hash:base64:5]`,
+                localIdentName: `${localClassPrefix}-[local]`,
               },
             },
           },
@@ -81,6 +82,8 @@ module.exports = {
               stylusOptions: {
                 use: [nib()],
                 import: ['nib'],
+                compress: false, // Avoid minify
+                sourceMap: false,
               },
             },
           },
@@ -108,8 +111,23 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: `../dist/${publicName}.css`,
     }),
+    new MiniCssExtractPlugin({
+      // For build not minimize version
+      filename: `../dist/${publicName}.original.css`,
+    }),
     new webpack.BannerPlugin(banner),
   ],
+  optimization: {
+    minimize: true,
+    minimizer: [
+      // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
+      `...`, // keep js file minimize
+      new CssMinimizerPlugin({
+        test: /\.css$/,
+        exclude: /\.original.css$/, // Skip `.original.css` from minimize
+      }),
+    ],
+  },
   resolve: {
     extensions: ['.js', '.jsx'],
   },
