@@ -38,6 +38,7 @@ const TokenInput = ({
 
   // TokenCreator
   separators,
+  specialKeyDown,
   onPreprocess,
   onInputValueChange,
   onTokenValueValidate,
@@ -109,8 +110,8 @@ const TokenInput = ({
     <div
       {...props}
       className={classNames(className, styles.container, {
-        [styles.focused]: isTokenInputFocused,
-        [styles.errors]: hasInvalidToken,
+        [styles['container-focused']]: isTokenInputFocused,
+        [styles['container-errors']]: hasInvalidToken,
       })}
       onClick={focusTokenCreator}
       role="presentation"
@@ -148,11 +149,12 @@ const TokenInput = ({
           onFocus={handleTokenInputFocus}
           onBlur={handleTokenInputBlur}
           separators={separators}
+          specialKeyDown={specialKeyDown}
+          onInputValueChange={onInputValueChange}
           onPreprocess={handleInputValuesPreprocess}
           onBuildTokenValue={onBuildTokenValue}
           onNewTokenValuesAppend={handleNewTokenValuesAppend}
           onLastTokenDelete={handleLastTokenDelete}
-          onInputValueChange={onInputValueChange}
         />
       )}
     </div>
@@ -175,6 +177,19 @@ TokenInput.propTypes = {
   // Placeholder of TokenInput
   placeholder: PropTypes.string,
 
+  /**
+   * An array of characters for split the user input string.
+   * For example,
+   * Split the user input string `abc;def` into `['abc', 'def']`
+   * by separators `[';']`
+   *
+   * Note:
+   * It take the `String.prototype.split()` and `RegExp` to split the user input string.
+   * Make sure your customized separators could be used with `RegExp`.
+   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+   */
+  separators: PropTypes.array,
+
   // [Required] An array of tokenValue of TokenInput
   tokenValues: PropTypes.array.isRequired,
 
@@ -188,19 +203,6 @@ TokenInput.propTypes = {
    * Description: Updated tokenValues
    */
   onTokenValuesChange: PropTypes.func,
-
-  /**
-   * An array of characters for split the user input string.
-   * For example,
-   * Split the user input string `abc;def` into `['abc', 'def']`
-   * by separators `[';']`
-   *
-   * Note:
-   * It take the `String.prototype.split()` and `RegExp` to split the user input string.
-   * Make sure your customized separators could be used with `RegExp`.
-   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
-   */
-  separators: PropTypes.array,
 
   /**
    * A callback function for preprocessing the user input string
@@ -405,8 +407,30 @@ TokenInput.propTypes = {
    * customizeTokenComponent={MyToken}
    */
   customizeTokenComponent: PropTypes.func,
+
+  /**
+   * [Beta; Might be change in the future version]
+   * Current only apply to Token Create
+   *
+   * The config settings to control the specials keyDown event handler behavior.
+   * Default setting as below.
+   * specialKeyDown: {
+   *   onBackspace: 1,
+   *   onTab: 0,
+   *   onEnter: 1,
+   *   onEscape: 1,
+   * },
+   *
+   * `0` means turn off (Took native browser behavior. TokenInput should NOT handle it).
+   * `1` means apply TokenInput predefined event handler.
+   *
+   * Reference section below for Predefined event handlers.
+   * `Predefined KeyDown Event Handlers`
+   */
+  specialKeyDown: PropTypes.object,
 };
 
+const dummyFunc = () => {}; // Dummy function
 TokenInput.defaultProps = {
   className: '',
   readOnly: false,
@@ -415,12 +439,22 @@ TokenInput.defaultProps = {
 
   // TokenCreator
   separators: DEFAULT_SEPARATORS,
+  specialKeyDown: {
+    onBackspace: 1,
+    onTab: 0,
+    onEnter: 1,
+    onEscape: 1,
+  },
+
   onBuildTokenValue: buildDefaultTokenValue,
-  onInputValueChange: () => {}, // Dummy function
-  onTokenValueValidate: () => undefined,
+  onInputValueChange: dummyFunc,
+  onTokenValueValidate: dummyFunc,
+
+  // FixMe: ReadOnly mode do not need onTokenValuesChange, but for others need
+  onTokenValuesChange: dummyFunc,
 
   // Token
-  onGetTokenClassName: () => '',
+  onGetTokenClassName: dummyFunc,
   onGetTokenDisplayLabel: getDefaultTokenEditableValue,
   onGetTokenEditableValue: getDefaultTokenEditableValue,
   onGetTokenErrorMessage: getDefaultTokenErrorMessage,

@@ -11,10 +11,20 @@ export const DEFAULT_SEPARATORS = [
 ];
 
 /**
+ * The default specialKeyDown settings
+ */
+export const DEFAULT_SPECIAL_KEY_DOWN_SETTINGS = {
+  onBackspace: 1,
+  onTab: 0,
+  onEnter: 1,
+  onEscape: 1,
+};
+
+/**
  * For customize the `delete button`
  * in the `TokenLabel` (onGetTokenDisplayLabel)
  */
-export const HARD_CODE_DELETE_BUTTON_CLASS_NAME = 'token-delete-button';
+export const JS__TOKEN__DELETE_BUTTON__CLASS_NAME = 'js__token__delete-button';
 
 /**
  * The default init value of the `input`

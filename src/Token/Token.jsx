@@ -8,10 +8,10 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import AutosizeInput from 'react-input-autosize';
-import keyDownHandler from '../utils/keyDownHandler';
+import keyDownHandlerProxy from '../utils/keyDownHandlerProxy';
 import {
   DEFAULT_INPUT_INIT_VALUE,
-  HARD_CODE_DELETE_BUTTON_CLASS_NAME,
+  JS__TOKEN__DELETE_BUTTON__CLASS_NAME,
 } from '../constants';
 
 import DeleteButton from './DeleteButton';
@@ -85,7 +85,7 @@ const Token = ({
        * That is, the Element or its parents matched the `selector`
        */
       const isOnDeleteButton = !!e.target.closest(
-        `.${styles.token} .${HARD_CODE_DELETE_BUTTON_CLASS_NAME}`
+        `.${styles.token} .${JS__TOKEN__DELETE_BUTTON__CLASS_NAME}`
       );
       if (isOnDeleteButton) {
         onDelete();
@@ -107,7 +107,7 @@ const Token = ({
 
   const handleKeyDown = useCallback(
     (e) => {
-      keyDownHandler(e, {
+      keyDownHandlerProxy(e, {
         onEscape: () => handleEditEnd({ reset: true }),
         onEnter: () => handleEditEnd(),
       });
@@ -121,11 +121,16 @@ const Token = ({
   }, [handleEditEnd]);
 
   const tokenClassName = useMemo(() => {
-    return classNames(onGetClassName(tokenValue, tokenMeta), styles.token, {
-      [styles.active]: activated,
-      [styles.error]: error && !activated,
-      [styles['read-only']]: readOnly,
-    });
+    return classNames(
+      // Apply customize className on the token
+      onGetClassName(tokenValue, tokenMeta),
+      styles.token,
+      {
+        [styles['token--active']]: activated,
+        [styles['token--error']]: error && !activated,
+        [styles['token--read-only']]: readOnly,
+      }
+    );
   }, [readOnly, error, activated, onGetClassName, tokenValue, tokenMeta]);
 
   const errorMessage = useMemo(() => {
@@ -159,7 +164,7 @@ const Token = ({
       onClick={handleTokenClick}
       title={errorMessage}
     >
-      <div className={styles['label-wrapper']}>
+      <div className={styles['token__label-wrapper']}>
         {onGetDisplayLabel(tokenValue, tokenMeta)}
       </div>
       {!readOnly && (
