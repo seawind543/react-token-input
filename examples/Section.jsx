@@ -5,7 +5,7 @@ import styles from './Section.styl';
 
 const Section = (props) => (
   <div className={classNames(props.className, styles.section)}>
-    <div className={styles.sectionContent}>{props.children}</div>
+    <div className={styles['section-content']}>{props.children}</div>
   </div>
 );
 
