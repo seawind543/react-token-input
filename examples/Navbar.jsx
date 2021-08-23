@@ -6,12 +6,12 @@ import styles from './Navbar.styl';
 const Navbar = ({ url, name }) => {
   return (
     <nav
-      className={classNames(styles.navbar, styles.navbarDefault)}
+      className={classNames(styles.navbar, styles['navbar-default'])}
       style={{ borderRadius: 0 }}
     >
-      <div className={styles.containerFluid}>
-        <div className={styles.navbarHeader}>
-          <a href={url} className={styles.navbarBrand}>
+      <div className={styles['container-fluid']}>
+        <div className={styles['navbar-header']}>
+          <a href={url} className={styles['navbar-brand']}>
             {name}
           </a>
         </div>
