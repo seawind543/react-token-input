@@ -23,7 +23,7 @@ const ExampleWithFormLibrary = () => {
       <a
         target="_blank"
         rel="noreferrer"
-        href="https://codepen.io/seawind543/pen/VwbOwPa"
+        href="https://seawind543.github.io/example-react-token-input-with-formik/"
       >
         Example of integrated with a Form library
       </a>
