@@ -390,9 +390,23 @@ TokenInput.propTypes = {
    *
    * onGetTokenErrorMessage(tokenValue, tokenMeta)
    *
-   * @ error
-   * Type: customize error
-   * Description: customize error
+   * @ tokenValue
+   * Type: any (string | number | object | customize data structure)
+   * Description: The tokenValue build by `onBuildTokenValue`
+   *
+   * @ tokenMeta
+   * Description: token's meta data
+   *  {
+   *    // A private key for render
+   *    key: string,
+   *
+   *    // Specific the token is activated for `edit` or not
+   *    activated: boolean,
+   *
+   *    // Customize data structure built by `onTokenValue Validate`
+   *    // Specific the token's validate status or errorMessage
+   *    error: any,
+   *  }
    *
    * @ return
    * Type: string | any
