@@ -24,12 +24,18 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'lib'),
     filename: 'index.js',
-    /**
-     * An object with { root, amd, commonjs, ... } is only allowed for libraryTarget: 'umd'.
-     * It's not allowed for other library targets.
-     * https://webpack.js.org/configuration/externals/#object
-     */
     library: {
+      name: {
+        root: 'TokenInput',
+        commonjs: 'token-input',
+        amd: 'token-input',
+      },
+      /**
+       * Fix issue `Minified React error #321`
+       * An object with { root, amd, commonjs, ... } is only allowed for libraryTarget: 'umd'.
+       * It's not allowed for other library targets.
+       * https://webpack.js.org/configuration/externals/#object
+       */
       type: 'umd',
     },
   },
@@ -37,7 +43,8 @@ module.exports = {
    * Fix issue `Minified React error #321` when import from npm
    * https://reactjs.org/docs/error-decoder.html?invariant=321
    *
-   * Solution:https://github.com/facebook/react/issues/16029#issuecomment-570912067
+   * Solution:
+   * https://github.com/facebook/react/issues/16029#issuecomment-570912067
    */
   externals: {
     react: {
