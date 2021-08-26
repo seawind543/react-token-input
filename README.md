@@ -292,9 +292,23 @@ Note: Sources code of Examples in the folder `examples`
    *
    * onGetTokenErrorMessage(tokenValue, tokenMeta)
    *
-   * @ error
-   * Type: customize error
-   * Description: customize error
+   * @ tokenValue
+   * Type: any (string | number | object | customize data structure)
+   * Description: The tokenValue build by `onBuildTokenValue`
+   *
+   * @ tokenMeta
+   * Description: token's meta data
+   *  {
+   *    // A private key for render
+   *    key: string,
+   *
+   *    // Specific the token is activated for `edit` or not
+   *    activated: boolean,
+   *
+   *    // Customize data structure built by `onTokenValue Validate`
+   *    // Specific the token's validate status or errorMessage
+   *    error: any,
+   *  }
    *
    * @ return
    * Type: string | any
@@ -309,7 +323,6 @@ Note: Sources code of Examples in the folder `examples`
    * customizeTokenComponent={MyToken}
    */
   customizeTokenComponent: PropTypes.func,
-
 ```
 
 ### Beta props
@@ -377,6 +390,7 @@ Enter      | End editing and apply the new value. In case the new value is an `e
 
     specialKeyDown: {
       onBackspace: 1,
+      onTab: 0,
       onEnter: 1,
       onEscape: 1,
     },

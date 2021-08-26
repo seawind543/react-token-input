@@ -2,7 +2,7 @@
 
 /**
  * Default function for get errorMessage
- * getDefaultTokenErrorMessage(errorMessage)
+ * getDefaultTokenErrorMessage(tokenValue, tokenMeta)
  *
  * @ tokenValue
  * Type: any (string | number | object | customize data structure)
@@ -14,7 +14,7 @@
  *
  * @ return
  * Type: string
- * Description: The value for user to edit in an input
+ * Description: The error message to describe an invalid token
  */
 const getDefaultTokenErrorMessage = (tokenValue, tokenMeta) => {
   if (typeof tokenMeta.error === 'string') {
