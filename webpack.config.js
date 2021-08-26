@@ -20,19 +20,6 @@ const localClassPrefix = 'token-input';
 module.exports = {
   mode: 'production',
   devtool: 'source-map',
-  entry: path.resolve(__dirname, 'src/index.js'),
-  output: {
-    path: path.join(__dirname, 'lib'),
-    filename: 'index.js',
-    /**
-     * An object with { root, amd, commonjs, ... } is only allowed for libraryTarget: 'umd'.
-     * It's not allowed for other library targets.
-     * https://webpack.js.org/configuration/externals/#object
-     */
-    library: {
-      type: 'umd',
-    },
-  },
   /**
    * Fix issue `Minified React error #321` when import from npm
    * https://reactjs.org/docs/error-decoder.html?invariant=321
@@ -45,6 +32,21 @@ module.exports = {
       commonjs2: 'react',
       commonjs: 'react',
       amd: 'react',
+    },
+  },
+  entry: path.resolve(__dirname, 'src/index.js'),
+  output: {
+    path: path.join(__dirname, 'lib'),
+    filename: 'index.js',
+    /**
+     * An object with { root, amd, commonjs, ... } is only allowed for libraryTarget: 'umd'.
+     * It's not allowed for other library targets.
+     * https://webpack.js.org/configuration/externals/#object
+     */
+    library: {
+      name: 'TokenInput',
+      type: 'umd',
+      export: 'default',
     },
   },
   module: {

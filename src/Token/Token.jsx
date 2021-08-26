@@ -29,6 +29,7 @@ const Token = ({
   onGetClassName,
   onGetDisplayLabel,
   onRenderDeleteButtonContent,
+  onIsEditable,
   onGetEditableValue,
   onGetErrorMessage,
   onBuildTokenValue,
@@ -41,10 +42,21 @@ const Token = ({
   const { activated, error } = tokenMeta;
 
   const handleEditStart = useCallback(() => {
+    if (!onIsEditable(tokenValue, tokenMeta)) {
+      return;
+    }
+
     const tokenEditableValue = onGetEditableValue(tokenValue, tokenMeta);
     setInputValue(tokenEditableValue);
     onEditStart();
-  }, [setInputValue, tokenValue, tokenMeta, onGetEditableValue, onEditStart]);
+  }, [
+    setInputValue,
+    tokenValue,
+    tokenMeta,
+    onIsEditable,
+    onGetEditableValue,
+    onEditStart,
+  ]);
   useEffect(() => {
     if (activated && autosizeInputRef.current) {
       autosizeInputRef.current.focus();
@@ -188,6 +200,8 @@ Token.propTypes = {
   onGetDisplayLabel: PropTypes.func.isRequired,
   // Same as props `onRenderTokenDeleteButtonContent` of TokenInput
   onRenderDeleteButtonContent: PropTypes.func,
+  // Same as props `onIsTokenEditable` of TokenInput
+  onIsEditable: PropTypes.func.isRequired,
   // Same as props `onGetTokenEditableValue` of TokenInput
   onGetEditableValue: PropTypes.func.isRequired,
   // Same as props `onGetTokenErrorMessage` of TokenInput

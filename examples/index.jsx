@@ -10,7 +10,7 @@ import ReactDOM from 'react-dom'; // eslint-disable-line import/no-extraneous-de
 import Navbar from './Navbar';
 import Section from './Section';
 
-// import ExampleTest from './ExampleTest';
+import ExampleTest from './ExampleTest';
 import ExampleDefault from './ExampleDefault';
 import ExampleCustomizeDataStructure from './ExampleCustomizeDataStructure';
 import ExampleCustomizeTokenLabel from './ExampleCustomizeTokenLabel';
@@ -30,7 +30,7 @@ const name =
 const url = 'https://github.com/seawind543/react-token-input';
 
 const examples = [
-  // <ExampleTest key="ExampleTest" />,
+  <ExampleTest key="ExampleTest" />,
   <ExampleDefault key="ExampleDefault" />,
   <ExampleCustomizeTokenLabel key="ExampleCustomizeTokenLabel" />,
   <ExampleCustomizeDeleteButton key="ExampleCustomizeDeleteButton" />,
