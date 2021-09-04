@@ -58,23 +58,24 @@
             color: #0096cc;
             background-color: #cceaf5;
 
+            cursor: default;
+
+            &:hover {
+                background-color: #e6f4fc;
+            }
+
             &.token--error {
                 // color: #f75757;
                 color: #db3d44;
                 background-color: #f9b5b5;
-            }
 
-            &:hover {
-                cursor: pointer;
-                background-color: #e6f4fc;
-
-                &.token--error {
+                &:hover {
                     background-color: #ffdada;
                 }
+            }
 
-                &.token--read-only {
-                    cursor: default;
-                }
+            &.token--editable:hover {
+                cursor: pointer;
             }
 
             &.token--active {
