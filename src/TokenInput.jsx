@@ -33,6 +33,7 @@ const TokenInput = ({
   onGetTokenClassName,
   onGetTokenDisplayLabel,
   onRenderTokenDeleteButtonContent,
+  onIsTokenEditable,
   onGetTokenEditableValue,
   onGetTokenErrorMessage,
 
@@ -130,6 +131,7 @@ const TokenInput = ({
               onGetClassName={onGetTokenClassName}
               onGetDisplayLabel={onGetTokenDisplayLabel}
               onRenderDeleteButtonContent={onRenderTokenDeleteButtonContent}
+              onIsEditable={onIsTokenEditable}
               onGetEditableValue={onGetTokenEditableValue}
               onGetErrorMessage={onGetTokenErrorMessage}
               onBuildTokenValue={onBuildTokenValue}
@@ -369,6 +371,35 @@ TokenInput.propTypes = {
   onRenderTokenDeleteButtonContent: PropTypes.func,
 
   /**
+   * A callback function for determine whether the token is inline editable.
+   *
+   * onIsTokenEditable(tokenValue, tokenMeta)
+   *
+   * @ tokenValue
+   * Type: any (string | number | object | customize data structure)
+   * Description: The tokenValue build by `onBuildTokenValue`
+   *
+   * @ tokenMeta
+   * Description: token's meta data
+   *  {
+   *    // A private key for render
+   *    key: string,
+   *
+   *    // Specific the token is activated for `edit` or not
+   *    activated: boolean,
+   *
+   *    // Customize data structure built by `onTokenValue Validate`
+   *    // Specific the token's validate status or errorMessage
+   *    error: any,
+   *  }
+   *
+   * @ return
+   * Type: boolean
+   * Description: `true` if editable. `false` if not.
+   */
+  onIsTokenEditable: PropTypes.func,
+
+  /**
    * A callback function for getting `string input value`
    * from `tokenValue` for the end-user to perform `edit`
    *
@@ -470,6 +501,7 @@ TokenInput.defaultProps = {
   // Token
   onGetTokenClassName: dummyFunc,
   onGetTokenDisplayLabel: getDefaultTokenEditableValue,
+  onIsTokenEditable: () => true,
   onGetTokenEditableValue: getDefaultTokenEditableValue,
   onGetTokenErrorMessage: getDefaultTokenErrorMessage,
 

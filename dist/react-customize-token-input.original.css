@@ -11,11 +11,6 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   outline: 0;
-  -webkit-transition: all 0.2s linear 0s;
-  -moz-transition: all 0.2s linear 0s;
-  -o-transition: all 0.2s linear 0s;
-  -ms-transition: all 0.2s linear 0s;
-  transition: all 0.2s linear 0s;
 }
 .token-input-container *,
 .token-input-container *::before,
@@ -72,20 +67,20 @@
   border-radius: 4px;
   color: #0096cc;
   background-color: #cceaf5;
+  cursor: default;
+}
+.token-input-container .token-input-token-list .token-input-token:hover {
+  background-color: #e6f4fc;
 }
 .token-input-container .token-input-token-list .token-input-token.token-input-token--error {
   color: #db3d44;
   background-color: #f9b5b5;
 }
-.token-input-container .token-input-token-list .token-input-token:hover {
-  cursor: pointer;
-  background-color: #e6f4fc;
-}
-.token-input-container .token-input-token-list .token-input-token:hover.token-input-token--error {
+.token-input-container .token-input-token-list .token-input-token.token-input-token--error:hover {
   background-color: #ffdada;
 }
-.token-input-container .token-input-token-list .token-input-token:hover.token-input-token--read-only {
-  cursor: default;
+.token-input-container .token-input-token-list .token-input-token.token-input-token--editable:hover {
+  cursor: pointer;
 }
 .token-input-container .token-input-token-list .token-input-token.token-input-token--active .token-input-autosized-wrapper {
   display: -webkit-box;

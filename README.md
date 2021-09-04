@@ -271,6 +271,35 @@ Note: Sources code of Examples in the folder `examples`
   onRenderTokenDeleteButtonContent: PropTypes.func,
 
   /**
+   * A callback function for determine whether the token is inline editable.
+   *
+   * onIsTokenEditable(tokenValue, tokenMeta)
+   *
+   * @ tokenValue
+   * Type: any (string | number | object | customize data structure)
+   * Description: The tokenValue build by `onBuildTokenValue`
+   *
+   * @ tokenMeta
+   * Description: token's meta data
+   *  {
+   *    // A private key for render
+   *    key: string,
+   *
+   *    // Specific the token is activated for `edit` or not
+   *    activated: boolean,
+   *
+   *    // Customize data structure built by `onTokenValue Validate`
+   *    // Specific the token's validate status or errorMessage
+   *    error: any,
+   *  }
+   *
+   * @ return
+   * Type: boolean
+   * Description: `true` if editable. `false` if not.
+   */
+  onIsTokenEditable: PropTypes.func,
+
+  /**
    * A callback function for getting `string input value`
    * from `tokenValue` for the end-user to perform `edit`
    *
@@ -406,6 +435,7 @@ Enter      | End editing and apply the new value. In case the new value is an `e
     // Token
     onGetTokenClassName: () => {}, // Dummy function
     onGetTokenDisplayLabel: getDefaultTokenEditableValue,
+    onIsTokenEditable: () => true,
     onGetTokenEditableValue: getDefaultTokenEditableValue,
     onGetTokenErrorMessage: getDefaultTokenErrorMessage,
 ```
@@ -428,6 +458,8 @@ Could also reference this [Example Demo](https://seawind543.github.io/react-toke
   onGetDisplayLabel: PropTypes.func.isRequired,
   // Same as props `onRenderTokenDeleteButtonContent` of TokenInput
   onRenderDeleteButtonContent: PropTypes.func,
+  // Same as props `onIsTokenEditable` of TokenInput
+  onIsEditable: PropTypes.func.isRequired,
   // Same as props `onGetTokenEditableValue` of TokenInput
   onGetEditableValue: PropTypes.func.isRequired,
   // Same as props `onGetTokenErrorMessage` of TokenInput
