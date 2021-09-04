@@ -29,8 +29,6 @@
         border-color: #db3d44;
     }
 
-    transition: all 0.2s linear 0s;
-
     .token-list {
         .token {
             float: left;
@@ -58,23 +56,23 @@
             color: #0096cc;
             background-color: #cceaf5;
 
-            &.token--error {
-                // color: #f75757;
-                color: #db3d44;
-                background-color: #f9b5b5;
-            }
+            cursor: default;
 
             &:hover {
-                cursor: pointer;
                 background-color: #e6f4fc;
+            }
 
-                &.token--error {
+            &.token--error {
+                color: #db3d44;
+                background-color: #f9b5b5;
+
+                &:hover {
                     background-color: #ffdada;
                 }
+            }
 
-                &.token--read-only {
-                    cursor: default;
-                }
+            &.token--editable:hover {
+                cursor: pointer;
             }
 
             &.token--active {
@@ -119,8 +117,6 @@
                 padding: 2px 8px;
 
                 cursor: pointer;
-                // font-size: 14px;
-                // color: #222;
                 opacity: 0.3;
 
                 border-left: 1px solid #aaa;

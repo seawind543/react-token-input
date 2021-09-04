@@ -20,6 +20,7 @@ import ExamplePreprocessor from './ExamplePreprocessor';
 import ExampleCustomizeSeparators from './ExampleCustomizeSeparators';
 import ExampleCustomizeToken from './ExampleCustomizeToken';
 import ExampleReadOnly from './ExampleReadOnly';
+import ExampleEditable from './ExampleEditable';
 import ExampleWithFormLibrary from './ExampleWithFormLibrary';
 import ExampleSpecialKeyDown from './ExampleSpecialKeyDown';
 
@@ -40,6 +41,7 @@ const examples = [
   <ExampleCustomizeSeparators key="ExampleCustomizeSeparators" />,
   <ExampleCustomizeToken key="ExampleCustomizeToken" />,
   <ExampleReadOnly key="ExampleReadOnly" />,
+  <ExampleEditable key="ExampleEditable" />,
   <ExampleWithFormLibrary key="ExampleWithFormLibrary" />,
   <ExampleSpecialKeyDown key="ExampleSpecialKeyDown" />,
 ];
