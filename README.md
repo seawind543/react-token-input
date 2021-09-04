@@ -458,6 +458,8 @@ Could also reference this [Example Demo](https://seawind543.github.io/react-toke
   onGetDisplayLabel: PropTypes.func.isRequired,
   // Same as props `onRenderTokenDeleteButtonContent` of TokenInput
   onRenderDeleteButtonContent: PropTypes.func,
+  // Same as props `onIsTokenEditable` of TokenInput
+  onIsEditable: PropTypes.func.isRequired,
   // Same as props `onGetTokenEditableValue` of TokenInput
   onGetEditableValue: PropTypes.func.isRequired,
   // Same as props `onGetTokenErrorMessage` of TokenInput
