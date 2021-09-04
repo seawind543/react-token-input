@@ -11,11 +11,6 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   outline: 0;
-  -webkit-transition: all 0.2s linear 0s;
-  -moz-transition: all 0.2s linear 0s;
-  -o-transition: all 0.2s linear 0s;
-  -ms-transition: all 0.2s linear 0s;
-  transition: all 0.2s linear 0s;
 }
 .token-input-container *,
 .token-input-container *::before,
