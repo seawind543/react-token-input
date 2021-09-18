@@ -1,35 +1,11 @@
-// TODO: Build Test
-// import Enzyme from 'enzyme';
-// import Adapter from 'enzyme-adapter-react-16';
-// import { JSDOM } from 'jsdom';
+/**
+ * Disable the ESLint `import/no-extraneous-dependencies` for import mockdate
+ * mockdate is only use for unit-test,
+ * so keep it in devDependencies
+ */
+import MockDate from 'mockdate'; // eslint-disable-line import/no-extraneous-dependencies
 
-// // React 16 Enzyme adapter
-// Enzyme.configure({ adapter: new Adapter() });
-
-// // Ignore `.styl` files
-// require.extensions['.styl'] = () => {};
-
-// // JSDOM
-// const jsdom = new JSDOM('<!doctype html><html><body></body></html>');
-// const { window } = jsdom;
-
-// const copyProps = (src, target) => {
-//   const props = Object.getOwnPropertyNames(src)
-//     .filter((prop) => typeof target[prop] === 'undefined')
-//     .reduce(
-//       (result, prop) => ({
-//         ...result,
-//         [prop]: Object.getOwnPropertyDescriptor(src, prop),
-//       }),
-//       {}
-//     );
-//   Object.defineProperties(target, props);
-// };
-
-// global.window = window;
-// global.document = window.document;
-// global.navigator = {
-//   userAgent: 'node.js',
-// };
-
-// copyProps(window, global);
+/**
+ * Mock `Date` to change when "now" is for unit test
+ */
+MockDate.set('2021-01-02T03:04:05.000Z');
