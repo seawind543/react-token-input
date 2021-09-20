@@ -8,4 +8,4 @@ import MockDate from 'mockdate'; // eslint-disable-line import/no-extraneous-dep
 /**
  * Mock `Date` to change when "now" is for unit test
  */
-MockDate.set('2021-01-02T03:04:05.000Z');
+MockDate.set('2021-01-02T03:04:05.000Z'); // 1609556645000
