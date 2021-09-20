@@ -1,19 +1,19 @@
 const MOCK_INPUT = [
   {
     inputValue: 'testString',
-    defaultTokenValue: 'testString',
+    expectTokenValue: 'testString',
   },
   {
     inputValue: ' testString ',
-    defaultTokenValue: 'testString',
+    expectTokenValue: 'testString',
   },
   {
     inputValue: ' test String ',
-    defaultTokenValue: 'test String',
+    expectTokenValue: 'test String',
   },
   {
     inputValue: '123',
-    defaultTokenValue: '123',
+    expectTokenValue: '123',
   },
 ];
 
