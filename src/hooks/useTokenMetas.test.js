@@ -1,11 +1,7 @@
 import { renderHook, act } from '@testing-library/react-hooks';
 import useTokenMetas from './useTokenMetas';
-// import buildTokenMeta from '../utils/buildTokenMeta';
 
-import {
-  DEFAULT_VALUE_TYPE,
-  // OBJECT_VALUE_TYPE,
-} from '../__fixtures__/tokens.fixtures';
+import { DEFAULT_VALUE_TYPE } from '../__fixtures__/tokens.fixtures';
 
 jest.mock('../utils/buildTokenMeta', () => jest.fn());
 
