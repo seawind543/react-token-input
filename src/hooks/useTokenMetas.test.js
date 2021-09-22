@@ -1,7 +1,7 @@
 import { renderHook, act } from '@testing-library/react-hooks';
 import useTokenMetas from './useTokenMetas';
 
-import { DEFAULT_VALUE_TYPE } from '../__fixtures__/tokens.fixtures';
+import DEFAULT_VALUE_TYPE_DATA from '../__fixtures__/tokenValues.fixtures';
 
 jest.mock('../utils/buildTokenMeta', () => jest.fn());
 
@@ -20,30 +20,39 @@ describe('useTokenMetas() with default string type tokenValue', () => {
 
     expect(result.current.tokenMetas).toEqual([]);
 
-    const MOCK_TOKEN_META = [DEFAULT_VALUE_TYPE.BASED.tokenMeta];
+    const { tokenMetas } = DEFAULT_VALUE_TYPE_DATA;
     act(() => {
-      result.current.setTokenMetas(MOCK_TOKEN_META);
+      result.current.setTokenMetas(tokenMetas);
     });
-    expect(result.current.tokenMetas).toEqual(MOCK_TOKEN_META);
+    expect(result.current.tokenMetas).toEqual(tokenMetas);
   });
 
   it('should return `setTokenActivated`', () => {
     const { result } = renderHook(() => useTokenMetas());
 
-    expect(result.current.tokenMetas).toEqual([]);
-
-    const MOCK_TOKEN_META = [DEFAULT_VALUE_TYPE.BASED.tokenMeta];
+    // init
+    const { tokenMetas } = DEFAULT_VALUE_TYPE_DATA;
     act(() => {
-      result.current.setTokenMetas(MOCK_TOKEN_META);
+      result.current.setTokenMetas(tokenMetas);
     });
-    expect(result.current.tokenMetas).toEqual(MOCK_TOKEN_META);
 
-    const MOCK_INDEX = 0;
+    // Set the target one to activated
+    const MOCK_TARGET_INDEX = 1;
     act(() => {
-      result.current.setTokenActivated(MOCK_INDEX, true);
+      result.current.setTokenActivated(MOCK_TARGET_INDEX, true);
     });
-    expect(result.current.tokenMetas[MOCK_INDEX]).toEqual(
-      DEFAULT_VALUE_TYPE.ACTIVATED.tokenMeta
-    );
+
+    result.current.tokenMetas.forEach((tokenMeta, idx) => {
+      if (idx === MOCK_TARGET_INDEX) {
+        // Target tokenMeta should be activated
+        expect(tokenMeta).toEqual({
+          ...tokenMetas[idx],
+          activated: true,
+        });
+      } else {
+        // Not target tokenMeta should not change
+        expect(tokenMeta).toEqual(tokenMetas[idx]);
+      }
+    });
   });
 });
