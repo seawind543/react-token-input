@@ -1,4 +1,5 @@
 import keyDownEventPropsNormalizer from './keyDownEventPropsNormalizer';
+import dummyFunction from './dummyFunction';
 
 /**
  * Help function to proxy keyDown event to handler
@@ -23,7 +24,6 @@ import keyDownEventPropsNormalizer from './keyDownEventPropsNormalizer';
  * Type: function
  * Description: callback function when `Escape` keyDone
  */
-const dummyFunction = () => {};
 const keyDownHandlerProxy = (keyDownEvent, actions) => {
   const {
     onBackspace = dummyFunction,

@@ -29,6 +29,7 @@ const Token = ({
   onGetClassName,
   onGetDisplayLabel,
   onRenderDeleteButtonContent,
+  onIsEditable,
   onGetEditableValue,
   onGetErrorMessage,
   onBuildTokenValue,
@@ -39,6 +40,9 @@ const Token = ({
   const autosizeInputRef = useRef(null);
   const [inputValue, setInputValue] = useState(DEFAULT_INPUT_INIT_VALUE);
   const { activated, error } = tokenMeta;
+  const isEditable = useMemo(() => {
+    return onIsEditable(tokenValue, tokenMeta);
+  }, [onIsEditable, tokenValue, tokenMeta]);
 
   const handleEditStart = useCallback(() => {
     const tokenEditableValue = onGetEditableValue(tokenValue, tokenMeta);
@@ -92,9 +96,11 @@ const Token = ({
         return;
       }
 
-      handleEditStart();
+      if (isEditable) {
+        handleEditStart();
+      }
     },
-    [readOnly, onDelete, handleEditStart]
+    [readOnly, isEditable, onDelete, handleEditStart]
   );
 
   const handleInputValueChange = useCallback(
@@ -126,12 +132,21 @@ const Token = ({
       onGetClassName(tokenValue, tokenMeta),
       styles.token,
       {
+        [styles['token--read-only']]: readOnly,
+        [styles['token--editable']]: isEditable && !readOnly,
         [styles['token--active']]: activated,
         [styles['token--error']]: error && !activated,
-        [styles['token--read-only']]: readOnly,
       }
     );
-  }, [readOnly, error, activated, onGetClassName, tokenValue, tokenMeta]);
+  }, [
+    onGetClassName,
+    readOnly,
+    isEditable,
+    activated,
+    error,
+    tokenValue,
+    tokenMeta,
+  ]);
 
   const errorMessage = useMemo(() => {
     return onGetErrorMessage(tokenValue, tokenMeta);
@@ -188,6 +203,8 @@ Token.propTypes = {
   onGetDisplayLabel: PropTypes.func.isRequired,
   // Same as props `onRenderTokenDeleteButtonContent` of TokenInput
   onRenderDeleteButtonContent: PropTypes.func,
+  // Same as props `onIsTokenEditable` of TokenInput
+  onIsEditable: PropTypes.func.isRequired,
   // Same as props `onGetTokenEditableValue` of TokenInput
   onGetEditableValue: PropTypes.func.isRequired,
   // Same as props `onGetTokenErrorMessage` of TokenInput
