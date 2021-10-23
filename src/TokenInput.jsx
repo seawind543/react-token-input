@@ -10,6 +10,7 @@ import useTokensUpdate from './hooks/useTokensUpdate';
 import useTokenEdit from './hooks/useTokenEdit';
 import useTokenDelete from './hooks/useTokenDelete';
 
+import dummyFunction from './utils/dummyFunction';
 import buildDefaultTokenValue from './utils/buildDefaultTokenValue';
 import getDefaultTokenEditableValue from './utils/getDefaultTokenEditableValue';
 import getDefaultTokenErrorMessage from './utils/getDefaultTokenErrorMessage';
@@ -475,7 +476,6 @@ TokenInput.propTypes = {
   specialKeyDown: PropTypes.object,
 };
 
-const dummyFunc = () => {}; // Dummy function
 TokenInput.defaultProps = {
   className: '',
   readOnly: false,
@@ -492,14 +492,14 @@ TokenInput.defaultProps = {
   },
 
   onBuildTokenValue: buildDefaultTokenValue,
-  onInputValueChange: dummyFunc,
-  onTokenValueValidate: dummyFunc,
+  onInputValueChange: dummyFunction,
+  onTokenValueValidate: dummyFunction,
 
   // FixMe: ReadOnly mode do not need onTokenValuesChange, but for others need
-  onTokenValuesChange: dummyFunc,
+  onTokenValuesChange: dummyFunction,
 
   // Token
-  onGetTokenClassName: dummyFunc,
+  onGetTokenClassName: dummyFunction,
   onGetTokenDisplayLabel: getDefaultTokenEditableValue,
   onIsTokenEditable: () => true,
   onGetTokenEditableValue: getDefaultTokenEditableValue,
