@@ -10,7 +10,7 @@ import useTokensUpdate from './hooks/useTokensUpdate';
 import useTokenEdit from './hooks/useTokenEdit';
 import useTokenDelete from './hooks/useTokenDelete';
 
-import dummyFunction from './utils/dummyFunction';
+import dummyFunction from './utils/dummyFunction.ts';
 import buildDefaultTokenValue from './utils/buildDefaultTokenValue';
 import getDefaultTokenEditableValue from './utils/getDefaultTokenEditableValue';
 import getDefaultTokenErrorMessage from './utils/getDefaultTokenErrorMessage';

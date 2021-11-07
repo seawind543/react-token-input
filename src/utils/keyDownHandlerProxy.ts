@@ -1,6 +1,14 @@
 import keyDownKey from 'keydown-key';
 import dummyFunction from './dummyFunction';
 
+type ActionFunction = (keyDownEvent: KeyboardEvent) => void;
+type KeyDownHandlerProxyActions = {
+  onBackspace?: ActionFunction;
+  onTab?: ActionFunction;
+  onEnter?: ActionFunction;
+  onEscape?: ActionFunction;
+};
+
 /**
  * Help function to proxy keyDown event to handler
  *
@@ -24,7 +32,10 @@ import dummyFunction from './dummyFunction';
  * Type: function
  * Description: callback function when `Escape` keyDone
  */
-const keyDownHandlerProxy = (keyDownEvent, actions) => {
+const keyDownHandlerProxy = (
+  keyDownEvent: KeyboardEvent,
+  actions: KeyDownHandlerProxyActions
+): void => {
   const {
     onBackspace = dummyFunction,
     onTab = dummyFunction,

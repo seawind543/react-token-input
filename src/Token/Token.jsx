@@ -8,7 +8,7 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import AutosizeInput from 'react-input-autosize';
-import keyDownHandlerProxy from '../utils/keyDownHandlerProxy';
+import keyDownHandlerProxy from '../utils/keyDownHandlerProxy.ts';
 import {
   DEFAULT_INPUT_INIT_VALUE,
   JS__TOKEN__DELETE_BUTTON__CLASS_NAME,

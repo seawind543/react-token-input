@@ -1,5 +1,5 @@
 import keyDownKey from 'keydown-key';
-import keyDownHandlerProxy from './keyDownHandlerProxy';
+import keyDownHandlerProxy from './keyDownHandlerProxy.ts';
 
 jest.mock('keydown-key');
 

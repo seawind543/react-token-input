@@ -1,6 +1,6 @@
 /**
  * A dummy empty function
  */
-const dummyFunction = () => {};
+const dummyFunction = (): void => {};
 
 export default dummyFunction;

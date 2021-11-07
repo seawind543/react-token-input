@@ -10,7 +10,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import keyDownHandlerProxy from '../../../src/utils/keyDownHandlerProxy';
+import keyDownHandlerProxy from '../../../src/utils/keyDownHandlerProxy.ts';
 import DeleteButton from './DeleteButton';
 
 import styles from '../myToken.scss';
