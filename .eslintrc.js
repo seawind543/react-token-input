@@ -8,7 +8,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       node: {
-        extensions: ['.js', '.jsx'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     },
     react: {
@@ -53,4 +53,29 @@ module.exports = {
       },
     ],
   },
+  // https://eslint.org/docs/user-guide/configuring/configuration-files#configuration-based-on-glob-patterns
+  overrides: [
+    /**
+     * use separate parsers for .js and .ts
+     * Following for typescript .ts only
+     */
+    {
+      files: ['src/**/*.ts'],
+      extends: [
+        'airbnb-typescript',
+        'plugin:prettier/recommended',
+        'plugin:@typescript-eslint/recommended',
+      ],
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        sourceType: 'module',
+        ecmaVersion: 12,
+        babelOptions: {
+          configFile: './babel.config.js',
+        },
+        project: './tsconfig.json',
+      },
+      plugins: ['@babel', 'prettier', '@typescript-eslint'],
+    },
+  ],
 };
