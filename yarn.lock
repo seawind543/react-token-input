@@ -6532,6 +6532,11 @@ jsx-ast-utils@^3.2.1:
     array-includes "^3.1.3"
     object.assign "^4.1.2"
 
+keydown-key@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/keydown-key/-/keydown-key-1.1.1.tgz#e15b2426a6551d34aad0f4006d6d82e681f1c69d"
+  integrity sha512-06VJRXjw0m3Q0haz0UmZ6bz3DdwyWNYJ3YgkwEeWiuh4Yq+laWXUr68Z+ol+38E+5o2yh2el1Fjz8hN8P0K4uA==
+
 killable@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/killable/-/killable-1.0.1.tgz#4c8ce441187a061c7474fb87ca08e2a638194892"

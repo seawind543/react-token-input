@@ -1,7 +1,7 @@
+import keyDownKey from 'keydown-key';
 import keyDownHandlerProxy from './keyDownHandlerProxy';
-import keyDownEventPropsNormalizer from './keyDownEventPropsNormalizer';
 
-jest.mock('./keyDownEventPropsNormalizer');
+jest.mock('keydown-key');
 
 describe('keyDownHandlerProxy()', () => {
   const MOCK_KEY_DONE_EVENT = {
@@ -16,7 +16,7 @@ describe('keyDownHandlerProxy()', () => {
 
   describe('KeyDone on `Backspace`', () => {
     beforeEach(() => {
-      keyDownEventPropsNormalizer.mockReturnValue({
+      keyDownKey.mockReturnValue({
         key: 'Backspace',
       });
     });
@@ -31,7 +31,7 @@ describe('keyDownHandlerProxy()', () => {
 
   describe('KeyDone on `Tab`', () => {
     beforeEach(() => {
-      keyDownEventPropsNormalizer.mockReturnValue({
+      keyDownKey.mockReturnValue({
         key: 'Tab',
       });
     });
@@ -46,7 +46,7 @@ describe('keyDownHandlerProxy()', () => {
 
   describe('KeyDone on `Enter`', () => {
     beforeEach(() => {
-      keyDownEventPropsNormalizer.mockReturnValue({
+      keyDownKey.mockReturnValue({
         key: 'Enter',
       });
     });
@@ -61,7 +61,7 @@ describe('keyDownHandlerProxy()', () => {
 
   describe('KeyDone on `Escape`', () => {
     beforeEach(() => {
-      keyDownEventPropsNormalizer.mockReturnValue({
+      keyDownKey.mockReturnValue({
         key: 'Escape',
       });
     });

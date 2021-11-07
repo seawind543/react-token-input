@@ -1,4 +1,4 @@
-import keyDownEventPropsNormalizer from './keyDownEventPropsNormalizer';
+import keyDownKey from 'keydown-key';
 import dummyFunction from './dummyFunction';
 
 /**
@@ -32,7 +32,7 @@ const keyDownHandlerProxy = (keyDownEvent, actions) => {
     onEscape = dummyFunction,
   } = actions;
 
-  const { key: eventKey } = keyDownEventPropsNormalizer(keyDownEvent);
+  const { key: eventKey } = keyDownKey(keyDownEvent);
 
   switch (eventKey) {
     case 'Backspace':
