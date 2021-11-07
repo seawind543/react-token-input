@@ -1,4 +1,4 @@
-import buildDefaultTokenValue from './buildDefaultTokenValue';
+import buildDefaultTokenValue from './buildDefaultTokenValue.ts';
 import MOCK_INPUT from '../__fixtures__/inputValues.fixtures';
 
 describe('buildDefaultTokenValue()', () => {

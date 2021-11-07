@@ -12,7 +12,7 @@
     "prepublish": "yarn run eslint && yarn run lint:style && yarn run test && yarn run clean && yarn run build && yarn run build:examples",
     "build": "webpack",
     "build:examples": "cd examples; webpack",
-    "clean": "rm -f {lib,dist}/*",
+    "clean": "rm -rf {lib,dist}/*",
     "eslint": "eslint --max-warnings 0 --ext .jsx,.js,.tsx,.ts examples src",
     "lint:style": "stylelint --custom-syntax postcss-scss 'src/**/*.scss' --fix",
     "test": "jest --coverage",

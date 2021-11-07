@@ -1,4 +1,7 @@
 /* eslint no-unused-vars: 0 */
+/* eslint @typescript-eslint/no-unused-vars: 0 */
+
+import type { TokenValue, TokenMeta } from '../types/token';
 
 /**
  * Default function for get errorMessage
@@ -16,7 +19,10 @@
  * Type: string
  * Description: The error message to describe an invalid token
  */
-const getDefaultTokenErrorMessage = (tokenValue, tokenMeta) => {
+const getDefaultTokenErrorMessage = (
+  tokenValue: TokenValue,
+  tokenMeta: TokenMeta
+): string | undefined => {
   if (typeof tokenMeta.error === 'string') {
     return tokenMeta.error;
   }

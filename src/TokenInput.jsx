@@ -11,9 +11,9 @@ import useTokenEdit from './hooks/useTokenEdit';
 import useTokenDelete from './hooks/useTokenDelete';
 
 import dummyFunction from './utils/dummyFunction.ts';
-import buildDefaultTokenValue from './utils/buildDefaultTokenValue';
-import getDefaultTokenEditableValue from './utils/getDefaultTokenEditableValue';
-import getDefaultTokenErrorMessage from './utils/getDefaultTokenErrorMessage';
+import buildDefaultTokenValue from './utils/buildDefaultTokenValue.ts';
+import getDefaultTokenEditableValue from './utils/getDefaultTokenEditableValue.ts';
+import getDefaultTokenErrorMessage from './utils/getDefaultTokenErrorMessage.ts';
 
 import { DEFAULT_SEPARATORS } from './constants';
 

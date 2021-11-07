@@ -1,4 +1,9 @@
-/* eslint no-unused-vars: 0 */
+import type {
+  TokenValue,
+  TokenError,
+  TokenIndex,
+  TokenMeta,
+} from '../types/token';
 
 /**
  * Internal function for TokenInput to
@@ -33,7 +38,11 @@
  *    error: any,
  *  }
  */
-const buildTokenMeta = (customizeError, tokenValue, tokenIndex) => {
+const buildTokenMeta = (
+  customizeError: TokenError,
+  tokenValue: TokenValue,
+  tokenIndex: TokenIndex
+): TokenMeta => {
   return {
     // TODO: Consider uuid
     key: `${JSON.stringify(tokenValue)}-${Date.now()}-${tokenIndex}`,

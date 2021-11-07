@@ -1,4 +1,4 @@
-import getDefaultTokenEditableValue from './getDefaultTokenEditableValue';
+import getDefaultTokenEditableValue from './getDefaultTokenEditableValue.ts';
 import { DEFAULT_VALUE_TYPE } from '../__fixtures__/tokens.fixtures';
 
 describe('getDefaultTokenEditableValue()', () => {

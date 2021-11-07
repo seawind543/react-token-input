@@ -1,3 +1,5 @@
+import type { InputValue, TokenValue } from '../types/token';
+
 /**
  * Default function for TokenInput to
  * build default token value from user input value
@@ -17,7 +19,7 @@
  * Type: string
  * Description: The default token value
  */
-const buildDefaultTokenValue = (inputValue) => {
+const buildDefaultTokenValue = (inputValue: InputValue): TokenValue => {
   return inputValue.trim();
 };
 

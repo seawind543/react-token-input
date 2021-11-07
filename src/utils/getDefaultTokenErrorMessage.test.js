@@ -1,4 +1,4 @@
-import getDefaultTokenErrorMessage from './getDefaultTokenErrorMessage';
+import getDefaultTokenErrorMessage from './getDefaultTokenErrorMessage.ts';
 import { DEFAULT_VALUE_TYPE } from '../__fixtures__/tokens.fixtures';
 
 describe('getDefaultTokenErrorMessage()', () => {

@@ -7,4 +7,3 @@ declare type KeyDownHandlerProxyActions = {
 };
 declare const keyDownHandlerProxy: (keyDownEvent: KeyboardEvent, actions: KeyDownHandlerProxyActions) => void;
 export default keyDownHandlerProxy;
-//# sourceMappingURL=keyDownHandlerProxy.d.ts.map

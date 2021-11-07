@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import buildTokenMeta from '../utils/buildTokenMeta';
+import buildTokenMeta from '../utils/buildTokenMeta.ts';
 
 function useTokenMetas() {
   const [tokenMetas, setTokenMetas] = useState([]);

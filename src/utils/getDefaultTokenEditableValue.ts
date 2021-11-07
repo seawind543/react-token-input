@@ -1,4 +1,7 @@
 /* eslint no-unused-vars: 0 */
+/* eslint @typescript-eslint/no-unused-vars: 0 */
+
+import type { InputValue, TokenValue, TokenMeta } from '../types/token';
 
 /**
  * Default function for TokenInput to
@@ -19,8 +22,11 @@
  * Type: string
  * Description: The value for user to edit in an input
  */
-const getDefaultTokenEditableValue = (tokenValue, tokenMeta) => {
-  return tokenValue;
+const getDefaultTokenEditableValue = (
+  tokenValue: TokenValue,
+  tokenMeta: TokenMeta
+): InputValue => {
+  return `${tokenValue}`;
 };
 
 export default getDefaultTokenEditableValue;
