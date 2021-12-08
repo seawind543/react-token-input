@@ -11,7 +11,7 @@ describe('useTokenEdit() with default string type tokenValue', () => {
       const setTokenActivated = jest.fn();
       const handleTokenInputFocus = jest.fn();
       const handleTokenInputBlur = jest.fn();
-      const focusTokenCreator = jest.fn();
+
       const { result } = renderHook(() =>
         useTokenEdit({
           tokenValues,
@@ -19,7 +19,6 @@ describe('useTokenEdit() with default string type tokenValue', () => {
           setTokenActivated,
           handleTokenInputFocus,
           handleTokenInputBlur,
-          focusTokenCreator,
         })
       );
 
@@ -36,7 +35,6 @@ describe('useTokenEdit() with default string type tokenValue', () => {
 
       expect(onTokenValuesChange).not.toBeCalled();
       expect(handleTokenInputBlur).not.toBeCalled();
-      expect(focusTokenCreator).not.toBeCalled();
     });
   });
 
@@ -47,7 +45,7 @@ describe('useTokenEdit() with default string type tokenValue', () => {
       const setTokenActivated = jest.fn();
       const handleTokenInputFocus = jest.fn();
       const handleTokenInputBlur = jest.fn();
-      const focusTokenCreator = jest.fn();
+
       const { result } = renderHook(() =>
         useTokenEdit({
           tokenValues,
@@ -55,7 +53,6 @@ describe('useTokenEdit() with default string type tokenValue', () => {
           setTokenActivated,
           handleTokenInputFocus,
           handleTokenInputBlur,
-          focusTokenCreator,
         })
       );
 
@@ -69,9 +66,6 @@ describe('useTokenEdit() with default string type tokenValue', () => {
       expect(setTokenActivated).toBeCalledWith(MOCK_TARGET_INDEX, false);
 
       expect(handleTokenInputBlur).toBeCalledTimes(1);
-
-      expect(focusTokenCreator).toBeCalledTimes(1);
-
       expect(onTokenValuesChange).not.toBeCalled();
     });
 
@@ -81,7 +75,7 @@ describe('useTokenEdit() with default string type tokenValue', () => {
       const setTokenActivated = jest.fn();
       const handleTokenInputFocus = jest.fn();
       const handleTokenInputBlur = jest.fn();
-      const focusTokenCreator = jest.fn();
+
       const { result } = renderHook(() =>
         useTokenEdit({
           tokenValues,
@@ -89,7 +83,6 @@ describe('useTokenEdit() with default string type tokenValue', () => {
           setTokenActivated,
           handleTokenInputFocus,
           handleTokenInputBlur,
-          focusTokenCreator,
         })
       );
 
@@ -104,8 +97,6 @@ describe('useTokenEdit() with default string type tokenValue', () => {
       expect(setTokenActivated).toBeCalledWith(MOCK_TARGET_INDEX, false);
 
       expect(handleTokenInputBlur).toBeCalledTimes(1);
-
-      expect(focusTokenCreator).toBeCalledTimes(1);
 
       const modifiedTokenValues = [...tokenValues];
       modifiedTokenValues[MOCK_TARGET_INDEX] = NEW_TOKEN_VALUE;
