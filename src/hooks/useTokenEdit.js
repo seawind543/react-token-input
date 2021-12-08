@@ -6,7 +6,6 @@ function useTokenEdit({
   setTokenActivated,
   handleTokenInputFocus,
   handleTokenInputBlur,
-  focusTokenCreator,
 }) {
   const handleTokenEditStart = useCallback(
     (targetIndex) => () => {
@@ -29,9 +28,6 @@ function useTokenEdit({
       setTokenActivated(targetIndex, false);
       handleTokenInputBlur();
 
-      // Re-focus on TokenCreator
-      focusTokenCreator();
-
       // TODO: Consider split editEnd and tokenValue update
       if (typeof newTokenValue === 'undefined') {
         // Avoid meaningless update
@@ -42,13 +38,7 @@ function useTokenEdit({
       modifiedTokenValues[targetIndex] = newTokenValue;
       onTokenValuesChange(modifiedTokenValues);
     },
-    [
-      tokenValues,
-      onTokenValuesChange,
-      setTokenActivated,
-      handleTokenInputBlur,
-      focusTokenCreator,
-    ]
+    [tokenValues, onTokenValuesChange, setTokenActivated, handleTokenInputBlur]
   );
 
   return {

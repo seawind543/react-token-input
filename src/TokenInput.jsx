@@ -62,13 +62,16 @@ const TokenInput = ({
     onTokenValueValidate,
   });
 
+  /**
+   * TODO: Handle cursor focus after end of editing (typing)
+   * Support keyboard operator + selected of token
+   */
   const { handleTokenEditStart, handleTokenEditEnd } = useTokenEdit({
     tokenValues,
     onTokenValuesChange,
     setTokenActivated,
     handleTokenInputFocus,
     handleTokenInputBlur,
-    focusTokenCreator,
   });
 
   const { handleTokenDelete, handleLastTokenDelete } = useTokenDelete({
