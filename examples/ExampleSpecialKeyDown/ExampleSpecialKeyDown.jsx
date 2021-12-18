@@ -1,6 +1,6 @@
 /* eslint no-console: 0 */
 import React, { useState, useCallback } from 'react';
-import TokenInput from '../../src';
+import TokenInput, { KEY_DOWN_HANDLER_CONFIG_OPTION } from '../../src';
 
 import CopyAnchor from '../share/CopyAnchor';
 
@@ -36,18 +36,22 @@ const ExampleSpecialKeyDown = () => {
         tokenValues={values}
         onTokenValuesChange={handleTokenValuesChange}
         specialKeyDown={{
-          onEnter: 0, // Turn off predefined event handler on Enter
-          onTab: 1, // Turn on predefined event handler on Tab
+          onEnter: KEY_DOWN_HANDLER_CONFIG_OPTION.OFF, // Turn off predefined event handler on Enter
+          onTab: KEY_DOWN_HANDLER_CONFIG_OPTION.ON, // Turn on predefined event handler on Tab
         }}
       />
       <pre>
         {`
+import TokenInput, { KEY_DOWN_HANDLER_CONFIG_OPTION } from 'react-customize-token-input';
+
+// ... omit
+
 <TokenInput
   tokenValues={values}
   onTokenValuesChange={handleTokenValuesChange}
   specialKeyDown={{
-    onEnter: 0, // Turn off predefined event handler on Enter
-    onTab: 1, // Turn on predefined event handler on Tab 
+    onEnter: KEY_DOWN_HANDLER_CONFIG_OPTION.OFF, // Turn off predefined event handler on Enter
+    onTab: KEY_DOWN_HANDLER_CONFIG_OPTION.ON, // Turn on predefined event handler on Tab
   }}
 />
         `}

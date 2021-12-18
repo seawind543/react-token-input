@@ -1,13 +1,16 @@
 import { renderHook } from '@testing-library/react-hooks';
 import usePredefinedKeyDownHandlers from './usePredefinedKeyDownHandlers';
-import { DEFAULT_SPECIAL_KEY_DOWN_SETTINGS } from '../constants';
+import {
+  KEY_DOWN_HANDLER_CONFIG_OPTION,
+  DEFAULT_SPECIAL_KEY_DOWN,
+} from '../constants';
 
 const INPUT_INIT_VALUE = 'INPUT_INIT_VALUE';
 const KEY_DOWN_EVENT = { key: 'the key', preventDefault: jest.fn() };
 
 describe('usePredefinedKeyDownHandlers() default setting', () => {
   it('should return `handleBackspaceKeyDown`, `handleTabKeyDown`, `handleEnterKeyDown` and `handleEscapeKeyDown`', () => {
-    const specialKeyDown = DEFAULT_SPECIAL_KEY_DOWN_SETTINGS;
+    const specialKeyDown = DEFAULT_SPECIAL_KEY_DOWN;
     const inputInitValue = INPUT_INIT_VALUE;
     const inputValue = 'hello world';
     const onLastTokenDelete = jest.fn();
@@ -32,7 +35,7 @@ describe('usePredefinedKeyDownHandlers() default setting', () => {
   });
 
   it('should return `handleBackspaceKeyDown`', () => {
-    const specialKeyDown = DEFAULT_SPECIAL_KEY_DOWN_SETTINGS;
+    const specialKeyDown = DEFAULT_SPECIAL_KEY_DOWN;
     const inputInitValue = INPUT_INIT_VALUE;
     const inputValue = 'hello world';
     const emptyInputValue = '';
@@ -73,7 +76,7 @@ describe('usePredefinedKeyDownHandlers() default setting', () => {
   });
 
   it('should return `handleTabKeyDown`', () => {
-    const specialKeyDown = DEFAULT_SPECIAL_KEY_DOWN_SETTINGS;
+    const specialKeyDown = DEFAULT_SPECIAL_KEY_DOWN;
     const inputInitValue = INPUT_INIT_VALUE;
     const inputValue = 'hello world';
     const onLastTokenDelete = jest.fn();
@@ -98,7 +101,7 @@ describe('usePredefinedKeyDownHandlers() default setting', () => {
   });
 
   it('should return `handleEnterKeyDown`', () => {
-    const specialKeyDown = DEFAULT_SPECIAL_KEY_DOWN_SETTINGS;
+    const specialKeyDown = DEFAULT_SPECIAL_KEY_DOWN;
     const inputInitValue = INPUT_INIT_VALUE;
     const inputValue = 'hello world';
     const onLastTokenDelete = jest.fn();
@@ -123,7 +126,7 @@ describe('usePredefinedKeyDownHandlers() default setting', () => {
   });
 
   it('should return `handleEscapeKeyDown`', () => {
-    const specialKeyDown = DEFAULT_SPECIAL_KEY_DOWN_SETTINGS;
+    const specialKeyDown = DEFAULT_SPECIAL_KEY_DOWN;
     const inputInitValue = INPUT_INIT_VALUE;
     const inputValue = 'hello world';
     const onLastTokenDelete = jest.fn();
@@ -149,7 +152,7 @@ describe('usePredefinedKeyDownHandlers() default setting', () => {
 });
 
 describe('usePredefinedKeyDownHandlers().handleBackspaceKeyDown()', () => {
-  describe('Mode: onBackspace === 1', () => {
+  describe('Mode: onBackspace === KEY_DOWN_HANDLER_CONFIG_OPTION.ON', () => {
     it('should return `handleBackspaceKeyDown`', () => {
       const specialKeyDown = {};
       const inputInitValue = INPUT_INIT_VALUE;
@@ -192,8 +195,8 @@ describe('usePredefinedKeyDownHandlers().handleBackspaceKeyDown()', () => {
     });
   });
 
-  describe('Mode: onBackspace === 0', () => {
-    const specialKeyDown = { onBackspace: 0 };
+  describe('Mode: onBackspace === KEY_DOWN_HANDLER_CONFIG_OPTION.OFF', () => {
+    const specialKeyDown = { onBackspace: KEY_DOWN_HANDLER_CONFIG_OPTION.OFF };
 
     it('should return `handleBackspaceKeyDown` as dummy', () => {
       const inputInitValue = INPUT_INIT_VALUE;
@@ -220,9 +223,9 @@ describe('usePredefinedKeyDownHandlers().handleBackspaceKeyDown()', () => {
 });
 
 describe('usePredefinedKeyDownHandlers().handleTabKeyDown()', () => {
-  describe('Mode: onTab === 0', () => {
+  describe('Mode: onTab === KEY_DOWN_HANDLER_CONFIG_OPTION.OFF', () => {
     it('should return `handleTabKeyDown` as dummy', () => {
-      const specialKeyDown = DEFAULT_SPECIAL_KEY_DOWN_SETTINGS;
+      const specialKeyDown = DEFAULT_SPECIAL_KEY_DOWN;
       const inputInitValue = INPUT_INIT_VALUE;
       const inputValue = 'hello world';
       const onLastTokenDelete = jest.fn();
@@ -247,9 +250,9 @@ describe('usePredefinedKeyDownHandlers().handleTabKeyDown()', () => {
     });
   });
 
-  describe('Mode: onTab === 1', () => {
+  describe('Mode: onTab === KEY_DOWN_HANDLER_CONFIG_OPTION.ON', () => {
     it('should return `handleTabKeyDown`', () => {
-      const specialKeyDown = { onTab: 1 };
+      const specialKeyDown = { onTab: KEY_DOWN_HANDLER_CONFIG_OPTION.ON };
       const inputInitValue = INPUT_INIT_VALUE;
       const inputValue = 'hello world';
       const onLastTokenDelete = jest.fn();

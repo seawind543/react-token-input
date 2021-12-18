@@ -1,13 +1,20 @@
 import { useCallback } from 'react';
-import { DEFAULT_SPECIAL_KEY_DOWN_SETTINGS } from '../constants';
+import {
+  KEY_DOWN_HANDLER_CONFIG_OPTION,
+  DEFAULT_SPECIAL_KEY_DOWN,
+} from '../constants';
 
-const handleKeyDown = ({ keyDownEvent, onKey, predefinedHandler }) => {
+const handleKeyDown = ({
+  keyDownEvent,
+  keyDownHandlerConfig,
+  predefinedHandler,
+}) => {
   switch (true) {
-    case onKey === 1:
+    case keyDownHandlerConfig === KEY_DOWN_HANDLER_CONFIG_OPTION.ON:
       predefinedHandler(keyDownEvent);
       break;
 
-    // case onKey === 0:
+    // case keyDownHandlerConfig === KEY_DOWN_HANDLER_CONFIG_OPTION.OFF:
     default:
     // Do nothing
   }
@@ -23,14 +30,14 @@ function usePredefinedKeyDownHandlers({
 }) {
   // console.log('specialKeyDown', specialKeyDown);
   const { onBackspace, onTab, onEnter, onEscape } = {
-    ...DEFAULT_SPECIAL_KEY_DOWN_SETTINGS,
+    ...DEFAULT_SPECIAL_KEY_DOWN,
     ...specialKeyDown,
   };
   const handleBackspaceKeyDown = useCallback(
     (keyDownEvent) => {
       handleKeyDown({
         keyDownEvent,
-        onKey: onBackspace,
+        keyDownHandlerConfig: onBackspace,
         predefinedHandler: () => {
           if (inputValue.length === 0) {
             // Delete the latest token when `Backspace`
@@ -46,7 +53,7 @@ function usePredefinedKeyDownHandlers({
     (keyDownEvent) => {
       handleKeyDown({
         keyDownEvent,
-        onKey: onTab,
+        keyDownHandlerConfig: onTab,
         predefinedHandler: (keyDownEvent) => {
           keyDownEvent.preventDefault();
           handleTokensCreate(inputValue);
@@ -60,7 +67,7 @@ function usePredefinedKeyDownHandlers({
     (keyDownEvent) => {
       handleKeyDown({
         keyDownEvent,
-        onKey: onEnter,
+        keyDownHandlerConfig: onEnter,
         predefinedHandler: () => {
           handleTokensCreate(inputValue);
         },
@@ -73,7 +80,7 @@ function usePredefinedKeyDownHandlers({
     (keyDownEvent) => {
       handleKeyDown({
         keyDownEvent,
-        onKey: onEscape,
+        keyDownHandlerConfig: onEscape,
         predefinedHandler: () => {
           // Reset the input value
           handleInputValueUpdate(inputInitValue);
