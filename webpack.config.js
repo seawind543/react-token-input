@@ -24,6 +24,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'lib'),
     filename: 'index.js',
+    globalObject: 'this',
     library: {
       name: {
         root: 'TokenInput',
