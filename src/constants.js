@@ -11,13 +11,19 @@ export const DEFAULT_SEPARATORS = [
 ];
 
 /**
- * The default specialKeyDown settings
+ * KeyDown handler config
  */
-export const DEFAULT_SPECIAL_KEY_DOWN_SETTINGS = {
-  onBackspace: 1,
-  onTab: 0,
-  onEnter: 1,
-  onEscape: 1,
+export const KEY_DOWN_HANDLER_CONFIG_OPTION = {
+  OFF: 0,
+  ON: 1,
+};
+
+// The default specialKeyDown settings
+export const DEFAULT_SPECIAL_KEY_DOWN = {
+  onBackspace: KEY_DOWN_HANDLER_CONFIG_OPTION.ON,
+  onTab: KEY_DOWN_HANDLER_CONFIG_OPTION.OFF,
+  onEnter: KEY_DOWN_HANDLER_CONFIG_OPTION.ON,
+  onEscape: KEY_DOWN_HANDLER_CONFIG_OPTION.ON,
 };
 
 /**

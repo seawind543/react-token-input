@@ -461,17 +461,19 @@ TokenInput.propTypes = {
    * [Beta; Might be change in the future version]
    * Current only apply to Token Create
    *
-   * The config settings to control the specials keyDown event handler behavior.
+   * The settings to control the behavior of specials keyDown's event handler.
+   * Recommend to use the build-in constant `KEY_DOWN_HANDLER_CONFIG_OPTION` to config the setting.
+   *
+   * `KEY_DOWN_HANDLER_CONFIG_OPTION.OFF` means turn off (Took native browser behavior. TokenInput should NOT handle it).
+   * `KEY_DOWN_HANDLER_CONFIG_OPTION.ON` means apply TokenInput predefined event handler.
+   *
    * Default setting as below.
    * specialKeyDown: {
-   *   onBackspace: 1,
-   *   onTab: 0,
-   *   onEnter: 1,
-   *   onEscape: 1,
+   *   onBackspace: KEY_DOWN_HANDLER_CONFIG_OPTION.ON,
+   *   onTab: KEY_DOWN_HANDLER_CONFIG_OPTION.OFF,
+   *   onEnter: KEY_DOWN_HANDLER_CONFIG_OPTION.ON,
+   *   onEscape: KEY_DOWN_HANDLER_CONFIG_OPTION.ON,
    * },
-   *
-   * `0` means turn off (Took native browser behavior. TokenInput should NOT handle it).
-   * `1` means apply TokenInput predefined event handler.
    *
    * Reference section below for Predefined event handlers.
    * `Predefined KeyDown Event Handlers`
