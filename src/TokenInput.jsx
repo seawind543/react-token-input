@@ -15,7 +15,7 @@ import buildDefaultTokenValue from './utils/buildDefaultTokenValue.ts';
 import getDefaultTokenEditableValue from './utils/getDefaultTokenEditableValue.ts';
 import getDefaultTokenErrorMessage from './utils/getDefaultTokenErrorMessage.ts';
 
-import { DEFAULT_SEPARATORS } from './constants';
+import { DEFAULT_SEPARATORS } from './constants.ts';
 
 import styles from './styles.scss';
 

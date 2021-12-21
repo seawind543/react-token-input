@@ -2,7 +2,7 @@ import TokenInput from './TokenInput';
 import {
   JS__TOKEN__DELETE_BUTTON__CLASS_NAME,
   KEY_DOWN_HANDLER_CONFIG_OPTION,
-} from './constants';
+} from './constants.ts';
 
 export {
   // The className to build customize token delete button

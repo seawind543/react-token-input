@@ -2,7 +2,7 @@
  * The default `separators`
  * in the `TokenLabel` (onGetTokenDisplayLabel)
  */
-export const DEFAULT_SEPARATORS = [
+export const DEFAULT_SEPARATORS: string[] = [
   ',',
   ';',
   '\n', // for copy and paste
@@ -18,8 +18,18 @@ export const KEY_DOWN_HANDLER_CONFIG_OPTION = {
   ON: 1,
 };
 
+type KeyDownHandlerConfigOption =
+  typeof KEY_DOWN_HANDLER_CONFIG_OPTION[keyof typeof KEY_DOWN_HANDLER_CONFIG_OPTION];
+
+export type SpecialKeyDown = {
+  onBackspace?: KeyDownHandlerConfigOption;
+  onTab?: KeyDownHandlerConfigOption;
+  onEnter?: KeyDownHandlerConfigOption;
+  onEscape?: KeyDownHandlerConfigOption;
+};
+
 // The default specialKeyDown settings
-export const DEFAULT_SPECIAL_KEY_DOWN = {
+export const DEFAULT_SPECIAL_KEY_DOWN: Required<SpecialKeyDown> = {
   onBackspace: KEY_DOWN_HANDLER_CONFIG_OPTION.ON,
   onTab: KEY_DOWN_HANDLER_CONFIG_OPTION.OFF,
   onEnter: KEY_DOWN_HANDLER_CONFIG_OPTION.ON,
@@ -30,6 +40,7 @@ export const DEFAULT_SPECIAL_KEY_DOWN = {
  * For customize the `delete button`
  * in the `TokenLabel` (onGetTokenDisplayLabel)
  */
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const JS__TOKEN__DELETE_BUTTON__CLASS_NAME = 'js__token__delete-button';
 
 /**

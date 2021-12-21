@@ -12,7 +12,7 @@ import keyDownHandlerProxy from '../utils/keyDownHandlerProxy.ts';
 import {
   DEFAULT_INPUT_INIT_VALUE,
   JS__TOKEN__DELETE_BUTTON__CLASS_NAME,
-} from '../constants';
+} from '../constants.ts';
 
 import DeleteButton from './DeleteButton';
 

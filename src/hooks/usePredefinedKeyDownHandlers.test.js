@@ -3,7 +3,7 @@ import usePredefinedKeyDownHandlers from './usePredefinedKeyDownHandlers';
 import {
   KEY_DOWN_HANDLER_CONFIG_OPTION,
   DEFAULT_SPECIAL_KEY_DOWN,
-} from '../constants';
+} from '../constants.ts';
 
 const INPUT_INIT_VALUE = 'INPUT_INIT_VALUE';
 const KEY_DOWN_EVENT = { key: 'the key', preventDefault: jest.fn() };

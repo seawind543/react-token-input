@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import {
   KEY_DOWN_HANDLER_CONFIG_OPTION,
   DEFAULT_SPECIAL_KEY_DOWN,
-} from '../constants';
+} from '../constants.ts';
 
 const handleKeyDown = ({
   keyDownEvent,

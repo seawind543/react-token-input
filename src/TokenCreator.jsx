@@ -5,7 +5,7 @@ import keyDownHandlerProxy from './utils/keyDownHandlerProxy.ts';
 
 import usePredefinedKeyDownHandlers from './hooks/usePredefinedKeyDownHandlers';
 
-import { DEFAULT_INPUT_INIT_VALUE } from './constants';
+import { DEFAULT_INPUT_INIT_VALUE } from './constants.ts';
 
 import styles from './styles.scss';
 
