@@ -19,9 +19,9 @@ import type { TokenValue, TokenMeta } from '../types/token';
  * Type: string
  * Description: The error message to describe an invalid token
  */
-const getDefaultTokenErrorMessage = (
-  tokenValue: TokenValue,
-  tokenMeta: TokenMeta
+const getDefaultTokenErrorMessage = <ValueType, ErrorType>(
+  tokenValue: TokenValue<ValueType>,
+  tokenMeta: TokenMeta<ErrorType>
 ): string | undefined => {
   if (typeof tokenMeta.error === 'string') {
     return tokenMeta.error;

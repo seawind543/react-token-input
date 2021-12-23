@@ -1,8 +1,9 @@
 export declare type InputValue = string;
-export declare type TokenValue = string | number | object | any;
+export declare type TokenValue<ValueType> = ValueType;
 export declare type TokenIndex = number;
-export declare type TokenMeta = {
+export declare type TokenMeta<ErrorType> = {
     key: string;
     activated: boolean;
-    error: any;
+    error: ErrorType;
 };
+export declare type OnTokenValueValidate<ValueType, ErrorType> = (tokenValue: ValueType, tokenIndex: TokenIndex, tokenValues: ValueType[]) => TokenMeta<ErrorType>['error'];

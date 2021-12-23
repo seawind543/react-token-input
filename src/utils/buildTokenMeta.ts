@@ -33,11 +33,11 @@ import type { TokenValue, TokenIndex, TokenMeta } from '../types/token';
  *    error: any,
  *  }
  */
-const buildTokenMeta = (
-  customizeError: TokenMeta['error'],
-  tokenValue: TokenValue,
+const buildTokenMeta = <ValueType, ErrorType>(
+  customizeError: TokenMeta<ErrorType>['error'],
+  tokenValue: TokenValue<ValueType>,
   tokenIndex: TokenIndex
-): TokenMeta => {
+): TokenMeta<ErrorType> => {
   return {
     // TODO: Consider uuid
     key: `${JSON.stringify(tokenValue)}-${Date.now()}-${tokenIndex}`,

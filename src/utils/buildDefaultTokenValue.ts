@@ -19,7 +19,9 @@ import type { InputValue, TokenValue } from '../types/token';
  * Type: string
  * Description: The default token value
  */
-const buildDefaultTokenValue = (inputValue: InputValue): TokenValue => {
+const buildDefaultTokenValue = (
+  inputValue: InputValue
+): TokenValue<InputValue> => {
   return inputValue.trim();
 };
 

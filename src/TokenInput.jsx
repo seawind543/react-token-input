@@ -6,7 +6,7 @@ import Token from './Token';
 
 import useTokenInputFocus from './hooks/useTokenInputFocus';
 import useTokenCreatorRef from './hooks/useTokenCreatorRef';
-import useTokensUpdate from './hooks/useTokensUpdate';
+import useTokensUpdate from './hooks/useTokensUpdate.ts';
 import useTokenEdit from './hooks/useTokenEdit';
 import useTokenDelete from './hooks/useTokenDelete';
 

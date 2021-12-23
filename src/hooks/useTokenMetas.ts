@@ -3,11 +3,12 @@ import buildTokenMeta from '../utils/buildTokenMeta';
 
 import { TokenMeta, TokenIndex } from '../types/token';
 
-function useTokenMetas() {
-  const [tokenMetas, setTokenMetas] = useState<TokenMeta[]>([]);
+function useTokenMetas<ErrorType>() {
+  const [tokenMetas, setTokenMetas] = useState<TokenMeta<ErrorType>[]>([]);
 
+  type TokenMetaActivated = TokenMeta<ErrorType>['activated'];
   const setTokenActivated = useCallback(
-    (targetIndex: TokenIndex, activated: TokenMeta['activated']) => {
+    (targetIndex: TokenIndex, activated: TokenMetaActivated) => {
       // console.log(
       //   'setTokenActivated; targetIndex',
       //   targetIndex,

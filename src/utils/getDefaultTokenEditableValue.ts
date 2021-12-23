@@ -22,9 +22,9 @@ import type { InputValue, TokenValue, TokenMeta } from '../types/token';
  * Type: string
  * Description: The value for user to edit in an input
  */
-const getDefaultTokenEditableValue = (
-  tokenValue: TokenValue,
-  tokenMeta: TokenMeta
+const getDefaultTokenEditableValue = <ValueType, ErrorType>(
+  tokenValue: TokenValue<ValueType>,
+  tokenMeta: TokenMeta<ErrorType>
 ): InputValue => {
   return `${tokenValue}`;
 };
