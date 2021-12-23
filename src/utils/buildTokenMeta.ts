@@ -1,9 +1,4 @@
-import type {
-  TokenValue,
-  TokenError,
-  TokenIndex,
-  TokenMeta,
-} from '../types/token';
+import type { TokenValue, TokenIndex, TokenMeta } from '../types/token';
 
 /**
  * Internal function for TokenInput to
@@ -39,7 +34,7 @@ import type {
  *  }
  */
 const buildTokenMeta = (
-  customizeError: TokenError,
+  customizeError: TokenMeta['error'],
   tokenValue: TokenValue,
   tokenIndex: TokenIndex
 ): TokenMeta => {

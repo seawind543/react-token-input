@@ -1,5 +1,5 @@
 /**
- * The user input (typing) value.
+ * The user input (keyboard typing) value.
  */
 export type InputValue = string;
 
@@ -7,18 +7,14 @@ export type InputValue = string;
  * Type: any (string | number | object | customize data structure)
  * Description: The tokenValue build by `onBuildTokenValue`
  */
-export type TokenValue = string | number | object;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type TokenValue = string | number | object | any;
 
 export type TokenIndex = number;
 
-export type TokenActivated = boolean;
-
-/* eslint @typescript-eslint/no-explicit-any: 0 */
-export type TokenError = any;
-
-export type TokenMetaKey = string;
 export type TokenMeta = {
-  key: TokenMetaKey;
-  activated: TokenActivated;
-  error: TokenError;
+  key: string;
+  activated: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  error: any;
 };
