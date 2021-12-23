@@ -1,7 +1,7 @@
 import { useRef, useCallback } from 'react';
 
 function useTokenCreatorRef() {
-  const tokenCreatorRef = useRef(null);
+  const tokenCreatorRef = useRef<HTMLInputElement>(null);
 
   const focusTokenCreator = useCallback(() => {
     // console.log('handleTokenCreatorFocus');
