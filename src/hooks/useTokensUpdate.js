@@ -1,5 +1,5 @@
 import { useState, useLayoutEffect } from 'react';
-import useTokenMetas from './useTokenMetas';
+import useTokenMetas from './useTokenMetas.ts';
 
 function useTokensUpdate({ tokenValues, onTokenValueValidate }) {
   const { buildTokenMeta, tokenMetas, setTokenMetas, setTokenActivated } =

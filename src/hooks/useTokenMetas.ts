@@ -1,11 +1,13 @@
 import { useState, useCallback } from 'react';
-import buildTokenMeta from '../utils/buildTokenMeta.ts';
+import buildTokenMeta from '../utils/buildTokenMeta';
+
+import { TokenMeta, TokenIndex } from '../types/token';
 
 function useTokenMetas() {
-  const [tokenMetas, setTokenMetas] = useState([]);
+  const [tokenMetas, setTokenMetas] = useState<TokenMeta[]>([]);
 
   const setTokenActivated = useCallback(
-    (targetIndex, activated) => {
+    (targetIndex: TokenIndex, activated: TokenMeta['activated']) => {
       // console.log(
       //   'setTokenActivated; targetIndex',
       //   targetIndex,
