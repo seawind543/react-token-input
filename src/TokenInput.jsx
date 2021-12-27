@@ -8,7 +8,7 @@ import useTokenInputFocus from './hooks/useTokenInputFocus';
 import useTokenCreatorRef from './hooks/useTokenCreatorRef.ts';
 import useTokensUpdate from './hooks/useTokensUpdate.ts';
 import useTokenEdit from './hooks/useTokenEdit';
-import useTokenDelete from './hooks/useTokenDelete';
+import useTokenDelete from './hooks/useTokenDelete.ts';
 
 import dummyFunction from './utils/dummyFunction.ts';
 import buildDefaultTokenValue from './utils/buildDefaultTokenValue.ts';

@@ -1,12 +1,24 @@
 import { useCallback } from 'react';
 
-function useTokenDelete({
+import type {
+  TokenValue,
+  OnTokenValuesChange,
+  TokenIndex,
+} from '../types/token';
+
+type ParameterType<ValueType> = {
+  tokenValues: TokenValue<ValueType>[];
+  onTokenValuesChange: OnTokenValuesChange<ValueType>;
+  focusTokenCreator: () => void; // TODO: Update type by shared one
+};
+
+function useTokenDelete<ValueType>({
   tokenValues,
   onTokenValuesChange,
   focusTokenCreator,
-}) {
+}: ParameterType<ValueType>) {
   const deleteToken = useCallback(
-    (targetIndex) => {
+    (targetIndex: TokenIndex) => {
       const newTokenValues = [...tokenValues];
       newTokenValues.splice(targetIndex, 1);
       onTokenValuesChange(newTokenValues);
@@ -21,7 +33,7 @@ function useTokenDelete({
   );
 
   const handleTokenDelete = useCallback(
-    (targetIndex) => () => {
+    (targetIndex: TokenIndex) => () => {
       // console.log('handleTokenDelete', targetIndex);
       deleteToken(targetIndex);
     },

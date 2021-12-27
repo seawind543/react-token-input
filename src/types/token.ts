@@ -22,3 +22,7 @@ export type OnTokenValueValidate<ValueType, ErrorType> = (
   tokenIndex: TokenIndex,
   tokenValues: ValueType[]
 ) => TokenMeta<ErrorType>['error'];
+
+export type OnTokenValuesChange<ValueType> = (
+  modifiedTokenValues: ValueType[]
+) => void;

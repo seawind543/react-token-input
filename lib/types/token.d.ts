@@ -7,3 +7,4 @@ export declare type TokenMeta<ErrorType> = {
     error: ErrorType;
 };
 export declare type OnTokenValueValidate<ValueType, ErrorType> = (tokenValue: ValueType, tokenIndex: TokenIndex, tokenValues: ValueType[]) => TokenMeta<ErrorType>['error'];
+export declare type OnTokenValuesChange<ValueType> = (modifiedTokenValues: ValueType[]) => void;
