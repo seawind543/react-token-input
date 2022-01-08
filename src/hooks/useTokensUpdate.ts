@@ -1,5 +1,6 @@
 import { useState, useLayoutEffect } from 'react';
 import useTokenMetas from './useTokenMetas';
+import buildTokenMeta from '../utils/buildTokenMeta';
 
 import type { TokenValue, OnTokenValueValidate } from '../types/token';
 
@@ -12,7 +13,7 @@ function useTokensUpdate<ValueType, ErrorType>({
   tokenValues,
   onTokenValueValidate,
 }: ParameterType<ValueType, ErrorType>) {
-  const { buildTokenMeta, tokenMetas, setTokenMetas, setTokenActivated } =
+  const { tokenMetas, setTokenMetas, setTokenActivated } =
     useTokenMetas<ErrorType>();
   const [hasInvalidToken, setHasInvalidToken] = useState<boolean>(false);
 
@@ -43,7 +44,7 @@ function useTokensUpdate<ValueType, ErrorType>({
     setInternalTokenValues([...tokenValues]);
     setTokenMetas(newTokenMetas);
     setHasInvalidToken(hasInvalid);
-  }, [tokenValues, onTokenValueValidate, setTokenMetas, buildTokenMeta]);
+  }, [tokenValues, onTokenValueValidate, setTokenMetas]);
 
   return {
     hasInvalidToken,

@@ -1,5 +1,4 @@
 import { useState, useCallback } from 'react';
-import buildTokenMeta from '../utils/buildTokenMeta';
 
 import { TokenMeta, TokenIndex } from '../types/token';
 
@@ -32,7 +31,6 @@ function useTokenMetas<ErrorType>() {
   );
 
   return {
-    buildTokenMeta,
     tokenMetas,
     setTokenMetas,
     setTokenActivated,
