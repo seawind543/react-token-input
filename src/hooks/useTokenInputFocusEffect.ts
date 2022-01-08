@@ -1,14 +1,18 @@
 import { useState, useCallback } from 'react';
 
-function useTokenInputFocus() {
-  const [isTokenInputFocused, setIsTokenInputFocused] = useState(false);
+type HandleTokenInputFocus = () => void;
+type HandleTokenInputBlur = () => void;
 
-  const handleTokenInputFocus = useCallback(() => {
+function useTokenInputFocus() {
+  const [isTokenInputFocused, setIsTokenInputFocused] =
+    useState<boolean>(false);
+
+  const handleTokenInputFocus: HandleTokenInputFocus = useCallback(() => {
     // console.log('handleTokenInputFocus');
     setIsTokenInputFocused(true);
   }, []);
 
-  const handleTokenInputBlur = useCallback(() => {
+  const handleTokenInputBlur: HandleTokenInputBlur = useCallback(() => {
     // console.log('handleTokenInputBlur');
     setIsTokenInputFocused(false);
   }, []);

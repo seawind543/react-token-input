@@ -1,9 +1,9 @@
 import { renderHook, act } from '@testing-library/react-hooks';
-import useTokenInputFocus from './useTokenInputFocus';
+import useTokenInputFocusEffect from './useTokenInputFocusEffect.ts';
 
-describe('useTokenInputFocus()', () => {
+describe('useTokenInputFocusEffect()', () => {
   it('should return `isTokenInputFocused`, `handleTokenInputFocus` and `handleTokenInputBlur`', () => {
-    const { result } = renderHook(() => useTokenInputFocus());
+    const { result } = renderHook(() => useTokenInputFocusEffect());
 
     expect(result.current.isTokenInputFocused).toBe(false);
     expect(typeof result.current.handleTokenInputFocus).toBe('function');
@@ -11,7 +11,7 @@ describe('useTokenInputFocus()', () => {
   });
 
   it('should return `handleTokenInputFocus`', () => {
-    const { result } = renderHook(() => useTokenInputFocus());
+    const { result } = renderHook(() => useTokenInputFocusEffect());
 
     expect(result.current.isTokenInputFocused).toBe(false);
     act(() => {
@@ -21,7 +21,7 @@ describe('useTokenInputFocus()', () => {
   });
 
   it('should return `handleTokenInputBlur`', () => {
-    const { result } = renderHook(() => useTokenInputFocus());
+    const { result } = renderHook(() => useTokenInputFocusEffect());
 
     // init
     act(() => {

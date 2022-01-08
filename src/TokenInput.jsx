@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import TokenCreator from './TokenCreator';
 import Token from './Token';
 
-import useTokenInputFocus from './hooks/useTokenInputFocus';
+import useTokenInputFocusEffect from './hooks/useTokenInputFocusEffect.ts';
 import useTokenCreatorRef from './hooks/useTokenCreatorRef.ts';
 import useTokensUpdate from './hooks/useTokensUpdate.ts';
 import useTokenEdit from './hooks/useTokenEdit';
@@ -49,7 +49,7 @@ const TokenInput = ({
   ...props
 }) => {
   const { isTokenInputFocused, handleTokenInputFocus, handleTokenInputBlur } =
-    useTokenInputFocus();
+    useTokenInputFocusEffect();
   const { tokenCreatorRef, focusTokenCreator } = useTokenCreatorRef();
 
   const {
