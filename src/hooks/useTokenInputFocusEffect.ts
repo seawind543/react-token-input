@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 
-type HandleTokenInputFocus = () => void;
-type HandleTokenInputBlur = () => void;
+export type HandleTokenInputFocus = () => void;
+export type HandleTokenInputBlur = () => void;
 
 function useTokenInputFocus() {
   const [isTokenInputFocused, setIsTokenInputFocused] =

@@ -7,6 +7,6 @@ declare function useTokensUpdate<ValueType, ErrorType>({ tokenValues, onTokenVal
     hasInvalidToken: boolean;
     internalTokenValues: ValueType[];
     tokenMetas: import("../types/token").TokenMeta<ErrorType>[];
-    setTokenActivated: (targetIndex: number, activated: boolean) => void;
+    setTokenActivated: import("./useTokenMetas").SetTokenActivated<ErrorType>;
 };
 export default useTokensUpdate;

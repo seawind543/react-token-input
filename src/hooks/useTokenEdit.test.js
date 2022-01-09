@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks';
-import useTokenEdit from './useTokenEdit';
+import useTokenEdit from './useTokenEdit.ts';
 
 import DEFAULT_VALUE_TYPE_DATA from '../__fixtures__/tokenValues.fixtures';
 
