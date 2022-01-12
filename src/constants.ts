@@ -1,3 +1,5 @@
+import { InputValue } from './types/token';
+
 /**
  * The default `separators`
  * in the `TokenLabel` (onGetTokenDisplayLabel)
@@ -18,18 +20,19 @@ export const KEY_DOWN_HANDLER_CONFIG_OPTION = {
   ON: 1,
 };
 
-type KeyDownHandlerConfigOption =
+export type KeyDownHandlerConfigOption =
   typeof KEY_DOWN_HANDLER_CONFIG_OPTION[keyof typeof KEY_DOWN_HANDLER_CONFIG_OPTION];
 
-export type SpecialKeyDown = {
+export type SpecialKeyDownConfig = {
   onBackspace?: KeyDownHandlerConfigOption;
   onTab?: KeyDownHandlerConfigOption;
   onEnter?: KeyDownHandlerConfigOption;
   onEscape?: KeyDownHandlerConfigOption;
 };
+export type SpecialKeyDownSetting = Required<SpecialKeyDownConfig>;
 
 // The default specialKeyDown settings
-export const DEFAULT_SPECIAL_KEY_DOWN: Required<SpecialKeyDown> = {
+export const DEFAULT_SPECIAL_KEY_DOWN_CONFIG: SpecialKeyDownSetting = {
   onBackspace: KEY_DOWN_HANDLER_CONFIG_OPTION.ON,
   onTab: KEY_DOWN_HANDLER_CONFIG_OPTION.OFF,
   onEnter: KEY_DOWN_HANDLER_CONFIG_OPTION.ON,
@@ -46,4 +49,4 @@ export const JS__TOKEN__DELETE_BUTTON__CLASS_NAME = 'js__token__delete-button';
 /**
  * The default init value of the `input`
  */
-export const DEFAULT_INPUT_INIT_VALUE = '';
+export const DEFAULT_INPUT_INIT_VALUE: InputValue = '';

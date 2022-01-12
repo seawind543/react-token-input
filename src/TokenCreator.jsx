@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import AutosizeInput from 'react-input-autosize';
 import keyDownHandlerProxy from './utils/keyDownHandlerProxy.ts';
 
-import usePredefinedKeyDownHandlers from './hooks/usePredefinedKeyDownHandlers';
+import usePredefinedKeyDownHandlers from './hooks/usePredefinedKeyDownHandlers.ts';
 
 import { DEFAULT_INPUT_INIT_VALUE } from './constants.ts';
 
