@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const StylelintPlugin = require('stylelint-webpack-plugin');
+const postcssPresetEnv = require('postcss-preset-env');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const pkg = require('./package.json');
@@ -78,6 +79,14 @@ module.exports = {
             options: {
               modules: {
                 localIdentName: `${localClassPrefix}-[local]`,
+              },
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [postcssPresetEnv(/* pluginOptions */)],
               },
             },
           },

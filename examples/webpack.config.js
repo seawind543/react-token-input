@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const StylelintPlugin = require('stylelint-webpack-plugin');
+const postcssPresetEnv = require('postcss-preset-env');
 
 const localClassPrefix = 'token-input';
 
@@ -49,6 +50,14 @@ module.exports = {
             options: {
               modules: {
                 localIdentName: `${localClassPrefix}-[local]`,
+              },
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [postcssPresetEnv(/* pluginOptions */)],
               },
             },
           },
