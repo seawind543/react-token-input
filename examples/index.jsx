@@ -24,7 +24,7 @@ import ExampleEditable from './ExampleEditable';
 import ExampleWithFormLibrary from './ExampleWithFormLibrary';
 import ExampleSpecialKeyDown from './ExampleSpecialKeyDown';
 
-import './index.styl';
+import './index.scss';
 
 const name =
   'React TokenInput (react-customize-token-input). Visit GitHub here';

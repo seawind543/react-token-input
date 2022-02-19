@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import styles from './Navbar.styl';
+import styles from './Navbar.scss';
 
 const Navbar = ({ url, name }) => {
   return (

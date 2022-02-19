@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const StylelintPlugin = require('stylelint-webpack-plugin');
-const nib = require('nib');
 
 const localClassPrefix = 'token-input';
 
@@ -32,7 +31,7 @@ module.exports = {
         },
       },
       {
-        test: /\.styl$/,
+        test: /\.s[ac]ss$/i,
         // extract-text-webpack-plugin not support
         // Apply mini-css-extract-plugin instead
         // https://bbs.huaweicloud.com/blogs/detail/241981
@@ -54,15 +53,7 @@ module.exports = {
             },
           },
           {
-            loader: 'stylus-loader', // compiles Stylus to CSS
-            options: {
-              stylusOptions: {
-                // nib - CSS3 extensions for Stylus
-                use: [nib()],
-                // no need to have a '@import "nib"' in the stylesheet
-                import: ['nib'],
-              },
-            },
+            loader: 'sass-loader', // compiles SASS to CSS
           },
         ],
       },
@@ -90,7 +81,7 @@ module.exports = {
     }),
     new StylelintPlugin({
       configFile: './stylelint.config.js',
-      files: ['src/**/*.styl'],
+      files: ['src/**/*.scss'],
     }),
     new HtmlWebpackPlugin({
       template: 'index.html',

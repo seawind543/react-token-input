@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../styles.styl';
+import styles from '../styles.scss';
 
 const CloseIcon = () => {
   return (

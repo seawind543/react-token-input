@@ -8,7 +8,7 @@ import TokenInput, { JS__TOKEN__DELETE_BUTTON__CLASS_NAME } from '../../lib';
 
 import CopyAnchor from '../share/CopyAnchor';
 
-import style from './index.styl';
+import style from './index.scss';
 import '../../dist/react-customize-token-input.css';
 
 /**

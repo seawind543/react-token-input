@@ -1,7 +1,5 @@
 /*! react-customize-token-input v1.6.0 | (c) 2022 Mark Lin. | MIT | https://github.com/seawind543/react-token-input */
 .token-input-container {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   cursor: text;
   overflow-y: auto;
@@ -12,50 +10,27 @@
   border-radius: 4px;
   outline: 0;
 }
+
 .token-input-container *,
 .token-input-container *::before,
 .token-input-container *::after {
-  -webkit-box-sizing: inherit;
-  -moz-box-sizing: inherit;
   box-sizing: inherit;
 }
+
 .token-input-container.token-input-container--focused {
   border-color: #0096cc;
 }
-.token-input-container.token-input-container.token-input-container--errors {
+
+.token-input-container.token-input-container--errors {
   border-color: #db3d44;
 }
+
 .token-input-container .token-input-token-list .token-input-token {
   float: left;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: box;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -moz-box-orient: horizontal;
-  -o-box-orient: horizontal;
-  -webkit-box-lines: single;
-  -moz-box-lines: single;
-  -o-box-lines: single;
-  -webkit-flex-flow: row nowrap;
-  -ms-flex-flow: row nowrap;
   flex-flow: row nowrap;
-  -webkit-box-pack: center;
-  -moz-box-pack: center;
-  -o-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -moz-box-align: center;
-  -o-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
   align-items: center;
-  -ms-flex-line-pack: center;
-  -webkit-align-content: center;
   align-content: center;
   max-width: 100%;
   height: 32px;
@@ -69,141 +44,96 @@
   background-color: #cceaf5;
   cursor: default;
 }
+
 .token-input-container .token-input-token-list .token-input-token:hover {
   background-color: #e6f4fc;
 }
+
 .token-input-container .token-input-token-list .token-input-token.token-input-token--error {
   color: #db3d44;
   background-color: #f9b5b5;
 }
+
 .token-input-container .token-input-token-list .token-input-token.token-input-token--error:hover {
   background-color: #ffdada;
 }
+
 .token-input-container .token-input-token-list .token-input-token.token-input-token--editable:hover {
   cursor: pointer;
 }
+
 .token-input-container .token-input-token-list .token-input-token.token-input-token--active .token-input-autosized-wrapper {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: box;
   display: flex;
-  -webkit-box-pack: center;
-  -moz-box-pack: center;
-  -o-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -moz-box-align: center;
-  -o-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
   align-items: center;
-  -ms-flex-line-pack: center;
-  -webkit-align-content: center;
   align-content: center;
   margin: 4px 8px;
   height: 32px;
 }
+
 .token-input-container .token-input-token-list .token-input-token.token-input-token--active .token-input-autosized-wrapper input {
   height: auto;
   border-bottom: 1px solid #aaa;
 }
+
 .token-input-container .token-input-token-list .token-input-token .token-input-token__label-wrapper {
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -o-box-flex: 1;
-  box-flex: 1;
-  -webkit-flex: 1 0 0;
-  -ms-flex: 1 0 0;
   flex: 1 0 0;
   margin: 0 8px;
   overflow: hidden;
-  -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
 }
+
 .token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button {
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -o-box-flex: 1;
-  box-flex: 1;
-  -webkit-flex: 0 0 0;
-  -ms-flex: 0 0 0;
   flex: 0 0 0;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: box;
   display: flex;
-  -webkit-box-pack: center;
-  -moz-box-pack: center;
-  -o-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -moz-box-align: center;
-  -o-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
   align-items: center;
-  -ms-flex-line-pack: center;
-  -webkit-align-content: center;
   align-content: center;
   height: 100%;
   padding: 2px 8px;
   cursor: pointer;
   opacity: 0.3;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
-  filter: alpha(opacity=30);
   border-left: 1px solid #aaa;
   border-radius: 0 4px 4px 0;
 }
+
 .token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button:hover {
   opacity: 1;
-  -ms-filter: none;
-  filter: none;
   background-color: #aaa;
 }
-.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button:hover .token-input-token__delete-button__close-icon:before,
-.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button:hover .token-input-token__delete-button__close-icon:after {
+
+.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button:hover .token-input-token__delete-button__close-icon:before, .token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button:hover .token-input-token__delete-button__close-icon:after {
   border-color: #fff;
 }
+
 .token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-token__delete-button__close-icon {
   width: 14px;
   height: 14px;
   position: relative;
 }
-.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-token__delete-button__close-icon:before,
-.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-token__delete-button__close-icon:after {
+
+.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-token__delete-button__close-icon:before, .token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-token__delete-button__close-icon:after {
   content: '';
   height: 14px;
   left: 6px;
   border-left: 2px solid #222;
   position: absolute;
 }
+
 .token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-token__delete-button__close-icon:before {
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -o-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
+
 .token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-token__delete-button__close-icon:after {
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
 .token-input-container .token-input-autosized-wrapper {
   float: left;
   overflow: hidden;
   margin-right: 4px;
 }
+
 .token-input-container .token-input-autosized-wrapper input {
   height: 32px;
   margin: 0;
@@ -211,9 +141,10 @@
   border: 0;
   outline: 0;
   cursor: text;
-  -webkit-box-shadow: none;
   box-shadow: none;
   background: none;
   color: #222;
 }
 
+
+/*# sourceMappingURL=react-customize-token-input.original.css.map*/

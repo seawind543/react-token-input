@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import styles from '../styles.styl';
+import styles from '../styles.scss';
 import { JS__TOKEN__DELETE_BUTTON__CLASS_NAME } from '../constants';
 import CloseIcon from './CloseIcon';
 

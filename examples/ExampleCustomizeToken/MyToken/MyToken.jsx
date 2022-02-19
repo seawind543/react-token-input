@@ -13,7 +13,7 @@ import classNames from 'classnames';
 import keyDownHandlerProxy from '../../../src/utils/keyDownHandlerProxy';
 import DeleteButton from './DeleteButton';
 
-import styles from '../myToken.styl';
+import styles from '../myToken.scss';
 
 const handleTokenClick = (e) => {
   // console.log('handleTokenClick');

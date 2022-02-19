@@ -23,11 +23,11 @@
     display: block;
   }
 
-  tr&.in {
+  tr.in {
     display: table-row;
   }
 
-  tbody&.in {
+  tbody.in {
     display: table-row-group;
   }
 }
