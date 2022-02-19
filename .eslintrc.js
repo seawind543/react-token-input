@@ -57,10 +57,10 @@ module.exports = {
   overrides: [
     /**
      * use separate parsers for .js and .ts
-     * Following for typescript .ts only
+     * Following for typescript .ts/.tsx only
      */
     {
-      files: ['src/**/*.ts'],
+      files: ['src/**/*.ts', 'src/**/*.tsx'],
       extends: [
         'airbnb-typescript',
         'plugin:prettier/recommended',
