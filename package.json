@@ -17,8 +17,7 @@
     "eslint": "eslint --max-warnings 0 --ext .jsx,.js,.tsx,.ts examples src",
     "lint:style": "stylelint --custom-syntax postcss-scss 'src/**/*.scss' --fix",
     "test": "jest --coverage",
-    "dev": "yarn run dev:scss-types && cd examples; webpack && webpack serve --hot --inline --host 0.0.0.0 --port 8000 --content-base ../docs",
-    "dev:scss-types": "typed-scss-modules src --watch --nameFormat none --exportType default"
+    "dev": "cd examples; webpack && webpack serve --hot --inline --host 0.0.0.0 --port 8000 --content-base ../docs"
   },
   "husky": {
     "hooks": {
@@ -68,6 +67,7 @@
     "@babel/preset-typescript": "^7.15.0",
     "@testing-library/react-hooks": "^7.0.2",
     "@types/jest": "^27.0.2",
+    "@types/react-input-autosize": "^2.2.1",
     "@typescript-eslint/eslint-plugin": "^5.1.0",
     "@typescript-eslint/parser": "^5.1.0",
     "babel-loader": "^8.2.3",

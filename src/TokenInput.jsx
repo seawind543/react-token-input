@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import TokenCreator from './TokenCreator';
-import Token from './Token';
+import Token from './Token/index.ts';
 
 import useTokenInputFocusEffect from './hooks/useTokenInputFocusEffect.ts';
 import useTokenCreatorRef from './hooks/useTokenCreatorRef.ts';

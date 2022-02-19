@@ -5,24 +5,66 @@ import React, {
   useRef,
   useEffect,
 } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import AutosizeInput from 'react-input-autosize';
-import keyDownHandlerProxy from '../utils/keyDownHandlerProxy.ts';
-import {
-  DEFAULT_INPUT_INIT_VALUE,
-  JS__TOKEN__DELETE_BUTTON__CLASS_NAME,
-} from '../constants.ts';
+import keyDownHandlerProxy from '../utils/keyDownHandlerProxy';
 
 import DeleteButton from './DeleteButton';
 
+import {
+  DEFAULT_INPUT_INIT_VALUE,
+  JS__TOKEN__DELETE_BUTTON__CLASS_NAME,
+} from '../constants';
+
 import styles from '../styles.scss';
 
-const handleInlineEditClick = (e) => {
+import type { TokenValue, TokenMeta, InputValue } from '../types/token';
+
+const handleInlineEditClick = (e: React.MouseEvent<HTMLDivElement>) => {
   e.stopPropagation();
 };
 
-const Token = ({
+type Props<ValueType, ErrorType> = {
+  readOnly: boolean;
+  tokenValue: TokenValue<ValueType>;
+  tokenMeta: TokenMeta<ErrorType>;
+
+  onGetClassName: (
+    tokenValue: TokenValue<ValueType>,
+    tokenMeta: TokenMeta<ErrorType>
+  ) => string;
+
+  onGetDisplayLabel: (
+    tokenValue: TokenValue<ValueType>,
+    tokenMeta: TokenMeta<ErrorType>
+  ) => string | React.ReactNode;
+
+  onRenderDeleteButtonContent?: () => React.ReactNode;
+
+  onIsEditable: (
+    tokenValue: TokenValue<ValueType>,
+    tokenMeta: TokenMeta<ErrorType>
+  ) => boolean;
+
+  onGetEditableValue: (
+    tokenValue: TokenValue<ValueType>,
+    tokenMeta: TokenMeta<ErrorType>
+  ) => InputValue;
+
+  onGetErrorMessage: (
+    tokenValue: TokenValue<ValueType>,
+    tokenMeta: TokenMeta<ErrorType>
+  ) => string | ErrorType;
+
+  onBuildTokenValue: (stringValue: InputValue) => TokenValue<ValueType>;
+
+  onEditStart: () => void;
+  onEditEnd: (newTokenValue?: TokenValue<ValueType>) => void;
+
+  onDelete: () => void;
+};
+
+const Token = <ValueType, ErrorType>({
   readOnly,
   tokenValue,
   tokenMeta,
@@ -36,8 +78,10 @@ const Token = ({
   onEditStart,
   onEditEnd,
   onDelete,
-}) => {
+}: Props<ValueType, ErrorType>) => {
+  // Cannot set AutosizeInput as ref, because it get error when ref={autosizeInputRef}
   const autosizeInputRef = useRef(null);
+
   const [inputValue, setInputValue] = useState(DEFAULT_INPUT_INIT_VALUE);
   const { activated, error } = tokenMeta;
   const isEditable = useMemo(() => {
@@ -50,8 +94,11 @@ const Token = ({
     onEditStart();
   }, [setInputValue, tokenValue, tokenMeta, onGetEditableValue, onEditStart]);
   useEffect(() => {
-    if (activated && autosizeInputRef.current) {
-      autosizeInputRef.current.focus();
+    const autosizeInput = autosizeInputRef.current;
+    if (activated && autosizeInput) {
+      // cast never type to AutosizeInput
+      (autosizeInput as AutosizeInput).getInput().focus();
+      // autosizeInputRef.current?.getInput().focus();
     }
   }, [activated]);
 
@@ -177,7 +224,7 @@ const Token = ({
       role="presentation"
       className={tokenClassName}
       onClick={handleTokenClick}
-      title={errorMessage}
+      title={typeof errorMessage === 'string' ? errorMessage : undefined}
     >
       <div className={styles['token__label-wrapper']}>
         {onGetDisplayLabel(tokenValue, tokenMeta)}
@@ -187,87 +234,6 @@ const Token = ({
       )}
     </div>
   );
-};
-
-Token.propTypes = {
-  // Same as props of TokenInput
-  readOnly: PropTypes.bool.isRequired,
-  // tokenValue of token
-  tokenValue: PropTypes.any.isRequired,
-  // tokenMeta of token
-  tokenMeta: PropTypes.object.isRequired,
-
-  // Same as props `onGetTokenClassName` of TokenInput
-  onGetClassName: PropTypes.func.isRequired,
-  // Same as props `onGetTokenDisplayLabel` of TokenInput
-  onGetDisplayLabel: PropTypes.func.isRequired,
-  // Same as props `onRenderTokenDeleteButtonContent` of TokenInput
-  onRenderDeleteButtonContent: PropTypes.func,
-  // Same as props `onIsTokenEditable` of TokenInput
-  onIsEditable: PropTypes.func.isRequired,
-  // Same as props `onGetTokenEditableValue` of TokenInput
-  onGetEditableValue: PropTypes.func.isRequired,
-  // Same as props `onGetTokenErrorMessage` of TokenInput
-  onGetErrorMessage: PropTypes.func.isRequired,
-
-  // Editing
-  // Same as props `onBuildTokenValue` of TokenInput
-  onBuildTokenValue: PropTypes.func.isRequired,
-
-  /**
-   * A callback function, which should be `invoked` when end-user `start editing`
-   *
-   * Note:
-   * Call this function to tell TokenInput it is start to editing the token.
-   * As result, TokenInput will set `tokenMeta.activate` to `true`
-   *
-   * onEditStart()
-   *
-   * @ return
-   * Type: void
-   */
-  onEditStart: PropTypes.func.isRequired,
-
-  /**
-   * A callback function, which should be `invoked` when end-user `end editing`
-   *
-   * Note:
-   * Call this function to tell TokenInput it is finish editing the token.
-   * As result, TokenInput will set `tokenMeta.activate` to `false`
-   *
-   * onEditEnd(newTokenValue?)
-   *
-   * @ newTokenValue
-   * Type: undefined | any (string | number | object | customize data structure)
-   * Description:
-   * The new tokenValue build by `onBuildTokenValue.
-   * TokenInput will update it, and
-   * TokenInput will call `onTokenValuesChange`
-   *
-   * Note:
-   * When newTokenValue is `undefined`,
-   * TokenInput will treat as `Cancel` (End without update newTokenValue).
-   * The `onTokenValuesChange` will not be called.
-   *
-   * @ return
-   * Type: void
-   */
-  onEditEnd: PropTypes.func.isRequired,
-
-  /**
-   * A callback function, which should be `invoked` when end-user `delete` the token
-   *
-   * Note:
-   * Call this function to tell TokenInput to delete the token.
-   * As result, TokenInput will remove it, and
-   * TokenInput will call `onTokenValuesChange` to update tokenValues.
-   *
-   * onDelete()
-   *
-   * @ return
-   * Type: void
-   */
-  onDelete: PropTypes.func.isRequired,
 };
 
 export default Token;
