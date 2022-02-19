@@ -9,14 +9,16 @@
     "lib"
   ],
   "scripts": {
-    "prepublish": "yarn run eslint && yarn run lint:style && yarn run test && yarn run clean && yarn run build && yarn run build:examples",
+    "prepublish": "yarn run eslint && yarn run lint:style && yarn run test && yarn run clean && yarn run build:scss-types && yarn run build && yarn run build:examples",
+    "build:scss-types": "typed-scss-modules src --nameFormat none --exportType default",
     "build": "webpack",
     "build:examples": "cd examples; webpack",
     "clean": "rm -rf {lib,dist}/*",
     "eslint": "eslint --max-warnings 0 --ext .jsx,.js,.tsx,.ts examples src",
     "lint:style": "stylelint --custom-syntax postcss-scss 'src/**/*.scss' --fix",
     "test": "jest --coverage",
-    "dev": "cd examples; webpack && webpack serve --hot --inline --host 0.0.0.0 --port 8000 --content-base ../docs"
+    "dev": "yarn run dev:scss-types && cd examples; webpack && webpack serve --hot --inline --host 0.0.0.0 --port 8000 --content-base ../docs",
+    "dev:scss-types": "typed-scss-modules src --watch --nameFormat none --exportType default"
   },
   "husky": {
     "hooks": {
@@ -110,6 +112,7 @@
     "stylelint-selector-bem-pattern": "^2.1.1",
     "stylelint-webpack-plugin": "^3.1.1",
     "ts-loader": "^9.2.6",
+    "typed-scss-modules": "^5.0.0",
     "typescript": "^4.4.4",
     "webpack": "^5.69.1",
     "webpack-cli": "^4.9.2",
