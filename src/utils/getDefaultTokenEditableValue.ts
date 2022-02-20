@@ -1,7 +1,7 @@
 /* eslint no-unused-vars: 0 */
 /* eslint @typescript-eslint/no-unused-vars: 0 */
 
-import type { InputValue } from '../types/mix';
+import type { InputString } from '../types/mix';
 import type { TokenValue, TokenMeta } from '../types/token';
 
 /**
@@ -26,7 +26,7 @@ import type { TokenValue, TokenMeta } from '../types/token';
 const getDefaultTokenEditableValue = <ValueType, ErrorType>(
   tokenValue: TokenValue<ValueType>,
   tokenMeta: TokenMeta<ErrorType>
-): InputValue => {
+): InputString => {
   return `${tokenValue}`;
 };
 

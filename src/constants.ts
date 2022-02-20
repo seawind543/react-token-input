@@ -1,4 +1,4 @@
-import type { InputValue, Separator } from './types/mix';
+import type { InputString, Separator } from './types/mix';
 import type { SpecialKeyDownSetting } from './types/specialKeyDown';
 
 /**
@@ -39,4 +39,4 @@ export const JS__TOKEN__DELETE_BUTTON__CLASS_NAME = 'js__token__delete-button';
 /**
  * The default init value of the `input`
  */
-export const DEFAULT_INPUT_INIT_VALUE: InputValue = '';
+export const DEFAULT_INPUT_INIT_VALUE: InputString = '';

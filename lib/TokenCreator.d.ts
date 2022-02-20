@@ -1,6 +1,6 @@
 import React from 'react';
 import type { HandleTokenInputFocus, HandleTokenInputBlur } from './hooks/useTokenInputFocusEffect';
-import type { InputValue, Separator } from './types/mix';
+import type { InputString, Separator } from './types/mix';
 import type { SpecialKeyDownConfig } from './types/specialKeyDown';
 import type { TokenValue } from './types/token';
 declare type Props<ValueType> = {
@@ -10,9 +10,9 @@ declare type Props<ValueType> = {
     onBlur: HandleTokenInputBlur;
     separators: Separator[];
     specialKeyDown: SpecialKeyDownConfig;
-    onInputValueChange: (newValue: InputValue, previousValue: InputValue) => void;
-    onPreprocess: (values: InputValue[]) => InputValue[];
-    onBuildTokenValue: (stringValue: InputValue) => TokenValue<ValueType>;
+    onInputValueChange: (newValue: InputString, previousValue: InputString) => void;
+    onPreprocess: (values: InputString[]) => InputString[];
+    onBuildTokenValue: (inputValue: InputString) => TokenValue<ValueType>;
     onNewTokenValuesAppend: (appendTokenValues: TokenValue<ValueType>[]) => void;
     onLastTokenDelete: () => void;
 };

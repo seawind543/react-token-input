@@ -1,5 +1,5 @@
 import React from 'react';
-import type { InputValue } from '../types/mix';
+import type { InputString } from '../types/mix';
 import type { TokenValue, TokenMeta } from '../types/token';
 declare type Props<ValueType, ErrorType> = {
     readOnly: boolean;
@@ -9,9 +9,9 @@ declare type Props<ValueType, ErrorType> = {
     onGetDisplayLabel: (tokenValue: TokenValue<ValueType>, tokenMeta: TokenMeta<ErrorType>) => string | React.ReactNode;
     onRenderDeleteButtonContent?: () => React.ReactNode;
     onIsEditable: (tokenValue: TokenValue<ValueType>, tokenMeta: TokenMeta<ErrorType>) => boolean;
-    onGetEditableValue: (tokenValue: TokenValue<ValueType>, tokenMeta: TokenMeta<ErrorType>) => InputValue;
+    onGetEditableValue: (tokenValue: TokenValue<ValueType>, tokenMeta: TokenMeta<ErrorType>) => InputString;
     onGetErrorMessage: (tokenValue: TokenValue<ValueType>, tokenMeta: TokenMeta<ErrorType>) => string | ErrorType;
-    onBuildTokenValue: (stringValue: InputValue) => TokenValue<ValueType>;
+    onBuildTokenValue: (inputValue: InputString) => TokenValue<ValueType>;
     onEditStart: () => void;
     onEditEnd: (newTokenValue?: TokenValue<ValueType>) => void;
     onDelete: () => void;

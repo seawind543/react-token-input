@@ -13,7 +13,7 @@ import type {
   HandleTokenInputBlur,
 } from './hooks/useTokenInputFocusEffect';
 
-import type { InputValue, Separator } from './types/mix';
+import type { InputString, Separator } from './types/mix';
 import type { SpecialKeyDownConfig } from './types/specialKeyDown';
 import type { TokenValue } from './types/token';
 
@@ -29,9 +29,12 @@ type Props<ValueType> = {
   separators: Separator[];
   specialKeyDown: SpecialKeyDownConfig;
 
-  onInputValueChange: (newValue: InputValue, previousValue: InputValue) => void;
-  onPreprocess: (values: InputValue[]) => InputValue[];
-  onBuildTokenValue: (stringValue: InputValue) => TokenValue<ValueType>;
+  onInputValueChange: (
+    newValue: InputString,
+    previousValue: InputString
+  ) => void;
+  onPreprocess: (values: InputString[]) => InputString[];
+  onBuildTokenValue: (inputValue: InputString) => TokenValue<ValueType>;
   onNewTokenValuesAppend: (appendTokenValues: TokenValue<ValueType>[]) => void;
   onLastTokenDelete: () => void;
 };
@@ -65,7 +68,7 @@ const TokenCreator = forwardRef(function TokenCreator<ValueType>(
   );
 
   const handleInputValueUpdate = useCallback(
-    (newValue: InputValue) => {
+    (newValue: InputString) => {
       // console.log(
       //   'handleInputValueUpdate; newValue',
       //   `${newValue}`,
@@ -79,7 +82,7 @@ const TokenCreator = forwardRef(function TokenCreator<ValueType>(
   );
 
   const handleTokensCreate = useCallback(
-    (inputString: InputValue) => {
+    (inputString: InputString) => {
       // console.log('handleTokensCreate', `${inputString}`);
 
       /**

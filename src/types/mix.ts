@@ -1,7 +1,7 @@
 /**
  * The user input (keyboard typing) value.
  */
-export type InputValue = string;
+export type InputString = string;
 
 /**
  * character to split the user input string

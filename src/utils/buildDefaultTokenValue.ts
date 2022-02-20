@@ -1,4 +1,4 @@
-import type { InputValue } from '../types/mix';
+import type { InputString } from '../types/mix';
 import type { TokenValue } from '../types/token';
 
 /**
@@ -21,8 +21,8 @@ import type { TokenValue } from '../types/token';
  * Description: The default token value
  */
 const buildDefaultTokenValue = (
-  inputValue: InputValue
-): TokenValue<InputValue> => {
+  inputValue: InputString
+): TokenValue<InputString> => {
   return inputValue.trim();
 };
 

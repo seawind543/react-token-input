@@ -18,7 +18,7 @@ import {
 
 import styles from '../styles.scss';
 
-import type { InputValue } from '../types/mix';
+import type { InputString } from '../types/mix';
 import type { TokenValue, TokenMeta } from '../types/token';
 
 const handleInlineEditClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -50,14 +50,14 @@ type Props<ValueType, ErrorType> = {
   onGetEditableValue: (
     tokenValue: TokenValue<ValueType>,
     tokenMeta: TokenMeta<ErrorType>
-  ) => InputValue;
+  ) => InputString;
 
   onGetErrorMessage: (
     tokenValue: TokenValue<ValueType>,
     tokenMeta: TokenMeta<ErrorType>
   ) => string | ErrorType;
 
-  onBuildTokenValue: (stringValue: InputValue) => TokenValue<ValueType>;
+  onBuildTokenValue: (inputValue: InputString) => TokenValue<ValueType>;
 
   onEditStart: () => void;
   onEditEnd: (newTokenValue?: TokenValue<ValueType>) => void;

@@ -4,7 +4,7 @@ import {
   DEFAULT_SPECIAL_KEY_DOWN_CONFIG,
 } from '../constants';
 
-import type { InputValue } from '../types/mix';
+import type { InputString } from '../types/mix';
 import type {
   SpecialKeyDownSetting,
   SpecialKeyDownConfig,
@@ -13,11 +13,11 @@ import type {
 
 type ParameterType = {
   specialKeyDownConfig: SpecialKeyDownConfig;
-  inputInitValue: InputValue;
-  inputValue: InputValue;
+  inputInitValue: InputString;
+  inputValue: InputString;
   onLastTokenDelete: () => void;
-  handleInputValueUpdate: (newInputValue: InputValue) => void;
-  handleTokensCreate: (inputValue: InputValue) => void;
+  handleInputValueUpdate: (newInputValue: InputString) => void;
+  handleTokensCreate: (inputValue: InputString) => void;
 };
 
 type HandleKeyDownParameterType = {
