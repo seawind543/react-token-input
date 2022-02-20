@@ -4,12 +4,12 @@ import {
   DEFAULT_SPECIAL_KEY_DOWN_CONFIG,
 } from '../constants';
 
+import type { InputValue } from '../types/mix';
 import type {
   SpecialKeyDownSetting,
   SpecialKeyDownConfig,
   KeyDownHandlerConfigOption,
-} from '../constants';
-import { InputValue } from '../types/token';
+} from '../types/specialKeyDown';
 
 type ParameterType = {
   specialKeyDownConfig: SpecialKeyDownConfig;

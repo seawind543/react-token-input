@@ -1,4 +1,3 @@
-export declare type InputValue = string;
 export declare type TokenValue<ValueType> = ValueType;
 export declare type TokenIndex = number;
 export declare type TokenMeta<ErrorType> = {

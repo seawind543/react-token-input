@@ -1,7 +1,8 @@
 /* eslint no-unused-vars: 0 */
 /* eslint @typescript-eslint/no-unused-vars: 0 */
 
-import type { InputValue, TokenValue, TokenMeta } from '../types/token';
+import type { InputValue } from '../types/mix';
+import type { TokenValue, TokenMeta } from '../types/token';
 
 /**
  * Default function for TokenInput to

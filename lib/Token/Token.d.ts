@@ -1,5 +1,6 @@
 import React from 'react';
-import type { TokenValue, TokenMeta, InputValue } from '../types/token';
+import type { InputValue } from '../types/mix';
+import type { TokenValue, TokenMeta } from '../types/token';
 declare type Props<ValueType, ErrorType> = {
     readOnly: boolean;
     tokenValue: TokenValue<ValueType>;

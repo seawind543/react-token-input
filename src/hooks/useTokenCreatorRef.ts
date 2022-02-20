@@ -1,12 +1,16 @@
 import { useRef, useCallback } from 'react';
+import AutosizeInput from 'react-input-autosize';
 
 function useTokenCreatorRef() {
-  const tokenCreatorRef = useRef<HTMLInputElement>(null);
+  // Cannot set AutosizeInput as ref, because it get error when ref={autosizeInputRef}
+  const tokenCreatorRef = useRef(null);
 
   const focusTokenCreator = useCallback(() => {
     // console.log('handleTokenCreatorFocus');
-    if (tokenCreatorRef && tokenCreatorRef.current) {
-      tokenCreatorRef.current.focus();
+    const autosizeInput = tokenCreatorRef?.current;
+    if (autosizeInput) {
+      // cast never type to AutosizeInput
+      (autosizeInput as AutosizeInput).getInput().focus();
     }
   }, []);
 

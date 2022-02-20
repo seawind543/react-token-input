@@ -1,9 +1,4 @@
 /**
- * The user input (keyboard typing) value.
- */
-export type InputValue = string;
-
-/**
  * Type: any (string | number | object | customize data structure)
  * Description: The tokenValue build by `onBuildTokenValue`
  */

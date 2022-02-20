@@ -1,10 +1,11 @@
-import { InputValue } from './types/token';
+import type { InputValue, Separator } from './types/mix';
+import type { SpecialKeyDownSetting } from './types/specialKeyDown';
 
 /**
  * The default `separators`
  * in the `TokenLabel` (onGetTokenDisplayLabel)
  */
-export const DEFAULT_SEPARATORS: string[] = [
+export const DEFAULT_SEPARATORS: Separator[] = [
   ',',
   ';',
   '\n', // for copy and paste
@@ -19,17 +20,6 @@ export const KEY_DOWN_HANDLER_CONFIG_OPTION = {
   OFF: 0,
   ON: 1,
 };
-
-export type KeyDownHandlerConfigOption =
-  typeof KEY_DOWN_HANDLER_CONFIG_OPTION[keyof typeof KEY_DOWN_HANDLER_CONFIG_OPTION];
-
-export type SpecialKeyDownConfig = {
-  onBackspace?: KeyDownHandlerConfigOption;
-  onTab?: KeyDownHandlerConfigOption;
-  onEnter?: KeyDownHandlerConfigOption;
-  onEscape?: KeyDownHandlerConfigOption;
-};
-export type SpecialKeyDownSetting = Required<SpecialKeyDownConfig>;
 
 // The default specialKeyDown settings
 export const DEFAULT_SPECIAL_KEY_DOWN_CONFIG: SpecialKeyDownSetting = {

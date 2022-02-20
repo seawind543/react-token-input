@@ -1,5 +1,5 @@
-import type { SpecialKeyDownConfig } from '../constants';
-import { InputValue } from '../types/token';
+import type { InputValue } from '../types/mix';
+import type { SpecialKeyDownConfig } from '../types/specialKeyDown';
 declare type ParameterType = {
     specialKeyDownConfig: SpecialKeyDownConfig;
     inputInitValue: InputValue;

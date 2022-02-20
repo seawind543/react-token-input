@@ -1,15 +1,48 @@
 import React, { useState, useMemo, useCallback, forwardRef } from 'react';
-import PropTypes from 'prop-types';
 import AutosizeInput from 'react-input-autosize';
-import keyDownHandlerProxy from './utils/keyDownHandlerProxy.ts';
 
-import usePredefinedKeyDownHandlers from './hooks/usePredefinedKeyDownHandlers.ts';
+import keyDownHandlerProxy from './utils/keyDownHandlerProxy';
+import usePredefinedKeyDownHandlers from './hooks/usePredefinedKeyDownHandlers';
 
-import { DEFAULT_INPUT_INIT_VALUE } from './constants.ts';
+import { DEFAULT_INPUT_INIT_VALUE } from './constants';
 
 import styles from './styles.scss';
 
-const TokenCreator = forwardRef((props, ref) => {
+import type {
+  HandleTokenInputFocus,
+  HandleTokenInputBlur,
+} from './hooks/useTokenInputFocusEffect';
+
+import type { InputValue, Separator } from './types/mix';
+import type { SpecialKeyDownConfig } from './types/specialKeyDown';
+import type { TokenValue } from './types/token';
+
+type Props<ValueType> = {
+  placeholder: string;
+  autoFocus: boolean;
+  onFocus: HandleTokenInputFocus;
+  onBlur: HandleTokenInputBlur;
+
+  /**
+   * Token
+   */
+  separators: Separator[];
+  specialKeyDown: SpecialKeyDownConfig;
+
+  onInputValueChange: (newValue: InputValue, previousValue: InputValue) => void;
+  onPreprocess: (values: InputValue[]) => InputValue[];
+  onBuildTokenValue: (stringValue: InputValue) => TokenValue<ValueType>;
+  onNewTokenValuesAppend: (appendTokenValues: TokenValue<ValueType>[]) => void;
+  onLastTokenDelete: () => void;
+};
+
+const TokenCreator = forwardRef(function TokenCreator<ValueType>(
+  props: Props<ValueType>,
+
+  // Cannot set AutosizeInput as ref, because it get error when ref={ref}
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ref: React.Ref<any>
+) {
   const {
     placeholder,
     autoFocus,
@@ -32,7 +65,7 @@ const TokenCreator = forwardRef((props, ref) => {
   );
 
   const handleInputValueUpdate = useCallback(
-    (newValue) => {
+    (newValue: InputValue) => {
       // console.log(
       //   'handleInputValueUpdate; newValue',
       //   `${newValue}`,
@@ -46,7 +79,7 @@ const TokenCreator = forwardRef((props, ref) => {
   );
 
   const handleTokensCreate = useCallback(
-    (inputString) => {
+    (inputString: InputValue) => {
       // console.log('handleTokensCreate', `${inputString}`);
 
       /**
@@ -63,7 +96,7 @@ const TokenCreator = forwardRef((props, ref) => {
       const inputValues = inputString
         .split(splitPattens)
         // Filter out empty
-        .filter((inputValue) => inputValue.trim().length > 0);
+        .filter((value) => value.trim().length > 0);
       const processedValues = onPreprocess(inputValues);
       const appendTokenValues = processedValues.map((value) => {
         return onBuildTokenValue(value);
@@ -109,7 +142,7 @@ const TokenCreator = forwardRef((props, ref) => {
     handleEnterKeyDown,
     handleEscapeKeyDown,
   } = usePredefinedKeyDownHandlers({
-    specialKeyDown,
+    specialKeyDownConfig: specialKeyDown,
     inputInitValue: DEFAULT_INPUT_INIT_VALUE,
     inputValue,
     onLastTokenDelete,
@@ -135,14 +168,11 @@ const TokenCreator = forwardRef((props, ref) => {
     ]
   );
 
-  const handleBlur = useCallback(
-    (e) => {
-      // console.log('TokenCreator > handleBlur');
-      handleTokensCreate(inputValue);
-      onBlur(e);
-    },
-    [handleTokensCreate, inputValue, onBlur]
-  );
+  const handleBlur = useCallback(() => {
+    // console.log('TokenCreator > handleBlur');
+    handleTokensCreate(inputValue);
+    onBlur();
+  }, [handleTokensCreate, inputValue, onBlur]);
 
   const handlePaste = useCallback(
     (e) => {
@@ -169,31 +199,8 @@ const TokenCreator = forwardRef((props, ref) => {
       />
     </div>
   );
-});
-
-/**
- * Fix the eslint 'react/display-name' issue with forwardRef
- * https://stackoverflow.com/questions/59716140/using-forwardref-with-proptypes-and-eslint
- */
-TokenCreator.displayName = 'TokenCreator';
-
-TokenCreator.propTypes = {
-  placeholder: PropTypes.string.isRequired,
-  autoFocus: PropTypes.bool.isRequired,
-  onFocus: PropTypes.func.isRequired,
-  onBlur: PropTypes.func.isRequired,
-
-  /**
-   * Token
-   */
-  separators: PropTypes.array.isRequired,
-  specialKeyDown: PropTypes.object.isRequired,
-
-  onInputValueChange: PropTypes.func.isRequired,
-  onPreprocess: PropTypes.func.isRequired,
-  onBuildTokenValue: PropTypes.func.isRequired,
-  onNewTokenValuesAppend: PropTypes.func.isRequired,
-  onLastTokenDelete: PropTypes.func.isRequired,
-};
+}) as <ValueType>(
+  p: Props<ValueType> & { ref: React.Ref<HTMLInputElement> }
+) => React.ReactElement | null;
 
 export default TokenCreator;

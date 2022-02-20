@@ -18,7 +18,8 @@ import {
 
 import styles from '../styles.scss';
 
-import type { TokenValue, TokenMeta, InputValue } from '../types/token';
+import type { InputValue } from '../types/mix';
+import type { TokenValue, TokenMeta } from '../types/token';
 
 const handleInlineEditClick = (e: React.MouseEvent<HTMLDivElement>) => {
   e.stopPropagation();

@@ -1,4 +1,5 @@
-import type { InputValue, TokenValue } from '../types/token';
+import type { InputValue } from '../types/mix';
+import type { TokenValue } from '../types/token';
 
 /**
  * Default function for TokenInput to
