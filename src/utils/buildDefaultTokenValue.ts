@@ -1,5 +1,5 @@
 import type { InputString } from '../types/mix';
-import type { TokenValue } from '../types/token';
+import type { DefaultValueType, TokenValue } from '../types/token';
 
 /**
  * Default function for TokenInput to
@@ -8,8 +8,8 @@ import type { TokenValue } from '../types/token';
  * buildDefaultTokenValue(inputValue)
  *
  * @ inputValue
- * Type: string
- * Description: The user input value.
+ * Type: InputString
+ * Description: The user input value // (A value split by TokenSeparator[])
  * Which is `one item` of the `user input string` split by the `separators`
  * Example:
  * - Input string "ABC, DEF" and separators is `,`
@@ -17,12 +17,12 @@ import type { TokenValue } from '../types/token';
  * buildDefaultTokenValue('ABC') and buildDefaultTokenValue('DEF')
  *
  * @ return
- * Type: string
- * Description: The default token value
+ * Type: TokenValue<DefaultValueType>
+ * Description: The DefaultValueType tokenValue
  */
 const buildDefaultTokenValue = (
   inputValue: InputString
-): TokenValue<InputString> => {
+): TokenValue<DefaultValueType> => {
   return inputValue.trim();
 };
 

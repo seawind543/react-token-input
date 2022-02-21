@@ -1,17 +1,18 @@
-import type { TokenIndex, OnTokenValuesChange } from '../types/token';
+import type { OnTokenValuesChange } from '../types/interfaces';
+import type { TokenValue, TokenIndex } from '../types/token';
 import type { SetTokenActivated } from './useTokenMetas';
 import type { HandleTokenInputFocus, HandleTokenInputBlur } from './useTokenInputFocusEffect';
-declare type HandleTokenEditStart = (targetIndex: TokenIndex) => void;
-declare type HandleTokenEditEnd<TokenValue> = (targetIndex: TokenIndex) => (newTokenValue?: TokenValue) => void;
+declare type HandleTokenEditStart = (targetIndex: TokenIndex) => () => void;
+declare type HandleTokenEditEnd<ValueType> = (targetIndex: TokenIndex) => (newTokenValue?: TokenValue<ValueType>) => void;
 declare type ParameterType<ValueType, ErrorType> = {
-    tokenValues: ValueType[];
+    tokenValues: TokenValue<ValueType>[];
     onTokenValuesChange: OnTokenValuesChange<ValueType>;
     setTokenActivated: SetTokenActivated<ErrorType>;
     handleTokenInputFocus: HandleTokenInputFocus;
     handleTokenInputBlur: HandleTokenInputBlur;
 };
-declare function useTokenEdit<TokenValue, ErrorType>({ tokenValues, onTokenValuesChange, setTokenActivated, handleTokenInputFocus, handleTokenInputBlur, }: ParameterType<TokenValue, ErrorType>): {
+declare function useTokenEdit<ValueType, ErrorType>({ tokenValues, onTokenValuesChange, setTokenActivated, handleTokenInputFocus, handleTokenInputBlur, }: ParameterType<ValueType, ErrorType>): {
     handleTokenEditStart: HandleTokenEditStart;
-    handleTokenEditEnd: HandleTokenEditEnd<TokenValue>;
+    handleTokenEditEnd: HandleTokenEditEnd<ValueType>;
 };
 export default useTokenEdit;

@@ -1,4 +1,5 @@
-import type { TokenValue, OnTokenValuesChange, TokenIndex } from '../types/token';
+import type { TokenValue, TokenIndex } from '../types/token';
+import type { OnTokenValuesChange } from '../types/interfaces';
 declare type ParameterType<ValueType> = {
     tokenValues: TokenValue<ValueType>[];
     onTokenValuesChange: OnTokenValuesChange<ValueType>;

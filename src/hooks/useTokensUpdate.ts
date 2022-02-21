@@ -2,7 +2,8 @@ import { useState, useLayoutEffect } from 'react';
 import useTokenMetas from './useTokenMetas';
 import buildTokenMeta from '../utils/buildTokenMeta';
 
-import type { TokenValue, OnTokenValueValidate } from '../types/token';
+import type { TokenValue } from '../types/token';
+import type { OnTokenValueValidate } from '../types/interfaces';
 
 type ParameterType<ValueType, ErrorType> = {
   tokenValues: TokenValue<ValueType>[];

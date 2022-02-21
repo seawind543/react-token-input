@@ -1,28 +1,29 @@
 /* eslint no-unused-vars: 0 */
 /* eslint @typescript-eslint/no-unused-vars: 0 */
 
-import type { TokenValue, TokenMeta } from '../types/token';
+import type { DefaultErrorType, TokenValue, TokenMeta } from '../types/token';
 
 /**
- * Default function for get errorMessage
+ * Default function to get the errorMessage
  * getDefaultTokenErrorMessage(tokenValue, tokenMeta)
  *
  * @ tokenValue
- * Type: any (string | number | object | customize data structure)
+ * Type: TokenValue<ValueType>
  * Description: The tokenValue build by `onBuildTokenValue`
  *
  * @ tokenMeta
- * Type: object
- * Description: The token meta
+ * Type: TokenMeta<ErrorType>
+ * Description: token's meta data
  *
  * @ return
- * Type: string
+ * Type: DefaultErrorType
  * Description: The error message to describe an invalid token
  */
 const getDefaultTokenErrorMessage = <ValueType, ErrorType>(
   tokenValue: TokenValue<ValueType>,
   tokenMeta: TokenMeta<ErrorType>
-): string | undefined => {
+): undefined | DefaultErrorType => {
+  // TODO: check can we compare type with DefaultErrorType
   if (typeof tokenMeta.error === 'string') {
     return tokenMeta.error;
   }

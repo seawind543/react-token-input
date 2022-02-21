@@ -1,11 +1,20 @@
-import type { InputString, Separator } from './types/mix';
-import type { SpecialKeyDownSetting } from './types/specialKeyDown';
+import type { InputString, TokenSeparator } from './types/mix';
+import type { SpecialKeyDownConfig } from './types/specialKeyDown';
 
 /**
- * The default `separators`
- * in the `TokenLabel` (onGetTokenDisplayLabel)
+ * An array of default `separators` characters
+ * to split the user input string into array.
+ *
+ * For example,
+ * Split the user input string `abc;def` into `['abc', 'def']`
+ * by separators `[';']`
+ *
+ * Note:
+ * It take the `String.prototype.split()` and `RegExp` to split the user input string.
+ * Make sure your customized separators could be used with `RegExp`.
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
  */
-export const DEFAULT_SEPARATORS: Separator[] = [
+export const DEFAULT_SEPARATORS: TokenSeparator[] = [
   ',',
   ';',
   '\n', // for copy and paste
@@ -22,7 +31,7 @@ export const KEY_DOWN_HANDLER_CONFIG_OPTION = {
 };
 
 // The default specialKeyDown settings
-export const DEFAULT_SPECIAL_KEY_DOWN_CONFIG: SpecialKeyDownSetting = {
+export const DEFAULT_SPECIAL_KEY_DOWN_CONFIG: Required<SpecialKeyDownConfig> = {
   onBackspace: KEY_DOWN_HANDLER_CONFIG_OPTION.ON,
   onTab: KEY_DOWN_HANDLER_CONFIG_OPTION.OFF,
   onEnter: KEY_DOWN_HANDLER_CONFIG_OPTION.ON,

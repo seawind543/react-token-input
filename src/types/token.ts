@@ -1,23 +1,30 @@
 /**
- * Type: any (string | number | object | customize data structure)
+ * The type which build-in default functions take
+ */
+export type DefaultValueType = string;
+export type DefaultErrorType = string;
+
+/**
+ * Type: any (string | number | object | customize data structure...etc)
  * Description: The tokenValue build by `onBuildTokenValue`
  */
-export type TokenValue<ValueType> = ValueType;
+export type TokenValue<ValueType> = DefaultValueType | ValueType;
 
+// The index of tokenValue in tokenValues
 export type TokenIndex = number;
 
 export type TokenMeta<ErrorType> = {
+  // A private key for render
   key: string;
+
+  // Specific the token is activated for `edit` or not
   activated: boolean;
-  error: ErrorType;
+
+  /**
+   * An object which specific the token's `validate status`
+   * (Customize data structure built by `onTokenValue Validate`)
+   * Could be `an error message` to display or error object
+   * `undefined` means the token is valid
+   */
+  error: undefined | DefaultErrorType | ErrorType;
 };
-
-export type OnTokenValueValidate<ValueType, ErrorType> = (
-  tokenValue: ValueType,
-  tokenIndex: TokenIndex,
-  tokenValues: ValueType[]
-) => TokenMeta<ErrorType>['error'];
-
-export type OnTokenValuesChange<ValueType> = (
-  modifiedTokenValues: ValueType[]
-) => void;

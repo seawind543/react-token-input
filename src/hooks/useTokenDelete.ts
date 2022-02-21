@@ -1,10 +1,7 @@
 import { useCallback } from 'react';
 
-import type {
-  TokenValue,
-  OnTokenValuesChange,
-  TokenIndex,
-} from '../types/token';
+import type { TokenValue, TokenIndex } from '../types/token';
+import type { OnTokenValuesChange } from '../types/interfaces';
 
 type ParameterType<ValueType> = {
   tokenValues: TokenValue<ValueType>[];

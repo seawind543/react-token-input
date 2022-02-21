@@ -1,17 +1,16 @@
-import React from 'react';
-import type { InputString } from '../types/mix';
 import type { TokenValue, TokenMeta } from '../types/token';
+import type { OnBuildTokenValue, OnGetTokenClassName, OnGetTokenDisplayLabel, OnRenderTokenDeleteButtonContent, OnIsTokenEditable, OnGetTokenEditableValue, OnGetTokenErrorMessage } from '../types/interfaces';
 declare type Props<ValueType, ErrorType> = {
     readOnly: boolean;
     tokenValue: TokenValue<ValueType>;
     tokenMeta: TokenMeta<ErrorType>;
-    onGetClassName: (tokenValue: TokenValue<ValueType>, tokenMeta: TokenMeta<ErrorType>) => string;
-    onGetDisplayLabel: (tokenValue: TokenValue<ValueType>, tokenMeta: TokenMeta<ErrorType>) => string | React.ReactNode;
-    onRenderDeleteButtonContent?: () => React.ReactNode;
-    onIsEditable: (tokenValue: TokenValue<ValueType>, tokenMeta: TokenMeta<ErrorType>) => boolean;
-    onGetEditableValue: (tokenValue: TokenValue<ValueType>, tokenMeta: TokenMeta<ErrorType>) => InputString;
-    onGetErrorMessage: (tokenValue: TokenValue<ValueType>, tokenMeta: TokenMeta<ErrorType>) => string | ErrorType;
-    onBuildTokenValue: (inputValue: InputString) => TokenValue<ValueType>;
+    onGetClassName: OnGetTokenClassName<ValueType, ErrorType>;
+    onGetDisplayLabel: OnGetTokenDisplayLabel<ValueType, ErrorType>;
+    onRenderDeleteButtonContent?: OnRenderTokenDeleteButtonContent;
+    onIsEditable: OnIsTokenEditable<ValueType, ErrorType>;
+    onGetEditableValue: OnGetTokenEditableValue<ValueType, ErrorType>;
+    onBuildTokenValue: OnBuildTokenValue<ValueType>;
+    onGetErrorMessage: OnGetTokenErrorMessage<ValueType, ErrorType>;
     onEditStart: () => void;
     onEditEnd: (newTokenValue?: TokenValue<ValueType>) => void;
     onDelete: () => void;

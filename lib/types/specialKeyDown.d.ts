@@ -6,4 +6,3 @@ export declare type SpecialKeyDownConfig = {
     onEnter?: KeyDownHandlerConfigOption;
     onEscape?: KeyDownHandlerConfigOption;
 };
-export declare type SpecialKeyDownSetting = Required<SpecialKeyDownConfig>;

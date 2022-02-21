@@ -12,16 +12,16 @@ import type { TokenValue, TokenMeta } from '../types/token';
  * getDefaultTokenEditableValue(tokenValue)
  *
  * @ tokenValue
- * Type: string | number | object | any
- * Description: The customize token data
+ * Type: TokenValue<ValueType>
+ * Description: The tokenValue build by `onBuildTokenValue`
  *
  * @ tokenMeta
- * Type: object
- * Description: The token meta
+ * Type: TokenMeta<ErrorType>
+ * Description: token's meta data
  *
  * @ return
- * Type: string
- * Description: The value for user to edit in an input
+ * Type: InputString
+ * Description: The value for end-user to `edit` in an input field
  */
 const getDefaultTokenEditableValue = <ValueType, ErrorType>(
   tokenValue: TokenValue<ValueType>,

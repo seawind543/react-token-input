@@ -13,9 +13,14 @@ import type {
   HandleTokenInputBlur,
 } from './hooks/useTokenInputFocusEffect';
 
-import type { InputString, Separator } from './types/mix';
+import type { InputString, TokenSeparator } from './types/mix';
 import type { SpecialKeyDownConfig } from './types/specialKeyDown';
 import type { TokenValue } from './types/token';
+import type {
+  OnInputValueChange,
+  OnPreprocess,
+  OnBuildTokenValue,
+} from './types/interfaces';
 
 type Props<ValueType> = {
   placeholder: string;
@@ -26,15 +31,12 @@ type Props<ValueType> = {
   /**
    * Token
    */
-  separators: Separator[];
+  separators: TokenSeparator[];
   specialKeyDown: SpecialKeyDownConfig;
 
-  onInputValueChange: (
-    newValue: InputString,
-    previousValue: InputString
-  ) => void;
-  onPreprocess: (values: InputString[]) => InputString[];
-  onBuildTokenValue: (inputValue: InputString) => TokenValue<ValueType>;
+  onInputValueChange: OnInputValueChange;
+  onPreprocess: OnPreprocess;
+  onBuildTokenValue: OnBuildTokenValue<ValueType>;
   onNewTokenValuesAppend: (appendTokenValues: TokenValue<ValueType>[]) => void;
   onLastTokenDelete: () => void;
 };

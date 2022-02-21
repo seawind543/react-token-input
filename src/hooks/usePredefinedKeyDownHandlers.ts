@@ -6,7 +6,6 @@ import {
 
 import type { InputString } from '../types/mix';
 import type {
-  SpecialKeyDownSetting,
   SpecialKeyDownConfig,
   KeyDownHandlerConfigOption,
 } from '../types/specialKeyDown';
@@ -50,7 +49,12 @@ function usePredefinedKeyDownHandlers({
   handleTokensCreate,
 }: ParameterType) {
   // console.log('specialKeyDownConfig', specialKeyDownConfig);
-  const { onBackspace, onTab, onEnter, onEscape }: SpecialKeyDownSetting = {
+  const {
+    onBackspace,
+    onTab,
+    onEnter,
+    onEscape,
+  }: Required<SpecialKeyDownConfig> = {
     ...DEFAULT_SPECIAL_KEY_DOWN_CONFIG,
     ...specialKeyDownConfig,
   };

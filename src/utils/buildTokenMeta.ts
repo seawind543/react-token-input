@@ -7,11 +7,11 @@ import type { TokenValue, TokenIndex, TokenMeta } from '../types/token';
  * buildTokenMeta(customizeError, tokenValue, tokenIndex)
  *
  * @ customizeError
- * Type: any
- * Description: The return of onTokenValueValidate
+ * Type: TokenMeta<ErrorType>['error']
+ * Description: The return of `onTokenValueValidate`
  *
  * @ tokenValue
- * Type: any (string | number | object | customize data structure)
+ * Type: TokenValue<ValueType>
  * Description: The tokenValue build by `onBuildTokenValue`
  *
  * @ tokenIndex
@@ -19,19 +19,8 @@ import type { TokenValue, TokenIndex, TokenMeta } from '../types/token';
  * Description: The array index for this tokenValue in tokenValues
  *
  * @ return
- * Type: object
+ * Type: TokenMeta<ErrorType>
  * Description: token's meta data
- *  {
- *    // A private key for render
- *    key: string,
- *
- *    // Specific the token is activated for `edit` or not
- *    activated: boolean,
- *
- *    // Customize data structure built by `onTokenValue Validate`
- *    // Specific the token's validate status or errorMessage
- *    error: any,
- *  }
  */
 const buildTokenMeta = <ValueType, ErrorType>(
   customizeError: TokenMeta<ErrorType>['error'],

@@ -18,8 +18,16 @@ import {
 
 import styles from '../styles.scss';
 
-import type { InputString } from '../types/mix';
 import type { TokenValue, TokenMeta } from '../types/token';
+import type {
+  OnBuildTokenValue,
+  OnGetTokenClassName,
+  OnGetTokenDisplayLabel,
+  OnRenderTokenDeleteButtonContent,
+  OnIsTokenEditable,
+  OnGetTokenEditableValue,
+  OnGetTokenErrorMessage,
+} from '../types/interfaces';
 
 const handleInlineEditClick = (e: React.MouseEvent<HTMLDivElement>) => {
   e.stopPropagation();
@@ -30,38 +38,17 @@ type Props<ValueType, ErrorType> = {
   tokenValue: TokenValue<ValueType>;
   tokenMeta: TokenMeta<ErrorType>;
 
-  onGetClassName: (
-    tokenValue: TokenValue<ValueType>,
-    tokenMeta: TokenMeta<ErrorType>
-  ) => string;
+  onGetClassName: OnGetTokenClassName<ValueType, ErrorType>;
+  onGetDisplayLabel: OnGetTokenDisplayLabel<ValueType, ErrorType>;
+  onRenderDeleteButtonContent?: OnRenderTokenDeleteButtonContent;
 
-  onGetDisplayLabel: (
-    tokenValue: TokenValue<ValueType>,
-    tokenMeta: TokenMeta<ErrorType>
-  ) => string | React.ReactNode;
-
-  onRenderDeleteButtonContent?: () => React.ReactNode;
-
-  onIsEditable: (
-    tokenValue: TokenValue<ValueType>,
-    tokenMeta: TokenMeta<ErrorType>
-  ) => boolean;
-
-  onGetEditableValue: (
-    tokenValue: TokenValue<ValueType>,
-    tokenMeta: TokenMeta<ErrorType>
-  ) => InputString;
-
-  onGetErrorMessage: (
-    tokenValue: TokenValue<ValueType>,
-    tokenMeta: TokenMeta<ErrorType>
-  ) => string | ErrorType;
-
-  onBuildTokenValue: (inputValue: InputString) => TokenValue<ValueType>;
+  onIsEditable: OnIsTokenEditable<ValueType, ErrorType>;
+  onGetEditableValue: OnGetTokenEditableValue<ValueType, ErrorType>;
+  onBuildTokenValue: OnBuildTokenValue<ValueType>;
+  onGetErrorMessage: OnGetTokenErrorMessage<ValueType, ErrorType>;
 
   onEditStart: () => void;
   onEditEnd: (newTokenValue?: TokenValue<ValueType>) => void;
-
   onDelete: () => void;
 };
 

@@ -1,32 +1,33 @@
 import { useCallback } from 'react';
 
-import type { TokenIndex, OnTokenValuesChange } from '../types/token';
+import type { OnTokenValuesChange } from '../types/interfaces';
+import type { TokenValue, TokenIndex } from '../types/token';
 import type { SetTokenActivated } from './useTokenMetas';
 import type {
   HandleTokenInputFocus,
   HandleTokenInputBlur,
 } from './useTokenInputFocusEffect';
 
-type HandleTokenEditStart = (targetIndex: TokenIndex) => void;
-type HandleTokenEditEnd<TokenValue> = (
+type HandleTokenEditStart = (targetIndex: TokenIndex) => () => void;
+type HandleTokenEditEnd<ValueType> = (
   targetIndex: TokenIndex
-) => (newTokenValue?: TokenValue) => void;
+) => (newTokenValue?: TokenValue<ValueType>) => void;
 
 type ParameterType<ValueType, ErrorType> = {
-  tokenValues: ValueType[];
+  tokenValues: TokenValue<ValueType>[];
   onTokenValuesChange: OnTokenValuesChange<ValueType>;
   setTokenActivated: SetTokenActivated<ErrorType>;
   handleTokenInputFocus: HandleTokenInputFocus;
   handleTokenInputBlur: HandleTokenInputBlur;
 };
 
-function useTokenEdit<TokenValue, ErrorType>({
+function useTokenEdit<ValueType, ErrorType>({
   tokenValues,
   onTokenValuesChange,
   setTokenActivated,
   handleTokenInputFocus,
   handleTokenInputBlur,
-}: ParameterType<TokenValue, ErrorType>) {
+}: ParameterType<ValueType, ErrorType>) {
   const handleTokenEditStart: HandleTokenEditStart = useCallback(
     (targetIndex: TokenIndex) => () => {
       // console.log('handleTokenEditStart; targetIndex', targetIndex);
@@ -36,7 +37,7 @@ function useTokenEdit<TokenValue, ErrorType>({
     [setTokenActivated, handleTokenInputFocus]
   );
 
-  const handleTokenEditEnd: HandleTokenEditEnd<TokenValue> = useCallback(
+  const handleTokenEditEnd: HandleTokenEditEnd<ValueType> = useCallback(
     (targetIndex: TokenIndex) => (newTokenValue) => {
       // console.log(
       //   'handleTokenEditEnd; targetIndex',
