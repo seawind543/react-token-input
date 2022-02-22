@@ -1,2 +1,2 @@
-declare const dummyFunction: () => void;
+declare const dummyFunction: () => undefined;
 export default dummyFunction;

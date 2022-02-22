@@ -134,7 +134,7 @@ export type OnTokenValueValidate<ValueType, ErrorType> = (
 export type OnGetTokenClassName<ValueType, ErrorType> = (
   tokenValue: TokenValue<ValueType>,
   tokenMeta: TokenMeta<ErrorType>
-) => string;
+) => undefined | string;
 
 /**
  * A callback function for getting displayable `label` for a token

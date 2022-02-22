@@ -6,7 +6,7 @@ export declare type OnPreprocess = (values: InputString[]) => InputString[];
 export declare type OnBuildTokenValue<ValueType> = (inputValue: InputString) => TokenValue<ValueType>;
 export declare type OnTokenValuesChange<ValueType> = (modifiedTokenValues: TokenValue<ValueType>[]) => void;
 export declare type OnTokenValueValidate<ValueType, ErrorType> = (tokenValue: TokenValue<ValueType>, tokenIndex: TokenIndex, tokenValues: TokenValue<ValueType>[]) => TokenMeta<ErrorType>['error'];
-export declare type OnGetTokenClassName<ValueType, ErrorType> = (tokenValue: TokenValue<ValueType>, tokenMeta: TokenMeta<ErrorType>) => string;
+export declare type OnGetTokenClassName<ValueType, ErrorType> = (tokenValue: TokenValue<ValueType>, tokenMeta: TokenMeta<ErrorType>) => undefined | string;
 export declare type OnGetTokenDisplayLabel<ValueType, ErrorType> = (tokenValue: TokenValue<ValueType>, tokenMeta: TokenMeta<ErrorType>) => InputString | React.ReactNode;
 export declare type OnRenderTokenDeleteButtonContent = () => React.ReactNode;
 export declare type OnIsTokenEditable<ValueType, ErrorType> = (tokenValue: TokenValue<ValueType>, tokenMeta: TokenMeta<ErrorType>) => boolean;

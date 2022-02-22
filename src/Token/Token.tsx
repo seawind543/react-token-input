@@ -42,7 +42,7 @@ type Props<ValueType, ErrorType> = {
   onGetDisplayLabel: OnGetTokenDisplayLabel<ValueType, ErrorType>;
   onRenderDeleteButtonContent?: OnRenderTokenDeleteButtonContent;
 
-  onIsEditable: OnIsTokenEditable<ValueType, ErrorType>;
+  onIsEditable?: OnIsTokenEditable<ValueType, ErrorType>;
   onGetEditableValue: OnGetTokenEditableValue<ValueType, ErrorType>;
   onBuildTokenValue: OnBuildTokenValue<ValueType>;
   onGetErrorMessage: OnGetTokenErrorMessage<ValueType, ErrorType>;
@@ -73,7 +73,7 @@ const Token = <ValueType, ErrorType>({
   const [inputValue, setInputValue] = useState(DEFAULT_INPUT_INIT_VALUE);
   const { activated, error } = tokenMeta;
   const isEditable = useMemo(() => {
-    return onIsEditable(tokenValue, tokenMeta);
+    return onIsEditable?.(tokenValue, tokenMeta) ?? true;
   }, [onIsEditable, tokenValue, tokenMeta]);
 
   const handleEditStart = useCallback(() => {

@@ -7,7 +7,7 @@ declare type Props<ValueType, ErrorType> = {
     onGetClassName: OnGetTokenClassName<ValueType, ErrorType>;
     onGetDisplayLabel: OnGetTokenDisplayLabel<ValueType, ErrorType>;
     onRenderDeleteButtonContent?: OnRenderTokenDeleteButtonContent;
-    onIsEditable: OnIsTokenEditable<ValueType, ErrorType>;
+    onIsEditable?: OnIsTokenEditable<ValueType, ErrorType>;
     onGetEditableValue: OnGetTokenEditableValue<ValueType, ErrorType>;
     onBuildTokenValue: OnBuildTokenValue<ValueType>;
     onGetErrorMessage: OnGetTokenErrorMessage<ValueType, ErrorType>;

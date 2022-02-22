@@ -1,4 +1,4 @@
-import TokenInput from './TokenInput';
+import TokenInput from './TokenInput.tsx';
 import {
   JS__TOKEN__DELETE_BUTTON__CLASS_NAME,
   KEY_DOWN_HANDLER_CONFIG_OPTION,
