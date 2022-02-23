@@ -76,6 +76,14 @@
   border-bottom: 1px solid #aaa;
 }
 
+.token-input-container .token-input-token-list .token-input-token.token-input-token--read-only:hover {
+  background-color: #cceaf5;
+}
+
+.token-input-container .token-input-token-list .token-input-token.token-input-token--read-only.token-input-token--error:hover {
+  background-color: #f9b5b5;
+}
+
 .token-input-container .token-input-token-list .token-input-token .token-input-token__label-wrapper {
   flex: 1 0 0;
   margin: 0 8px;
