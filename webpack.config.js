@@ -118,7 +118,9 @@ module.exports = {
     }),
     new StylelintPlugin({
       configFile: './stylelint.config.js',
-      files: ['*.scss'],
+      files: ['src/**/*.scss'],
+      customSyntax: 'postcss-scss',
+      exclude: ['node_modules', 'docs', 'dist', 'lib'],
     }),
     new MiniCssExtractPlugin({
       filename: `../dist/${publicName}.css`,

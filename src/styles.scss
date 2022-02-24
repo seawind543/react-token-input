@@ -2,192 +2,177 @@ $tokenBackgroundColor: #cceaf5;
 $errorTokenBackgroundColor: #f9b5b5;
 
 .container {
-    // https://www.paulirish.com/2012/box-sizing-border-box-ftw/
-    box-sizing: border-box;
-    *, 
-    *::before, 
-    *::after {
-        box-sizing: inherit;
+  // https://www.paulirish.com/2012/box-sizing-border-box-ftw/
+  box-sizing: border-box;
+  height: 200px;
+  padding: 4px;
+  overflow-y: auto;
+  cursor: text;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+  // remove focus border style of mac system
+  // outline: none;
+  outline: 0;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+
+  &.container--focused {
+    border-color: #0096cc;
+  }
+
+  &.container--errors {
+    border-color: #db3d44;
+  }
+
+  .autosized-wrapper {
+    float: left;
+    margin-right: 4px;
+    overflow: hidden;
+
+    input {
+      height: 32px;
+      padding: 0;
+      margin: 0;
+      color: #222;
+      cursor: text;
+      background: none;
+      border: 0;
+
+      // remove focus border style of mac system
+      // outline: none;
+      outline: 0;
+      box-shadow: none;
     }
-    
-    cursor: text;
-    overflow-y: auto;
-    height: 200px;
+  }
 
-    padding: 4px;
+  .token-list .token {
+    display: flex;
+    flex-flow: row nowrap;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    float: left;
+    max-width: 100%;
+    // TODO: Set minimum?
+    // min-width: 100px;
 
-    background-color: #fff;
-
-    border: 1px solid #ccc;
+    height: 32px;
+    padding: 0;
+    margin: 0 4px 4px 0;
+    line-height: 1.5;
+    color: #0096cc;
+    white-space: nowrap;
+    cursor: default;
+    background-color: $tokenBackgroundColor;
+    border: 0;
     border-radius: 4px;
 
-    // remove focuse border style of mac sysytem
-    // outline: none; 
-    outline: 0;
-
-    &.container--focused {
-        border-color: #0096cc;
-    }
-    &.container--errors {
-        border-color: #db3d44;
+    &:hover {
+      background-color: #e6f4fc;
     }
 
-    .token-list {
-        .token {
-            float: left;
+    &.token--error {
+      color: #db3d44;
+      background-color: $errorTokenBackgroundColor;
 
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content: center;
-            align-items: center;
-            align-content: center;
+      &:hover {
+        background-color: #ffdada;
+      }
+    }
 
-            max-width: 100%;
-            // TODO: Set minimum?
-            // min-width: 100px;
+    &.token--read-only {
+      // Hint: add customer read-only style here
+      &:hover {
+        background-color: $tokenBackgroundColor;
+      }
 
-            height: 32px;
-            line-height: 1.5;
-            white-space: nowrap;
-            
-            margin: 0 4px 4px 0;
-            padding: 0; 
-
-            border: 0;
-            border-radius: 4px;
-
-            color: #0096cc;
-            background-color: $tokenBackgroundColor;
-
-            cursor: default;
-
-            &:hover {
-                background-color: #e6f4fc;
-            }
-
-            &.token--error {
-                color: #db3d44;
-                background-color: $errorTokenBackgroundColor;
-
-                &:hover {
-                    background-color: #ffdada;
-                }
-            }
-
-            &.token--editable:hover {
-                cursor: pointer;
-            }
-
-            &.token--active {
-                .autosized-wrapper {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    align-content: center;
-
-                    margin: 4px 8px;
-                    height: 32px;
-
-                    input {
-                        height: auto;
-                        border-bottom: 1px solid #aaa;
-                    }
-                }
-            }
-            
-            &.token--read-only {
-                // Hint: add customer read-only style here    
-                &:hover {
-                    background-color: $tokenBackgroundColor;
-                }
-    
-                &.token--error {    
-                    &:hover {
-                        background-color: $errorTokenBackgroundColor;
-                    }
-                }
-            }
-            
-            .token__label-wrapper {
-                flex: 1 0 0;
-
-                margin: 0 8px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-            
-            .token__delete-button {
-                flex: 0 0 0;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                align-content: center;
-
-                height: 100%;
-                padding: 2px 8px;
-
-                cursor: pointer;
-                opacity: 0.3;
-
-                border-left: 1px solid #aaa;
-                border-radius: 0 4px 4px 0;
-
-                &:hover {
-                    opacity: 1;
-                    background-color: #aaa;
-
-                    .token__delete-button__close-icon {
-                        &:before,
-                        &:after {
-                            border-color: #fff;
-                        }
-                    }
-                }
-
-                .token__delete-button__close-icon {
-                    width: 14px;
-                    height: 14px;
-                    position: relative;
-
-                    &:before,
-                    &:after {
-                        content: '';
-                        height: 14px;
-                        left: 6px;
-                        border-left: 2px solid #222;
-                        position: absolute;
-                    }
-                    &:before {
-                        transform: rotate(-45deg);
-                    }
-                    &:after {
-                        transform: rotate(45deg);
-                    }
-                }
-            }
+      &.token--error {
+        &:hover {
+          background-color: $errorTokenBackgroundColor;
         }
+      }
     }
 
-    .autosized-wrapper {
-        float: left;
-        overflow: hidden;
-        margin-right: 4px;
-        
+    &.token--editable:hover {
+      cursor: pointer;
+    }
+
+    &.token--active {
+      .autosized-wrapper {
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        height: 32px;
+        margin: 4px 8px;
+
         input {
-            height: 32px;
-            margin: 0;
-            padding: 0;
-
-            border: 0;
-
-            // remove focuse border style of mac sysytem
-            // outline: none; 
-            outline: 0;
-
-            cursor: text;
-            box-shadow: none;
-            background: none;
-            color: #222;
+          height: auto;
+          border-bottom: 1px solid #aaa;
         }
+      }
     }
+
+    .token__label-wrapper {
+      flex: 1 0 0;
+      margin: 0 8px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .token__delete-button {
+      display: flex;
+      flex: 0 0 0;
+      align-content: center;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 2px 8px;
+      cursor: pointer;
+      border-left: 1px solid #aaa;
+      border-radius: 0 4px 4px 0;
+      opacity: 0.3;
+
+      .delete-button__close-icon {
+        position: relative;
+        width: 14px;
+        height: 14px;
+
+        &::before,
+        &::after {
+          position: absolute;
+          left: 6px;
+          height: 14px;
+          content: '';
+          border-left: 2px solid #222;
+        }
+
+        &::before {
+          transform: rotate(-45deg);
+        }
+
+        &::after {
+          transform: rotate(45deg);
+        }
+      }
+
+      &:hover {
+        background-color: #aaa;
+        opacity: 1;
+
+        .delete-button__close-icon {
+          &::before,
+          &::after {
+            border-color: #fff;
+          }
+        }
+      }
+    }
+  }
 }

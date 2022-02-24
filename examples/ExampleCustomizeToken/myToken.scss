@@ -1,18 +1,18 @@
 .customize-token {
   display: inline-block;
-  border: 1px solid  #555;
+  padding: 4px;
   margin-right: 4px;
   margin-bottom: 4px;
-  padding: 4px;
+  border: 1px solid #555;
 
   .token-body {
     display: flex;
 
     .display-label {
       max-width: 300px;
-      white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .input {
@@ -21,9 +21,9 @@
   }
 
   .button-icon {
+    margin-right: 4px;
     cursor: pointer;
     opacity: 0.3;
-    margin-right: 4px;
 
     &:hover {
       opacity: 1;
@@ -37,10 +37,10 @@
   &.error,
   &.pass {
     .message {
+      display: flex;
+      padding-top: 4px;
       margin-top: 4px;
       border-top: 1px dashed gray;
-      padding-top: 4px;
-      display: flex;
 
       .status-icon {
         margin-right: 4px;
@@ -60,5 +60,3 @@
     }
   }
 }
-
-
