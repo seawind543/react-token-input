@@ -9,12 +9,14 @@
     "lib"
   ],
   "scripts": {
-    "prepublish": "yarn run eslint && yarn run lint:style && yarn run test && yarn run clean && yarn run build:scss-types && yarn run build && yarn run build:examples",
+    "prepublish": "yarn run lint && yarn run test && yarn run build",
+    "build": "yarn run build:clean && yarn run build:scss-types && yarn run build:webpack && yarn run build:examples",
+    "build:clean": "rm -rf {lib,dist}/*",
     "build:scss-types": "typed-scss-modules src --nameFormat none --exportType default",
-    "build": "webpack",
+    "build:webpack": "webpack",
     "build:examples": "cd examples; webpack",
-    "clean": "rm -rf {lib,dist}/*",
-    "eslint": "eslint --max-warnings 0 --ext .jsx,.js,.tsx,.ts examples src",
+    "lint": "yarn run lint:eslint && yarn run lint:style",
+    "lint:eslint": "eslint --max-warnings 0 --ext .jsx,.js,.tsx,.ts examples src",
     "lint:style": "stylelint --custom-syntax postcss-scss 'src/**/*.scss' --fix",
     "test": "jest --coverage",
     "dev": "cd examples; webpack && webpack serve --hot --inline --host 0.0.0.0 --port 8000 --content-base ../docs"
