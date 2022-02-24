@@ -89,8 +89,9 @@ module.exports = {
       eslintPath: require.resolve('eslint'),
     }),
     new StylelintPlugin({
-      configFile: './stylelint.config.js',
-      files: ['src/**/*.scss'],
+      files: ['**/*.scss'],
+      customSyntax: 'postcss-scss',
+      exclude: ['node_modules', 'docs', 'dist', 'lib'],
     }),
     new HtmlWebpackPlugin({
       template: 'index.html',

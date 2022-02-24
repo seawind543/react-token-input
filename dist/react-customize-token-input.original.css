@@ -1,10 +1,10 @@
 /*! react-customize-token-input v1.6.0 | (c) 2022 Mark Lin. | MIT | https://github.com/seawind543/react-token-input */
 .token-input-container {
   box-sizing: border-box;
-  cursor: text;
-  overflow-y: auto;
   height: 200px;
   padding: 4px;
+  overflow-y: auto;
+  cursor: text;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -25,24 +25,42 @@
   border-color: #db3d44;
 }
 
-.token-input-container .token-input-token-list .token-input-token {
+.token-input-container .token-input-autosized-wrapper {
   float: left;
+  margin-right: 4px;
+  overflow: hidden;
+}
+
+.token-input-container .token-input-autosized-wrapper input {
+  height: 32px;
+  padding: 0;
+  margin: 0;
+  color: #222;
+  cursor: text;
+  background: none;
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+}
+
+.token-input-container .token-input-token-list .token-input-token {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: center;
-  align-items: center;
   align-content: center;
+  align-items: center;
+  justify-content: center;
+  float: left;
   max-width: 100%;
   height: 32px;
-  line-height: 1.5;
-  white-space: nowrap;
-  margin: 0 4px 4px 0;
   padding: 0;
+  margin: 0 4px 4px 0;
+  line-height: 1.5;
+  color: #0096cc;
+  white-space: nowrap;
+  cursor: default;
+  background-color: #cceaf5;
   border: 0;
   border-radius: 4px;
-  color: #0096cc;
-  background-color: #cceaf5;
-  cursor: default;
 }
 
 .token-input-container .token-input-token-list .token-input-token:hover {
@@ -58,30 +76,30 @@
   background-color: #ffdada;
 }
 
-.token-input-container .token-input-token-list .token-input-token.token-input-token--editable:hover {
-  cursor: pointer;
-}
-
-.token-input-container .token-input-token-list .token-input-token.token-input-token--active .token-input-autosized-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  margin: 4px 8px;
-  height: 32px;
-}
-
-.token-input-container .token-input-token-list .token-input-token.token-input-token--active .token-input-autosized-wrapper input {
-  height: auto;
-  border-bottom: 1px solid #aaa;
-}
-
 .token-input-container .token-input-token-list .token-input-token.token-input-token--read-only:hover {
   background-color: #cceaf5;
 }
 
 .token-input-container .token-input-token-list .token-input-token.token-input-token--read-only.token-input-token--error:hover {
   background-color: #f9b5b5;
+}
+
+.token-input-container .token-input-token-list .token-input-token.token-input-token--editable:hover {
+  cursor: pointer;
+}
+
+.token-input-container .token-input-token-list .token-input-token.token-input-token--active .token-input-autosized-wrapper {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  margin: 4px 8px;
+}
+
+.token-input-container .token-input-token-list .token-input-token.token-input-token--active .token-input-autosized-wrapper input {
+  height: auto;
+  border-bottom: 1px solid #aaa;
 }
 
 .token-input-container .token-input-token-list .token-input-token .token-input-token__label-wrapper {
@@ -92,66 +110,48 @@
 }
 
 .token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button {
-  flex: 0 0 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex: 0 0 0;
   align-content: center;
+  align-items: center;
+  justify-content: center;
   height: 100%;
   padding: 2px 8px;
   cursor: pointer;
-  opacity: 0.3;
   border-left: 1px solid #aaa;
   border-radius: 0 4px 4px 0;
+  opacity: 0.3;
 }
 
-.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button:hover {
-  opacity: 1;
-  background-color: #aaa;
-}
-
-.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button:hover .token-input-token__delete-button__close-icon:before, .token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button:hover .token-input-token__delete-button__close-icon:after {
-  border-color: #fff;
-}
-
-.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-token__delete-button__close-icon {
+.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-delete-button__close-icon {
+  position: relative;
   width: 14px;
   height: 14px;
-  position: relative;
 }
 
-.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-token__delete-button__close-icon:before, .token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-token__delete-button__close-icon:after {
-  content: '';
-  height: 14px;
-  left: 6px;
-  border-left: 2px solid #222;
+.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-delete-button__close-icon::before, .token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-delete-button__close-icon::after {
   position: absolute;
+  left: 6px;
+  height: 14px;
+  content: '';
+  border-left: 2px solid #222;
 }
 
-.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-token__delete-button__close-icon:before {
+.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-delete-button__close-icon::before {
   transform: rotate(-45deg);
 }
 
-.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-token__delete-button__close-icon:after {
+.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-delete-button__close-icon::after {
   transform: rotate(45deg);
 }
 
-.token-input-container .token-input-autosized-wrapper {
-  float: left;
-  overflow: hidden;
-  margin-right: 4px;
+.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button:hover {
+  background-color: #aaa;
+  opacity: 1;
 }
 
-.token-input-container .token-input-autosized-wrapper input {
-  height: 32px;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  cursor: text;
-  box-shadow: none;
-  background: none;
-  color: #222;
+.token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button:hover .token-input-delete-button__close-icon::before, .token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button:hover .token-input-delete-button__close-icon::after {
+  border-color: #fff;
 }
 
 

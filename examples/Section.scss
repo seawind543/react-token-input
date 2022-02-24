@@ -1,8 +1,8 @@
 .section {
-  background: #fff;
-  border: 1px solid #d6d6d6;
   position: relative;
   z-index: 1;
+  background: #fff;
+  border: 1px solid #d6d6d6;
   transition: height 0.3s ease;
 }
 
@@ -11,13 +11,13 @@
 }
 
 .section-content {
-  padding: 0 16px 16px;
   position: static;
-  height: 100%;
   top: 0;
+  right: 0;
   bottom: 0;
   left: 0;
-  right: 0;
+  height: 100%;
+  padding: 0 16px 16px;
 }
 
 @media screen and (max-width: 1023px) {
