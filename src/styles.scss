@@ -1,3 +1,6 @@
+$tokenBackgroundColor: #cceaf5;
+$errorTokenBackgroundColor: #f9b5b5;
+
 .container {
     // https://www.paulirish.com/2012/box-sizing-border-box-ftw/
     box-sizing: border-box;
@@ -25,7 +28,7 @@
     &.container--focused {
         border-color: #0096cc;
     }
-    &&.container--errors {
+    &.container--errors {
         border-color: #db3d44;
     }
 
@@ -54,7 +57,7 @@
             border-radius: 4px;
 
             color: #0096cc;
-            background-color: #cceaf5;
+            background-color: $tokenBackgroundColor;
 
             cursor: default;
 
@@ -64,7 +67,7 @@
 
             &.token--error {
                 color: #db3d44;
-                background-color: #f9b5b5;
+                background-color: $errorTokenBackgroundColor;
 
                 &:hover {
                     background-color: #ffdada;
@@ -92,11 +95,18 @@
                 }
             }
             
-            // &.token--read-only {
-            //     .token__label-wrapper {
-            //         max-width: 100%;
-            //     }
-            // }
+            &.token--read-only {
+                // Hint: add customer read-only style here    
+                &:hover {
+                    background-color: $tokenBackgroundColor;
+                }
+    
+                &.token--error {    
+                    &:hover {
+                        background-color: $errorTokenBackgroundColor;
+                    }
+                }
+            }
             
             .token__label-wrapper {
                 flex: 1 0 0;

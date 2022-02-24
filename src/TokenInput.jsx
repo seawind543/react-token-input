@@ -17,7 +17,7 @@ import getDefaultTokenErrorMessage from './utils/getDefaultTokenErrorMessage';
 
 import { DEFAULT_SEPARATORS } from './constants';
 
-import styles from './styles.styl';
+import styles from './styles.scss';
 
 const TokenInput = ({
   className,

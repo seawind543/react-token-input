@@ -7,7 +7,7 @@ import TokenInput from '../../src';
 import CopyAnchor from '../share/CopyAnchor';
 import { DEMO_VALUES } from '../demoValues';
 
-import style from './index.styl';
+import style from './index.scss';
 
 const handleRenderTokenDeleteButtonContent = () => {
   // Google font material-icons

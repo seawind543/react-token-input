@@ -7,7 +7,7 @@ import usePredefinedKeyDownHandlers from './hooks/usePredefinedKeyDownHandlers';
 
 import { DEFAULT_INPUT_INIT_VALUE } from './constants';
 
-import styles from './styles.styl';
+import styles from './styles.scss';
 
 const TokenCreator = forwardRef((props, ref) => {
   const {

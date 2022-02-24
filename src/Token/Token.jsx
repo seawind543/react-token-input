@@ -16,7 +16,7 @@ import {
 
 import DeleteButton from './DeleteButton';
 
-import styles from '../styles.styl';
+import styles from '../styles.scss';
 
 const handleInlineEditClick = (e) => {
   e.stopPropagation();

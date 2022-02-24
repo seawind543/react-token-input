@@ -8,7 +8,7 @@ import CopyAnchor from '../share/CopyAnchor';
 
 import { DEMO_VALUES } from '../demoValues';
 
-import style from './index.styl';
+import style from './index.scss';
 
 const handleGetTokenDisplayLabel = (tokenValue, tokenMeta) => {
   // Google font material-icons

@@ -3,9 +3,9 @@ const webpack = require('webpack');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const StylelintPlugin = require('stylelint-webpack-plugin');
+const postcssPresetEnv = require('postcss-preset-env');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const nib = require('nib');
 const pkg = require('./package.json');
 
 const publicName = pkg.name; // package name
@@ -66,7 +66,7 @@ module.exports = {
         },
       },
       {
-        test: /\.styl$/,
+        test: /\.s[ac]ss$/i,
         // extract-text-webpack-plugin not support
         // Apply mini-css-extract-plugin instead
         // https://bbs.huaweicloud.com/blogs/detail/241981
@@ -77,22 +77,26 @@ module.exports = {
           {
             loader: 'css-loader', // translates CSS into CommonJS
             options: {
-              sourceMap: false,
-              importLoaders: 1,
               modules: {
                 localIdentName: `${localClassPrefix}-[local]`,
               },
             },
           },
           {
-            loader: 'stylus-loader', // compiles Stylus to CSS
+            loader: 'postcss-loader',
             options: {
-              stylusOptions: {
-                use: [nib()],
-                import: ['nib'],
-                compress: false, // Avoid minify
-                sourceMap: false,
+              postcssOptions: {
+                plugins: [postcssPresetEnv(/* pluginOptions */)],
               },
+            },
+          },
+          {
+            loader: 'sass-loader', // compiles SASS to CSS
+            options: {
+              sassOptions: {
+                outputStyle: 'expanded',
+              },
+              sourceMap: false,
             },
           },
         ],
@@ -114,7 +118,7 @@ module.exports = {
     }),
     new StylelintPlugin({
       configFile: './stylelint.config.js',
-      files: ['*.styl'],
+      files: ['*.scss'],
     }),
     new MiniCssExtractPlugin({
       filename: `../dist/${publicName}.css`,
