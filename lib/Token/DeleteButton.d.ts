@@ -1,6 +1,6 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 declare type Props = {
-    onRenderContent?: () => React.ReactNode;
+    onRenderContent?: () => ReactNode;
 };
 declare const DeleteButton: ({ onRenderContent }: Props) => JSX.Element;
 export default DeleteButton;

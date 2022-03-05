@@ -66,7 +66,7 @@ Note: Sources code of Examples in the folder `examples`
 ```JavaScript
 type Props<ValueType, ErrorType> = {
   // Assign style to the TokenInput
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 
   // Assign className to the TokenInput
   className?: string;
@@ -210,7 +210,7 @@ type Props<ValueType, ErrorType> = {
    * customizeTokenComponent={MyToken}
    */
   // TODO: make detail type for props
-  customizeTokenComponent?: React.FunctionComponent;
+  customizeTokenComponent?: FunctionComponent<TokenProps<ValueType, ErrorType>>;
 
   /**
    * A callback function to getting customizes `className` to set on a `token`

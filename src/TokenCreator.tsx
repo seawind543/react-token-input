@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useCallback, forwardRef } from 'react';
+import type { ReactElement, Ref } from 'react';
 import AutosizeInput from 'react-input-autosize';
 
 import keyDownHandlerProxy from './utils/keyDownHandlerProxy';
@@ -64,7 +65,7 @@ const TokenCreator = forwardRef(function TokenCreator<ValueType>(
 
   // Cannot set AutosizeInput as ref, because it get error when ref={ref}
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ref: React.Ref<any>
+  ref: Ref<any>
 ) {
   const {
     placeholder,
@@ -224,7 +225,7 @@ const TokenCreator = forwardRef(function TokenCreator<ValueType>(
     </div>
   );
 }) as <ValueType>(
-  p: Props<ValueType> & { ref: React.Ref<HTMLInputElement> }
-) => React.ReactElement | null;
+  p: Props<ValueType> & { ref: Ref<HTMLInputElement> }
+) => ReactElement | null;
 
 export default TokenCreator;

@@ -5,6 +5,7 @@ import React, {
   useRef,
   useEffect,
 } from 'react';
+import type { MouseEvent } from 'react';
 import classNames from 'classnames';
 import AutosizeInput from 'react-input-autosize';
 import keyDownHandlerProxy from '../utils/keyDownHandlerProxy';
@@ -29,11 +30,11 @@ import type {
   OnGetTokenErrorMessage,
 } from '../types/interfaces';
 
-const handleInlineEditClick = (e: React.MouseEvent<HTMLDivElement>) => {
+const handleInlineEditClick = (e: MouseEvent<HTMLDivElement>) => {
   e.stopPropagation();
 };
 
-type Props<ValueType, ErrorType> = {
+export type Props<ValueType, ErrorType> = {
   // Same as props of TokenInput
   readOnly: boolean;
   // tokenValue of the token

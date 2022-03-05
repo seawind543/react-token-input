@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { InputString } from './mix';
 import { TokenIndex, TokenValue, TokenMeta } from './token';
 
@@ -159,7 +160,7 @@ export type OnGetTokenClassName<ValueType, ErrorType> = (
 export type OnGetTokenDisplayLabel<ValueType, ErrorType> = (
   tokenValue: TokenValue<ValueType>,
   tokenMeta: TokenMeta<ErrorType>
-) => InputString | React.ReactNode;
+) => InputString | ReactNode;
 
 /**
  * A callback function to render content of the delete button of token
@@ -173,7 +174,7 @@ export type OnGetTokenDisplayLabel<ValueType, ErrorType> = (
  * Description: The content of the delete button of the token.
  * By default, TokenInput render a build-in `x` icon
  */
-export type OnRenderTokenDeleteButtonContent = () => React.ReactNode;
+export type OnRenderTokenDeleteButtonContent = () => ReactNode;
 
 /**
  * A callback function to determine whether the token is `inline editable`.

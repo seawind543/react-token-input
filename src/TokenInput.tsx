@@ -1,7 +1,9 @@
 import React, { useCallback } from 'react';
+import type { CSSProperties, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import TokenCreator from './TokenCreator';
 import Token from './Token';
+import type { Props as TokenProps } from './Token';
 
 import useTokenInputFocusEffect from './hooks/useTokenInputFocusEffect';
 import useTokenCreatorRef from './hooks/useTokenCreatorRef';
@@ -42,7 +44,7 @@ import type { TokenValue } from './types/token';
 
 type Props<ValueType, ErrorType> = {
   // Assign style to the TokenInput
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 
   // Assign className to the TokenInput
   className?: string;
@@ -208,7 +210,7 @@ type Props<ValueType, ErrorType> = {
    * customizeTokenComponent={MyToken}
    */
   // TODO: make detail type for props
-  customizeTokenComponent?: React.FunctionComponent;
+  customizeTokenComponent?: FunctionComponent<TokenProps<ValueType, ErrorType>>;
 
   /**
    * A callback function to getting customizes `className` to set on a `token`

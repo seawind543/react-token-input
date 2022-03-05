@@ -1,6 +1,6 @@
 import type { TokenValue, TokenMeta } from '../types/token';
 import type { OnBuildTokenValue, OnGetTokenClassName, OnGetTokenDisplayLabel, OnRenderTokenDeleteButtonContent, OnGetIsTokenEditable, OnGetTokenEditableValue, OnGetTokenErrorMessage } from '../types/interfaces';
-declare type Props<ValueType, ErrorType> = {
+export declare type Props<ValueType, ErrorType> = {
     readOnly: boolean;
     tokenValue: TokenValue<ValueType>;
     tokenMeta: TokenMeta<ErrorType>;
