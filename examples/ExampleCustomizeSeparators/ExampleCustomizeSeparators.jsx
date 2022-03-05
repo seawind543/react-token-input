@@ -29,7 +29,7 @@ const ExampleCustomizeSeparators = () => {
       </p>
       <p>
         Hint: Following input string will be separate into 3 tokens. Copy and
-        Paste to see result.
+        Paste to see the result.
       </p>
       <pre>aaa+bbbb cc</pre>
 

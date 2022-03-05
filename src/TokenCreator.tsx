@@ -23,21 +23,39 @@ import type {
 } from './types/interfaces';
 
 type Props<ValueType> = {
-  placeholder: string;
+  // Same as props of TokenInput
+  placeholder?: string;
+  // Same as props of TokenInput
   autoFocus: boolean;
+
   onFocus: HandleTokenInputFocus;
   onBlur: HandleTokenInputBlur;
 
   /**
    * Token
    */
+  // Same as props of TokenInput
   separators: TokenSeparator[];
+  // Same as props of TokenInput
   specialKeyDown: SpecialKeyDownConfig;
 
-  onInputValueChange: OnInputValueChange;
+  // Same as props of TokenInput
+  onInputValueChange?: OnInputValueChange;
+  // Same as props of TokenInput
   onPreprocess: OnPreprocess;
+  // Same as props of TokenInput
   onBuildTokenValue: OnBuildTokenValue<ValueType>;
+
+  /**
+   * A callback function, which should be `invoked`
+   * when want to append a new token to the end of the token list.
+   */
   onNewTokenValuesAppend: (appendTokenValues: TokenValue<ValueType>[]) => void;
+
+  /**
+   * A callback function, which should be `invoked`
+   * when want to `delete` the last token from the token list.
+   */
   onLastTokenDelete: () => void;
 };
 
@@ -78,7 +96,8 @@ const TokenCreator = forwardRef(function TokenCreator<ValueType>(
       //   `${inputValue}`
       // );
       setInputValue(newValue);
-      onInputValueChange(newValue, inputValue);
+
+      onInputValueChange?.(newValue, inputValue);
     },
     [onInputValueChange, inputValue, setInputValue]
   );

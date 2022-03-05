@@ -17,7 +17,7 @@ export type TokenMeta<ErrorType> = {
   // A private key for render
   key: string;
 
-  // Specific the token is activated for `edit` or not
+  // Specific the token is `editing` or not
   activated: boolean;
 
   /**

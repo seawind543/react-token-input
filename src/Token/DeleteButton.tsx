@@ -11,8 +11,6 @@ type Props = {
 };
 
 const DeleteButton = ({ onRenderContent }: Props) => {
-  const isCustomizeContent = typeof onRenderContent === 'function';
-
   return (
     <span
       role="button"
@@ -22,8 +20,7 @@ const DeleteButton = ({ onRenderContent }: Props) => {
       )}
       aria-hidden="true"
     >
-      {isCustomizeContent && onRenderContent()}
-      {!isCustomizeContent && <CloseIcon />}
+      {onRenderContent?.() ?? <CloseIcon />}
     </span>
   );
 };

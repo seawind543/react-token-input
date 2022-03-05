@@ -1,7 +1,7 @@
 import React from 'react';
 import type { TokenSeparator } from './types/mix';
 import type { SpecialKeyDownConfig } from './types/specialKeyDown';
-import type { OnInputValueChange, OnPreprocess, OnBuildTokenValue, OnTokenValueValidate, OnTokenValuesChange, OnGetTokenClassName, OnGetTokenDisplayLabel, OnRenderTokenDeleteButtonContent, OnIsTokenEditable, OnGetTokenEditableValue, OnGetTokenErrorMessage } from './types/interfaces';
+import type { OnInputValueChange, OnPreprocess, OnBuildTokenValue, OnTokenValueValidate, OnTokenValuesChange, OnGetTokenClassName, OnGetTokenDisplayLabel, OnRenderTokenDeleteButtonContent, OnGetIsTokenEditable, OnGetTokenEditableValue, OnGetTokenErrorMessage } from './types/interfaces';
 import type { TokenValue } from './types/token';
 declare type Props<ValueType, ErrorType> = {
     style?: React.CSSProperties;
@@ -21,9 +21,9 @@ declare type Props<ValueType, ErrorType> = {
     onGetTokenClassName?: OnGetTokenClassName<ValueType, ErrorType>;
     onGetTokenDisplayLabel?: OnGetTokenDisplayLabel<ValueType, ErrorType>;
     onRenderTokenDeleteButtonContent?: OnRenderTokenDeleteButtonContent;
-    onIsTokenEditable?: OnIsTokenEditable<ValueType, ErrorType>;
+    onGetIsTokenEditable?: OnGetIsTokenEditable<ValueType, ErrorType>;
     onGetTokenEditableValue?: OnGetTokenEditableValue<ValueType, ErrorType>;
     onGetTokenErrorMessage?: OnGetTokenErrorMessage<ValueType, ErrorType>;
 };
-declare const TokenInput: <ValueType, ErrorType>({ className, readOnly, autoFocus, placeholder, tokenValues, onBuildTokenValue, onTokenValuesChange, customizeTokenComponent, onGetTokenClassName, onGetTokenDisplayLabel, onRenderTokenDeleteButtonContent, onIsTokenEditable, onGetTokenEditableValue, onGetTokenErrorMessage, separators, specialKeyDown, onPreprocess, onInputValueChange, onTokenValueValidate, ...props }: Props<ValueType, ErrorType>) => JSX.Element;
+declare const TokenInput: <ValueType, ErrorType>({ className, readOnly, autoFocus, placeholder, tokenValues, separators, specialKeyDown, onInputValueChange, onPreprocess, onTokenValueValidate, onTokenValuesChange, onBuildTokenValue, customizeTokenComponent, onGetTokenClassName, onGetTokenDisplayLabel, onRenderTokenDeleteButtonContent, onGetIsTokenEditable, onGetTokenEditableValue, onGetTokenErrorMessage, ...props }: Props<ValueType, ErrorType>) => JSX.Element;
 export default TokenInput;

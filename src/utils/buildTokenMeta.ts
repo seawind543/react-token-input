@@ -16,7 +16,7 @@ import type { TokenValue, TokenIndex, TokenMeta } from '../types/token';
  *
  * @ tokenIndex
  * Type: number
- * Description: The array index for this tokenValue in tokenValues
+ * Description: The array index of this tokenValue in tokenValues
  *
  * @ return
  * Type: TokenMeta<ErrorType>

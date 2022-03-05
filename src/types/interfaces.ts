@@ -20,7 +20,7 @@ export type OnInputValueChange = (
 ) => void;
 
 /**
- * A callback function for `preprocessing` the user input string.
+ * A callback function to `preprocessing` the user input string.
  *
  * Note: This function execute after `split by TokenSeparator[]` but before `onBuildTokenValue`
  * inputString -> spilt(inputString) -> preprocess(spilt(inputString)) -> onBuildTokenValue(preprocess(spilt(inputString)))
@@ -47,7 +47,7 @@ export type OnInputValueChange = (
 export type OnPreprocess = (values: InputString[]) => InputString[];
 
 /**
- * A callback function for building `user input string value` into
+ * A callback function to building `user input string value` into
  * the `tokenValue` (customize data structure).
  *
  * Note: You could make your normalize process in this function too.
@@ -84,7 +84,7 @@ export type OnTokenValuesChange<ValueType> = (
 ) => void;
 
 /**
- * A callback function for validate a tokenValue
+ * A callback function to validate a tokenValue
  * (Will be use by `onGetTokenErrorMessage`)
  *
  * onTokenValueValidate(tokenValue, tokenIndex, tokenValues)
@@ -95,7 +95,7 @@ export type OnTokenValuesChange<ValueType> = (
  *
  * @ tokenIndex
  * Type: number
- * Description: The array index for this tokenValue in tokenValues
+ * Description: The array index of this tokenValue in tokenValues
  *
  * @ tokenValues
  * Type: TokenValue<ValueType>[]
@@ -115,7 +115,7 @@ export type OnTokenValueValidate<ValueType, ErrorType> = (
 ) => TokenMeta<ErrorType>['error'];
 
 /**
- * A callback function for getting customizes `className` for a `token`
+ * A callback function to getting customizes `className` to set on a `token`
  *
  * onGetTokenClassName(tokenValue, tokenMeta)
  *
@@ -137,7 +137,7 @@ export type OnGetTokenClassName<ValueType, ErrorType> = (
 ) => undefined | string;
 
 /**
- * A callback function for getting displayable `label` for a token
+ * A callback function to getting displayable `label` of a token
  * Apply this to customize the token's content
  * For example, render token with `icon` or `Additional text`
  *
@@ -162,7 +162,7 @@ export type OnGetTokenDisplayLabel<ValueType, ErrorType> = (
 ) => InputString | React.ReactNode;
 
 /**
- * A callback function for render content of the delete button for a token
+ * A callback function to render content of the delete button of token
  * Apply this to customize the token's content of the delete button
  * For example, replace the build-in `x` by Google font material-icons
  *
@@ -176,9 +176,9 @@ export type OnGetTokenDisplayLabel<ValueType, ErrorType> = (
 export type OnRenderTokenDeleteButtonContent = () => React.ReactNode;
 
 /**
- * A callback function for determine whether the token is `inline editable`.
+ * A callback function to determine whether the token is `inline editable`.
  *
- * onIsTokenEditable(tokenValue, tokenMeta)
+ * onGetIsTokenEditable(tokenValue, tokenMeta)
  *
  * @ tokenValue
  * Type: TokenValue<ValueType>
@@ -192,14 +192,14 @@ export type OnRenderTokenDeleteButtonContent = () => React.ReactNode;
  * Type: boolean
  * Description: `true` if editable. `false` if not.
  */
-export type OnIsTokenEditable<ValueType, ErrorType> = (
+export type OnGetIsTokenEditable<ValueType, ErrorType> = (
   tokenValue: TokenValue<ValueType>,
   tokenMeta: TokenMeta<ErrorType>
 ) => boolean;
 
 /**
- * A callback function for getting `string input value`
- * from `tokenValue` for the end-user to perform `edit`
+ * A callback function to getting `string input value`
+ * from `tokenValue` for the end-user to perform `inline edit`
  *
  * onGetTokenEditableValue(tokenValue, tokenMeta)
  *
@@ -221,7 +221,7 @@ export type OnGetTokenEditableValue<ValueType, ErrorType> = (
 ) => InputString;
 
 /**
- * A callback function for getting the error message from the customize error
+ * A callback function to getting the error message from the customize error
  * The `customize error` is generate by `onTokenValueValidate`
  *
  * onGetTokenErrorMessage(tokenValue, tokenMeta)

@@ -1,11 +1,8 @@
-/* eslint no-unused-vars: 0 */
-/* eslint @typescript-eslint/no-unused-vars: 0 */
-
 import type { DefaultErrorType, TokenValue, TokenMeta } from '../types/token';
 
 /**
  * Default function to get the errorMessage
- * getDefaultTokenErrorMessage(tokenValue, tokenMeta)
+ * defaultGetTokenErrorMessage(tokenValue, tokenMeta)
  *
  * @ tokenValue
  * Type: TokenValue<ValueType>
@@ -19,8 +16,8 @@ import type { DefaultErrorType, TokenValue, TokenMeta } from '../types/token';
  * Type: DefaultErrorType
  * Description: The error message to describe an invalid token
  */
-const getDefaultTokenErrorMessage = <ValueType, ErrorType>(
-  tokenValue: TokenValue<ValueType>,
+const defaultGetTokenErrorMessage = <ValueType, ErrorType>(
+  _: TokenValue<ValueType>,
   tokenMeta: TokenMeta<ErrorType>
 ): undefined | DefaultErrorType => {
   // TODO: check can we compare type with DefaultErrorType
@@ -31,4 +28,4 @@ const getDefaultTokenErrorMessage = <ValueType, ErrorType>(
   return undefined;
 };
 
-export default getDefaultTokenErrorMessage;
+export default defaultGetTokenErrorMessage;

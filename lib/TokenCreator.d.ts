@@ -5,13 +5,13 @@ import type { SpecialKeyDownConfig } from './types/specialKeyDown';
 import type { TokenValue } from './types/token';
 import type { OnInputValueChange, OnPreprocess, OnBuildTokenValue } from './types/interfaces';
 declare type Props<ValueType> = {
-    placeholder: string;
+    placeholder?: string;
     autoFocus: boolean;
     onFocus: HandleTokenInputFocus;
     onBlur: HandleTokenInputBlur;
     separators: TokenSeparator[];
     specialKeyDown: SpecialKeyDownConfig;
-    onInputValueChange: OnInputValueChange;
+    onInputValueChange?: OnInputValueChange;
     onPreprocess: OnPreprocess;
     onBuildTokenValue: OnBuildTokenValue<ValueType>;
     onNewTokenValuesAppend: (appendTokenValues: TokenValue<ValueType>[]) => void;

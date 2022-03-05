@@ -6,7 +6,7 @@ declare type HandleTokenEditStart = (targetIndex: TokenIndex) => () => void;
 declare type HandleTokenEditEnd<ValueType> = (targetIndex: TokenIndex) => (newTokenValue?: TokenValue<ValueType>) => void;
 declare type ParameterType<ValueType, ErrorType> = {
     tokenValues: TokenValue<ValueType>[];
-    onTokenValuesChange: OnTokenValuesChange<ValueType>;
+    onTokenValuesChange?: OnTokenValuesChange<ValueType>;
     setTokenActivated: SetTokenActivated<ErrorType>;
     handleTokenInputFocus: HandleTokenInputFocus;
     handleTokenInputBlur: HandleTokenInputBlur;

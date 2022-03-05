@@ -38,9 +38,10 @@ const MyToken = ({
   onGetClassName,
   onGetDisplayLabel,
   onRenderDeleteButtonContent,
+  onGetIsEditable,
   onGetEditableValue,
-  onGetErrorMessage,
   onBuildTokenValue,
+  onGetErrorMessage,
 }) => {
   const inputRef = useRef(null);
   const [inputValue, setInputValue] = useState('');
@@ -233,14 +234,20 @@ MyToken.propTypes = {
   readOnly: PropTypes.bool.isRequired,
   tokenValue: PropTypes.any.isRequired,
   tokenMeta: PropTypes.object.isRequired,
-  onGetClassName: PropTypes.func.isRequired,
+
+  onGetClassName: PropTypes.func,
+
   onGetDisplayLabel: PropTypes.func.isRequired,
+
   onRenderDeleteButtonContent: PropTypes.func,
+
+  onGetIsEditable: PropTypes.func.isRequired,
   onGetEditableValue: PropTypes.func.isRequired,
+  onBuildTokenValue: PropTypes.func.isRequired,
   onGetErrorMessage: PropTypes.func.isRequired,
+
   onEditStart: PropTypes.func.isRequired,
   onEditEnd: PropTypes.func.isRequired,
-  onBuildTokenValue: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
 

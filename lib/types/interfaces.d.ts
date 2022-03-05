@@ -9,6 +9,6 @@ export declare type OnTokenValueValidate<ValueType, ErrorType> = (tokenValue: To
 export declare type OnGetTokenClassName<ValueType, ErrorType> = (tokenValue: TokenValue<ValueType>, tokenMeta: TokenMeta<ErrorType>) => undefined | string;
 export declare type OnGetTokenDisplayLabel<ValueType, ErrorType> = (tokenValue: TokenValue<ValueType>, tokenMeta: TokenMeta<ErrorType>) => InputString | React.ReactNode;
 export declare type OnRenderTokenDeleteButtonContent = () => React.ReactNode;
-export declare type OnIsTokenEditable<ValueType, ErrorType> = (tokenValue: TokenValue<ValueType>, tokenMeta: TokenMeta<ErrorType>) => boolean;
+export declare type OnGetIsTokenEditable<ValueType, ErrorType> = (tokenValue: TokenValue<ValueType>, tokenMeta: TokenMeta<ErrorType>) => boolean;
 export declare type OnGetTokenEditableValue<ValueType, ErrorType> = (tokenValue: TokenValue<ValueType>, tokenMeta: TokenMeta<ErrorType>) => InputString;
 export declare type OnGetTokenErrorMessage<ValueType, ErrorType> = (tokenValue: TokenValue<ValueType>, tokenMeta: TokenMeta<ErrorType>) => TokenMeta<ErrorType>['error'];

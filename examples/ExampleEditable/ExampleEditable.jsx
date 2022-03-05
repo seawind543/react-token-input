@@ -43,14 +43,14 @@ const ExampleReadOnly = () => {
 
       <TokenInput
         tokenValues={values}
-        onIsTokenEditable={handleIsTokenEditable}
+        onGetIsTokenEditable={handleIsTokenEditable}
         onTokenValuesChange={handleTokenValuesChange}
       />
       <pre>
         {`
 <TokenInput
   tokenValues={values}
-  onIsTokenEditable={handleIsTokenEditable}
+  onGetIsTokenEditable={handleIsTokenEditable}
   onTokenValuesChange={handleTokenValuesChange}
 />
         `}

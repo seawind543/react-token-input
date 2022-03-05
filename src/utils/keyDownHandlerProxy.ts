@@ -1,5 +1,4 @@
 import keyDownKey from 'keydown-key';
-import dummyFunction from './dummyFunction';
 
 type ActionFunction = (keyDownEvent: KeyboardEvent) => void;
 type KeyDownHandlerProxyActions = {
@@ -36,30 +35,25 @@ const keyDownHandlerProxy = (
   keyDownEvent: KeyboardEvent,
   actions: KeyDownHandlerProxyActions
 ): void => {
-  const {
-    onBackspace = dummyFunction,
-    onTab = dummyFunction,
-    onEnter = dummyFunction,
-    onEscape = dummyFunction,
-  } = actions;
+  const { onBackspace, onTab, onEnter, onEscape } = actions;
 
   const { key: eventKey } = keyDownKey(keyDownEvent);
 
   switch (eventKey) {
     case 'Backspace':
-      onBackspace(keyDownEvent);
+      onBackspace?.(keyDownEvent);
       break;
 
     case 'Tab':
-      onTab(keyDownEvent);
+      onTab?.(keyDownEvent);
       break;
 
     case 'Enter':
-      onEnter(keyDownEvent);
+      onEnter?.(keyDownEvent);
       break;
 
     case 'Escape':
-      onEscape(keyDownEvent);
+      onEscape?.(keyDownEvent);
       break;
 
     default:

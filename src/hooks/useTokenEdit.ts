@@ -15,7 +15,7 @@ type HandleTokenEditEnd<ValueType> = (
 
 type ParameterType<ValueType, ErrorType> = {
   tokenValues: TokenValue<ValueType>[];
-  onTokenValuesChange: OnTokenValuesChange<ValueType>;
+  onTokenValuesChange?: OnTokenValuesChange<ValueType>;
   setTokenActivated: SetTokenActivated<ErrorType>;
   handleTokenInputFocus: HandleTokenInputFocus;
   handleTokenInputBlur: HandleTokenInputBlur;
@@ -57,7 +57,7 @@ function useTokenEdit<ValueType, ErrorType>({
 
       const modifiedTokenValues = [...tokenValues];
       modifiedTokenValues[targetIndex] = newTokenValue;
-      onTokenValuesChange(modifiedTokenValues);
+      onTokenValuesChange?.(modifiedTokenValues);
     },
     [tokenValues, onTokenValuesChange, setTokenActivated, handleTokenInputBlur]
   );

@@ -1,10 +1,10 @@
-import buildDefaultTokenValue from './buildDefaultTokenValue.ts';
+import defaultBuildTokenValue from './defaultBuildTokenValue.ts';
 import MOCK_INPUT from '../__fixtures__/inputValues.fixtures';
 
-describe('buildDefaultTokenValue()', () => {
+describe('defaultBuildTokenValue()', () => {
   it('should return trimmed `inputValue`', () => {
     MOCK_INPUT.forEach((testData) => {
-      expect(buildDefaultTokenValue(testData.inputValue)).toBe(
+      expect(defaultBuildTokenValue(testData.inputValue)).toBe(
         testData.expectTokenValue
       );
     });

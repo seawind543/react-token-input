@@ -9,10 +9,12 @@ import useTokensUpdate from './hooks/useTokensUpdate';
 import useTokenEdit from './hooks/useTokenEdit';
 import useTokenDelete from './hooks/useTokenDelete';
 
-import dummyFunction from './utils/dummyFunction';
-import buildDefaultTokenValue from './utils/buildDefaultTokenValue';
-import getDefaultTokenEditableValue from './utils/getDefaultTokenEditableValue';
-import getDefaultTokenErrorMessage from './utils/getDefaultTokenErrorMessage';
+// Build-in default props
+import defaultTokenValueValidate from './utils/defaultTokenValueValidate';
+import defaultBuildTokenValue from './utils/defaultBuildTokenValue';
+import defaultGetIsTokenEditable from './utils/defaultGetIsTokenEditable';
+import defaultGetTokenEditableValue from './utils/defaultGetTokenEditableValue';
+import defaultGetTokenErrorMessage from './utils/defaultGetTokenErrorMessage';
 
 import {
   DEFAULT_SEPARATORS,
@@ -32,7 +34,7 @@ import type {
   OnGetTokenClassName,
   OnGetTokenDisplayLabel,
   OnRenderTokenDeleteButtonContent,
-  OnIsTokenEditable,
+  OnGetIsTokenEditable,
   OnGetTokenEditableValue,
   OnGetTokenErrorMessage,
 } from './types/interfaces';
@@ -112,7 +114,7 @@ type Props<ValueType, ErrorType> = {
   onInputValueChange?: OnInputValueChange;
 
   /**
-   * A callback function for `preprocessing` the user input string.
+   * A callback function to `preprocessing` the user input string.
    *
    * Note: This function execute after `split by TokenSeparator[]` but before `onBuildTokenValue`
    * inputString -> spilt(inputString) -> preprocess(spilt(inputString)) -> onBuildTokenValue(preprocess(spilt(inputString)))
@@ -139,7 +141,7 @@ type Props<ValueType, ErrorType> = {
   onPreprocess?: OnPreprocess;
 
   /**
-   * A callback function for validate tokenValue
+   * A callback function to validate tokenValue
    *
    * onTokenValueValidate(tokenValue, tokenIndex, tokenValues)
    *
@@ -149,7 +151,7 @@ type Props<ValueType, ErrorType> = {
    *
    * @ tokenIndex
    * Type: number
-   * Description: The array index for this tokenValue in tokenValues
+   * Description: The array index of this tokenValue in tokenValues
    *
    * @ tokenValues
    * Type: array
@@ -182,7 +184,7 @@ type Props<ValueType, ErrorType> = {
   onTokenValuesChange?: OnTokenValuesChange<ValueType>;
 
   /**
-   * A callback function for building `user input string value` into
+   * A callback function to building `user input string value` into
    * the `tokenValue` (customize data structure).
    *
    * Note: You could make your normalize process in this function too.
@@ -200,7 +202,7 @@ type Props<ValueType, ErrorType> = {
   onBuildTokenValue?: OnBuildTokenValue<ValueType>;
 
   /**
-   * A customize react functional component for rendering a token
+   * A customize react functional component to rendering a token
    * Apply this to customize all token function.
    *
    * customizeTokenComponent={MyToken}
@@ -209,7 +211,7 @@ type Props<ValueType, ErrorType> = {
   customizeTokenComponent?: React.FunctionComponent;
 
   /**
-   * A callback function for getting customizes `className` for a `token`
+   * A callback function to getting customizes `className` to set on a `token`
    *
    * onGetTokenClassName(tokenValue, tokenMeta)
    *
@@ -228,7 +230,7 @@ type Props<ValueType, ErrorType> = {
   onGetTokenClassName?: OnGetTokenClassName<ValueType, ErrorType>;
 
   /**
-   * A callback function for getting displayable `label` for a token
+   * A callback function to getting displayable `label` of a token
    * Apply this to customize the token's content
    * For example, render token with `icon` or `Additional text`
    *
@@ -250,7 +252,7 @@ type Props<ValueType, ErrorType> = {
   onGetTokenDisplayLabel?: OnGetTokenDisplayLabel<ValueType, ErrorType>;
 
   /**
-   * A callback function for render content of the delete button for a token
+   * A callback function to render content of the delete button of token
    * Apply this to customize the token's content of the delete button
    * For example, replace the build-in `x` by Google font material-icons
    *
@@ -264,10 +266,10 @@ type Props<ValueType, ErrorType> = {
   onRenderTokenDeleteButtonContent?: OnRenderTokenDeleteButtonContent;
 
   /**
-   * A callback function for determine whether the token is `inline editable`.
+   * A callback function to determine whether the token is `inline editable`.
    * By default, TokenInput will render a `inline editable` token.
    *
-   * onIsTokenEditable(tokenValue, tokenMeta)
+   * onGetIsTokenEditable(tokenValue, tokenMeta)
    *
    * @ tokenValue
    * Type: TokenValue<ValueType>
@@ -281,11 +283,11 @@ type Props<ValueType, ErrorType> = {
    * Type: boolean
    * Description: `true` if editable. `false` if not.
    */
-  onIsTokenEditable?: OnIsTokenEditable<ValueType, ErrorType>;
+  onGetIsTokenEditable?: OnGetIsTokenEditable<ValueType, ErrorType>;
 
   /**
-   * A callback function for getting `string input value`
-   * from `tokenValue` for the end-user to perform `edit`
+   * A callback function to getting `string input value`
+   * from `tokenValue` for the end-user to perform `inline edit`
    *
    * onGetTokenEditableValue(tokenValue, tokenMeta)
    *
@@ -304,7 +306,7 @@ type Props<ValueType, ErrorType> = {
   onGetTokenEditableValue?: OnGetTokenEditableValue<ValueType, ErrorType>;
 
   /**
-   * A callback function for getting the error message from the customize error
+   * A callback function to getting the error message from the customize error
    * The `customize error` is generate by `onTokenValueValidate`
    *
    * onGetTokenErrorMessage(tokenValue, tokenMeta)
@@ -329,31 +331,46 @@ type Props<ValueType, ErrorType> = {
 };
 
 const TokenInput = <ValueType, ErrorType>({
-  className = '',
+  className,
   readOnly = false,
   autoFocus = false,
-  placeholder = '',
+  placeholder,
 
   tokenValues,
-  onBuildTokenValue = buildDefaultTokenValue,
-  // FixMe: ReadOnly mode do not need onTokenValuesChange, but others need
-  onTokenValuesChange = dummyFunction,
 
-  // Token
-  customizeTokenComponent,
-  onGetTokenClassName = dummyFunction,
-  onGetTokenDisplayLabel = getDefaultTokenEditableValue,
-  onRenderTokenDeleteButtonContent,
-  onIsTokenEditable,
-  onGetTokenEditableValue = getDefaultTokenEditableValue,
-  onGetTokenErrorMessage = getDefaultTokenErrorMessage,
-
-  // TokenCreator
+  /**
+   * TokenCreator props
+   */
   separators = DEFAULT_SEPARATORS,
   specialKeyDown = DEFAULT_SPECIAL_KEY_DOWN_CONFIG,
+
+  onInputValueChange,
   onPreprocess,
-  onInputValueChange = dummyFunction,
-  onTokenValueValidate = dummyFunction,
+
+  onTokenValueValidate = defaultTokenValueValidate,
+
+  /**
+   * Token props
+   */
+
+  // FixMe: ReadOnly mode do not need onTokenValuesChange, but others need
+  onTokenValuesChange,
+
+  onBuildTokenValue = defaultBuildTokenValue,
+
+  customizeTokenComponent,
+
+  onGetTokenClassName,
+
+  onGetTokenDisplayLabel = defaultGetTokenEditableValue,
+
+  onRenderTokenDeleteButtonContent,
+
+  onGetIsTokenEditable = defaultGetIsTokenEditable,
+
+  onGetTokenEditableValue = defaultGetTokenEditableValue,
+
+  onGetTokenErrorMessage = defaultGetTokenErrorMessage,
 
   // Rest
   ...props
@@ -398,7 +415,7 @@ const TokenInput = <ValueType, ErrorType>({
       }
 
       const newTokenValues = [...tokenValues, ...appendTokenValues];
-      onTokenValuesChange(newTokenValues);
+      onTokenValuesChange?.(newTokenValues);
     },
     [tokenValues, onTokenValuesChange]
   );
@@ -445,7 +462,7 @@ const TokenInput = <ValueType, ErrorType>({
               onGetClassName={onGetTokenClassName}
               onGetDisplayLabel={onGetTokenDisplayLabel}
               onRenderDeleteButtonContent={onRenderTokenDeleteButtonContent}
-              onIsEditable={onIsTokenEditable}
+              onGetIsEditable={onGetIsTokenEditable}
               onGetEditableValue={onGetTokenEditableValue}
               onGetErrorMessage={onGetTokenErrorMessage}
               onBuildTokenValue={onBuildTokenValue}

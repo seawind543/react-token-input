@@ -24,7 +24,7 @@ import type {
   OnGetTokenClassName,
   OnGetTokenDisplayLabel,
   OnRenderTokenDeleteButtonContent,
-  OnIsTokenEditable,
+  OnGetIsTokenEditable,
   OnGetTokenEditableValue,
   OnGetTokenErrorMessage,
 } from '../types/interfaces';
@@ -34,21 +34,87 @@ const handleInlineEditClick = (e: React.MouseEvent<HTMLDivElement>) => {
 };
 
 type Props<ValueType, ErrorType> = {
+  // Same as props of TokenInput
   readOnly: boolean;
+  // tokenValue of the token
   tokenValue: TokenValue<ValueType>;
+  // tokenMeta of the token
   tokenMeta: TokenMeta<ErrorType>;
 
-  onGetClassName: OnGetTokenClassName<ValueType, ErrorType>;
+  // Same as props `onGetTokenClassName` of TokenInput
+  onGetClassName?: OnGetTokenClassName<ValueType, ErrorType>;
+  // Same as props `onGetTokenDisplayLabel` of TokenInput
   onGetDisplayLabel: OnGetTokenDisplayLabel<ValueType, ErrorType>;
+  // Same as props `onRenderTokenDeleteButtonContent` of TokenInput
   onRenderDeleteButtonContent?: OnRenderTokenDeleteButtonContent;
 
-  onIsEditable?: OnIsTokenEditable<ValueType, ErrorType>;
+  // Same as props `onGetIsTokenEditable` of TokenInput
+  onGetIsEditable: OnGetIsTokenEditable<ValueType, ErrorType>;
+  // Same as props `onGetTokenEditableValue` of TokenInput
   onGetEditableValue: OnGetTokenEditableValue<ValueType, ErrorType>;
+  // Same as props `onBuildTokenValue` of TokenInput
   onBuildTokenValue: OnBuildTokenValue<ValueType>;
+  // Same as props `onGetTokenErrorMessage` of TokenInput
   onGetErrorMessage: OnGetTokenErrorMessage<ValueType, ErrorType>;
 
+  /**
+   * A callback function, which should be `invoked`
+   * when end-user `start editing`
+   *
+   * Note:
+   * Call this function to tell TokenInput it is start to editing the token.
+   * As result, TokenInput will set `tokenMeta.activate` to `true`
+   *
+   * onEditStart()
+   *
+   * @ return
+   * Type: void
+   */
   onEditStart: () => void;
+
+  /**
+   * A callback function, which should be `invoked`
+   * when end-user `end editing`
+   *
+   * Note:
+   * Call this function to tell TokenInput to finish the `editing` of the token.
+   * As result, TokenInput will set `tokenMeta.activate` to `false`.
+   *
+   * Also, TokenInput will based on the value of the parameter newTokenValue to
+   * update the tokenValue of the token,
+   * and call `onTokenValuesChange`
+   *
+   * onEditEnd(newTokenValue?)
+   *
+   * @ newTokenValue
+   * Type: undefined | TokenValue<ValueType>
+   * Description:
+   * The new tokenValue build by `onBuildTokenValue.
+   *
+   * Note:
+   * if `newTokenValue` is `undefined`,
+   * TokenInput will treat as `Cancel` (Edit will end without update the tokenValue).
+   * The `onTokenValuesChange` will also not be called.
+   *
+   * @ return
+   * Type: void
+   */
   onEditEnd: (newTokenValue?: TokenValue<ValueType>) => void;
+
+  /**
+   * A callback function, which should be `invoked`
+   * when end-user `delete` the token
+   *
+   * Note:
+   * Call this function to tell TokenInput to delete the token.
+   * As result, TokenInput will remove the token,
+   * and call `onTokenValuesChange` to update tokenValues.
+   *
+   * onDelete()
+   *
+   * @ return
+   * Type: void
+   */
   onDelete: () => void;
 };
 
@@ -59,7 +125,7 @@ const Token = <ValueType, ErrorType>({
   onGetClassName,
   onGetDisplayLabel,
   onRenderDeleteButtonContent,
-  onIsEditable,
+  onGetIsEditable,
   onGetEditableValue,
   onGetErrorMessage,
   onBuildTokenValue,
@@ -73,8 +139,8 @@ const Token = <ValueType, ErrorType>({
   const [inputValue, setInputValue] = useState(DEFAULT_INPUT_INIT_VALUE);
   const { activated, error } = tokenMeta;
   const isEditable = useMemo(() => {
-    return onIsEditable?.(tokenValue, tokenMeta) ?? true;
-  }, [onIsEditable, tokenValue, tokenMeta]);
+    return onGetIsEditable(tokenValue, tokenMeta);
+  }, [onGetIsEditable, tokenValue, tokenMeta]);
 
   const handleEditStart = useCallback(() => {
     const tokenEditableValue = onGetEditableValue(tokenValue, tokenMeta);
@@ -164,7 +230,7 @@ const Token = <ValueType, ErrorType>({
   const tokenClassName = useMemo(() => {
     return classNames(
       // Apply customize className on the token
-      onGetClassName(tokenValue, tokenMeta),
+      onGetClassName?.(tokenValue, tokenMeta),
       styles.token,
       {
         [styles['token--read-only']]: readOnly,

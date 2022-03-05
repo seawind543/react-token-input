@@ -5,7 +5,7 @@ import type { OnTokenValuesChange } from '../types/interfaces';
 
 type ParameterType<ValueType> = {
   tokenValues: TokenValue<ValueType>[];
-  onTokenValuesChange: OnTokenValuesChange<ValueType>;
+  onTokenValuesChange?: OnTokenValuesChange<ValueType>;
   focusTokenCreator: () => void; // TODO: Update type by shared one
 };
 
@@ -18,7 +18,7 @@ function useTokenDelete<ValueType>({
     (targetIndex: TokenIndex) => {
       const newTokenValues = [...tokenValues];
       newTokenValues.splice(targetIndex, 1);
-      onTokenValuesChange(newTokenValues);
+      onTokenValuesChange?.(newTokenValues);
 
       /**
        * Keep focus when remove a token.

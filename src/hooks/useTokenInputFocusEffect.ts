@@ -1,6 +1,21 @@
 import { useState, useCallback } from 'react';
 
+/**
+ * A callback function, which should be `invoked`
+ * when end-user `focus` into the TokenInput
+ *
+ * Note:
+ * Call this function to tell TokenInput to set the `focused` CSS effect
+ */
 export type HandleTokenInputFocus = () => void;
+
+/**
+ * A callback function, which should be `invoked`
+ * when end-user `blur` from the TokenInput
+ *
+ * Note:
+ * Call this function to tell TokenInput to remove the `focused` CSS effect
+ */
 export type HandleTokenInputBlur = () => void;
 
 function useTokenInputFocus() {

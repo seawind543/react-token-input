@@ -5,7 +5,7 @@ import type { DefaultValueType, TokenValue } from '../types/token';
  * Default function for TokenInput to
  * build default token value from user input value
  *
- * buildDefaultTokenValue(inputValue)
+ * defaultBuildTokenValue(inputValue)
  *
  * @ inputValue
  * Type: InputString
@@ -13,17 +13,17 @@ import type { DefaultValueType, TokenValue } from '../types/token';
  * Which is `one item` of the `user input string` split by the `separators`
  * Example:
  * - Input string "ABC, DEF" and separators is `,`
- * - buildDefaultTokenValue will be called twice
- * buildDefaultTokenValue('ABC') and buildDefaultTokenValue('DEF')
+ * - defaultBuildTokenValue will be called twice
+ * defaultBuildTokenValue('ABC') and buildDefaultTokenValue('DEF')
  *
  * @ return
  * Type: TokenValue<DefaultValueType>
  * Description: The DefaultValueType tokenValue
  */
-const buildDefaultTokenValue = (
+const defaultBuildTokenValue = (
   inputValue: InputString
 ): TokenValue<DefaultValueType> => {
   return inputValue.trim();
 };
 
-export default buildDefaultTokenValue;
+export default defaultBuildTokenValue;
