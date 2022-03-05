@@ -2,7 +2,7 @@
 /* eslint no-unused-vars: 0 */
 
 import React, { useState, useCallback } from 'react';
-import TokenInput from '../../src';
+import TokenInput from '../../src/index.ts';
 import MyToken from './MyToken';
 
 import CopyAnchor from '../share/CopyAnchor';

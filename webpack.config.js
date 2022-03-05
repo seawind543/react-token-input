@@ -20,7 +20,7 @@ const localClassPrefix = 'token-input';
 module.exports = {
   mode: 'production',
   devtool: 'source-map',
-  entry: path.resolve(__dirname, 'src/index.js'),
+  entry: path.resolve(__dirname, 'src/index.ts'),
   output: {
     path: path.join(__dirname, 'lib'),
     filename: 'index.js',

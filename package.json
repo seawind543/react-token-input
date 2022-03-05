@@ -16,7 +16,7 @@
     "build:webpack": "webpack",
     "build:examples": "cd examples; webpack",
     "lint": "yarn run lint:eslint && yarn run lint:style",
-    "lint:eslint": "eslint --max-warnings 0 --ext .jsx,.js,.tsx,.ts examples src",
+    "lint:eslint": "eslint --max-warnings 0 --ext .jsx,.js,.tsx,.ts src examples",
     "lint:style": "stylelint --custom-syntax postcss-scss 'src/**/*.scss' --fix",
     "test": "jest --coverage",
     "dev": "cd examples; webpack && webpack serve --hot --inline --host 0.0.0.0 --port 8000 --content-base ../docs"

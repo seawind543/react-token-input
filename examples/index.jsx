@@ -26,6 +26,8 @@ import ExampleSpecialKeyDown from './ExampleSpecialKeyDown';
 
 import './index.scss';
 
+// import '../dist/react-customize-token-input.css';
+
 const name =
   'React TokenInput (react-customize-token-input). Visit GitHub here';
 const url = 'https://github.com/seawind543/react-token-input';
