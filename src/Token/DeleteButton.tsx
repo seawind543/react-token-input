@@ -14,6 +14,7 @@ type Props = {
 const DeleteButton = ({ onRenderContent }: Props) => {
   return (
     <span
+      data-component-name="DeleteButton" // FIXME: This is a hack to get the component name.
       role="button"
       className={classNames(
         JS__TOKEN__DELETE_BUTTON__CLASS_NAME,

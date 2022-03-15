@@ -257,6 +257,7 @@ const Token = <ValueType, ErrorType>({
   if (activated) {
     return (
       <div
+        data-component-name="Token" // FIXME: This is a hack to get the component name.
         role="presentation"
         className={tokenClassName}
         onClick={handleInlineEditClick}
@@ -276,6 +277,7 @@ const Token = <ValueType, ErrorType>({
 
   return (
     <div
+      data-component-name="Token" // FIXME: This is a hack to get the component name.
       role="presentation"
       className={tokenClassName}
       onClick={handleTokenClick}
