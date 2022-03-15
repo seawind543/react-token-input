@@ -442,6 +442,7 @@ const TokenInput = <ValueType, ErrorType>({
 
   return (
     <div
+      data-component-name="TokenInput" // FIXME: This is a hack to get the component name.
       {...props}
       className={classNames(className, styles.container, {
         [styles['container--focused']]: isTokenInputFocused,
