@@ -60,7 +60,7 @@ module.exports = {
      * Following for typescript .ts/.tsx only
      */
     {
-      files: ['src/**/*.ts', 'src/**/*.tsx'],
+      files: ['src/**/*.{ts,tsx}'],
       extends: [
         'airbnb-typescript',
         'plugin:prettier/recommended',
