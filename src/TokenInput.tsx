@@ -42,7 +42,7 @@ import type {
 } from './types/interfaces';
 import type { TokenValue } from './types/token';
 
-type Props<ValueType, ErrorType> = {
+export type Props<ValueType, ErrorType> = {
   // Assign style to the TokenInput
   style?: CSSProperties;
 

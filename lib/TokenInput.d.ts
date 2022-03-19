@@ -4,7 +4,7 @@ import type { TokenSeparator } from './types/mix';
 import type { SpecialKeyDownConfig } from './types/specialKeyDown';
 import type { OnInputValueChange, OnPreprocess, OnBuildTokenValue, OnTokenValueValidate, OnTokenValuesChange, OnGetTokenClassName, OnGetTokenDisplayLabel, OnRenderTokenDeleteButtonContent, OnGetIsTokenEditable, OnGetTokenEditableValue, OnGetTokenErrorMessage } from './types/interfaces';
 import type { TokenValue } from './types/token';
-declare type Props<ValueType, ErrorType> = {
+export declare type Props<ValueType, ErrorType> = {
     style?: CSSProperties;
     className?: string;
     readOnly?: boolean;
