@@ -23,7 +23,7 @@ export const DEFAULT_SEPARATORS: TokenSeparator[] = [
 ];
 
 /**
- * KeyDown handler config
+ * A constant to help config the special keyDown event handler setting
  */
 export const KEY_DOWN_HANDLER_CONFIG_OPTION = {
   OFF: 0,
@@ -39,7 +39,7 @@ export const DEFAULT_SPECIAL_KEY_DOWN_CONFIG: Required<SpecialKeyDownConfig> = {
 };
 
 /**
- * For customize the `delete button`
+ * constant className for customize the `delete button`
  * in the `TokenLabel` (onGetTokenDisplayLabel)
  */
 // eslint-disable-next-line @typescript-eslint/naming-convention

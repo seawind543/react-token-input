@@ -5,6 +5,9 @@ import {
 } from './constants';
 
 export {
+  /**
+   * The Props of TokenInput
+   */
   TokenInputProps,
   /**
    * The constant className to build a customize token delete button
