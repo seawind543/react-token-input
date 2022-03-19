@@ -7,7 +7,8 @@ const DEFAULT_ERROR_TYPE = 'string';
 
 /**
  * Default function to get the errorMessage,
- * which throw an TypeError if the `ErrorType` is NOT `string` nor `undefined`.
+ * which throw an TypeError if the `ErrorType` is
+ * NOT `string` nor Nullish
  *
  * defaultGetTokenErrorMessage(tokenValue, tokenMeta)
  *
@@ -20,16 +21,19 @@ const DEFAULT_ERROR_TYPE = 'string';
  * Description: token's meta data
  *
  * @ return
- * Type: undefined | string
+ * Type: Nullish | string
  * Description: The error message to describe the invalid token
  */
 const defaultGetTokenErrorMessage = <ValueType, ErrorType>(
   _: TokenValue<ValueType>,
   tokenMeta: TokenMeta<ErrorType>
 ): TokenMeta<ErrorType>['error'] => {
-  // Check if the tokenMeta.error is NOT `string` nor `undefined`
+  // Check if the tokenMeta.error is NOT `string`, nor Nullish
   const DEFAULT_HANDLED_ERROR_TYPES = [DEFAULT_ERROR_TYPE, 'undefined'];
-  if (!DEFAULT_HANDLED_ERROR_TYPES.includes(typeof tokenMeta.error)) {
+  if (
+    !DEFAULT_HANDLED_ERROR_TYPES.includes(typeof tokenMeta.error) &&
+    tokenMeta.error !== null
+  ) {
     throw new TypeError(
       '"onGetTokenErrorMessage" is required when "ErrorType" not "string"'
     );

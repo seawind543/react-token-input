@@ -86,7 +86,7 @@ export type OnTokenValuesChange<ValueType> = (
 
 /**
  * A callback function to validate a tokenValue
- * (Will be use by `onGetTokenErrorMessage`)
+ * (The returned result will be use by `onGetTokenErrorMessage`)
  *
  * onTokenValueValidate(tokenValue, tokenIndex, tokenValues)
  *
@@ -107,7 +107,9 @@ export type OnTokenValuesChange<ValueType> = (
  * Description:
  * The customize error.
  * Specific the token's validate status or errorMessage.
- * Could be an error message to display or error object
+ * Could be `an error message` to display, or an error object for further operations.
+ *
+ * Return `Nullish` types means the token is valid.
  */
 export type OnTokenValueValidate<ValueType, ErrorType> = (
   tokenValue: TokenValue<ValueType>,

@@ -143,7 +143,8 @@ export type Props<ValueType, ErrorType> = {
   onPreprocess?: OnPreprocess;
 
   /**
-   * A callback function to validate tokenValue
+   * A callback function to validate a tokenValue
+   * (The returned result will be use by `onGetTokenErrorMessage`)
    *
    * onTokenValueValidate(tokenValue, tokenIndex, tokenValues)
    *
@@ -156,17 +157,17 @@ export type Props<ValueType, ErrorType> = {
    * Description: The array index of this tokenValue in tokenValues
    *
    * @ tokenValues
-   * Type: array
+   * Type: TokenValue<ValueType>[]
    * Description: The array of tokenValue of TokenInput
    *
    * @ return
-   * Type: any (string | number | object | customize data structure)
+   * Type: TokenMeta<ErrorType>['error']
    * Description:
    * The customize error.
    * Specific the token's validate status or errorMessage.
-   * Could be an error message to display or error object
+   * Could be `an error message` to display, or an error object for further operations.
    *
-   * Will be use by `onGetTokenErrorMessage`
+   * Return type `ValidTokenError` means the token is valid.
    */
   onTokenValueValidate?: OnTokenValueValidate<ValueType, ErrorType>;
 
@@ -322,7 +323,7 @@ export type Props<ValueType, ErrorType> = {
    * Description: token's meta data
    *
    * @ return
-   * Type: undefined | DefaultErrorType | ErrorType
+   * Type: Nullish | ErrorType
    * Description: The error message to describe an invalid token
    */
   onGetTokenErrorMessage?: OnGetTokenErrorMessage<ValueType, ErrorType>;

@@ -251,7 +251,9 @@ const Token = <ValueType, ErrorType>({
   ]);
 
   const errorMessage = useMemo(() => {
-    return onGetErrorMessage(tokenValue, tokenMeta);
+    const tokenError = onGetErrorMessage(tokenValue, tokenMeta);
+    // Avoid set non-string into `title`
+    return typeof tokenError === 'string' ? tokenError : undefined;
   }, [onGetErrorMessage, tokenValue, tokenMeta]);
 
   if (activated) {
@@ -281,7 +283,7 @@ const Token = <ValueType, ErrorType>({
       role="presentation"
       className={tokenClassName}
       onClick={handleTokenClick}
-      title={typeof errorMessage === 'string' ? errorMessage : undefined}
+      title={errorMessage}
     >
       <div className={styles['token__label-wrapper']}>
         {onGetDisplayLabel(tokenValue, tokenMeta)}

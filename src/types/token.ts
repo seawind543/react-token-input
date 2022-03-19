@@ -1,3 +1,5 @@
+import type { Nullish } from './mix';
+
 /**
  * The type which build-in default functions take
  */
@@ -20,10 +22,10 @@ export type TokenMeta<ErrorType> = {
   activated: boolean;
 
   /**
-   * An object which specific the token's `validate status`
-   * (Customize data structure built by `onTokenValue Validate`)
-   * Could be `an error message` to display or error object
-   * `undefined` means the token is valid
+   * An error message or an object, which specific the token's `validate status`
+   * (Customize data structure built by `onTokenValueValidate`)
+   * Could be `an error message` to display, or an error object for further operations.
+   * `Nullish` means the token is valid.
    */
-  error: undefined | ErrorType;
+  error: Nullish | ErrorType;
 };

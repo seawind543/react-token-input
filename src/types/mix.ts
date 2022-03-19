@@ -14,3 +14,5 @@ export type InputString = string;
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
  */
 export type TokenSeparator = string;
+
+export type Nullish = null | undefined;
