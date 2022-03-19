@@ -2,7 +2,6 @@
  * The type which build-in default functions take
  */
 export type DefaultValueType = string;
-export type DefaultErrorType = string;
 
 /**
  * Type: any (string | number | object | customize data structure...etc)
@@ -26,5 +25,5 @@ export type TokenMeta<ErrorType> = {
    * Could be `an error message` to display or error object
    * `undefined` means the token is valid
    */
-  error: undefined | DefaultErrorType | ErrorType;
+  error: undefined | ErrorType;
 };
