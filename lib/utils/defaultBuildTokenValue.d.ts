@@ -1,4 +1,3 @@
 import type { InputString } from '../types/mix';
-import type { DefaultValueType, TokenValue } from '../types/token';
-declare const defaultBuildTokenValue: (inputValue: InputString) => TokenValue<DefaultValueType>;
+declare const defaultBuildTokenValue: <ValueType>(inputValue: InputString) => ValueType;
 export default defaultBuildTokenValue;

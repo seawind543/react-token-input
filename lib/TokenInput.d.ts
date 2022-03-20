@@ -1,16 +1,15 @@
-import type { CSSProperties, FunctionComponent } from 'react';
-import type { Props as TokenProps } from './Token';
+import { type CSSProperties, type FunctionComponent } from 'react';
+import { type Props as TokenProps } from './Token';
 import type { TokenSeparator } from './types/mix';
 import type { SpecialKeyDownConfig } from './types/specialKeyDown';
 import type { OnInputValueChange, OnPreprocess, OnBuildTokenValue, OnTokenValueValidate, OnTokenValuesChange, OnGetTokenClassName, OnGetTokenDisplayLabel, OnRenderTokenDeleteButtonContent, OnGetIsTokenEditable, OnGetTokenEditableValue, OnGetTokenErrorMessage } from './types/interfaces';
-import type { TokenValue } from './types/token';
 export declare type Props<ValueType, ErrorType> = {
     style?: CSSProperties;
     className?: string;
     readOnly?: boolean;
     autoFocus?: boolean;
     placeholder?: string;
-    tokenValues: TokenValue<ValueType>[];
+    tokenValues: ValueType[];
     separators?: TokenSeparator[];
     specialKeyDown?: SpecialKeyDownConfig;
     onInputValueChange?: OnInputValueChange;

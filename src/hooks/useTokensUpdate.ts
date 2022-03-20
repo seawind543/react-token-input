@@ -2,11 +2,10 @@ import { useState, useLayoutEffect } from 'react';
 import useTokenMetas from './useTokenMetas';
 import buildTokenMeta from '../utils/buildTokenMeta';
 
-import type { TokenValue } from '../types/token';
 import type { OnTokenValueValidate } from '../types/interfaces';
 
 type ParameterType<ValueType, ErrorType> = {
-  tokenValues: TokenValue<ValueType>[];
+  tokenValues: ValueType[];
   onTokenValueValidate: OnTokenValueValidate<ValueType, ErrorType>;
 };
 
@@ -22,9 +21,9 @@ function useTokensUpdate<ValueType, ErrorType>({
    * Use this internalTokenValues to `render` to avoid
    * not synced between tokenMetas and  tokenValues
    */
-  const [internalTokenValues, setInternalTokenValues] = useState<
-    TokenValue<ValueType>[]
-  >([]);
+  const [internalTokenValues, setInternalTokenValues] = useState<ValueType[]>(
+    []
+  );
 
   useLayoutEffect(() => {
     // console.log('useTokensUpdate > useLayoutEffect');

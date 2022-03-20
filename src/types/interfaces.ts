@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { InputString } from './mix';
-import { TokenIndex, TokenValue, TokenMeta } from './token';
+import { TokenIndex, TokenMeta } from './token';
 
 /**
  * A callback function invoked when end-user typing but not become token yet
@@ -48,7 +48,7 @@ export type OnInputValueChange = (
 export type OnPreprocess = (values: InputString[]) => InputString[];
 
 /**
- * A callback function to building `user input string value` into
+ * A callback function to build `user input string value` into
  * the `tokenValue` (customize data structure).
  *
  * Note: You could make your normalize process in this function too.
@@ -64,12 +64,14 @@ export type OnPreprocess = (values: InputString[]) => InputString[];
  * onBuildTokenValue('ABC') and onBuildTokenValue('DEF')
  *
  * @ return
- * Type: TokenValue<ValueType>
- * Description: customize data structure TokenValue
+ * Type: ValueType
+ * Description:
+ * Customize data structure data
+ * Could be string | number | object | customize data structure...etc.
  */
 export type OnBuildTokenValue<ValueType> = (
   inputValue: InputString
-) => TokenValue<ValueType>;
+) => ValueType;
 
 /**
  * A callback function invoked when tokenValues update
@@ -77,11 +79,11 @@ export type OnBuildTokenValue<ValueType> = (
  * onTokenValuesChange(modifiedTokenValues)
  *
  * @ modifiedTokenValues
- * Type: TokenValue<ValueType>[]
+ * Type: ValueType[]
  * Description: the new tokenValues
  */
 export type OnTokenValuesChange<ValueType> = (
-  modifiedTokenValues: TokenValue<ValueType>[]
+  modifiedTokenValues: ValueType[]
 ) => void;
 
 /**
@@ -91,7 +93,7 @@ export type OnTokenValuesChange<ValueType> = (
  * onTokenValueValidate(tokenValue, tokenIndex, tokenValues)
  *
  * @ tokenValue
- * Type: TokenValue<ValueType>
+ * Type: ValueType
  * Description: The tokenValue build by `onBuildTokenValue`
  *
  * @ tokenIndex
@@ -99,7 +101,7 @@ export type OnTokenValuesChange<ValueType> = (
  * Description: The array index of this tokenValue in tokenValues
  *
  * @ tokenValues
- * Type: TokenValue<ValueType>[]
+ * Type: ValueType[]
  * Description: The array of tokenValue of TokenInput
  *
  * @ return
@@ -112,9 +114,9 @@ export type OnTokenValuesChange<ValueType> = (
  * Return `Nullish` types means the token is valid.
  */
 export type OnTokenValueValidate<ValueType, ErrorType> = (
-  tokenValue: TokenValue<ValueType>,
+  tokenValue: ValueType,
   tokenIndex: TokenIndex,
-  tokenValues: TokenValue<ValueType>[]
+  tokenValues: ValueType[]
 ) => TokenMeta<ErrorType>['error'];
 
 /**
@@ -123,7 +125,7 @@ export type OnTokenValueValidate<ValueType, ErrorType> = (
  * onGetTokenClassName(tokenValue, tokenMeta)
  *
  * @ tokenValue
- * Type: TokenValue<ValueType>
+ * Type: ValueType
  * Description: The tokenValue build by `onBuildTokenValue`
  *
  * @ tokenMeta
@@ -135,7 +137,7 @@ export type OnTokenValueValidate<ValueType, ErrorType> = (
  * Description: The customizes className
  */
 export type OnGetTokenClassName<ValueType, ErrorType> = (
-  tokenValue: TokenValue<ValueType>,
+  tokenValue: ValueType,
   tokenMeta: TokenMeta<ErrorType>
 ) => undefined | string;
 
@@ -147,7 +149,7 @@ export type OnGetTokenClassName<ValueType, ErrorType> = (
  * onGetTokenDisplayLabel(tokenValue, tokenMeta)
  *
  * @ tokenValue
- * Type: TokenValue<ValueType>
+ * Type: ValueType
  * Description: The tokenValue build by `onBuildTokenValue`
  *
  * @ tokenMeta
@@ -160,7 +162,7 @@ export type OnGetTokenClassName<ValueType, ErrorType> = (
  * By default, will apply `getDefaultTokenEditableValue`
  */
 export type OnGetTokenDisplayLabel<ValueType, ErrorType> = (
-  tokenValue: TokenValue<ValueType>,
+  tokenValue: ValueType,
   tokenMeta: TokenMeta<ErrorType>
 ) => InputString | ReactNode;
 
@@ -184,7 +186,7 @@ export type OnRenderTokenDeleteButtonContent = () => ReactNode;
  * onGetIsTokenEditable(tokenValue, tokenMeta)
  *
  * @ tokenValue
- * Type: TokenValue<ValueType>
+ * Type: ValueType
  * Description: The tokenValue build by `onBuildTokenValue`
  *
  * @ tokenMeta
@@ -196,7 +198,7 @@ export type OnRenderTokenDeleteButtonContent = () => ReactNode;
  * Description: `true` if editable. `false` if not.
  */
 export type OnGetIsTokenEditable<ValueType, ErrorType> = (
-  tokenValue: TokenValue<ValueType>,
+  tokenValue: ValueType,
   tokenMeta: TokenMeta<ErrorType>
 ) => boolean;
 
@@ -207,7 +209,7 @@ export type OnGetIsTokenEditable<ValueType, ErrorType> = (
  * onGetTokenEditableValue(tokenValue, tokenMeta)
  *
  * @ tokenValue
- * Type: TokenValue<ValueType>
+ * Type: ValueType
  * Description: The tokenValue build by `onBuildTokenValue`
  *
  * @ tokenMeta
@@ -219,7 +221,7 @@ export type OnGetIsTokenEditable<ValueType, ErrorType> = (
  * Description: The value for end-user to `edit` in an input field
  */
 export type OnGetTokenEditableValue<ValueType, ErrorType> = (
-  tokenValue: TokenValue<ValueType>,
+  tokenValue: ValueType,
   tokenMeta: TokenMeta<ErrorType>
 ) => InputString;
 
@@ -230,7 +232,7 @@ export type OnGetTokenEditableValue<ValueType, ErrorType> = (
  * onGetTokenErrorMessage(tokenValue, tokenMeta)
  *
  * @ tokenValue
- * Type: TokenValue<ValueType>
+ * Type: ValueType
  * Description: The tokenValue build by `onBuildTokenValue`
  *
  * @ tokenMeta
@@ -242,6 +244,6 @@ export type OnGetTokenEditableValue<ValueType, ErrorType> = (
  * Description: The error message to describe an invalid token
  */
 export type OnGetTokenErrorMessage<ValueType, ErrorType> = (
-  tokenValue: TokenValue<ValueType>,
+  tokenValue: ValueType,
   tokenMeta: TokenMeta<ErrorType>
 ) => TokenMeta<ErrorType>['error'];

@@ -1,10 +1,10 @@
 import { useCallback } from 'react';
 
-import type { TokenValue, TokenIndex } from '../types/token';
+import type { TokenIndex } from '../types/token';
 import type { OnTokenValuesChange } from '../types/interfaces';
 
 type ParameterType<ValueType> = {
-  tokenValues: TokenValue<ValueType>[];
+  tokenValues: ValueType[];
   onTokenValuesChange?: OnTokenValuesChange<ValueType>;
   focusTokenCreator: () => void; // TODO: Update type by shared one
 };

@@ -1,9 +1,11 @@
-import React, { useCallback } from 'react';
-import type { CSSProperties, FunctionComponent } from 'react';
+import React, {
+  useCallback,
+  type CSSProperties,
+  type FunctionComponent,
+} from 'react';
 import classNames from 'classnames';
 import TokenCreator from './TokenCreator';
-import Token from './Token';
-import type { Props as TokenProps } from './Token';
+import Token, { type Props as TokenProps } from './Token';
 
 import useTokenInputFocusEffect from './hooks/useTokenInputFocusEffect';
 import useTokenCreatorRef from './hooks/useTokenCreatorRef';
@@ -40,7 +42,6 @@ import type {
   OnGetTokenEditableValue,
   OnGetTokenErrorMessage,
 } from './types/interfaces';
-import type { TokenValue } from './types/token';
 
 export type Props<ValueType, ErrorType> = {
   // Assign style to the TokenInput
@@ -58,8 +59,16 @@ export type Props<ValueType, ErrorType> = {
   // Placeholder of TokenInput
   placeholder?: string;
 
-  // The array of tokenValue of TokenInput
-  tokenValues: TokenValue<ValueType>[];
+  /**
+   * The array of tokenValue of TokenInput.
+   * This array will be used to render the tokens.
+   *
+   * Type: ValueType
+   * Description:
+   * Customize data structure data
+   * Could be string | number | object | customize data structure...etc.
+   */
+  tokenValues: ValueType[];
 
   /**
    * TokenCreator props
@@ -149,7 +158,7 @@ export type Props<ValueType, ErrorType> = {
    * onTokenValueValidate(tokenValue, tokenIndex, tokenValues)
    *
    * @ tokenValue
-   * Type: any (string | number | object | customize data structure)
+   * Type: ValueType
    * Description: The tokenValue build by `onBuildTokenValue`
    *
    * @ tokenIndex
@@ -157,7 +166,7 @@ export type Props<ValueType, ErrorType> = {
    * Description: The array index of this tokenValue in tokenValues
    *
    * @ tokenValues
-   * Type: TokenValue<ValueType>[]
+   * Type: ValueType[]
    * Description: The array of tokenValue of TokenInput
    *
    * @ return
@@ -167,7 +176,7 @@ export type Props<ValueType, ErrorType> = {
    * Specific the token's validate status or errorMessage.
    * Could be `an error message` to display, or an error object for further operations.
    *
-   * Return type `ValidTokenError` means the token is valid.
+   * Return `Nullish` types means the token is valid.
    */
   onTokenValueValidate?: OnTokenValueValidate<ValueType, ErrorType>;
 
@@ -181,7 +190,7 @@ export type Props<ValueType, ErrorType> = {
    * onTokenValuesChange(modifiedTokenValues)
    *
    * @ modifiedTokenValues
-   * Type: TokenValue<ValueType>[]
+   * Type: ValueType[]
    * Description: the new tokenValues
    */
   onTokenValuesChange?: OnTokenValuesChange<ValueType>;
@@ -199,8 +208,10 @@ export type Props<ValueType, ErrorType> = {
    * Description: The user input value // (A value split by TokenSeparator[])
    *
    * @ return
-   * Type: TokenValue<ValueType>
-   * Description: customize data structure TokenValue
+   * Type: ValueType
+   * Description:
+   * Customize data structure data
+   * Could be string | number | object | customize data structure...etc.
    */
   onBuildTokenValue?: OnBuildTokenValue<ValueType>;
 
@@ -219,7 +230,7 @@ export type Props<ValueType, ErrorType> = {
    * onGetTokenClassName(tokenValue, tokenMeta)
    *
    * @ tokenValue
-   * Type: TokenValue<ValueType>
+   * Type: ValueType
    * Description: The tokenValue build by `onBuildTokenValue`
    *
    * @ tokenMeta
@@ -240,7 +251,7 @@ export type Props<ValueType, ErrorType> = {
    * onGetTokenDisplayLabel(tokenValue, tokenMeta)
    *
    * @ tokenValue
-   * Type: TokenValue<ValueType>
+   * Type: ValueType
    * Description: The tokenValue build by `onBuildTokenValue`
    *
    * @ tokenMeta
@@ -275,7 +286,7 @@ export type Props<ValueType, ErrorType> = {
    * onGetIsTokenEditable(tokenValue, tokenMeta)
    *
    * @ tokenValue
-   * Type: TokenValue<ValueType>
+   * Type: ValueType
    * Description: The tokenValue build by `onBuildTokenValue`
    *
    * @ tokenMeta
@@ -295,7 +306,7 @@ export type Props<ValueType, ErrorType> = {
    * onGetTokenEditableValue(tokenValue, tokenMeta)
    *
    * @ tokenValue
-   * Type: TokenValue<ValueType>
+   * Type: ValueType
    * Description: The tokenValue build by `onBuildTokenValue`
    *
    * @ tokenMeta
@@ -315,7 +326,7 @@ export type Props<ValueType, ErrorType> = {
    * onGetTokenErrorMessage(tokenValue, tokenMeta)
    *
    * @ tokenValue
-   * Type: TokenValue<ValueType>
+   * Type: ValueType
    * Description: The tokenValue build by `onBuildTokenValue`
    *
    * @ tokenMeta

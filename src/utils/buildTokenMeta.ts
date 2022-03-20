@@ -1,4 +1,4 @@
-import type { TokenValue, TokenIndex, TokenMeta } from '../types/token';
+import type { TokenIndex, TokenMeta } from '../types/token';
 
 /**
  * Internal function for TokenInput to
@@ -11,7 +11,7 @@ import type { TokenValue, TokenIndex, TokenMeta } from '../types/token';
  * Description: The return of `onTokenValueValidate`
  *
  * @ tokenValue
- * Type: TokenValue<ValueType>
+ * Type: ValueType
  * Description: The tokenValue build by `onBuildTokenValue`
  *
  * @ tokenIndex
@@ -24,7 +24,7 @@ import type { TokenValue, TokenIndex, TokenMeta } from '../types/token';
  */
 const buildTokenMeta = <ValueType, ErrorType>(
   customizeError: TokenMeta<ErrorType>['error'],
-  tokenValue: TokenValue<ValueType>,
+  tokenValue: ValueType,
   tokenIndex: TokenIndex
 ): TokenMeta<ErrorType> => {
   return {

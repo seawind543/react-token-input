@@ -1,4 +1,4 @@
-import type { TokenValue, TokenMeta } from '../types/token';
+import type { TokenMeta } from '../types/token';
 
 /**
  * The default ErrorType of the `TokenInput`
@@ -13,7 +13,7 @@ const DEFAULT_ERROR_TYPE = 'string';
  * defaultGetTokenErrorMessage(tokenValue, tokenMeta)
  *
  * @ tokenValue
- * Type: TokenValue<ValueType>
+ * Type: ValueType
  * Description: The tokenValue build by `onBuildTokenValue`
  *
  * @ tokenMeta
@@ -25,7 +25,7 @@ const DEFAULT_ERROR_TYPE = 'string';
  * Description: The error message to describe the invalid token
  */
 const defaultGetTokenErrorMessage = <ValueType, ErrorType>(
-  _: TokenValue<ValueType>,
+  _: ValueType,
   tokenMeta: TokenMeta<ErrorType>
 ): TokenMeta<ErrorType>['error'] => {
   // Check if the tokenMeta.error is NOT `string`, nor Nullish

@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 
 import type { OnTokenValuesChange } from '../types/interfaces';
-import type { TokenValue, TokenIndex } from '../types/token';
+import type { TokenIndex } from '../types/token';
 import type { SetTokenActivated } from './useTokenMetas';
 import type {
   HandleTokenInputFocus,
@@ -11,10 +11,10 @@ import type {
 type HandleTokenEditStart = (targetIndex: TokenIndex) => () => void;
 type HandleTokenEditEnd<ValueType> = (
   targetIndex: TokenIndex
-) => (newTokenValue?: TokenValue<ValueType>) => void;
+) => (newTokenValue?: ValueType) => void;
 
 type ParameterType<ValueType, ErrorType> = {
-  tokenValues: TokenValue<ValueType>[];
+  tokenValues: ValueType[];
   onTokenValuesChange?: OnTokenValuesChange<ValueType>;
   setTokenActivated: SetTokenActivated<ErrorType>;
   handleTokenInputFocus: HandleTokenInputFocus;

@@ -1,5 +1,9 @@
 import type { InputString } from '../types/mix';
-import type { DefaultValueType, TokenValue } from '../types/token';
+
+/**
+ * The type which build-in default functions take
+ */
+type DefaultValueType = string;
 
 /**
  * Default function for TokenInput to
@@ -17,13 +21,15 @@ import type { DefaultValueType, TokenValue } from '../types/token';
  * defaultBuildTokenValue('ABC') and buildDefaultTokenValue('DEF')
  *
  * @ return
- * Type: TokenValue<DefaultValueType>
- * Description: The DefaultValueType tokenValue
+ * Type: string
+ * Description: The default valueType
  */
-const defaultBuildTokenValue = (
+const defaultBuildTokenValue = <ValueType>(
   inputValue: InputString
-): TokenValue<DefaultValueType> => {
-  return inputValue.trim();
+): ValueType => {
+  // A trick to make the type DefaultValueType to pass type check of ValueType
+  // https://www.zhenghao.io/posts/type-functions
+  return inputValue.trim() as DefaultValueType & ValueType;
 };
 
 export default defaultBuildTokenValue;

@@ -2,7 +2,7 @@
 /* eslint @typescript-eslint/no-unused-vars: 0 */
 
 import type { InputString } from '../types/mix';
-import type { TokenValue, TokenMeta } from '../types/token';
+import type { TokenMeta } from '../types/token';
 
 /**
  * Default function for TokenInput to
@@ -12,7 +12,7 @@ import type { TokenValue, TokenMeta } from '../types/token';
  * getDefaultTokenEditableValue(tokenValue)
  *
  * @ tokenValue
- * Type: TokenValue<ValueType>
+ * Type: ValueType
  * Description: The tokenValue build by `onBuildTokenValue`
  *
  * @ tokenMeta
@@ -24,7 +24,7 @@ import type { TokenValue, TokenMeta } from '../types/token';
  * Description: The value for end-user to `edit` in an input field
  */
 const defaultGetTokenEditableValue = <ValueType, ErrorType>(
-  tokenValue: TokenValue<ValueType>,
+  tokenValue: ValueType,
   tokenMeta: TokenMeta<ErrorType>
 ): InputString => {
   return `${tokenValue}`;

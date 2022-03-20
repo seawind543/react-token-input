@@ -1,7 +1,7 @@
-import type { TokenValue, TokenIndex } from '../types/token';
+import type { TokenIndex } from '../types/token';
 import type { OnTokenValuesChange } from '../types/interfaces';
 declare type ParameterType<ValueType> = {
-    tokenValues: TokenValue<ValueType>[];
+    tokenValues: ValueType[];
     onTokenValuesChange?: OnTokenValuesChange<ValueType>;
     focusTokenCreator: () => void;
 };

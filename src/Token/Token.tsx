@@ -19,7 +19,7 @@ import {
 
 import styles from '../styles.scss';
 
-import type { TokenValue, TokenMeta } from '../types/token';
+import type { TokenMeta } from '../types/token';
 import type {
   OnBuildTokenValue,
   OnGetTokenClassName,
@@ -38,7 +38,7 @@ export type Props<ValueType, ErrorType> = {
   // Same as props of TokenInput
   readOnly: boolean;
   // tokenValue of the token
-  tokenValue: TokenValue<ValueType>;
+  tokenValue: ValueType;
   // tokenMeta of the token
   tokenMeta: TokenMeta<ErrorType>;
 
@@ -88,7 +88,7 @@ export type Props<ValueType, ErrorType> = {
    * onEditEnd(newTokenValue?)
    *
    * @ newTokenValue
-   * Type: undefined | TokenValue<ValueType>
+   * Type: undefined | ValueType
    * Description:
    * The new tokenValue build by `onBuildTokenValue.
    *
@@ -100,7 +100,7 @@ export type Props<ValueType, ErrorType> = {
    * @ return
    * Type: void
    */
-  onEditEnd: (newTokenValue?: TokenValue<ValueType>) => void;
+  onEditEnd: (newTokenValue?: ValueType) => void;
 
   /**
    * A callback function, which should be `invoked`

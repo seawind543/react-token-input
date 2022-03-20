@@ -1,17 +1,6 @@
 import type { Nullish } from './mix';
 
-/**
- * The type which build-in default functions take
- */
-export type DefaultValueType = string;
-
-/**
- * Type: any (string | number | object | customize data structure...etc)
- * Description: The tokenValue build by `onBuildTokenValue`
- */
-export type TokenValue<ValueType> = DefaultValueType | ValueType;
-
-// The index of tokenValue in tokenValues
+// The array index of token in the tokens
 export type TokenIndex = number;
 
 export type TokenMeta<ErrorType> = {

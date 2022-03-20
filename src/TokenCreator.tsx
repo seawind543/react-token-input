@@ -16,7 +16,6 @@ import type {
 
 import type { InputString, TokenSeparator } from './types/mix';
 import type { SpecialKeyDownConfig } from './types/specialKeyDown';
-import type { TokenValue } from './types/token';
 import type {
   OnInputValueChange,
   OnPreprocess,
@@ -51,7 +50,7 @@ type Props<ValueType> = {
    * A callback function, which should be `invoked`
    * when want to append a new token to the end of the token list.
    */
-  onNewTokenValuesAppend: (appendTokenValues: TokenValue<ValueType>[]) => void;
+  onNewTokenValuesAppend: (appendTokenValues: ValueType[]) => void;
 
   /**
    * A callback function, which should be `invoked`
