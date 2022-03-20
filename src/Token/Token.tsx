@@ -4,8 +4,8 @@ import React, {
   useMemo,
   useRef,
   useEffect,
+  type MouseEvent,
 } from 'react';
-import type { MouseEvent } from 'react';
 import classNames from 'classnames';
 import AutosizeInput from 'react-input-autosize';
 import keyDownHandlerProxy from '../utils/keyDownHandlerProxy';

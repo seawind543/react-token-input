@@ -1,5 +1,11 @@
-import React, { useState, useMemo, useCallback, forwardRef } from 'react';
-import type { ReactElement, Ref } from 'react';
+import React, {
+  useState,
+  useMemo,
+  useCallback,
+  forwardRef,
+  type ReactElement,
+  type Ref,
+} from 'react';
 import AutosizeInput from 'react-input-autosize';
 
 import keyDownHandlerProxy from './utils/keyDownHandlerProxy';

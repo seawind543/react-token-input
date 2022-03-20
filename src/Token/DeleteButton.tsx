@@ -1,5 +1,4 @@
-import React from 'react';
-import type { ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
 import classNames from 'classnames';
 
 import CloseIcon from './CloseIcon';

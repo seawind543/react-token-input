@@ -1,4 +1,4 @@
-import type { ReactElement, Ref } from 'react';
+import { type ReactElement, type Ref } from 'react';
 import type { HandleTokenInputFocus, HandleTokenInputBlur } from './hooks/useTokenInputFocusEffect';
 import type { TokenSeparator } from './types/mix';
 import type { SpecialKeyDownConfig } from './types/specialKeyDown';
