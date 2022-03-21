@@ -1,6 +1,4 @@
-/**
- * TokenInput default value type (string)
- */
+// TokenInput default value type (string)
 const DEFAULT_VALUE_TYPE_DATA = {
   tokenValues: ['hello world', 'Sunny', 'Cloudy', 'Rain'],
   tokenMetas: [

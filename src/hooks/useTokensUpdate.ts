@@ -17,10 +17,8 @@ function useTokensUpdate<ValueType, ErrorType>({
     useTokenMetas<ErrorType>();
   const [hasInvalidToken, setHasInvalidToken] = useState<boolean>(false);
 
-  /**
-   * Use this internalTokenValues to `render` to avoid
-   * not synced between tokenMetas and  tokenValues
-   */
+  // Use this internalTokenValues to `render` to avoid
+  // not synced between tokenMetas and  tokenValues
   const [internalTokenValues, setInternalTokenValues] = useState<ValueType[]>(
     []
   );

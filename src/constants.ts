@@ -45,7 +45,5 @@ export const DEFAULT_SPECIAL_KEY_DOWN_CONFIG: Required<SpecialKeyDownConfig> = {
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const JS__TOKEN__DELETE_BUTTON__CLASS_NAME = 'js__token__delete-button';
 
-/**
- * The default init value of the `input`
- */
+// The default init value of the `input`
 export const DEFAULT_INPUT_INIT_VALUE: InputString = '';

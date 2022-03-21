@@ -44,20 +44,32 @@ import type {
 } from './types/interfaces';
 
 export type Props<ValueType, ErrorType> = {
-  // Assign style to the TokenInput
+  /**
+   * For assign style to the TokenInput
+   */
   style?: CSSProperties;
 
-  // Assign className to the TokenInput
+  /**
+   * For assign class to the TokenInput
+   */
   className?: string;
 
-  // Specific TokenInput is `readOnly` or not
+  /**
+   * For set placeholder to the TokenInput
+   */
+  placeholder?: string;
+
+  /**
+   * To specific TokenInput is `readOnly` mode or not
+   * @default false
+   */
   readOnly?: boolean;
 
-  // Specific TokenInput should be autoFocus or not
+  /**
+   * To specific TokenInput should be autoFocus or not
+   * @default false
+   */
   autoFocus?: boolean;
-
-  // Placeholder of TokenInput
-  placeholder?: string;
 
   /**
    * The array of tokenValue of TokenInput.
@@ -70,9 +82,7 @@ export type Props<ValueType, ErrorType> = {
    */
   tokenValues: ValueType[];
 
-  /**
-   * TokenCreator props
-   */
+  // TokenCreator props
 
   /**
    * An array of characters to split the user input string into array.
@@ -180,9 +190,7 @@ export type Props<ValueType, ErrorType> = {
    */
   onTokenValueValidate?: OnTokenValueValidate<ValueType, ErrorType>;
 
-  /**
-   * Token props
-   */
+  // Token props
 
   /**
    * A callback function invoked when tokenValues update
@@ -346,15 +354,13 @@ export type Props<ValueType, ErrorType> = {
 
 const TokenInput = <ValueType, ErrorType>({
   className,
+  placeholder,
   readOnly = false,
   autoFocus = false,
-  placeholder,
 
   tokenValues,
 
-  /**
-   * TokenCreator props
-   */
+  // TokenCreator props
   separators = DEFAULT_SEPARATORS,
   specialKeyDown = DEFAULT_SPECIAL_KEY_DOWN_CONFIG,
 
@@ -363,9 +369,7 @@ const TokenInput = <ValueType, ErrorType>({
 
   onTokenValueValidate = defaultTokenValueValidate,
 
-  /**
-   * Token props
-   */
+  // Token props
 
   // FixMe: ReadOnly mode do not need onTokenValuesChange, but others need
   onTokenValuesChange,
@@ -403,10 +407,8 @@ const TokenInput = <ValueType, ErrorType>({
     onTokenValueValidate,
   });
 
-  /**
-   * TODO: Handle cursor focus after end of editing (typing)
-   * Support keyboard operator + selected of token
-   */
+  // TODO: Handle cursor focus after end of editing (typing)
+  // Support keyboard operator + selected of token
   const { handleTokenEditStart, handleTokenEditEnd } = useTokenEdit({
     tokenValues,
     onTokenValuesChange,

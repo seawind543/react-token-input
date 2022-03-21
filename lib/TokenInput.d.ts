@@ -6,9 +6,9 @@ import type { OnInputValueChange, OnPreprocess, OnBuildTokenValue, OnTokenValueV
 export declare type Props<ValueType, ErrorType> = {
     style?: CSSProperties;
     className?: string;
+    placeholder?: string;
     readOnly?: boolean;
     autoFocus?: boolean;
-    placeholder?: string;
     tokenValues: ValueType[];
     separators?: TokenSeparator[];
     specialKeyDown?: SpecialKeyDownConfig;
@@ -25,5 +25,5 @@ export declare type Props<ValueType, ErrorType> = {
     onGetTokenEditableValue?: OnGetTokenEditableValue<ValueType, ErrorType>;
     onGetTokenErrorMessage?: OnGetTokenErrorMessage<ValueType, ErrorType>;
 };
-declare const TokenInput: <ValueType, ErrorType>({ className, readOnly, autoFocus, placeholder, tokenValues, separators, specialKeyDown, onInputValueChange, onPreprocess, onTokenValueValidate, onTokenValuesChange, onBuildTokenValue, customizeTokenComponent, onGetTokenClassName, onGetTokenDisplayLabel, onRenderTokenDeleteButtonContent, onGetIsTokenEditable, onGetTokenEditableValue, onGetTokenErrorMessage, ...props }: Props<ValueType, ErrorType>) => JSX.Element;
+declare const TokenInput: <ValueType, ErrorType>({ className, placeholder, readOnly, autoFocus, tokenValues, separators, specialKeyDown, onInputValueChange, onPreprocess, onTokenValueValidate, onTokenValuesChange, onBuildTokenValue, customizeTokenComponent, onGetTokenClassName, onGetTokenDisplayLabel, onRenderTokenDeleteButtonContent, onGetIsTokenEditable, onGetTokenEditableValue, onGetTokenErrorMessage, ...props }: Props<ValueType, ErrorType>) => JSX.Element;
 export default TokenInput;

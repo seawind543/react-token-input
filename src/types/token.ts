@@ -1,13 +1,19 @@
 import type { Nullish } from './mix';
 
-// The array index of token in the tokens
+/**
+ * The array index of token in the tokens
+ */
 export type TokenIndex = number;
 
 export type TokenMeta<ErrorType> = {
-  // A private key for render
+  /**
+   * A private key for render
+   */
   key: string;
 
-  // Specific the token is `editing` or not
+  /**
+   * Specific the token is `editing` or not
+   */
   activated: boolean;
 
   /**

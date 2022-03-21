@@ -35,27 +35,44 @@ const handleInlineEditClick = (e: MouseEvent<HTMLDivElement>) => {
 };
 
 export type Props<ValueType, ErrorType> = {
-  // Same as props of TokenInput
+  /**
+   * Same as props of TokenInput
+   */
   readOnly: boolean;
-  // tokenValue of the token
+
   tokenValue: ValueType;
-  // tokenMeta of the token
   tokenMeta: TokenMeta<ErrorType>;
 
-  // Same as props `onGetTokenClassName` of TokenInput
+  /**
+   * Same as props `onGetTokenClassName` of TokenInput
+   */
   onGetClassName?: OnGetTokenClassName<ValueType, ErrorType>;
-  // Same as props `onGetTokenDisplayLabel` of TokenInput
+
+  /**
+   * Same as props `onGetTokenDisplayLabel` of TokenInput
+   */
   onGetDisplayLabel: OnGetTokenDisplayLabel<ValueType, ErrorType>;
-  // Same as props `onRenderTokenDeleteButtonContent` of TokenInput
+
+  /**
+   * Same as props `onRenderTokenDeleteButtonContent` of TokenInput
+   */
   onRenderDeleteButtonContent?: OnRenderTokenDeleteButtonContent;
 
-  // Same as props `onGetIsTokenEditable` of TokenInput
+  /**
+   * Same as props `onGetIsTokenEditable` of TokenInput
+   */
   onGetIsEditable: OnGetIsTokenEditable<ValueType, ErrorType>;
-  // Same as props `onGetTokenEditableValue` of TokenInput
+  /**
+   * Same as props `onGetTokenEditableValue` of TokenInput
+   */
   onGetEditableValue: OnGetTokenEditableValue<ValueType, ErrorType>;
-  // Same as props `onBuildTokenValue` of TokenInput
+  /**
+   * Same as props `onBuildTokenValue` of TokenInput
+   */
   onBuildTokenValue: OnBuildTokenValue<ValueType>;
-  // Same as props `onGetTokenErrorMessage` of TokenInput
+  /**
+   * Same as props `onGetTokenErrorMessage` of TokenInput
+   */
   onGetErrorMessage: OnGetTokenErrorMessage<ValueType, ErrorType>;
 
   /**
@@ -186,10 +203,8 @@ const Token = <ValueType, ErrorType>({
         return;
       }
 
-      /**
-       * Check does the click on the delete button
-       * That is, the Element or its parents matched the `selector`
-       */
+      // Check does the click on the delete button
+      // That is, the Element or its parents matched the `selector`
       const isOnDeleteButton = !!e.target.closest(
         `.${styles.token} .${JS__TOKEN__DELETE_BUTTON__CLASS_NAME}`
       );
