@@ -17,8 +17,6 @@ A react token (tag) `controlled` input component, which support:
 It could be helpful to reproduce a single value into multiple values too. [Demo](https://seawind543.github.io/react-token-input/#example-preprocess)
 - **Validate** function.
 
-
-
 ## Installation
 
 1. Install the latest version of [react](https://github.com/facebook/react) and [react-customize-token-input](https://github.com/seawind543/react-token-input):
@@ -65,27 +63,45 @@ Note: Sources code of Examples in the folder `examples`
 
 ```JavaScript
 type Props<ValueType, ErrorType> = {
-  // Assign style to the TokenInput
+  /**
+   * For assign style to the TokenInput
+   */
   style?: CSSProperties;
 
-  // Assign className to the TokenInput
+  /**
+   * For assign class to the TokenInput
+   */
   className?: string;
 
-  // Specific TokenInput is `readOnly` or not
-  readOnly?: boolean;
-
-  // Specific TokenInput should be autoFocus or not
-  autoFocus?: boolean;
-
-  // Placeholder of TokenInput
+  /**
+   * For set placeholder to the TokenInput
+   */
   placeholder?: string;
 
-  // The array of tokenValue of TokenInput
-  tokenValues: TokenValue<ValueType>[];
+  /**
+   * To specific TokenInput is `readOnly` mode or not
+   * @default false
+   */
+  readOnly?: boolean;
 
   /**
-   * TokenCreator props
+   * To specific TokenInput should be autoFocus or not
+   * @default false
    */
+  autoFocus?: boolean;
+
+  /**
+   * The array of tokenValue of TokenInput.
+   * This array will be used to render the tokens.
+   *
+   * Type: ValueType
+   * Description:
+   * Customize data structure data
+   * Could be string | number | object | customize data structure...etc.
+   */
+  tokenValues: ValueType[];
+
+  // TokenCreator props
 
   /**
    * An array of characters to split the user input string into array.
@@ -99,6 +115,28 @@ type Props<ValueType, ErrorType> = {
    * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
    */
   separators?: TokenSeparator[];
+
+  /**
+   * [Beta; Might be change in the future version]
+   * Current only apply to the `TokenCreator`
+   *
+   * The settings to control the behavior of specials keyDown's event handler.
+   * Recommend to use the build-in constant `KEY_DOWN_HANDLER_CONFIG_OPTION` to config the setting.
+   *
+   * `KEY_DOWN_HANDLER_CONFIG_OPTION.OFF` means turn `off`
+   * (Took native browser behavior. The TokenInput should NOT handle it).
+   *
+   * `KEY_DOWN_HANDLER_CONFIG_OPTION.ON` means apply TokenInput predefined event handler.
+   *
+   * Default setting as below.
+   * specialKeyDown: {
+   *   onBackspace: KEY_DOWN_HANDLER_CONFIG_OPTION.ON,
+   *   onTab: KEY_DOWN_HANDLER_CONFIG_OPTION.OFF,
+   *   onEnter: KEY_DOWN_HANDLER_CONFIG_OPTION.ON,
+   *   onEscape: KEY_DOWN_HANDLER_CONFIG_OPTION.ON,
+   * },
+   */
+  specialKeyDown?: SpecialKeyDownConfig;
 
   /**
    * A callback function invoked when end-user typing but not become token yet
@@ -143,12 +181,13 @@ type Props<ValueType, ErrorType> = {
   onPreprocess?: OnPreprocess;
 
   /**
-   * A callback function to validate tokenValue
+   * A callback function to validate a tokenValue
+   * (The returned result will be use by `onGetTokenErrorMessage`)
    *
    * onTokenValueValidate(tokenValue, tokenIndex, tokenValues)
    *
    * @ tokenValue
-   * Type: any (string | number | object | customize data structure)
+   * Type: ValueType
    * Description: The tokenValue build by `onBuildTokenValue`
    *
    * @ tokenIndex
@@ -156,23 +195,21 @@ type Props<ValueType, ErrorType> = {
    * Description: The array index of this tokenValue in tokenValues
    *
    * @ tokenValues
-   * Type: array
+   * Type: ValueType[]
    * Description: The array of tokenValue of TokenInput
    *
    * @ return
-   * Type: any (string | number | object | customize data structure)
+   * Type: TokenMeta<ErrorType>['error']
    * Description:
    * The customize error.
    * Specific the token's validate status or errorMessage.
-   * Could be an error message to display or error object
+   * Could be `an error message` to display, or an error object for further operations.
    *
-   * Will be use by `onGetTokenErrorMessage`
+   * Return `Nullish` types means the token is valid.
    */
   onTokenValueValidate?: OnTokenValueValidate<ValueType, ErrorType>;
 
-  /**
-   * Token props
-   */
+  // Token props
 
   /**
    * A callback function invoked when tokenValues update
@@ -180,7 +217,7 @@ type Props<ValueType, ErrorType> = {
    * onTokenValuesChange(modifiedTokenValues)
    *
    * @ modifiedTokenValues
-   * Type: TokenValue<ValueType>[]
+   * Type: ValueType[]
    * Description: the new tokenValues
    */
   onTokenValuesChange?: OnTokenValuesChange<ValueType>;
@@ -198,8 +235,10 @@ type Props<ValueType, ErrorType> = {
    * Description: The user input value // (A value split by TokenSeparator[])
    *
    * @ return
-   * Type: TokenValue<ValueType>
-   * Description: customize data structure TokenValue
+   * Type: ValueType
+   * Description:
+   * Customize data structure data
+   * Could be string | number | object | customize data structure...etc.
    */
   onBuildTokenValue?: OnBuildTokenValue<ValueType>;
 
@@ -218,7 +257,7 @@ type Props<ValueType, ErrorType> = {
    * onGetTokenClassName(tokenValue, tokenMeta)
    *
    * @ tokenValue
-   * Type: TokenValue<ValueType>
+   * Type: ValueType
    * Description: The tokenValue build by `onBuildTokenValue`
    *
    * @ tokenMeta
@@ -239,7 +278,7 @@ type Props<ValueType, ErrorType> = {
    * onGetTokenDisplayLabel(tokenValue, tokenMeta)
    *
    * @ tokenValue
-   * Type: TokenValue<ValueType>
+   * Type: ValueType
    * Description: The tokenValue build by `onBuildTokenValue`
    *
    * @ tokenMeta
@@ -274,7 +313,7 @@ type Props<ValueType, ErrorType> = {
    * onGetIsTokenEditable(tokenValue, tokenMeta)
    *
    * @ tokenValue
-   * Type: TokenValue<ValueType>
+   * Type: ValueType
    * Description: The tokenValue build by `onBuildTokenValue`
    *
    * @ tokenMeta
@@ -294,7 +333,7 @@ type Props<ValueType, ErrorType> = {
    * onGetTokenEditableValue(tokenValue, tokenMeta)
    *
    * @ tokenValue
-   * Type: TokenValue<ValueType>
+   * Type: ValueType
    * Description: The tokenValue build by `onBuildTokenValue`
    *
    * @ tokenMeta
@@ -314,7 +353,7 @@ type Props<ValueType, ErrorType> = {
    * onGetTokenErrorMessage(tokenValue, tokenMeta)
    *
    * @ tokenValue
-   * Type: TokenValue<ValueType>
+   * Type: ValueType
    * Description: The tokenValue build by `onBuildTokenValue`
    *
    * @ tokenMeta
@@ -322,38 +361,11 @@ type Props<ValueType, ErrorType> = {
    * Description: token's meta data
    *
    * @ return
-   * Type: undefined | DefaultErrorType | ErrorType
+   * Type: Nullish | ErrorType
    * Description: The error message to describe an invalid token
    */
   onGetTokenErrorMessage?: OnGetTokenErrorMessage<ValueType, ErrorType>;
 };
-```
-
-### Beta props
-
-```JavaScript
-
-  /**
-   * [Beta; Might be change in the future version]
-   * Current only apply to the `TokenCreator`
-   *
-   * The settings to control the behavior of specials keyDown's event handler.
-   * Recommend to use the build-in constant `KEY_DOWN_HANDLER_CONFIG_OPTION` to config the setting.
-   *
-   * `KEY_DOWN_HANDLER_CONFIG_OPTION.OFF` means turn `off`
-   * (Took native browser behavior. The TokenInput should NOT handle it).
-   *
-   * `KEY_DOWN_HANDLER_CONFIG_OPTION.ON` means apply TokenInput predefined event handler.
-   *
-   * Default setting as below.
-   * specialKeyDown: {
-   *   onBackspace: KEY_DOWN_HANDLER_CONFIG_OPTION.ON,
-   *   onTab: KEY_DOWN_HANDLER_CONFIG_OPTION.OFF,
-   *   onEnter: KEY_DOWN_HANDLER_CONFIG_OPTION.ON,
-   *   onEscape: KEY_DOWN_HANDLER_CONFIG_OPTION.ON,
-   * },
-   */
-  specialKeyDown?: SpecialKeyDownConfig;
 ```
 
 ## Predefined KeyDown Event Handlers
@@ -364,8 +376,8 @@ TokenInput has the following **Predefined** KeyDown event handlers.
 
 KeyDown    | Description   | Note
 ---------- | :------------ | :---
-Backspace  | In case the value is an `empty string`, the latest **token** in the list tail will be deleted. |
-Escape     | Clear the input value. | A.K.A. Reset.
+Backspace  | In case the current inputValue is an `empty string`, the latest **token** in the list tail will be deleted. |
+Escape     | Clear the input-box's value. | A.K.A. Reset.
 Enter      | Create a token with the inputValue and continually focused on the inputBox for the next inputting. |
 Tab  | Same as onEnter.  | <ul> <li>Default not apply</li> <li>Under Beta</li> </ul>
 
@@ -376,14 +388,14 @@ KeyDown    | Description | Note
 Escape     | End editing without change the value of the token. | A.K.A. Reset
 Enter      | End editing and apply the new value. In case the new value is an `empty string`, will perform the `onEscape`. |
 
-## Default value of optional Props
+## Default value of the optional Props
 
 ```JavaScript
     style = undefined,
     className = undefined,
+    placeholder = undefined,
     readOnly = false,
     autoFocus = false,
-    placeholder = undefined,
 
     // TokenCreator
     separators = DEFAULT_SEPARATORS,
@@ -431,31 +443,50 @@ Enter      | End editing and apply the new value. In case the new value is an `e
 
 ## Props of customizeTokenComponent
 
+Your CustomizeTokenComponent will receive these props from the TokenInput. You could decide where & how to use them to Customize your Token component.
+
 Could also reference this [Example Demo](https://seawind543.github.io/react-token-input/#example-customize-token-component) and its source code `ExampleCustomizeToken` from the folder `examples`.
 
 ```JavaScript
-type Props<ValueType, ErrorType> = {
-  // Same as props of TokenInput
+export type Props<ValueType, ErrorType> = {
+  /**
+   * Same as props of TokenInput
+   */
   readOnly: boolean;
-  // tokenValue of token
-  tokenValue: TokenValue<ValueType>;
-  // tokenMeta of token
+
+  tokenValue: ValueType;
   tokenMeta: TokenMeta<ErrorType>;
 
-  // Same as props `onGetTokenClassName` of TokenInput
+  /**
+   * Same as props `onGetTokenClassName` of TokenInput
+   */
   onGetClassName?: OnGetTokenClassName<ValueType, ErrorType>;
-  // Same as props `onGetTokenDisplayLabel` of TokenInput
+
+  /**
+   * Same as props `onGetTokenDisplayLabel` of TokenInput
+   */
   onGetDisplayLabel: OnGetTokenDisplayLabel<ValueType, ErrorType>;
-  // Same as props `onRenderTokenDeleteButtonContent` of TokenInput
+
+  /**
+   * Same as props `onRenderTokenDeleteButtonContent` of TokenInput
+   */
   onRenderDeleteButtonContent?: OnRenderTokenDeleteButtonContent;
 
-  // Same as props `onGetIsTokenEditable` of TokenInput
+  /**
+   * Same as props `onGetIsTokenEditable` of TokenInput
+   */
   onGetIsEditable: OnGetIsTokenEditable<ValueType, ErrorType>;
-  // Same as props `onGetTokenEditableValue` of TokenInput
+  /**
+   * Same as props `onGetTokenEditableValue` of TokenInput
+   */
   onGetEditableValue: OnGetTokenEditableValue<ValueType, ErrorType>;
-  // Same as props `onBuildTokenValue` of TokenInput
+  /**
+   * Same as props `onBuildTokenValue` of TokenInput
+   */
   onBuildTokenValue: OnBuildTokenValue<ValueType>;
-  // Same as props `onGetTokenErrorMessage` of TokenInput
+  /**
+   * Same as props `onGetTokenErrorMessage` of TokenInput
+   */
   onGetErrorMessage: OnGetTokenErrorMessage<ValueType, ErrorType>;
 
   /**
@@ -488,7 +519,7 @@ type Props<ValueType, ErrorType> = {
    * onEditEnd(newTokenValue?)
    *
    * @ newTokenValue
-   * Type: undefined | TokenValue<ValueType>
+   * Type: undefined | ValueType
    * Description:
    * The new tokenValue build by `onBuildTokenValue.
    *
@@ -500,7 +531,7 @@ type Props<ValueType, ErrorType> = {
    * @ return
    * Type: void
    */
-  onEditEnd: (newTokenValue?: TokenValue<ValueType>) => void;
+  onEditEnd: (newTokenValue?: ValueType) => void;
 
   /**
    * A callback function, which should be `invoked`
