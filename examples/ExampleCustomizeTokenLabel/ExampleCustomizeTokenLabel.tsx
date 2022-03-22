@@ -1,20 +1,23 @@
 /* eslint no-console: 0 */
-/* eslint no-unused-vars: 0 */
 
 import React, { useState, useCallback } from 'react';
-import TokenInput from '../../src/index.ts';
+import TokenInput from '../../src';
+import type { TokenMeta } from '../../src/types/token';
 
 import CopyAnchor from '../share/CopyAnchor';
 
-const WEATHERS = ['Sunny', 'Cloudy', 'Rain'];
+type Weather = 'Sunny' | 'Cloudy' | 'Rain';
+type MaybeWeather = string | Weather;
 
-const handleBuildTokenValue = (inputValue) => {
+const WEATHERS: MaybeWeather[] = ['Sunny', 'Cloudy', 'Rain'];
+
+const handleBuildTokenValue = (inputValue: string): string => {
   const trimmedValue = inputValue.trim();
   const text = trimmedValue.charAt(0).toUpperCase() + trimmedValue.slice(1);
   return text;
 };
 
-const handleGetTokenDisplayLabel = (tokenValue, tokenMeta) => {
+const handleGetTokenDisplayLabel = (tokenValue: MaybeWeather, tokenMeta: TokenMeta<string>) => {
   console.log(
     'handleGetTokenDisplayLabel',
     'tokenValue',

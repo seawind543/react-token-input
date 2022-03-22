@@ -11,7 +11,7 @@ const localClassPrefix = 'token-input';
 module.exports = {
   mode: 'development',
   devtool: 'eval-cheap-module-source-map',
-  entry: path.resolve(__dirname, 'index.jsx'),
+  entry: path.resolve(__dirname, 'index.tsx'),
   output: {
     path: path.join(__dirname, '../docs'),
     filename: 'bundle.js?[fullhash]',

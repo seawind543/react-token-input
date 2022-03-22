@@ -1,8 +1,7 @@
 /* eslint no-console: 0 */
-/* eslint no-unused-vars: 0 */
 
 import React, { useState } from 'react';
-import TokenInput from '../../src/index.ts';
+import TokenInput from '../../src';
 
 import CopyAnchor from '../share/CopyAnchor';
 
@@ -12,7 +11,7 @@ import {
   DEMO_VALUES_WITH_INVALID,
 } from '../demoValues';
 
-const handleTokenValueValidate = (tokenValue, index, tokenValues) => {
+const handleTokenValueValidate = (tokenValue: string) => {
   if (tokenValue === INVALID_VALUE) {
     return "I'm an invalid token";
   }
@@ -21,7 +20,7 @@ const handleTokenValueValidate = (tokenValue, index, tokenValues) => {
 };
 
 const ExampleReadOnly = () => {
-  const [values, setValues] = useState(DEMO_VALUES);
+  const [values, setValues] = useState<string[]>(DEMO_VALUES);
 
   return (
     <>

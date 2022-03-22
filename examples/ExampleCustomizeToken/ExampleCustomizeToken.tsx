@@ -1,15 +1,14 @@
 /* eslint no-console: 0 */
-/* eslint no-unused-vars: 0 */
 
 import React, { useState, useCallback } from 'react';
-import TokenInput from '../../src/index.ts';
+import TokenInput from '../../src';
 import MyToken from './MyToken';
 
 import CopyAnchor from '../share/CopyAnchor';
 
 import { INVALID_VALUE, DEMO_VALUES_WITH_INVALID } from '../demoValues';
 
-const handleTokenValueValidate = (tokenValue, index, tokenValues) => {
+const handleTokenValueValidate = (tokenValue: string) => {
   if (tokenValue === INVALID_VALUE) {
     return "I'm an invalid token";
   }

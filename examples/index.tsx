@@ -48,22 +48,30 @@ const examples = [
   <ExampleSpecialKeyDown key="ExampleSpecialKeyDown" />,
 ];
 
+type ExampleTitle = {
+  label: string;
+  url: string;
+};
+
 const App = () => {
-  const [titles, setTitles] = useState([]);
+  const [exampleTitles, setExampleTitles] = useState<ExampleTitle[]>([]);
 
   useEffect(() => {
-    const titles = [];
+    const exampleTitles: ExampleTitle[] = [];
     (document.querySelectorAll('h2') || []).forEach((h2) => {
-      const url = (h2.lastChild.className || '').split(' ').includes('hashTag')
-        ? h2.lastChild.href
-        : '#';
+      // const url = (h2?.lastChild?.className || '').split(' ').includes('hashTag')
+      //   ? h2?.lastChild?.href
+      //   : '#';
+      const anchor: HTMLAnchorElement | null = h2?.querySelector('.hashTag');
+      const url = anchor?.href || '#';
 
-      titles.push({
-        label: h2.firstChild.textContent || '',
+
+      exampleTitles.push({
+        label: h2?.firstChild?.textContent || '',
         url,
       });
     });
-    setTitles(titles);
+    setExampleTitles(exampleTitles);
   }, []);
 
   return (
@@ -73,8 +81,8 @@ const App = () => {
         <div className="row">
           <h1>Table of contents</h1>
           <ul>
-            {titles.map((title, index) => {
-              const { label, url } = title;
+            {exampleTitles.map((exampleTitle, index) => {
+              const { label, url } = exampleTitle;
 
               const isUrlExist = url !== '#';
               return (

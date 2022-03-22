@@ -1,0 +1,50 @@
+export type Styles = {
+  active: string;
+  'btn-link': string;
+  'btn-sm': string;
+  'btn-xs': string;
+  checkbox: string;
+  collapse: string;
+  container: string;
+  'container-fluid': string;
+  'control-label': string;
+  disabled: string;
+  'dropdown-header': string;
+  'dropdown-menu': string;
+  'form-control': string;
+  'form-control-feedback': string;
+  'form-control-static': string;
+  'form-group': string;
+  'has-feedback': string;
+  'icon-bar': string;
+  in: string;
+  'input-group': string;
+  'input-group-addon': string;
+  'input-group-btn': string;
+  nav: string;
+  navbar: string;
+  'navbar-brand': string;
+  'navbar-btn': string;
+  'navbar-collapse': string;
+  'navbar-default': string;
+  'navbar-fixed-bottom': string;
+  'navbar-fixed-top': string;
+  'navbar-form': string;
+  'navbar-header': string;
+  'navbar-left': string;
+  'navbar-link': string;
+  'navbar-nav': string;
+  'navbar-right': string;
+  'navbar-static-top': string;
+  'navbar-text': string;
+  'navbar-toggle': string;
+  open: string;
+  radio: string;
+  'sr-only': string;
+};
+
+export type ClassNames = keyof Styles;
+
+declare const styles: Styles;
+
+export default styles;

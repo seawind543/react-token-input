@@ -1,14 +1,14 @@
 /* eslint no-console: 0 */
 import React, { useState, useCallback } from 'react';
-import TokenInput, { KEY_DOWN_HANDLER_CONFIG_OPTION } from '../../src/index.ts';
+import TokenInput, { KEY_DOWN_HANDLER_CONFIG_OPTION } from '../../src';
 
 import CopyAnchor from '../share/CopyAnchor';
 
 const ExampleSpecialKeyDown = () => {
-  const [values, setValues] = useState([]);
+  const [values, setValues] = useState<string[]>([]);
 
   const handleTokenValuesChange = useCallback(
-    (newTokenValues) => {
+    (newTokenValues: string[]) => {
       console.log(
         'tokenValues before',
         values,

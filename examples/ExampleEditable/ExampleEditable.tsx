@@ -1,14 +1,13 @@
 /* eslint no-console: 0 */
-/* eslint no-unused-vars: 0 */
 
 import React, { useState, useCallback } from 'react';
-import TokenInput from '../../src/index.ts';
+import TokenInput from '../../src';
 
 import CopyAnchor from '../share/CopyAnchor';
 
 import { DEMO_VALUES } from '../demoValues';
 
-const handleIsTokenEditable = (tokenValue, tokenMeta) => {
+const handleIsTokenEditable = (tokenValue: string) => {
   return Number.isNaN(+tokenValue);
 };
 

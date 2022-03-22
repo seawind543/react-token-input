@@ -1,5 +1,4 @@
 /* eslint no-console: 0 */
-/* eslint no-unused-vars: 0 */
 
 import React, {
   useState,
@@ -8,17 +7,20 @@ import React, {
   useRef,
   useEffect,
 } from 'react';
-import PropTypes from 'prop-types'; // eslint-disable-line import/no-extraneous-dependencies
 import classNames from 'classnames';
-import keyDownHandlerProxy from '../../../src/utils/keyDownHandlerProxy.ts';
+import keyDownHandlerProxy from '../../../src/utils/keyDownHandlerProxy';
 import DeleteButton from './DeleteButton';
 
 import styles from '../myToken.scss';
 
-const handleTokenClick = (e) => {
+import type { TokenProps } from '../../../src/Token';
+
+const handleTokenClick = (e: React.MouseEvent<HTMLElement>) => {
   // console.log('handleTokenClick');
   e.stopPropagation();
 };
+
+type Props = TokenProps<string, string>;
 
 const MyToken = ({
   tokenValue,
@@ -34,6 +36,7 @@ const MyToken = ({
    * Because basically they are as same as what you passed into the TokenInput.
    * That is, you already know what is their implementation.
    */
+  /*
   readOnly,
   onGetClassName,
   onGetDisplayLabel,
@@ -42,8 +45,9 @@ const MyToken = ({
   onGetEditableValue,
   onBuildTokenValue,
   onGetErrorMessage,
-}) => {
-  const inputRef = useRef(null);
+  */
+}: Props) => {
+  const inputRef = useRef<HTMLInputElement>(null);
   const [inputValue, setInputValue] = useState('');
   const { activated, error } = tokenMeta;
 
@@ -112,7 +116,7 @@ const MyToken = ({
   );
 
   const handleTokenDelete = useCallback(
-    (e) => {
+    (e: React.MouseEvent<HTMLElement>) => {
       e.stopPropagation();
 
       onDelete();
@@ -228,27 +232,6 @@ const MyToken = ({
       </div>
     </div>
   );
-};
-
-MyToken.propTypes = {
-  readOnly: PropTypes.bool.isRequired,
-  tokenValue: PropTypes.any.isRequired,
-  tokenMeta: PropTypes.object.isRequired,
-
-  onGetClassName: PropTypes.func,
-
-  onGetDisplayLabel: PropTypes.func.isRequired,
-
-  onRenderDeleteButtonContent: PropTypes.func,
-
-  onGetIsEditable: PropTypes.func.isRequired,
-  onGetEditableValue: PropTypes.func.isRequired,
-  onBuildTokenValue: PropTypes.func.isRequired,
-  onGetErrorMessage: PropTypes.func.isRequired,
-
-  onEditStart: PropTypes.func.isRequired,
-  onEditEnd: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
 };
 
 export default MyToken;

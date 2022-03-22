@@ -1,13 +1,15 @@
 /* eslint no-console: 0 */
 import React, { useState, useCallback } from 'react';
-import TokenInput from '../../src/index.ts';
+import TokenInput from '../../src';
 
 import CopyAnchor from '../share/CopyAnchor';
+
+type UrlString = string;
 
 /**
  * Customize data structure
  */
-const URLS = [
+const URLS: UrlString[] = [
   'https://developer.mozilla.org/',
   'https://www.w3schools.com/',
   'https://github.com/seawind543/react-token-input/',
@@ -15,8 +17,8 @@ const URLS = [
 
 const urlProtocolPattern = /^(https:\/\/|http:\/\/)/i;
 
-const handlePreprocess = (inputValues) => {
-  const values = [];
+const handlePreprocess = (inputValues: string[]) => {
+  const values: string[] = [];
 
   inputValues
     .filter((value) => {

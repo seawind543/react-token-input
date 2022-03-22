@@ -1,5 +1,4 @@
 /* eslint no-console: 0 */
-/* eslint no-unused-vars: 0 */
 
 import React, { useState, useCallback } from 'react';
 // import TokenInput, { JS__TOKEN__DELETE_BUTTON__CLASS_NAME } from '../../src';
@@ -20,7 +19,7 @@ const INIT_VALUES = [
   '123456789',
 ];
 
-const handleBuildTokenValue = (inputValue) => {
+const handleBuildTokenValue = (inputValue: string) => {
   return inputValue.trim();
 };
 
@@ -30,7 +29,7 @@ const handleRenderTokenDeleteButtonContent = () => {
   return <span className="material-icons">delete</span>;
 };
 
-const handleGetTokenDisplayLabel = (tokenValue) => {
+const handleGetTokenDisplayLabel = (tokenValue: string) => {
   return (
     <>
       <span
@@ -47,11 +46,11 @@ const handleGetTokenDisplayLabel = (tokenValue) => {
   );
 };
 
-const handleGetTokenEditableValue = (tokenValue) => {
+const handleGetTokenEditableValue = (tokenValue: string) => {
   return tokenValue;
 };
 
-const handleTokenValueValidate = (tokenValue, index, tokenValues) => {
+const handleTokenValueValidate = (tokenValue: string, index: number, tokenValues: string[]) => {
   const value = handleGetTokenEditableValue(tokenValue);
 
   if (value === 'abc') {
@@ -97,7 +96,7 @@ const handleTokenValueValidate = (url, index, urls) => {
 };
 */
 
-const handleGetTokenErrorMessage = (error) => {
+const handleGetTokenErrorMessage = (error: string) => {
   console.log('handleGetTokenErrorMessage', error);
   return error;
 };

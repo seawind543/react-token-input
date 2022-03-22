@@ -1,12 +1,14 @@
-/* eslint react/prop-types: 0 */
-
 import React from 'react';
 import PropTypes from 'prop-types'; // eslint-disable-line import/no-extraneous-dependencies
 import classNames from 'classnames';
 
 import styles from '../myToken.scss';
 
-const DeleteButton = ({ onClick }) => {
+type Pros = {
+  onClick: (e: React.MouseEvent<HTMLSpanElement>) => void;
+}
+
+const DeleteButton = ({ onClick }: Pros) => {
   // Google font material-icons
   // https://fonts.google.com/icons
   return (

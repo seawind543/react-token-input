@@ -1,10 +1,7 @@
 /* eslint no-console: 0 */
-/* eslint no-unused-vars: 0 */
 
 import React, { useState, useCallback } from 'react';
-import TokenInput, {
-  JS__TOKEN__DELETE_BUTTON__CLASS_NAME,
-} from '../../src/index.ts';
+import TokenInput, { JS__TOKEN__DELETE_BUTTON__CLASS_NAME } from '../../src';
 
 import CopyAnchor from '../share/CopyAnchor';
 
@@ -12,7 +9,7 @@ import { DEMO_VALUES } from '../demoValues';
 
 import style from './index.scss';
 
-const handleGetTokenDisplayLabel = (tokenValue, tokenMeta) => {
+const handleGetTokenDisplayLabel = (tokenValue: string) => {
   // Google font material-icons
   // https://fonts.google.com/icons
   return (
@@ -38,7 +35,7 @@ const ExampleCustomizeTokenVisualTrick = () => {
   const [values, setValues] = useState(DEMO_VALUES);
 
   const handleTokenValuesChange = useCallback(
-    (newTokenValues) => {
+    (newTokenValues: string[]) => {
       console.log('handleTokenValuesChange; newTokenValues', newTokenValues);
 
       setValues(newTokenValues);

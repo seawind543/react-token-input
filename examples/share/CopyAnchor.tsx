@@ -1,12 +1,16 @@
-/* eslint no-console: 0 */
 /* eslint no-unused-vars: 0 */
+/* eslint @typescript-eslint/no-unused-vars: 0 */
 
 import React, { useCallback } from 'react';
-import PropTypes from 'prop-types'; // eslint-disable-line import/no-extraneous-dependencies
+import './copyAnchor.scss';
 
-const CopyAnchor = ({ hashTag }) => {
+type Props = {
+  hashTag: string;
+};
+
+const CopyAnchor = ({ hashTag }: Props) => {
   const handleCopyToClipBoard = useCallback(
-    (e) => {
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
       const url = new URL(document.location.href);
       url.hash = hashTag;
       navigator.clipboard.writeText(url.href);
@@ -18,19 +22,12 @@ const CopyAnchor = ({ hashTag }) => {
     <a
       id={hashTag}
       className="hashTag"
-      style={{ marginLeft: '4px' }}
       href={`#${hashTag}`}
       onClick={handleCopyToClipBoard}
     >
-      <span className="material-icons" style={{ verticalAlign: 'middle' }}>
-        link
-      </span>
+      <span className="material-icons">link</span>
     </a>
   );
-};
-
-CopyAnchor.propTypes = {
-  hashTag: PropTypes.string.isRequired,
 };
 
 export default CopyAnchor;

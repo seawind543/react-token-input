@@ -1,9 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types'; // eslint-disable-line import/no-extraneous-dependencies
 import classNames from 'classnames';
 import styles from './Navbar.scss';
 
-const Navbar = ({ url, name }) => {
+type Props = {
+  url: string;
+  name: string;
+};
+
+const Navbar = ({ url, name }: Props) => {
   return (
     <nav
       className={classNames(styles.navbar, styles['navbar-default'])}
@@ -18,11 +22,6 @@ const Navbar = ({ url, name }) => {
       </div>
     </nav>
   );
-};
-
-Navbar.propTypes = {
-  url: PropTypes.string,
-  name: PropTypes.string,
 };
 
 export default Navbar;
