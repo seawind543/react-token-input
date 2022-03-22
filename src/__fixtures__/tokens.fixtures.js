@@ -100,7 +100,7 @@ export const OBJECT_VALUE_TYPE = {
     tokenMeta: {
       key: '{"number":123}-1609556645000-0',
       activated: false,
-      error: undefined,
+      error: null,
     },
   },
 
@@ -111,7 +111,7 @@ export const OBJECT_VALUE_TYPE = {
     tokenMeta: {
       key: '{"number":123}-1609556645000-0',
       activated: true,
-      error: undefined,
+      error: null,
     },
   },
 

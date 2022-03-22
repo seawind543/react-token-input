@@ -1,6 +1,6 @@
 /* eslint no-console: 0 */
 import React, { useState, useCallback } from 'react';
-import TokenInput from '../../src';
+import TokenInput from '../../src/index.ts';
 
 import CopyAnchor from '../share/CopyAnchor';
 
@@ -29,7 +29,7 @@ const ExampleCustomizeSeparators = () => {
       </p>
       <p>
         Hint: Following input string will be separate into 3 tokens. Copy and
-        Paste to see result.
+        Paste to see the result.
       </p>
       <pre>aaa+bbbb cc</pre>
 

@@ -12,10 +12,10 @@ import Section from './Section';
 
 // import ExampleTest from './ExampleTest';
 import ExampleDefault from './ExampleDefault';
-import ExampleCustomizeDataStructure from './ExampleCustomizeDataStructure';
 import ExampleCustomizeTokenLabel from './ExampleCustomizeTokenLabel';
 import ExampleCustomizeDeleteButton from './ExampleCustomizeDeleteButton';
 import ExampleCustomizeTokenVisualTrick from './ExampleCustomizeTokenVisualTrick';
+import ExampleCustomizeDataStructure from './ExampleCustomizeDataStructure';
 import ExamplePreprocessor from './ExamplePreprocessor';
 import ExampleCustomizeSeparators from './ExampleCustomizeSeparators';
 import ExampleCustomizeToken from './ExampleCustomizeToken';
@@ -25,6 +25,8 @@ import ExampleWithFormLibrary from './ExampleWithFormLibrary';
 import ExampleSpecialKeyDown from './ExampleSpecialKeyDown';
 
 import './index.scss';
+
+// import '../dist/react-customize-token-input.css';
 
 const name =
   'React TokenInput (react-customize-token-input). Visit GitHub here';

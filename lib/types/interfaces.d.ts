@@ -1,0 +1,14 @@
+import type { ReactNode } from 'react';
+import { InputString } from './mix';
+import { TokenIndex, TokenMeta } from './token';
+export declare type OnInputValueChange = (newValue: InputString, previousValue: InputString) => void;
+export declare type OnPreprocess = (values: InputString[]) => InputString[];
+export declare type OnBuildTokenValue<ValueType> = (inputValue: InputString) => ValueType;
+export declare type OnTokenValuesChange<ValueType> = (modifiedTokenValues: ValueType[]) => void;
+export declare type OnTokenValueValidate<ValueType, ErrorType> = (tokenValue: ValueType, tokenIndex: TokenIndex, tokenValues: ValueType[]) => TokenMeta<ErrorType>['error'];
+export declare type OnGetTokenClassName<ValueType, ErrorType> = (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>) => undefined | string;
+export declare type OnGetTokenDisplayLabel<ValueType, ErrorType> = (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>) => InputString | ReactNode;
+export declare type OnRenderTokenDeleteButtonContent = () => ReactNode;
+export declare type OnGetIsTokenEditable<ValueType, ErrorType> = (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>) => boolean;
+export declare type OnGetTokenEditableValue<ValueType, ErrorType> = (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>) => InputString;
+export declare type OnGetTokenErrorMessage<ValueType, ErrorType> = (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>) => TokenMeta<ErrorType>['error'];

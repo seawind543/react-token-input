@@ -1,4 +1,4 @@
-import buildTokenMeta from './buildTokenMeta';
+import buildTokenMeta from './buildTokenMeta.ts';
 import {
   DEFAULT_VALUE_TYPE,
   OBJECT_VALUE_TYPE,

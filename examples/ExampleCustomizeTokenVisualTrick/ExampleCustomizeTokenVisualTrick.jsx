@@ -2,7 +2,9 @@
 /* eslint no-unused-vars: 0 */
 
 import React, { useState, useCallback } from 'react';
-import TokenInput, { JS__TOKEN__DELETE_BUTTON__CLASS_NAME } from '../../src';
+import TokenInput, {
+  JS__TOKEN__DELETE_BUTTON__CLASS_NAME,
+} from '../../src/index.ts';
 
 import CopyAnchor from '../share/CopyAnchor';
 

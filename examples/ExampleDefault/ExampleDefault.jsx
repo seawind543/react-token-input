@@ -1,6 +1,6 @@
 /* eslint no-console: 0 */
 import React, { useState, useCallback } from 'react';
-import TokenInput from '../../src';
+import TokenInput from '../../src/index.ts';
 
 import CopyAnchor from '../share/CopyAnchor';
 

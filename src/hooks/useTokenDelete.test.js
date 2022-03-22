@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks';
-import useTokenDelete from './useTokenDelete';
+import useTokenDelete from './useTokenDelete.ts';
 
 import DEFAULT_VALUE_TYPE_DATA from '../__fixtures__/tokenValues.fixtures';
 

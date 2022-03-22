@@ -14,7 +14,7 @@ module.exports = {
   entry: path.resolve(__dirname, 'index.jsx'),
   output: {
     path: path.join(__dirname, '../docs'),
-    filename: 'bundle.js?[hash]',
+    filename: 'bundle.js?[fullhash]',
   },
   optimization: {
     moduleIds: 'named',
@@ -23,13 +23,15 @@ module.exports = {
   },
   module: {
     rules: [
-      // Process JS with Babel
+      // Process J/TS with Babel
       {
-        test: /\.(js|jsx)?$/,
-        exclude: /(node_modules|coverage)/,
-        use: {
-          loader: 'babel-loader',
-        },
+        test: /\.[jt]s(x?)$/,
+        exclude: /(node_modules|coverage|lib)/,
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+        ],
       },
       {
         test: /\.s[ac]ss$/i,
@@ -99,7 +101,7 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   // https://webpack.github.io/docs/webpack-dev-server.html#additional-configuration-options
   devServer: {

@@ -1,15 +1,12 @@
 import { renderHook, act } from '@testing-library/react-hooks';
-import useTokenMetas from './useTokenMetas';
+import useTokenMetas from './useTokenMetas.ts';
 
 import DEFAULT_VALUE_TYPE_DATA from '../__fixtures__/tokenValues.fixtures';
-
-jest.mock('../utils/buildTokenMeta', () => jest.fn());
 
 describe('useTokenMetas() with default string type tokenValue', () => {
   it('should return `tokenMetas`, `setTokenMetas` and `setTokenActivated`', () => {
     const { result } = renderHook(() => useTokenMetas());
 
-    expect(typeof result.current.buildTokenMeta).toBe('function');
     expect(result.current.tokenMetas).toEqual([]);
     expect(typeof result.current.setTokenMetas).toBe('function');
     expect(typeof result.current.setTokenActivated).toBe('function');

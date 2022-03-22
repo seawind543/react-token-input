@@ -2,7 +2,7 @@
 /* eslint no-unused-vars: 0 */
 
 import React, { useState, useCallback } from 'react';
-import TokenInput from '../../src';
+import TokenInput from '../../src/index.ts';
 
 import CopyAnchor from '../share/CopyAnchor';
 
@@ -43,14 +43,14 @@ const ExampleReadOnly = () => {
 
       <TokenInput
         tokenValues={values}
-        onIsTokenEditable={handleIsTokenEditable}
+        onGetIsTokenEditable={handleIsTokenEditable}
         onTokenValuesChange={handleTokenValuesChange}
       />
       <pre>
         {`
 <TokenInput
   tokenValues={values}
-  onIsTokenEditable={handleIsTokenEditable}
+  onGetIsTokenEditable={handleIsTokenEditable}
   onTokenValuesChange={handleTokenValuesChange}
 />
         `}

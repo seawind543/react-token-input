@@ -20,7 +20,7 @@ const localClassPrefix = 'token-input';
 module.exports = {
   mode: 'production',
   devtool: 'source-map',
-  entry: path.resolve(__dirname, 'src/index.js'),
+  entry: path.resolve(__dirname, 'src/index.ts'),
   output: {
     path: path.join(__dirname, 'lib'),
     filename: 'index.js',
@@ -59,11 +59,26 @@ module.exports = {
     rules: [
       // Process JS with Babel
       {
-        test: /\.(js|jsx)?$/,
-        exclude: /(node_modules|coverage)/,
-        use: {
-          loader: 'babel-loader',
-        },
+        test: /\.js(x?)$/,
+        exclude: /(node_modules|coverage|lib)/,
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+        ],
+      },
+      // Process TS with Babel
+      {
+        test: /\.ts(x?)$/,
+        exclude: /(node_modules|coverage|lib)/,
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+          {
+            loader: 'ts-loader',
+          },
+        ],
       },
       {
         test: /\.s[ac]ss$/i,
@@ -143,6 +158,6 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
 };

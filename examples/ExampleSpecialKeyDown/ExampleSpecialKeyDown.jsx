@@ -1,6 +1,6 @@
 /* eslint no-console: 0 */
 import React, { useState, useCallback } from 'react';
-import TokenInput, { KEY_DOWN_HANDLER_CONFIG_OPTION } from '../../src';
+import TokenInput, { KEY_DOWN_HANDLER_CONFIG_OPTION } from '../../src/index.ts';
 
 import CopyAnchor from '../share/CopyAnchor';
 
