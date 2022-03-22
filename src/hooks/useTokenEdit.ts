@@ -13,7 +13,7 @@ type HandleTokenEditEnd<ValueType> = (
   targetIndex: TokenIndex
 ) => (newTokenValue?: ValueType) => void;
 
-type ParameterType<ValueType, ErrorType> = {
+type Params<ValueType, ErrorType> = {
   tokenValues: ValueType[];
   onTokenValuesChange?: OnTokenValuesChange<ValueType>;
   setTokenActivated: SetTokenActivated<ErrorType>;
@@ -27,7 +27,7 @@ function useTokenEdit<ValueType, ErrorType>({
   setTokenActivated,
   handleTokenInputFocus,
   handleTokenInputBlur,
-}: ParameterType<ValueType, ErrorType>) {
+}: Params<ValueType, ErrorType>) {
   const handleTokenEditStart: HandleTokenEditStart = useCallback(
     (targetIndex: TokenIndex) => () => {
       // console.log('handleTokenEditStart; targetIndex', targetIndex);

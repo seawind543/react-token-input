@@ -10,7 +10,7 @@ import type {
   KeyDownHandlerConfigOption,
 } from '../types/specialKeyDown';
 
-type ParameterType = {
+type Params = {
   specialKeyDownConfig: SpecialKeyDownConfig;
   inputInitValue: InputString;
   inputValue: InputString;
@@ -19,7 +19,7 @@ type ParameterType = {
   handleTokensCreate: (inputValue: InputString) => void;
 };
 
-type HandleKeyDownParameterType = {
+type HandleKeyDownParams = {
   keyDownHandlerConfig: KeyDownHandlerConfigOption;
   predefinedHandler: () => void;
 };
@@ -27,7 +27,7 @@ type HandleKeyDownParameterType = {
 const handleKeyDown = ({
   keyDownHandlerConfig,
   predefinedHandler,
-}: HandleKeyDownParameterType): void => {
+}: HandleKeyDownParams): void => {
   // TODO: Support customize keyDownHandler
   switch (true) {
     case keyDownHandlerConfig === KEY_DOWN_HANDLER_CONFIG_OPTION.ON:
@@ -47,7 +47,7 @@ function usePredefinedKeyDownHandlers({
   onLastTokenDelete,
   handleInputValueUpdate,
   handleTokensCreate,
-}: ParameterType) {
+}: Params) {
   // console.log('specialKeyDownConfig', specialKeyDownConfig);
   const {
     onBackspace,

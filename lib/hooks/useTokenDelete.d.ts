@@ -1,11 +1,11 @@
 import type { TokenIndex } from '../types/token';
 import type { OnTokenValuesChange } from '../types/interfaces';
-declare type ParameterType<ValueType> = {
+declare type Params<ValueType> = {
     tokenValues: ValueType[];
     onTokenValuesChange?: OnTokenValuesChange<ValueType>;
     focusTokenCreator: () => void;
 };
-declare function useTokenDelete<ValueType>({ tokenValues, onTokenValuesChange, focusTokenCreator, }: ParameterType<ValueType>): {
+declare function useTokenDelete<ValueType>({ tokenValues, onTokenValuesChange, focusTokenCreator, }: Params<ValueType>): {
     handleTokenDelete: (targetIndex: TokenIndex) => () => void;
     handleLastTokenDelete: () => void;
 };

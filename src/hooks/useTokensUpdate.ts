@@ -4,7 +4,7 @@ import buildTokenMeta from '../utils/buildTokenMeta';
 
 import type { OnTokenValueValidate } from '../types/interfaces';
 
-type ParameterType<ValueType, ErrorType> = {
+type Params<ValueType, ErrorType> = {
   tokenValues: ValueType[];
   onTokenValueValidate: OnTokenValueValidate<ValueType, ErrorType>;
 };
@@ -12,7 +12,7 @@ type ParameterType<ValueType, ErrorType> = {
 function useTokensUpdate<ValueType, ErrorType>({
   tokenValues,
   onTokenValueValidate,
-}: ParameterType<ValueType, ErrorType>) {
+}: Params<ValueType, ErrorType>) {
   const { tokenMetas, setTokenMetas, setTokenActivated } =
     useTokenMetas<ErrorType>();
   const [hasInvalidToken, setHasInvalidToken] = useState<boolean>(false);
