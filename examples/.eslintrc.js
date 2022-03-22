@@ -60,7 +60,7 @@ module.exports = {
      * Following for typescript .ts/.tsx only
      */
     {
-      files: ['src/**/*.{ts,tsx}'],
+      files: ['**/*.{ts,tsx}'],
       extends: [
         'airbnb-base',
         'airbnb-typescript',

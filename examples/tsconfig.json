@@ -1,0 +1,11 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig.json to read more about this file */
+
+    /* Basic Options */
+    "declaration": false,                   /* Generates corresponding '.d.ts' file. */
+    "outDir": "../docs/types",                        /* Redirect output structure to the directory. */
+  },
+  "include": ["**/*.ts", "**/*.tsx"]
+}
