@@ -9,6 +9,7 @@
     "lib"
   ],
   "scripts": {
+    "prepare": "husky install",
     "prepublish": "yarn run lint && yarn run test && yarn run build",
     "build": "yarn run build:clean && yarn run build:scss-types && yarn run build:webpack && yarn run build:examples",
     "build:clean": "rm -rf {lib,dist}/*",
@@ -21,15 +22,12 @@
     "test": "jest --coverage",
     "dev": "cd examples; webpack && webpack serve --hot --inline --host 0.0.0.0 --port 8000 --content-base ../docs"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": [
-      "prettier --write",
+    "**/*.{js,jsx,ts,tsx}": [
       "eslint --fix --max-warnings 0"
+    ],
+    "**/*.scss": [
+      "stylelint --fix"
     ]
   },
   "repository": {
