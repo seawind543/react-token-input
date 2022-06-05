@@ -1,9 +1,9 @@
 import { type CSSProperties, type FunctionComponent } from 'react';
-import { type Props as TokenProps } from './Token';
+import { type TokenProps } from './Token';
 import type { TokenSeparator } from './types/mix';
 import type { SpecialKeyDownConfig } from './types/specialKeyDown';
 import type { OnInputValueChange, OnPreprocess, OnBuildTokenValue, OnTokenValueValidate, OnTokenValuesChange, OnGetTokenClassName, OnGetTokenDisplayLabel, OnRenderTokenDeleteButtonContent, OnGetIsTokenEditable, OnGetTokenEditableValue, OnGetTokenErrorMessage } from './types/interfaces';
-export declare type Props<ValueType, ErrorType> = {
+export declare type TokenInputProps<ValueType, ErrorType> = {
     style?: CSSProperties;
     className?: string;
     placeholder?: string;
@@ -25,5 +25,5 @@ export declare type Props<ValueType, ErrorType> = {
     onGetTokenEditableValue?: OnGetTokenEditableValue<ValueType, ErrorType>;
     onGetTokenErrorMessage?: OnGetTokenErrorMessage<ValueType, ErrorType>;
 };
-declare const TokenInput: <ValueType, ErrorType>(props: Props<ValueType, ErrorType>) => JSX.Element;
+declare const TokenInput: <ValueType, ErrorType>(props: TokenInputProps<ValueType, ErrorType>) => JSX.Element;
 export default TokenInput;

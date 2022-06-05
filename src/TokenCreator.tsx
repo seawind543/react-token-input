@@ -28,7 +28,7 @@ import type {
   OnBuildTokenValue,
 } from './types/interfaces';
 
-type Props<ValueType> = {
+type TokenCreatorProps<ValueType> = {
   // Same as props of TokenInput
   placeholder?: string;
   // Same as props of TokenInput
@@ -66,7 +66,7 @@ type Props<ValueType> = {
 };
 
 const TokenCreator = forwardRef(function TokenCreator<ValueType>(
-  props: Props<ValueType>,
+  props: TokenCreatorProps<ValueType>,
 
   // Cannot set AutosizeInput as ref, because it get error when ref={ref}
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -230,7 +230,7 @@ const TokenCreator = forwardRef(function TokenCreator<ValueType>(
     </div>
   );
 }) as <ValueType>(
-  p: Props<ValueType> & { ref: Ref<HTMLInputElement> }
+  p: TokenCreatorProps<ValueType> & { ref: Ref<HTMLInputElement> }
 ) => ReactElement | null;
 
 export default TokenCreator;

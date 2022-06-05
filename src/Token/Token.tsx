@@ -34,7 +34,7 @@ const handleInlineEditClick = (e: MouseEvent<HTMLDivElement>) => {
   e.stopPropagation();
 };
 
-export type Props<ValueType, ErrorType> = {
+export type TokenProps<ValueType, ErrorType> = {
   /**
    * Same as props of TokenInput
    */
@@ -136,7 +136,9 @@ export type Props<ValueType, ErrorType> = {
   onDelete: () => void;
 };
 
-const Token = <ValueType, ErrorType>(props: Props<ValueType, ErrorType>) => {
+const Token = <ValueType, ErrorType>(
+  props: TokenProps<ValueType, ErrorType>
+) => {
   const {
     readOnly,
     tokenValue,

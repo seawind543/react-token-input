@@ -5,7 +5,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import TokenCreator from './TokenCreator';
-import Token, { type Props as TokenProps } from './Token';
+import Token, { type TokenProps } from './Token';
 
 import useTokenInputFocusEffect from './hooks/useTokenInputFocusEffect';
 import useTokenCreatorRef from './hooks/useTokenCreatorRef';
@@ -43,7 +43,7 @@ import type {
   OnGetTokenErrorMessage,
 } from './types/interfaces';
 
-export type Props<ValueType, ErrorType> = {
+export type TokenInputProps<ValueType, ErrorType> = {
   /**
    * For assign style to the TokenInput
    */
@@ -353,7 +353,7 @@ export type Props<ValueType, ErrorType> = {
 };
 
 const TokenInput = <ValueType, ErrorType>(
-  props: Props<ValueType, ErrorType>
+  props: TokenInputProps<ValueType, ErrorType>
 ) => {
   const {
     className,

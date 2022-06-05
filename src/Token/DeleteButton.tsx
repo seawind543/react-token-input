@@ -6,11 +6,11 @@ import styles from '../styles.scss';
 
 import { JS__TOKEN__DELETE_BUTTON__CLASS_NAME } from '../constants';
 
-type Props = {
+type DeleteButtonProps = {
   onRenderContent?: () => ReactNode;
 };
 
-const DeleteButton = (props: Props) => {
+const DeleteButton = (props: DeleteButtonProps) => {
   const { onRenderContent } = props;
 
   return (
