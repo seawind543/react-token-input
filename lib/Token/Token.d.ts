@@ -15,5 +15,5 @@ export declare type Props<ValueType, ErrorType> = {
     onEditEnd: (newTokenValue?: ValueType) => void;
     onDelete: () => void;
 };
-declare const Token: <ValueType, ErrorType>({ readOnly, tokenValue, tokenMeta, onGetClassName, onGetDisplayLabel, onRenderDeleteButtonContent, onGetIsEditable, onGetEditableValue, onGetErrorMessage, onBuildTokenValue, onEditStart, onEditEnd, onDelete, }: Props<ValueType, ErrorType>) => JSX.Element;
+declare const Token: <ValueType, ErrorType>(props: Props<ValueType, ErrorType>) => JSX.Element;
 export default Token;

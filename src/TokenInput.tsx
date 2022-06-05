@@ -352,47 +352,51 @@ export type Props<ValueType, ErrorType> = {
   // onBlur
 };
 
-const TokenInput = <ValueType, ErrorType>({
-  className,
-  placeholder,
-  readOnly = false,
-  autoFocus = false,
+const TokenInput = <ValueType, ErrorType>(
+  props: Props<ValueType, ErrorType>
+) => {
+  const {
+    className,
+    placeholder,
+    readOnly = false,
+    autoFocus = false,
 
-  tokenValues,
+    tokenValues,
 
-  // TokenCreator props
-  separators = DEFAULT_SEPARATORS,
-  specialKeyDown = DEFAULT_SPECIAL_KEY_DOWN_CONFIG,
+    // TokenCreator props
+    separators = DEFAULT_SEPARATORS,
+    specialKeyDown = DEFAULT_SPECIAL_KEY_DOWN_CONFIG,
 
-  onInputValueChange,
-  onPreprocess,
+    onInputValueChange,
+    onPreprocess,
 
-  onTokenValueValidate = defaultTokenValueValidate,
+    onTokenValueValidate = defaultTokenValueValidate,
 
-  // Token props
+    // Token props
 
-  // FixMe: ReadOnly mode do not need onTokenValuesChange, but others need
-  onTokenValuesChange,
+    // FixMe: ReadOnly mode do not need onTokenValuesChange, but others need
+    onTokenValuesChange,
 
-  onBuildTokenValue = defaultBuildTokenValue,
+    onBuildTokenValue = defaultBuildTokenValue,
 
-  customizeTokenComponent,
+    customizeTokenComponent,
 
-  onGetTokenClassName,
+    onGetTokenClassName,
 
-  onGetTokenDisplayLabel = defaultGetTokenEditableValue,
+    onGetTokenDisplayLabel = defaultGetTokenEditableValue,
 
-  onRenderTokenDeleteButtonContent,
+    onRenderTokenDeleteButtonContent,
 
-  onGetIsTokenEditable = defaultGetIsTokenEditable,
+    onGetIsTokenEditable = defaultGetIsTokenEditable,
 
-  onGetTokenEditableValue = defaultGetTokenEditableValue,
+    onGetTokenEditableValue = defaultGetTokenEditableValue,
 
-  onGetTokenErrorMessage = defaultGetTokenErrorMessage,
+    onGetTokenErrorMessage = defaultGetTokenErrorMessage,
 
-  // Rest
-  ...props
-}: Props<ValueType, ErrorType>) => {
+    // Rest
+    ...restProps
+  } = props;
+
   const { isTokenInputFocused, handleTokenInputFocus, handleTokenInputBlur } =
     useTokenInputFocusEffect();
   const { tokenCreatorRef, focusTokenCreator } = useTokenCreatorRef();
@@ -457,7 +461,7 @@ const TokenInput = <ValueType, ErrorType>({
   return (
     <div
       data-component-name="TokenInput" // FIXME: This is a hack to get the component name.
-      {...props}
+      {...restProps}
       className={classNames(className, styles.container, {
         [styles['container--focused']]: isTokenInputFocused,
         [styles['container--errors']]: hasInvalidToken,

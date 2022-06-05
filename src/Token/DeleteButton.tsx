@@ -10,7 +10,9 @@ type Props = {
   onRenderContent?: () => ReactNode;
 };
 
-const DeleteButton = ({ onRenderContent }: Props) => {
+const DeleteButton = (props: Props) => {
+  const { onRenderContent } = props;
+
   return (
     <span
       data-component-name="DeleteButton" // FIXME: This is a hack to get the component name.

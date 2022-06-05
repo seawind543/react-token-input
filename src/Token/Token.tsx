@@ -136,21 +136,23 @@ export type Props<ValueType, ErrorType> = {
   onDelete: () => void;
 };
 
-const Token = <ValueType, ErrorType>({
-  readOnly,
-  tokenValue,
-  tokenMeta,
-  onGetClassName,
-  onGetDisplayLabel,
-  onRenderDeleteButtonContent,
-  onGetIsEditable,
-  onGetEditableValue,
-  onGetErrorMessage,
-  onBuildTokenValue,
-  onEditStart,
-  onEditEnd,
-  onDelete,
-}: Props<ValueType, ErrorType>) => {
+const Token = <ValueType, ErrorType>(props: Props<ValueType, ErrorType>) => {
+  const {
+    readOnly,
+    tokenValue,
+    tokenMeta,
+    onGetClassName,
+    onGetDisplayLabel,
+    onRenderDeleteButtonContent,
+    onGetIsEditable,
+    onGetEditableValue,
+    onGetErrorMessage,
+    onBuildTokenValue,
+    onEditStart,
+    onEditEnd,
+    onDelete,
+  } = props;
+
   // Cannot set AutosizeInput as ref, because it get error when ref={autosizeInputRef}
   const autosizeInputRef = useRef(null);
 
