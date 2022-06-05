@@ -8,7 +8,7 @@ import React, {
   useRef,
   useEffect,
 } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'; // eslint-disable-line import/no-extraneous-dependencies
 import classNames from 'classnames';
 import keyDownHandlerProxy from '../../../src/utils/keyDownHandlerProxy.ts';
 import DeleteButton from './DeleteButton';
