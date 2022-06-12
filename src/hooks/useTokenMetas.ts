@@ -1,11 +1,10 @@
 import { useState, useCallback } from 'react';
 
-import { TokenMeta, TokenIndex } from '../types/token';
+import type { TokenMeta, TokenIndex } from '../types/token';
 
-export type SetTokenActivated<ErrorType> = (
-  targetIndex: TokenIndex,
-  activated: TokenMeta<ErrorType>['activated']
-) => void;
+export interface SetTokenActivated<ErrorType> {
+  (targetIndex: TokenIndex, activated: TokenMeta<ErrorType>['activated']): void;
+}
 
 function useTokenMetas<ErrorType>() {
   const [tokenMetas, setTokenMetas] = useState<TokenMeta<ErrorType>[]>([]);

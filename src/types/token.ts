@@ -5,7 +5,7 @@ import type { Nullish } from './mix';
  */
 export type TokenIndex = number;
 
-export type TokenMeta<ErrorType> = {
+export interface TokenMeta<ErrorType> {
   /**
    * A private key for render
    */
@@ -23,4 +23,4 @@ export type TokenMeta<ErrorType> = {
    * `Nullish` means the token is valid.
    */
   error: Nullish | ErrorType;
-};
+}

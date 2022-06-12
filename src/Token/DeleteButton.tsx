@@ -6,9 +6,9 @@ import styles from '../styles.scss';
 
 import { JS__TOKEN__DELETE_BUTTON__CLASS_NAME } from '../constants';
 
-type DeleteButtonProps = {
+interface DeleteButtonProps {
   onRenderContent?: () => ReactNode;
-};
+}
 
 const DeleteButton = (props: DeleteButtonProps) => {
   const { onRenderContent } = props;

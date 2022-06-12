@@ -3,7 +3,7 @@ import type { HandleTokenInputFocus, HandleTokenInputBlur } from './hooks/useTok
 import type { TokenSeparator } from './types/mix';
 import type { SpecialKeyDownConfig } from './types/specialKeyDown';
 import type { OnInputValueChange, OnPreprocess, OnBuildTokenValue } from './types/interfaces';
-declare type TokenCreatorProps<ValueType> = {
+interface TokenCreatorProps<ValueType> {
     placeholder?: string;
     autoFocus: boolean;
     onFocus: HandleTokenInputFocus;
@@ -15,7 +15,7 @@ declare type TokenCreatorProps<ValueType> = {
     onBuildTokenValue: OnBuildTokenValue<ValueType>;
     onNewTokenValuesAppend: (appendTokenValues: ValueType[]) => void;
     onLastTokenDelete: () => void;
-};
+}
 declare const TokenCreator: <ValueType>(p: TokenCreatorProps<ValueType> & {
     ref: Ref<HTMLInputElement>;
 }) => ReactElement | null;

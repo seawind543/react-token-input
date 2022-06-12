@@ -23,9 +23,9 @@ export type KeyDownHandlerConfigOption =
  *   onEscape: KEY_DOWN_HANDLER_CONFIG_OPTION.ON,
  * },
  */
-export type SpecialKeyDownConfig = {
+export interface SpecialKeyDownConfig {
   onBackspace?: KeyDownHandlerConfigOption;
   onTab?: KeyDownHandlerConfigOption;
   onEnter?: KeyDownHandlerConfigOption;
   onEscape?: KeyDownHandlerConfigOption;
-};
+}

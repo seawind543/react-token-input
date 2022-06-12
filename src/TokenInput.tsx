@@ -1,7 +1,7 @@
 import React, {
   useCallback,
   type CSSProperties,
-  type FunctionComponent,
+  type ReactElement,
 } from 'react';
 import classNames from 'classnames';
 import TokenCreator from './TokenCreator';
@@ -43,7 +43,7 @@ import type {
   OnGetTokenErrorMessage,
 } from './types/interfaces';
 
-export type TokenInputProps<ValueType, ErrorType> = {
+export interface TokenInputProps<ValueType, ErrorType> {
   /**
    * For assign style to the TokenInput
    */
@@ -230,7 +230,9 @@ export type TokenInputProps<ValueType, ErrorType> = {
    * customizeTokenComponent={MyToken}
    */
   // TODO: make detail type for props
-  customizeTokenComponent?: FunctionComponent<TokenProps<ValueType, ErrorType>>;
+  customizeTokenComponent?: (
+    props: TokenProps<ValueType, ErrorType>
+  ) => ReactElement | null;
 
   /**
    * A callback function to getting customizes `className` to set on a `token`
@@ -350,7 +352,7 @@ export type TokenInputProps<ValueType, ErrorType> = {
   // TODO: Consider add more callback
   // onFocus
   // onBlur
-};
+}
 
 const TokenInput = <ValueType, ErrorType>(
   props: TokenInputProps<ValueType, ErrorType>

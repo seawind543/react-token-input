@@ -10,19 +10,19 @@ import type {
   KeyDownHandlerConfigOption,
 } from '../types/specialKeyDown';
 
-type Params = {
+interface Params {
   specialKeyDownConfig: SpecialKeyDownConfig;
   inputInitValue: InputString;
   inputValue: InputString;
   onLastTokenDelete: () => void;
   handleInputValueUpdate: (newInputValue: InputString) => void;
   handleTokensCreate: (inputValue: InputString) => void;
-};
+}
 
-type HandleKeyDownParams = {
+interface HandleKeyDownParams {
   keyDownHandlerConfig: KeyDownHandlerConfigOption;
   predefinedHandler: () => void;
-};
+}
 
 const handleKeyDown = ({
   keyDownHandlerConfig,

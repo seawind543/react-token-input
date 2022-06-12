@@ -8,18 +8,20 @@ import type {
   HandleTokenInputBlur,
 } from './useTokenInputFocusEffect';
 
-type HandleTokenEditStart = (targetIndex: TokenIndex) => () => void;
-type HandleTokenEditEnd<ValueType> = (
-  targetIndex: TokenIndex
-) => (newTokenValue?: ValueType) => void;
+interface HandleTokenEditStart {
+  (targetIndex: TokenIndex): () => void;
+}
+interface HandleTokenEditEnd<ValueType> {
+  (targetIndex: TokenIndex): (newTokenValue?: ValueType) => void;
+}
 
-type Params<ValueType, ErrorType> = {
+interface Params<ValueType, ErrorType> {
   tokenValues: ValueType[];
   onTokenValuesChange?: OnTokenValuesChange<ValueType>;
   setTokenActivated: SetTokenActivated<ErrorType>;
   handleTokenInputFocus: HandleTokenInputFocus;
   handleTokenInputBlur: HandleTokenInputBlur;
-};
+}
 
 function useTokenEdit<ValueType, ErrorType>({
   tokenValues,

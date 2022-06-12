@@ -7,7 +7,9 @@ import { useState, useCallback } from 'react';
  * Note:
  * Call this function to tell TokenInput to set the `focused` CSS effect
  */
-export type HandleTokenInputFocus = () => void;
+export interface HandleTokenInputFocus {
+  (): void;
+}
 
 /**
  * A callback function, which should be `invoked`
@@ -16,7 +18,9 @@ export type HandleTokenInputFocus = () => void;
  * Note:
  * Call this function to tell TokenInput to remove the `focused` CSS effect
  */
-export type HandleTokenInputBlur = () => void;
+export interface HandleTokenInputBlur {
+  (): void;
+}
 
 function useTokenInputFocus() {
   const [isTokenInputFocused, setIsTokenInputFocused] =

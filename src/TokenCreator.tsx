@@ -28,7 +28,7 @@ import type {
   OnBuildTokenValue,
 } from './types/interfaces';
 
-type TokenCreatorProps<ValueType> = {
+interface TokenCreatorProps<ValueType> {
   // Same as props of TokenInput
   placeholder?: string;
   // Same as props of TokenInput
@@ -63,7 +63,7 @@ type TokenCreatorProps<ValueType> = {
    * when want to `delete` the last token from the token list.
    */
   onLastTokenDelete: () => void;
-};
+}
 
 const TokenCreator = forwardRef(function TokenCreator<ValueType>(
   props: TokenCreatorProps<ValueType>,

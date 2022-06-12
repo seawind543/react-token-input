@@ -15,10 +15,9 @@ import { TokenIndex, TokenMeta } from './token';
  * Type: InputString
  * Description: previous end-user's input string
  */
-export type OnInputValueChange = (
-  newValue: InputString,
-  previousValue: InputString
-) => void;
+export interface OnInputValueChange {
+  (newValue: InputString, previousValue: InputString): void;
+}
 
 /**
  * A callback function to `preprocessing` the user input string.
@@ -45,7 +44,9 @@ export type OnInputValueChange = (
  * Type: InputString[]
  * Description: The values after preprocess
  */
-export type OnPreprocess = (values: InputString[]) => InputString[];
+export interface OnPreprocess {
+  (values: InputString[]): InputString[];
+}
 
 /**
  * A callback function to build `user input string value` into
@@ -69,9 +70,9 @@ export type OnPreprocess = (values: InputString[]) => InputString[];
  * Customize data structure data
  * Could be string | number | object | customize data structure...etc.
  */
-export type OnBuildTokenValue<ValueType> = (
-  inputValue: InputString
-) => ValueType;
+export interface OnBuildTokenValue<ValueType> {
+  (inputValue: InputString): ValueType;
+}
 
 /**
  * A callback function invoked when tokenValues update
@@ -82,9 +83,10 @@ export type OnBuildTokenValue<ValueType> = (
  * Type: ValueType[]
  * Description: the new tokenValues
  */
-export type OnTokenValuesChange<ValueType> = (
-  modifiedTokenValues: ValueType[]
-) => void;
+
+export interface OnTokenValuesChange<ValueType> {
+  (modifiedTokenValues: ValueType[]): void;
+}
 
 /**
  * A callback function to validate a tokenValue
@@ -113,11 +115,13 @@ export type OnTokenValuesChange<ValueType> = (
  *
  * Return `Nullish` types means the token is valid.
  */
-export type OnTokenValueValidate<ValueType, ErrorType> = (
-  tokenValue: ValueType,
-  tokenIndex: TokenIndex,
-  tokenValues: ValueType[]
-) => TokenMeta<ErrorType>['error'];
+export interface OnTokenValueValidate<ValueType, ErrorType> {
+  (
+    tokenValue: ValueType,
+    tokenIndex: TokenIndex,
+    tokenValues: ValueType[]
+  ): TokenMeta<ErrorType>['error'];
+}
 
 /**
  * A callback function to getting customizes `className` to set on a `token`
@@ -136,10 +140,9 @@ export type OnTokenValueValidate<ValueType, ErrorType> = (
  * Type: string
  * Description: The customizes className
  */
-export type OnGetTokenClassName<ValueType, ErrorType> = (
-  tokenValue: ValueType,
-  tokenMeta: TokenMeta<ErrorType>
-) => undefined | string;
+export interface OnGetTokenClassName<ValueType, ErrorType> {
+  (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>): undefined | string;
+}
 
 /**
  * A callback function to getting displayable `label` of a token
@@ -161,10 +164,11 @@ export type OnGetTokenClassName<ValueType, ErrorType> = (
  * Description: The token's content.
  * By default, will apply `getDefaultTokenEditableValue`
  */
-export type OnGetTokenDisplayLabel<ValueType, ErrorType> = (
-  tokenValue: ValueType,
-  tokenMeta: TokenMeta<ErrorType>
-) => InputString | ReactNode;
+export interface OnGetTokenDisplayLabel<ValueType, ErrorType> {
+  (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>):
+    | InputString
+    | ReactNode;
+}
 
 /**
  * A callback function to render content of the delete button of token
@@ -178,8 +182,9 @@ export type OnGetTokenDisplayLabel<ValueType, ErrorType> = (
  * Description: The content of the delete button of the token.
  * By default, TokenInput render a build-in `x` icon
  */
-export type OnRenderTokenDeleteButtonContent = () => ReactNode;
-
+export interface OnRenderTokenDeleteButtonContent {
+  (): ReactNode;
+}
 /**
  * A callback function to determine whether the token is `inline editable`.
  *
@@ -197,10 +202,9 @@ export type OnRenderTokenDeleteButtonContent = () => ReactNode;
  * Type: boolean
  * Description: `true` if editable. `false` if not.
  */
-export type OnGetIsTokenEditable<ValueType, ErrorType> = (
-  tokenValue: ValueType,
-  tokenMeta: TokenMeta<ErrorType>
-) => boolean;
+export interface OnGetIsTokenEditable<ValueType, ErrorType> {
+  (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>): boolean;
+}
 
 /**
  * A callback function to getting `string input value`
@@ -220,10 +224,9 @@ export type OnGetIsTokenEditable<ValueType, ErrorType> = (
  * Type: InputString
  * Description: The value for end-user to `edit` in an input field
  */
-export type OnGetTokenEditableValue<ValueType, ErrorType> = (
-  tokenValue: ValueType,
-  tokenMeta: TokenMeta<ErrorType>
-) => InputString;
+export interface OnGetTokenEditableValue<ValueType, ErrorType> {
+  (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>): InputString;
+}
 
 /**
  * A callback function to getting the error message from the customize error
@@ -243,7 +246,9 @@ export type OnGetTokenEditableValue<ValueType, ErrorType> = (
  * Type: TokenMeta<ErrorType>['error']
  * Description: The error message to describe an invalid token
  */
-export type OnGetTokenErrorMessage<ValueType, ErrorType> = (
-  tokenValue: ValueType,
-  tokenMeta: TokenMeta<ErrorType>
-) => TokenMeta<ErrorType>['error'];
+export interface OnGetTokenErrorMessage<ValueType, ErrorType> {
+  (
+    tokenValue: ValueType,
+    tokenMeta: TokenMeta<ErrorType>
+  ): TokenMeta<ErrorType>['error'];
+}

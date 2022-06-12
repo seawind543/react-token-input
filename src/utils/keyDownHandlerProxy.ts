@@ -1,12 +1,15 @@
 import keyDownKey from 'keydown-key';
 
-type ActionFunction = (keyDownEvent: KeyboardEvent) => void;
-type KeyDownHandlerProxyActions = {
+interface ActionFunction {
+  (keyDownEvent: KeyboardEvent): void;
+}
+
+interface KeyDownHandlerProxyActions {
   onBackspace?: ActionFunction;
   onTab?: ActionFunction;
   onEnter?: ActionFunction;
   onEscape?: ActionFunction;
-};
+}
 
 /**
  * Help function to proxy keyDown event to handler

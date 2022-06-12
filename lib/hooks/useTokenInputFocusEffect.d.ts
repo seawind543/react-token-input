@@ -1,5 +1,9 @@
-export declare type HandleTokenInputFocus = () => void;
-export declare type HandleTokenInputBlur = () => void;
+export interface HandleTokenInputFocus {
+    (): void;
+}
+export interface HandleTokenInputBlur {
+    (): void;
+}
 declare function useTokenInputFocus(): {
     isTokenInputFocused: boolean;
     handleTokenInputFocus: HandleTokenInputFocus;
