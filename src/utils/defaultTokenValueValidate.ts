@@ -1,13 +1,16 @@
 /**
+ * @type {OnTokenValueValidate<string, string>} defaultTokenValueValidate
+ * @description
  * Default function for TokenInput to validate a tokenValue
  * (Will be use by `onGetTokenErrorMessage`)
  *
+ * @example
+ * ```js
  * defaultTokenValueValidate()
+ * ```
  *
- * @ return
- * Type: undefined
- * Description:
- * Specific the token is valid.
+ * @returns {undefined}
+ * Always return undefined to specific the token is valid.
  */
 const defaultTokenValueValidate = () => undefined;
 

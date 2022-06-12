@@ -1,4 +1,5 @@
 /**
+ * @description
  * TokenInput default value type (string)
  */
 export const DEFAULT_VALUE_TYPE = {
@@ -49,6 +50,7 @@ export const DEFAULT_VALUE_TYPE = {
 };
 
 /**
+ * @description
  * Number value type
  */
 export const NUMBER_VALUE_TYPE = {
@@ -90,6 +92,7 @@ export const NUMBER_VALUE_TYPE = {
 };
 
 /**
+ * @description
  * Object value type
  */
 export const OBJECT_VALUE_TYPE = {

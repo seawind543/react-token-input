@@ -4,30 +4,33 @@ import type { InputString } from '../types/mix';
 type DefaultValueType = string;
 
 /**
+ * @type {OnBuildTokenValue<ValueType>} defaultBuildTokenValue
+ * @description
  * Default function for TokenInput to
  * build default token value from user input value
  *
- * defaultBuildTokenValue(inputValue)
+ * @example
+ * ```js
+ * defaultBuildTokenValue(inputString)
+ * ```
  *
- * @ inputValue
- * Type: InputString
- * Description: The user input value // (A value split by TokenSeparator[])
- * Which is `one item` of the `user input string` split by the `separators`
+ * @param {InputString} inputString
+ * The user input value // (A value split by TokenSeparator[])
  * Example:
  * - Input string "ABC, DEF" and separators is `,`
- * - defaultBuildTokenValue will be called twice
- * defaultBuildTokenValue('ABC') and buildDefaultTokenValue('DEF')
+ * - The `onBuildTokenValue` will be called twice as
+ * ```
+ * onBuildTokenValue('ABC') and onBuildTokenValue('DEF')
+ * ```
  *
- * @ return
- * Type: string
- * Description: The default valueType
+ * @returns {string} The token's valueType (string)
  */
 const defaultBuildTokenValue = <ValueType>(
-  inputValue: InputString
+  inputString: InputString
 ): ValueType => {
   // A trick to make the type DefaultValueType to pass type check of ValueType
   // https://www.zhenghao.io/posts/type-functions
-  return inputValue.trim() as DefaultValueType & ValueType;
+  return inputString.trim() as DefaultValueType & ValueType;
 };
 
 export default defaultBuildTokenValue;

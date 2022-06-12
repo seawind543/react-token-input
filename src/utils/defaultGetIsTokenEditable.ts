@@ -1,9 +1,9 @@
 /**
+ * @type {OnGetIsTokenEditable} defaultGetIsTokenEditable
+ * @description
  * Default function to get the value of Token isEditable
  *
- * @ return
- * Type: boolean
- * Description: `true`
+ * @returns {boolean} Always return true
  */
 const defaultGetIsTokenEditable = () => true;
 

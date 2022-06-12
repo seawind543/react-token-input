@@ -1,26 +1,28 @@
 import type { TokenIndex, TokenMeta } from '../types/token';
 
 /**
+ * @template ValueType, ErrorType
+ * @callback buildTokenMeta<ValueType, ErrorType>
+ * @description
  * Internal function for TokenInput to
  * build token data and meta with customize data
  *
+ * @example
+ * ```js
  * buildTokenMeta(customizeError, tokenValue, tokenIndex)
+ * ```
  *
- * @ customizeError
- * Type: TokenMeta<ErrorType>['error']
- * Description: The return of `onTokenValueValidate`
+ * @param {TokenMeta<ErrorType>['error']} customizeError
+ * The return of callback `onTokenValueValidate`
  *
- * @ tokenValue
- * Type: ValueType
- * Description: The tokenValue build by `onBuildTokenValue`
+ * @param {ValueType} tokenValue
+ * The tokenValue build by callback `onBuildTokenValue`
  *
- * @ tokenIndex
- * Type: number
- * Description: The array index of this tokenValue in tokenValues
+ * @param {TokenIndex} tokenIndex
+ * The array index of this tokenValue in tokenValues
  *
- * @ return
- * Type: TokenMeta<ErrorType>
- * Description: token's meta data
+ * @returns {TokenMeta<ErrorType>}
+ * The token's meta data
  */
 const buildTokenMeta = <ValueType, ErrorType>(
   customizeError: TokenMeta<ErrorType>['error'],

@@ -6,23 +6,26 @@ import type { TokenMeta } from '../types/token';
 const DEFAULT_ERROR_TYPE = 'string';
 
 /**
+ * @template ValueType
+ * @type {OnGetTokenErrorMessage<ValueType, string>} defaultGetTokenErrorMessage
+ * @description
  * Default function to get the errorMessage,
  * which throw an TypeError if the `ErrorType` is
  * NOT `string` nor Nullish
  *
+ * @example
+ * ```js
  * defaultGetTokenErrorMessage(tokenValue, tokenMeta)
+ * ```
  *
- * @ tokenValue
- * Type: ValueType
- * Description: The tokenValue build by `onBuildTokenValue`
+ * @param {ValueType} tokenValue
+ * The tokenValue build by `onBuildTokenValue`
  *
- * @ tokenMeta
- * Type: TokenMeta<ErrorType>
- * Description: token's meta data
+ * @param {TokenMeta<ErrorType>} tokenMeta
+ * The token's meta data
  *
- * @ return
- * Type: Nullish | string
- * Description: The error message to describe the invalid token
+ * @returns {Nullish | string}
+ * The error message to describe the invalid token
  */
 const defaultGetTokenErrorMessage = <ValueType, ErrorType>(
   _: ValueType,

@@ -5,23 +5,25 @@ import type { InputString } from '../types/mix';
 import type { TokenMeta } from '../types/token';
 
 /**
+ * @type {OnGetTokenEditableValue<ValueType, ErrorType>} defaultGetTokenEditableValue
+ * @description
  * Default function for TokenInput to
- * get `editable value` from customize data structure
+ * get `editable value` from customized data structure
  * for user to perform `edit` in an `HTML input element`
  *
+ * @example
+ * ```js
  * getDefaultTokenEditableValue(tokenValue)
+ * ```
  *
- * @ tokenValue
- * Type: ValueType
- * Description: The tokenValue build by `onBuildTokenValue`
+ * @param {ValueType} tokenValue
+ * This token's tokenValue build by `onBuildTokenValue`
  *
- * @ tokenMeta
- * Type: TokenMeta<ErrorType>
- * Description: token's meta data
+ * @param {TokenMeta<ErrorType>} tokenMeta
+ * This token's meta data
  *
- * @ return
- * Type: InputString
- * Description: The value for end-user to `edit` in an input field
+ * @returns {InputString}
+ * The value for end-user to `edit` in an input field
  */
 const defaultGetTokenEditableValue = <ValueType, ErrorType>(
   tokenValue: ValueType,
