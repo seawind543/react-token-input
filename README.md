@@ -62,98 +62,118 @@ Note: Sources code of Examples in the folder `examples`
 ## Props
 
 ```JavaScript
-type Props<ValueType, ErrorType> = {
+/**
+ * @template ValueType, ErrorType
+ * @typedef {Object} TokenInputProps
+ */
+interface TokenInputProps<ValueType, ErrorType> {
   /**
-   * For assign style to the TokenInput
+   * @prop {CSSProperties} [style]
+   * @description An optional prop for assign style to the TokenInput
    */
   style?: CSSProperties;
 
   /**
-   * For assign class to the TokenInput
+   * @prop {string} [className]
+   * @description An optional prop for assign class name to the TokenInput
    */
   className?: string;
 
   /**
-   * For set placeholder to the TokenInput
+   * @prop {string} [placeholder]
+   * @description An optional prop for assign placeholder to the TokenInput
    */
   placeholder?: string;
 
   /**
-   * To specific TokenInput is `readOnly` mode or not
-   * @default false
+   * @prop {boolean} [readOnly = false]
+   * @description An optional prop to specific TokenInput is `readOnly` mode or not
    */
   readOnly?: boolean;
 
   /**
-   * To specific TokenInput should be autoFocus or not
-   * @default false
+   * @prop {boolean} [autoFocus = false]
+   * @description An optional prop to specific TokenInput is `autoFocus` mode or not
    */
   autoFocus?: boolean;
 
   /**
+   * @template ValueType
+   * @prop {ValueType[]} tokenValues
+   * @description
    * The array of tokenValue of TokenInput.
    * This array will be used to render the tokens.
    *
    * Type: ValueType
    * Description:
    * Customize data structure data
-   * Could be string | number | object | customize data structure...etc.
+   * Could be string | number | object | customized data structure...etc.
    */
   tokenValues: ValueType[];
 
   // TokenCreator props
 
   /**
+   * @prop {TokenSeparator[]} [separators]
+   * @description
    * An array of characters to split the user input string into array.
    * For example,
    * Split the user input string `abc;def` into `['abc', 'def']`
    * by separators `[';']`
    *
+   * @see {@link TokenSeparator}
    * Note:
-   * It take the `String.prototype.split()` and `RegExp` to split the user input string.
-   * Make sure your customized separators could be used with `RegExp`.
-   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+   * It take the `String.prototype.split(separators.join('|'))`
+   * and `RegExp` to split the user input string.
+   * 
+   * @example
+   * ```js
+   * value.split(separators.join('|'));
+   * ```
+   *
+   * Make sure your customized separators could be used with
+   * (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp)[`RegExp`]}.
    */
   separators?: TokenSeparator[];
 
+
   /**
+   * @prop {SpecialKeyDownConfig} [specialKeyDown=DEFAULT_SPECIAL_KEY_DOWN_CONFIG]
+   * @description
    * [Beta; Might be change in the future version]
    * Current only apply to the `TokenCreator`
    *
    * The settings to control the behavior of specials keyDown's event handler.
    * Recommend to use the build-in constant `KEY_DOWN_HANDLER_CONFIG_OPTION` to config the setting.
    *
-   * `KEY_DOWN_HANDLER_CONFIG_OPTION.OFF` means turn `off`
-   * (Took native browser behavior. The TokenInput should NOT handle it).
-   *
-   * `KEY_DOWN_HANDLER_CONFIG_OPTION.ON` means apply TokenInput predefined event handler.
-   *
-   * Default setting as below.
-   * specialKeyDown: {
-   *   onBackspace: KEY_DOWN_HANDLER_CONFIG_OPTION.ON,
-   *   onTab: KEY_DOWN_HANDLER_CONFIG_OPTION.OFF,
-   *   onEnter: KEY_DOWN_HANDLER_CONFIG_OPTION.ON,
-   *   onEscape: KEY_DOWN_HANDLER_CONFIG_OPTION.ON,
-   * },
+   * @see KEY_DOWN_HANDLER_CONFIG_OPTION for the accepted config values
+   * @see DEFAULT_SPECIAL_KEY_DOWN_CONFIG for the default settings
    */
   specialKeyDown?: SpecialKeyDownConfig;
 
   /**
+   * @prop {OnInputValueChange} [onInputValueChange]
+   * @description
    * A callback function invoked when end-user typing but not become token yet
    *
+   * @example
+   * ```js
    * onInputValueChange(newValue, previousValue)
+   * ```
    *
-   * @ newValue
-   * Type: InputString
-   * Description: end-user's input string
+   * @param {InputString} newValue
+   * The end-user's input string
    *
-   * @ previousValue
-   * Type: InputString
-   * Description: previous end-user's input string
+   * @param {InputString} previousValue
+   * The previous input string
+   *
+   * @returns {void}
    */
   onInputValueChange?: OnInputValueChange;
 
   /**
+   * @prop {OnPreprocess} [onPreprocess]
+   * @description
    * A callback function to `preprocessing` the user input string.
    *
    * Note: This function execute after `split by TokenSeparator[]` but before `onBuildTokenValue`
@@ -167,205 +187,251 @@ type Props<ValueType, ErrorType> = {
    * For example, the user input string is `www.google.com`,
    * and we want to auto-fit it into `http://www.google.com` and `https://www.google.com`.
    *
+   * @example
+   * ```js
    * onPreprocess(inputStringValues)
+   * ```
    *
-   * @ inputStringValues
-   * Type: InputString[]
-   * Description:
-   * The user input string values // (split by the `separators`)
+   * @param {InputString[]} inputStringValues
+   * The user input string values
+   * (An array of string, which split from the original input string via the `separators`)
    *
-   * @ return
-   * Type: InputString[]
-   * Description: The values after preprocess
+   * @returns {InputString[]}
+   * An array of string
    */
   onPreprocess?: OnPreprocess;
 
   /**
+   * @template ValueType, ErrorType
+   * @prop {OnTokenValueValidate<ValueType, ErrorType>} [onTokenValueValidate=defaultTokenValueValidate]
+   * @description
    * A callback function to validate a tokenValue
-   * (The returned result will be use by `onGetTokenErrorMessage`)
+   * (The returned result will be set into the TokenMeta & pass to `onGetTokenErrorMessage`)
    *
+   * @example
+   * ```js
    * onTokenValueValidate(tokenValue, tokenIndex, tokenValues)
+   * ```
    *
-   * @ tokenValue
-   * Type: ValueType
-   * Description: The tokenValue build by `onBuildTokenValue`
+   * @param {ValueType} tokenValue
+   * The tokenValue build by `onBuildTokenValue`
    *
-   * @ tokenIndex
-   * Type: number
-   * Description: The array index of this tokenValue in tokenValues
+   * @param {TokenIndex} tokenIndex
+   * The array index of this tokenValue in tokenValues
    *
-   * @ tokenValues
-   * Type: ValueType[]
-   * Description: The array of tokenValue of TokenInput
+   * @param {ValueType[]} tokenValues
+   * The array of tokenValue of TokenInput
    *
-   * @ return
-   * Type: TokenMeta<ErrorType>['error']
-   * Description:
-   * The customize error.
+   * @returns {TokenMeta<ErrorType>['error']}
+   * The customized error.
    * Specific the token's validate status or errorMessage.
    * Could be `an error message` to display, or an error object for further operations.
    *
-   * Return `Nullish` types means the token is valid.
+   * @see TokenMeta for more information about TokenMeta<ErrorType>['error']
+   *
+   * Note: Return `Nullish` types means the token is valid.
+   * @see Nullish
    */
   onTokenValueValidate?: OnTokenValueValidate<ValueType, ErrorType>;
 
-  // Token props
+  // Token related props
 
   /**
+   * @template ValueType
+   * @prop {OnTokenValuesChange<ValueType>} [onTokenValuesChange]
+   * @description
    * A callback function invoked when tokenValues update
    *
+   * @example
+   * ```js
    * onTokenValuesChange(modifiedTokenValues)
+   * ```
    *
-   * @ modifiedTokenValues
-   * Type: ValueType[]
-   * Description: the new tokenValues
+   * @param {ValueType[]} modifiedTokenValues
+   * The new tokenValues
+   *
+   * @returns {void}
    */
   onTokenValuesChange?: OnTokenValuesChange<ValueType>;
 
   /**
-   * A callback function to building `user input string value` into
-   * the `tokenValue` (customize data structure).
+   * @template ValueType
+   * @prop {OnBuildTokenValue<ValueType>} [onBuildTokenValue=defaultBuildTokenValue]
+   * @description
+   * A callback function to build `user input string value` into
+   * the `tokenValue` (customized data structure).
    *
    * Note: You could make your normalize process in this function too.
    *
+   * @example
+   * ```js
    * onBuildTokenValue(inputString)
+   * ```
    *
-   * @ inputString
-   * Type: InputString
-   * Description: The user input value // (A value split by TokenSeparator[])
+   * @param {InputString} inputString
+   * The user input value // (A value split by TokenSeparator[])
+   * Example:
+   * - Input string "ABC, DEF" and separators is `,`
+   * - The `onBuildTokenValue` will be called twice as
+   * ```
+   * onBuildTokenValue('ABC') and onBuildTokenValue('DEF')
+   * ```
    *
-   * @ return
-   * Type: ValueType
-   * Description:
-   * Customize data structure data
-   * Could be string | number | object | customize data structure...etc.
+   * @returns {ValueType}
+   * The customized data structure data
+   * Could be string | number | object | customized data structure...etc.
    */
   onBuildTokenValue?: OnBuildTokenValue<ValueType>;
 
   /**
-   * A customize react functional component to rendering a token
+   * @prop {Component} [customizeTokenComponent]
+   * A customize react component to rendering a token
    * Apply this to customize all token function.
    *
+   * @example
+   * ```js
    * customizeTokenComponent={MyToken}
+   * ```
+   *
+   * @returns {ReactElement | null}
    */
-  // TODO: make detail type for props
-  customizeTokenComponent?: FunctionComponent<TokenProps<ValueType, ErrorType>>;
+  customizeTokenComponent?: (
+    props: TokenProps<ValueType, ErrorType>
+  ) => ReactElement | null;
 
   /**
+   * @template ValueType, ErrorType
+   * @prop {OnGetTokenClassName<ValueType, ErrorType>} [onGetTokenClassName]
+   * @description
    * A callback function to getting customizes `className` to set on a `token`
    *
+   * ```js
    * onGetTokenClassName(tokenValue, tokenMeta)
+   * ```
    *
-   * @ tokenValue
-   * Type: ValueType
-   * Description: The tokenValue build by `onBuildTokenValue`
+   * @param {ValueType} tokenValue
+   * The tokenValue build by `onBuildTokenValue`
    *
-   * @ tokenMeta
-   * Type: TokenMeta<ErrorType>
-   * Description: token's meta data
+   * @param {TokenMeta<ErrorType>} tokenMeta
+   * The token's meta data
    *
-   * @ return
-   * Type: string
-   * Description: The customizes className
+   * @returns {undefined | string}
+   * The customizes className
    */
   onGetTokenClassName?: OnGetTokenClassName<ValueType, ErrorType>;
 
   /**
+   * @template ValueType, ErrorType
+   * @prop  {OnGetTokenDisplayLabel<ValueType, ErrorType>} [onGetTokenDisplayLabel=defaultGetTokenEditableValue]
+   * @description
    * A callback function to getting displayable `label` of a token
    * Apply this to customize the token's content
    * For example, render token with `icon` or `Additional text`
    *
+   * @example
+   * ```js
    * onGetTokenDisplayLabel(tokenValue, tokenMeta)
+   * ```
    *
-   * @ tokenValue
-   * Type: ValueType
-   * Description: The tokenValue build by `onBuildTokenValue`
+   * @param {ValueType} tokenValue
+   * The tokenValue build by `onBuildTokenValue`
    *
-   * @ tokenMeta
-   * Type: TokenMeta<ErrorType>
-   * Description: token's meta data
+   * @param {TokenMeta<ErrorType>} tokenMeta
+   * The token's meta data
    *
-   * @ return
-   * Type: InputString | ReactNode
-   * Description: The token's content.
-   * By default, will apply `getDefaultTokenEditableValue`
+   * @returns {InputString | ReactNode}
+   * The token's display content.
    */
   onGetTokenDisplayLabel?: OnGetTokenDisplayLabel<ValueType, ErrorType>;
 
   /**
+   * @prop {OnRenderTokenDeleteButtonContent} [onRenderTokenDeleteButtonContent]
+   * @description
    * A callback function to render content of the delete button of token
-   * Apply this to customize the token's content of the delete button
+   * Apply this to customize the token's content of the delete button.
    * For example, replace the build-in `x` by Google font material-icons
    *
+   * @example
+   * ```js
    * onRenderTokenDeleteButtonContent()
+   * ```
    *
-   * @ return
-   * Type: ReactNode
-   * Description: The content of the delete button of the token.
+   * @returns {ReactNode}
+   * The content of the delete button of the token.
    * By default, TokenInput render a build-in `x` icon
    */
   onRenderTokenDeleteButtonContent?: OnRenderTokenDeleteButtonContent;
 
   /**
+   * @template ValueType, ErrorType
+   * @prop {OnGetIsTokenEditable<ValueType, ErrorType>} [onGetIsTokenEditable=defaultGetIsTokenEditable]
+   * @description
    * A callback function to determine whether the token is `inline editable`.
-   * By default, TokenInput will render a `inline editable` token.
    *
+   * @example
+   * ```js
    * onGetIsTokenEditable(tokenValue, tokenMeta)
+   * ```
    *
-   * @ tokenValue
-   * Type: ValueType
-   * Description: The tokenValue build by `onBuildTokenValue`
+   * @param {ValueType} tokenValue
+   * The tokenValue build by `onBuildTokenValue`
    *
-   * @ tokenMeta
-   * Type: TokenMeta<ErrorType>
-   * Description: token's meta data
+   * @param {TokenMeta<ErrorType>} tokenMeta
+   * The token's meta data
    *
-   * @ return
-   * Type: boolean
-   * Description: `true` if editable. `false` if not.
+   * @returns {boolean}
+   * - `true`: Editable.
+   * - `false`: Not editable.
    */
   onGetIsTokenEditable?: OnGetIsTokenEditable<ValueType, ErrorType>;
 
   /**
+   * @template ValueType, ErrorType
+   * @prop {OnGetTokenEditableValue<ValueType, ErrorType>} [onGetTokenEditableValue=defaultGetTokenEditableValue]
+   * @description
    * A callback function to getting `string input value`
    * from `tokenValue` for the end-user to perform `inline edit`
    *
+   * @example
+   * ```js
    * onGetTokenEditableValue(tokenValue, tokenMeta)
+   * ```
    *
-   * @ tokenValue
-   * Type: ValueType
-   * Description: The tokenValue build by `onBuildTokenValue`
+   * @param {ValueType} tokenValue
+   * The tokenValue build by `onBuildTokenValue`
    *
-   * @ tokenMeta
-   * Type: TokenMeta<ErrorType>
-   * Description: token's meta data
+   * @param {TokenMeta<ErrorType>} tokenMeta
+   * The token's meta data
    *
-   * @ return
-   * Type: InputString
-   * Description: The value for end-user to `edit` in an input field
+   * @returns {InputString}
+   * The value for end-user to `edit` in an input field
    */
   onGetTokenEditableValue?: OnGetTokenEditableValue<ValueType, ErrorType>;
 
   /**
-   * A callback function to getting the error message from the customize error
-   * The `customize error` is generate by `onTokenValueValidate`
+   * @template ValueType, ErrorType
+   * @prop {OnGetTokenErrorMessage<ValueType, ErrorType>} [onGetTokenErrorMessage=defaultGetTokenErrorMessage]
+   * @description
+   * A callback function to getting the error message from the customized error
+   * The `customized error` is generate by `onTokenValueValidate`
    *
+   * @example
+   * ```js
    * onGetTokenErrorMessage(tokenValue, tokenMeta)
+   * ```
    *
-   * @ tokenValue
-   * Type: ValueType
-   * Description: The tokenValue build by `onBuildTokenValue`
+   * @param {ValueType} tokenValue
+   * The tokenValue build by `onBuildTokenValue`
    *
-   * @ tokenMeta
-   * Type: TokenMeta<ErrorType>
-   * Description: token's meta data
+   * @param {TokenMeta<ErrorType>} tokenMeta
+   * The token's meta data
    *
-   * @ return
-   * Type: Nullish | ErrorType
-   * Description: The error message to describe an invalid token
+   * @returns {TokenMeta<ErrorType>['error']}
+   * The `error` of the token
+   * The return value should be a `string` when apply build-in Token component
    */
   onGetTokenErrorMessage?: OnGetTokenErrorMessage<ValueType, ErrorType>;
-};
+}
 ```
 
 ## Predefined KeyDown Event Handlers
@@ -448,65 +514,109 @@ Your CustomizeTokenComponent will receive these props from the TokenInput. You c
 Could also reference this [Example Demo](https://seawind543.github.io/react-token-input/#example-customize-token-component) and its source code `ExampleCustomizeToken` from the folder `examples`.
 
 ```JavaScript
-export type Props<ValueType, ErrorType> = {
+/**
+ * @template ValueType, ErrorType
+ * @typedef {Object} TokenProps
+ */
+export interface TokenProps<ValueType, ErrorType> {
   /**
-   * Same as props of TokenInput
+   * @property {boolean} readOnly
+   * @description
+   * Same as TokenInputProps {@see TokenInputProps[readOnly]}
    */
   readOnly: boolean;
 
+  /**
+   * @type {ValueType}
+   * @description This token's tokenValue
+   */
   tokenValue: ValueType;
+  /**
+   * @template ErrorType
+   * @type {TokenMeta<ErrorType>} tokenMeta
+   * @description This token's meta data
+   */
   tokenMeta: TokenMeta<ErrorType>;
 
   /**
-   * Same as props `onGetTokenClassName` of TokenInput
+   * @template ValueType, ErrorType
+   * @prop {OnGetTokenClassName<ValueType, ErrorType>} [onGetClassName]
+   * @description
+   * Same as TokenInputProps {@see TokenInputProps[onGetTokenClassName]}
    */
   onGetClassName?: OnGetTokenClassName<ValueType, ErrorType>;
 
   /**
-   * Same as props `onGetTokenDisplayLabel` of TokenInput
+   * @template ValueType, ErrorType
+   * @prop  {OnGetTokenDisplayLabel<ValueType, ErrorType>} [onGetTokenDisplayLabel=defaultGetTokenEditableValue]
+   * @description
+   * Same as TokenInputProps {@see TokenInputProps[onGetTokenDisplayLabel]}
    */
   onGetDisplayLabel: OnGetTokenDisplayLabel<ValueType, ErrorType>;
 
   /**
-   * Same as props `onRenderTokenDeleteButtonContent` of TokenInput
+   * @callback OnRenderTokenDeleteButtonContent
+   * @description
+   * Same as TokenInputProps {@see TokenInputProps[onRenderTokenDeleteButtonContent]}
    */
   onRenderDeleteButtonContent?: OnRenderTokenDeleteButtonContent;
 
   /**
-   * Same as props `onGetIsTokenEditable` of TokenInput
+   * @template ValueType, ErrorType
+   * @callback OnGetIsTokenEditable
+   * @description
+   * Same as TokenInputProps {@see TokenInputProps[onGetIsTokenEditable]}
    */
   onGetIsEditable: OnGetIsTokenEditable<ValueType, ErrorType>;
+
   /**
-   * Same as props `onGetTokenEditableValue` of TokenInput
+   * @template ValueType, ErrorType
+   * @callback OnGetTokenEditableValue
+   * @description
+   * Same as TokenInputProps {@see TokenInputProps[onGetTokenEditableValue]}
    */
   onGetEditableValue: OnGetTokenEditableValue<ValueType, ErrorType>;
+
   /**
-   * Same as props `onBuildTokenValue` of TokenInput
+   * @template ValueType
+   * @callback OnBuildTokenValue
+   * @description
+   * Same as TokenInputProps {@see TokenInputProps[onBuildTokenValue]}
    */
   onBuildTokenValue: OnBuildTokenValue<ValueType>;
+
   /**
-   * Same as props `onGetTokenErrorMessage` of TokenInput
+   * @template ValueType, ErrorType
+   * @callback OnGetTokenErrorMessage
+   * @description
+   * Same as TokenInputProps {@see TokenInputProps[onGetTokenErrorMessage]}
    */
   onGetErrorMessage: OnGetTokenErrorMessage<ValueType, ErrorType>;
 
   /**
-   * A callback function, which should be `invoked`
-   * when end-user `start editing`
+   * @callback
+   * @description
+   * A callback function, which you should `call`
+   * when the end-user `start editing`
    *
    * Note:
    * Call this function to tell TokenInput it is start to editing the token.
    * As result, TokenInput will set `tokenMeta.activate` to `true`
    *
+   * @example
+   * ```js
    * onEditStart()
+   * ```
    *
-   * @ return
-   * Type: void
+   * @returns {void}
    */
   onEditStart: () => void;
 
   /**
-   * A callback function, which should be `invoked`
-   * when end-user `end editing`
+   * @callback
+   * @description
+   * A callback function, which you should `call`
+   * when end-user `end the edit`
    *
    * Note:
    * Call this function to tell TokenInput to finish the `editing` of the token.
@@ -514,41 +624,47 @@ export type Props<ValueType, ErrorType> = {
    *
    * Also, TokenInput will based on the value of the parameter newTokenValue to
    * update the tokenValue of the token,
-   * and call `onTokenValuesChange`
+   * and call the callback `onTokenValuesChange`
    *
-   * onEditEnd(newTokenValue?)
+   * @example
+   * ```js
+   * onEditEnd(newTokenValue);
+   * // or
+   * onEditEnd();
+   * ```
    *
-   * @ newTokenValue
-   * Type: undefined | ValueType
-   * Description:
+   * @param {ValueType} [newTokenValue]
    * The new tokenValue build by `onBuildTokenValue.
    *
    * Note:
    * if `newTokenValue` is `undefined`,
    * TokenInput will treat as `Cancel` (Edit will end without update the tokenValue).
-   * The `onTokenValuesChange` will also not be called.
+   * The callback `onTokenValuesChange` will also not be called.
    *
-   * @ return
-   * Type: void
+   * @returns {void}
    */
   onEditEnd: (newTokenValue?: ValueType) => void;
 
   /**
-   * A callback function, which should be `invoked`
-   * when end-user `delete` the token
+   * @callback
+   * @description
+   * A callback function, which you should `call`
+   * when the end-user `delete` the token
    *
    * Note:
    * Call this function to tell TokenInput to delete the token.
    * As result, TokenInput will remove the token,
    * and call `onTokenValuesChange` to update tokenValues.
    *
+   * @example
+   * ```js
    * onDelete()
+   * ```
    *
-   * @ return
-   * Type: void
+   * @returns {void}
    */
   onDelete: () => void;
-};
+}
 ```
 
 ## License
