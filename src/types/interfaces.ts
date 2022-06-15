@@ -285,11 +285,11 @@ export interface OnGetTokenEditableValue<ValueType, ErrorType> {
  * The token's meta data
  *
  * @returns {TokenMeta<ErrorType>['error']}
- *  The error message to describe an invalid token
+ * The `error` of the token.
+ * The return value should be a `string` when apply build-in Token component
  */
 export interface OnGetTokenErrorMessage<ValueType, ErrorType> {
-  (
-    tokenValue: ValueType,
-    tokenMeta: TokenMeta<ErrorType>
-  ): TokenMeta<ErrorType>['error'];
+  (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>):
+    | string
+    | TokenMeta<ErrorType>['error'];
 }

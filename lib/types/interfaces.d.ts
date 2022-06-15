@@ -32,5 +32,5 @@ export interface OnGetTokenEditableValue<ValueType, ErrorType> {
     (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>): InputString;
 }
 export interface OnGetTokenErrorMessage<ValueType, ErrorType> {
-    (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>): TokenMeta<ErrorType>['error'];
+    (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>): string | TokenMeta<ErrorType>['error'];
 }
