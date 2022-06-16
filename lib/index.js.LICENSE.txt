@@ -6,4 +6,4 @@
 
 /*! For license information please see index.js.LICENSE.txt */
 
-/*! react-customize-token-input v2.1.0 | (c) 2022 Mark Lin. | MIT | https://github.com/seawind543/react-token-input */
+/*! react-customize-token-input v2.2.0-beta.0 | (c) 2022 Mark Lin. | MIT | https://github.com/seawind543/react-token-input */
