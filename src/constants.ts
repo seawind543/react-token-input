@@ -29,10 +29,10 @@ export const DEFAULT_SEPARATORS: TokenSeparator[] = [
  *
  * @prop {1} NO - The config vale to `apply` TokenInput predefined event handler
  */
-export const KEY_DOWN_HANDLER_CONFIG_OPTION = {
+export const KEY_DOWN_HANDLER_CONFIG_OPTION = Object.freeze({
   OFF: 0,
   ON: 1,
-};
+});
 
 /**
  * @type {Required<SpecialKeyDownConfig>}
