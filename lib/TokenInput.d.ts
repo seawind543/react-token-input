@@ -3,7 +3,7 @@ import { type TokenProps } from './Token';
 import type { TokenSeparator } from './types/mix';
 import type { SpecialKeyDownConfig } from './types/specialKeyDown';
 import type { OnInputValueChange, OnPreprocess, OnBuildTokenValue, OnTokenValueValidate, OnTokenValuesChange, OnGetTokenClassName, OnGetTokenDisplayLabel, OnRenderTokenDeleteButtonContent, OnGetIsTokenEditable, OnGetTokenEditableValue, OnGetTokenErrorMessage } from './types/interfaces';
-export interface TokenInputProps<ValueType, ErrorType> {
+export interface TokenInputProps<ValueType = string, ErrorType = string> {
     style?: CSSProperties;
     className?: string;
     placeholder?: string;

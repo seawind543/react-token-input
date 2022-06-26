@@ -47,7 +47,7 @@ import type {
  * @template ValueType, ErrorType
  * @typedef {Object} TokenInputProps
  */
-export interface TokenInputProps<ValueType, ErrorType> {
+export interface TokenInputProps<ValueType = string, ErrorType = string> {
   /**
    * @prop {CSSProperties} [style]
    * @description An optional prop for assign style to the TokenInput

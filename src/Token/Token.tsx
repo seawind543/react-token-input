@@ -38,7 +38,7 @@ const handleInlineEditClick = (e: MouseEvent<HTMLDivElement>) => {
  * @template ValueType, ErrorType
  * @typedef {Object} TokenProps
  */
-export interface TokenProps<ValueType, ErrorType> {
+export interface TokenProps<ValueType = string, ErrorType = string> {
   /**
    * @prop {boolean} readOnly
    * @description

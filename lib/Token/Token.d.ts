@@ -1,6 +1,6 @@
 import type { TokenMeta } from '../types/token';
 import type { OnBuildTokenValue, OnGetTokenClassName, OnGetTokenDisplayLabel, OnRenderTokenDeleteButtonContent, OnGetIsTokenEditable, OnGetTokenEditableValue, OnGetTokenErrorMessage } from '../types/interfaces';
-export interface TokenProps<ValueType, ErrorType> {
+export interface TokenProps<ValueType = string, ErrorType = string> {
     readOnly: boolean;
     tokenValue: ValueType;
     tokenMeta: TokenMeta<ErrorType>;
