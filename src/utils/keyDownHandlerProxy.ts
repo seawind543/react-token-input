@@ -1,35 +1,25 @@
 import keyDownKey from 'keydown-key';
 
-type ActionFunction = (keyDownEvent: KeyboardEvent) => void;
-type KeyDownHandlerProxyActions = {
+interface ActionFunction {
+  (keyDownEvent: KeyboardEvent): void;
+}
+
+interface KeyDownHandlerProxyActions {
   onBackspace?: ActionFunction;
   onTab?: ActionFunction;
   onEnter?: ActionFunction;
   onEscape?: ActionFunction;
-};
+}
 
 /**
  * Help function to proxy keyDown event to handler
  *
- * @ keyDownEvent
- * Type: Event
- * Description: keyDown event
- *
- * @ actions.onBackspace
- * Type: function
- * Description: callback function when `Backspace` keyDone
- *
- * @ actions.onTab
- * Type: function
- * Description: callback function when `Tab` keyDone
- *
- * @ actions.onEnter
- * Type: function
- * Description: callback function when `Enter` keyDone
- *
- * @ actions.onEscape
- * Type: function
- * Description: callback function when `Escape` keyDone
+ * @param {KeyboardEvent} keyDownEvent - The keyDown event
+ * @param {KeyDownHandlerProxyActions} actions
+ * @param {ActionFunction} [actions.onBackspace] - The handler for `backspace` keyDown event
+ * @param {ActionFunction} [actions.onTab] - The handler for `tab` keyDown event
+ * @param {ActionFunction} [actions.onEnter] - The handler for `enter` keyDown event
+ * @param {ActionFunction} [actions.onEscape] - The handler for `escape` keyDown event
  */
 const keyDownHandlerProxy = (
   keyDownEvent: KeyboardEvent,

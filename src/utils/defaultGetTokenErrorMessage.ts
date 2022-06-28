@@ -1,45 +1,50 @@
+import type { Nullish } from '../types/mix';
 import type { TokenMeta } from '../types/token';
 
 /**
- * The default ErrorType of the `TokenInput`
- */
-const DEFAULT_ERROR_TYPE = 'string';
-
-/**
+ * @template ValueType
+ * @type {OnGetTokenErrorMessage<ValueType, string>} defaultGetTokenErrorMessage
+ * @description
  * Default function to get the errorMessage,
  * which throw an TypeError if the `ErrorType` is
  * NOT `string` nor Nullish
  *
+ * @example
+ * ```js
  * defaultGetTokenErrorMessage(tokenValue, tokenMeta)
+ * ```
  *
- * @ tokenValue
- * Type: ValueType
- * Description: The tokenValue build by `onBuildTokenValue`
+ * @param {ValueType} tokenValue
+ * The tokenValue build by `onBuildTokenValue`
  *
- * @ tokenMeta
- * Type: TokenMeta<ErrorType>
- * Description: token's meta data
+ * @param {TokenMeta<ErrorType>} tokenMeta
+ * The token's meta data
  *
- * @ return
- * Type: Nullish | string
- * Description: The error message to describe the invalid token
+ * @returns {Nullish | string}
+ * The error message (string) to describe the invalid token
  */
 const defaultGetTokenErrorMessage = <ValueType, ErrorType>(
   _: ValueType,
   tokenMeta: TokenMeta<ErrorType>
-): TokenMeta<ErrorType>['error'] => {
-  // Check if the tokenMeta.error is NOT `string`, nor Nullish
-  const DEFAULT_HANDLED_ERROR_TYPES = [DEFAULT_ERROR_TYPE, 'undefined'];
-  if (
-    !DEFAULT_HANDLED_ERROR_TYPES.includes(typeof tokenMeta.error) &&
-    tokenMeta.error !== null
-  ) {
-    throw new TypeError(
-      '"onGetTokenErrorMessage" is required when "ErrorType" not "string"'
-    );
+): Nullish | string => {
+  // Check if the tokenMeta.error is `string`, or `Nullish`
+  const { error } = tokenMeta;
+
+  if (error === null) {
+    return null;
   }
 
-  return tokenMeta.error;
+  if (
+    // (typeof error === 'object' && error === null) ||
+    typeof error === 'undefined' ||
+    typeof error === 'string'
+  ) {
+    return error;
+  }
+
+  throw new TypeError(
+    '"onGetTokenErrorMessage" is required when "ErrorType" not "string"'
+  );
 };
 
 export default defaultGetTokenErrorMessage;

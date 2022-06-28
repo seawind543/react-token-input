@@ -1,31 +1,32 @@
 import { KEY_DOWN_HANDLER_CONFIG_OPTION } from '../constants';
 
+/**
+ * @typedef {number} KeyDownHandlerConfigOption
+ * @description The accept values of SpecialKeyDownConfig.onXXXX
+ */
 export type KeyDownHandlerConfigOption =
   typeof KEY_DOWN_HANDLER_CONFIG_OPTION[keyof typeof KEY_DOWN_HANDLER_CONFIG_OPTION];
 
 /**
+ * @typedef {Object} SpecialKeyDownConfig
+ * @description
  * [Beta; Might be change in the future version]
  * Current only apply to the `TokenCreator`
  *
  * The settings to control the behavior of specials keyDown's event handler.
  * Recommend to use the build-in constant `KEY_DOWN_HANDLER_CONFIG_OPTION` to config the setting.
  *
- * `KEY_DOWN_HANDLER_CONFIG_OPTION.OFF` means turn `off`
- * (Took native browser behavior. The TokenInput should NOT handle it).
+ * @prop {KeyDownHandlerConfigOption} [onBackspace] - The config value to control the behavior of `backspace` keyDown event handler
+ * @prop {KeyDownHandlerConfigOption} [onTab] - The config value to control the behavior of `tab` keyDown event handler
+ * @prop {KeyDownHandlerConfigOption} [onEnter] - The config value to control the behavior of `enter` keyDown event handler
+ * @prop {KeyDownHandlerConfigOption} [onEscape] - The config value to control the behavior of `escape` keyDown event handler
  *
- * `KEY_DOWN_HANDLER_CONFIG_OPTION.ON` means apply TokenInput predefined event handler.
- *
- * Default setting as below.
- * specialKeyDown: {
- *   onBackspace: KEY_DOWN_HANDLER_CONFIG_OPTION.ON,
- *   onTab: KEY_DOWN_HANDLER_CONFIG_OPTION.OFF,
- *   onEnter: KEY_DOWN_HANDLER_CONFIG_OPTION.ON,
- *   onEscape: KEY_DOWN_HANDLER_CONFIG_OPTION.ON,
- * },
+ * @see KEY_DOWN_HANDLER_CONFIG_OPTION for the accepted config values
+ * @see DEFAULT_SPECIAL_KEY_DOWN_CONFIG for the default settings
  */
-export type SpecialKeyDownConfig = {
+export interface SpecialKeyDownConfig {
   onBackspace?: KeyDownHandlerConfigOption;
   onTab?: KeyDownHandlerConfigOption;
   onEnter?: KeyDownHandlerConfigOption;
   onEscape?: KeyDownHandlerConfigOption;
-};
+}

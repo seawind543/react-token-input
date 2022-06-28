@@ -6,11 +6,13 @@ import styles from '../styles.scss';
 
 import { JS__TOKEN__DELETE_BUTTON__CLASS_NAME } from '../constants';
 
-type Props = {
+interface DeleteButtonProps {
   onRenderContent?: () => ReactNode;
-};
+}
 
-const DeleteButton = ({ onRenderContent }: Props) => {
+const DeleteButton = (props: DeleteButtonProps) => {
+  const { onRenderContent } = props;
+
   return (
     <span
       data-component-name="DeleteButton" // FIXME: This is a hack to get the component name.

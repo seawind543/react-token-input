@@ -2,7 +2,6 @@
 /* eslint no-unused-vars: 0 */
 
 import React, { useState, useCallback } from 'react';
-// import PropTypes from 'prop-types';
 // import TokenInput, { JS__TOKEN__DELETE_BUTTON__CLASS_NAME } from '../../src';
 import TokenInput, { JS__TOKEN__DELETE_BUTTON__CLASS_NAME } from '../../lib';
 
@@ -24,13 +23,6 @@ const INIT_VALUES = [
 const handleBuildTokenValue = (inputValue) => {
   return inputValue.trim();
 };
-
-// const Token = ({ tokenValue }) => {
-//   return <div>{tokenValue}</div>;
-// };
-// Token.propTypes = {
-//   tokenValue: PropTypes.string.isRequired,
-// };
 
 const handleRenderTokenDeleteButtonContent = () => {
   // Google font material-icons

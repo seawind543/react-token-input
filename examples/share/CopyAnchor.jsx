@@ -2,7 +2,7 @@
 /* eslint no-unused-vars: 0 */
 
 import React, { useCallback } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'; // eslint-disable-line import/no-extraneous-dependencies
 
 const CopyAnchor = ({ hashTag }) => {
   const handleCopyToClipBoard = useCallback(

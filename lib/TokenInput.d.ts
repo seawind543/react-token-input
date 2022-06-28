@@ -1,9 +1,9 @@
-import { type CSSProperties, type FunctionComponent } from 'react';
-import { type Props as TokenProps } from './Token';
+import { type CSSProperties, type ReactElement } from 'react';
+import { type TokenProps } from './Token';
 import type { TokenSeparator } from './types/mix';
 import type { SpecialKeyDownConfig } from './types/specialKeyDown';
 import type { OnInputValueChange, OnPreprocess, OnBuildTokenValue, OnTokenValueValidate, OnTokenValuesChange, OnGetTokenClassName, OnGetTokenDisplayLabel, OnRenderTokenDeleteButtonContent, OnGetIsTokenEditable, OnGetTokenEditableValue, OnGetTokenErrorMessage } from './types/interfaces';
-export declare type Props<ValueType, ErrorType> = {
+export interface TokenInputProps<ValueType, ErrorType> {
     style?: CSSProperties;
     className?: string;
     placeholder?: string;
@@ -17,13 +17,13 @@ export declare type Props<ValueType, ErrorType> = {
     onTokenValueValidate?: OnTokenValueValidate<ValueType, ErrorType>;
     onTokenValuesChange?: OnTokenValuesChange<ValueType>;
     onBuildTokenValue?: OnBuildTokenValue<ValueType>;
-    customizeTokenComponent?: FunctionComponent<TokenProps<ValueType, ErrorType>>;
+    customizeTokenComponent?: (props: TokenProps<ValueType, ErrorType>) => ReactElement | null;
     onGetTokenClassName?: OnGetTokenClassName<ValueType, ErrorType>;
     onGetTokenDisplayLabel?: OnGetTokenDisplayLabel<ValueType, ErrorType>;
     onRenderTokenDeleteButtonContent?: OnRenderTokenDeleteButtonContent;
     onGetIsTokenEditable?: OnGetIsTokenEditable<ValueType, ErrorType>;
     onGetTokenEditableValue?: OnGetTokenEditableValue<ValueType, ErrorType>;
     onGetTokenErrorMessage?: OnGetTokenErrorMessage<ValueType, ErrorType>;
-};
-declare const TokenInput: <ValueType, ErrorType>({ className, placeholder, readOnly, autoFocus, tokenValues, separators, specialKeyDown, onInputValueChange, onPreprocess, onTokenValueValidate, onTokenValuesChange, onBuildTokenValue, customizeTokenComponent, onGetTokenClassName, onGetTokenDisplayLabel, onRenderTokenDeleteButtonContent, onGetIsTokenEditable, onGetTokenEditableValue, onGetTokenErrorMessage, ...props }: Props<ValueType, ErrorType>) => JSX.Element;
+}
+declare const TokenInput: <ValueType, ErrorType>(props: TokenInputProps<ValueType, ErrorType>) => JSX.Element;
 export default TokenInput;

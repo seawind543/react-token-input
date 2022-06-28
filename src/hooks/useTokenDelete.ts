@@ -3,11 +3,11 @@ import { useCallback } from 'react';
 import type { TokenIndex } from '../types/token';
 import type { OnTokenValuesChange } from '../types/interfaces';
 
-type Params<ValueType> = {
+interface Params<ValueType> {
   tokenValues: ValueType[];
   onTokenValuesChange?: OnTokenValuesChange<ValueType>;
   focusTokenCreator: () => void; // TODO: Update type by shared one
-};
+}
 
 function useTokenDelete<ValueType>({
   tokenValues,

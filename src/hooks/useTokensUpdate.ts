@@ -4,10 +4,10 @@ import buildTokenMeta from '../utils/buildTokenMeta';
 
 import type { OnTokenValueValidate } from '../types/interfaces';
 
-type Params<ValueType, ErrorType> = {
+interface Params<ValueType, ErrorType> {
   tokenValues: ValueType[];
   onTokenValueValidate: OnTokenValueValidate<ValueType, ErrorType>;
-};
+}
 
 function useTokensUpdate<ValueType, ErrorType>({
   tokenValues,

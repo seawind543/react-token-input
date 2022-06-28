@@ -34,65 +34,110 @@ const handleInlineEditClick = (e: MouseEvent<HTMLDivElement>) => {
   e.stopPropagation();
 };
 
-export type Props<ValueType, ErrorType> = {
+/**
+ * @template ValueType, ErrorType
+ * @typedef {Object} TokenProps
+ */
+export interface TokenProps<ValueType, ErrorType> {
   /**
-   * Same as props of TokenInput
+   * @prop {boolean} readOnly
+   * @description
+   * Same as TokenInputProps {@see TokenInputProps[readOnly]}
    */
   readOnly: boolean;
 
+  /**
+   * @type {ValueType}
+   * @description This token's tokenValue
+   */
   tokenValue: ValueType;
+
+  /**
+   * @template ErrorType
+   * @type {TokenMeta<ErrorType>} tokenMeta
+   * @description This token's meta data
+   */
   tokenMeta: TokenMeta<ErrorType>;
 
   /**
-   * Same as props `onGetTokenClassName` of TokenInput
+   * @template ValueType, ErrorType
+   * @prop {OnGetTokenClassName<ValueType, ErrorType>} [onGetClassName]
+   * @description
+   * Same as TokenInputProps {@see TokenInputProps[onGetTokenClassName]}
    */
   onGetClassName?: OnGetTokenClassName<ValueType, ErrorType>;
 
   /**
-   * Same as props `onGetTokenDisplayLabel` of TokenInput
+   * @template ValueType, ErrorType
+   * @prop  {OnGetTokenDisplayLabel<ValueType, ErrorType>} [onGetTokenDisplayLabel=defaultGetTokenEditableValue]
+   * @description
+   * Same as TokenInputProps {@see TokenInputProps[onGetTokenDisplayLabel]}
    */
   onGetDisplayLabel: OnGetTokenDisplayLabel<ValueType, ErrorType>;
 
   /**
-   * Same as props `onRenderTokenDeleteButtonContent` of TokenInput
+   * @callback OnRenderTokenDeleteButtonContent
+   * @description
+   * Same as TokenInputProps {@see TokenInputProps[onRenderTokenDeleteButtonContent]}
    */
   onRenderDeleteButtonContent?: OnRenderTokenDeleteButtonContent;
 
   /**
-   * Same as props `onGetIsTokenEditable` of TokenInput
+   * @template ValueType, ErrorType
+   * @callback OnGetIsTokenEditable
+   * @description
+   * Same as TokenInputProps {@see TokenInputProps[onGetIsTokenEditable]}
    */
   onGetIsEditable: OnGetIsTokenEditable<ValueType, ErrorType>;
+
   /**
-   * Same as props `onGetTokenEditableValue` of TokenInput
+   * @template ValueType, ErrorType
+   * @callback OnGetTokenEditableValue
+   * @description
+   * Same as TokenInputProps {@see TokenInputProps[onGetTokenEditableValue]}
    */
   onGetEditableValue: OnGetTokenEditableValue<ValueType, ErrorType>;
+
   /**
-   * Same as props `onBuildTokenValue` of TokenInput
+   * @template ValueType
+   * @callback OnBuildTokenValue
+   * @description
+   * Same as TokenInputProps {@see TokenInputProps[onBuildTokenValue]}
    */
   onBuildTokenValue: OnBuildTokenValue<ValueType>;
+
   /**
-   * Same as props `onGetTokenErrorMessage` of TokenInput
+   * @template ValueType, ErrorType
+   * @callback OnGetTokenErrorMessage
+   * @description
+   * Same as TokenInputProps {@see TokenInputProps[onGetTokenErrorMessage]}
    */
   onGetErrorMessage: OnGetTokenErrorMessage<ValueType, ErrorType>;
 
   /**
-   * A callback function, which should be `invoked`
-   * when end-user `start editing`
+   * @callback
+   * @description
+   * A callback function, which you should `call`
+   * when the end-user `start editing`
    *
    * Note:
    * Call this function to tell TokenInput it is start to editing the token.
    * As result, TokenInput will set `tokenMeta.activate` to `true`
    *
+   * @example
+   * ```js
    * onEditStart()
+   * ```
    *
-   * @ return
-   * Type: void
+   * @returns {void}
    */
   onEditStart: () => void;
 
   /**
-   * A callback function, which should be `invoked`
-   * when end-user `end editing`
+   * @callback
+   * @description
+   * A callback function, which you should `call`
+   * when end-user `end the edit`
    *
    * Note:
    * Call this function to tell TokenInput to finish the `editing` of the token.
@@ -100,57 +145,67 @@ export type Props<ValueType, ErrorType> = {
    *
    * Also, TokenInput will based on the value of the parameter newTokenValue to
    * update the tokenValue of the token,
-   * and call `onTokenValuesChange`
+   * and call the callback `onTokenValuesChange`
    *
-   * onEditEnd(newTokenValue?)
+   * @example
+   * ```js
+   * onEditEnd(newTokenValue);
+   * // or
+   * onEditEnd();
+   * ```
    *
-   * @ newTokenValue
-   * Type: undefined | ValueType
-   * Description:
+   * @param {ValueType} [newTokenValue]
    * The new tokenValue build by `onBuildTokenValue.
    *
    * Note:
    * if `newTokenValue` is `undefined`,
    * TokenInput will treat as `Cancel` (Edit will end without update the tokenValue).
-   * The `onTokenValuesChange` will also not be called.
+   * The callback `onTokenValuesChange` will also not be called.
    *
-   * @ return
-   * Type: void
+   * @returns {void}
    */
   onEditEnd: (newTokenValue?: ValueType) => void;
 
   /**
-   * A callback function, which should be `invoked`
-   * when end-user `delete` the token
+   * @callback
+   * @description
+   * A callback function, which you should `call`
+   * when the end-user `delete` the token
    *
    * Note:
    * Call this function to tell TokenInput to delete the token.
    * As result, TokenInput will remove the token,
    * and call `onTokenValuesChange` to update tokenValues.
    *
+   * @example
+   * ```js
    * onDelete()
+   * ```
    *
-   * @ return
-   * Type: void
+   * @returns {void}
    */
   onDelete: () => void;
-};
+}
 
-const Token = <ValueType, ErrorType>({
-  readOnly,
-  tokenValue,
-  tokenMeta,
-  onGetClassName,
-  onGetDisplayLabel,
-  onRenderDeleteButtonContent,
-  onGetIsEditable,
-  onGetEditableValue,
-  onGetErrorMessage,
-  onBuildTokenValue,
-  onEditStart,
-  onEditEnd,
-  onDelete,
-}: Props<ValueType, ErrorType>) => {
+const Token = <ValueType, ErrorType>(
+  props: TokenProps<ValueType, ErrorType>
+) => {
+  const {
+    readOnly,
+    tokenValue,
+    tokenMeta,
+    onGetClassName,
+    onGetDisplayLabel,
+    onRenderDeleteButtonContent,
+    onGetIsEditable,
+    onGetEditableValue,
+    onGetErrorMessage,
+    onBuildTokenValue,
+    onEditStart,
+    onEditEnd,
+    onDelete,
+  } = props;
+
   // Cannot set AutosizeInput as ref, because it get error when ref={autosizeInputRef}
   const autosizeInputRef = useRef(null);
 

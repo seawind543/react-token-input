@@ -28,45 +28,106 @@ import type {
   OnBuildTokenValue,
 } from './types/interfaces';
 
-type Props<ValueType> = {
-  // Same as props of TokenInput
+/**
+ * @template ValueType
+ * @typedef {Object} TokenCreatorProps
+ */
+interface TokenCreatorProps<ValueType> {
+  /**
+   * @prop {string} [placeholder]
+   * @description
+   * Same as TokenInputProps {@see TokenInputProps[placeholder]}
+   */
   placeholder?: string;
-  // Same as props of TokenInput
-  autoFocus: boolean;
-
-  onFocus: HandleTokenInputFocus;
-  onBlur: HandleTokenInputBlur;
 
   /**
-   * Token
+   * @prop {boolean} autoFocus
+   * @description
+   * Same as TokenInputProps {@see TokenInputProps[autoFocus]}
    */
-  // Same as props of TokenInput
+  autoFocus: boolean;
+
+  /**
+   * @prop {HandleTokenInputFocus} onFocus
+   * @description
+   * A callback function, which should be `called`
+   * when end-user `focus` into the TokenInput
+   *
+   * Note:
+   * Call this function to tell TokenInput to set the `focused` CSS effect
+   */
+  onFocus: HandleTokenInputFocus;
+
+  /**
+   * @prop {HandleTokenInputBlur} onBlur
+   * @description
+   * A callback function, which should be `called`
+   * when end-user `blur` from the TokenInput
+   *
+   * Note:
+   * Call this function to tell TokenInput to remove the `focused` CSS effect
+   */
+  onBlur: HandleTokenInputBlur;
+
+  // Token
+
+  /**
+   * @prop {TokenSeparator[]} separators
+   * @description
+   * Same as TokenInputProps {@see TokenInputProps[separators]}
+   */
   separators: TokenSeparator[];
-  // Same as props of TokenInput
+
+  /**
+   * @prop {SpecialKeyDownConfig} specialKeyDown
+   * @description
+   * Same as TokenInputProps {@see TokenInputProps[specialKeyDown]}
+   */
   specialKeyDown: SpecialKeyDownConfig;
 
-  // Same as props of TokenInput
+  /**
+   * @prop {OnInputValueChange} [onInputValueChange]
+   * @description
+   * Same as TokenInputProps {@see TokenInputProps[specialKeyDown]}
+   */
   onInputValueChange?: OnInputValueChange;
-  // Same as props of TokenInput
+
+  /**
+   * @prop {SpecialKeyDownConfig} onPreprocess
+   * @description
+   * Same as TokenInputProps {@see TokenInputProps[onPreprocess]}
+   */
   onPreprocess: OnPreprocess;
-  // Same as props of TokenInput
+  /**
+   * @prop {OnBuildTokenValue<ValueType>} onBuildTokenValue
+   * @description
+   * Same as TokenInputProps {@see TokenInputProps[onBuildTokenValue]}
+   */
   onBuildTokenValue: OnBuildTokenValue<ValueType>;
 
   /**
-   * A callback function, which should be `invoked`
+   * @prop {function} onNewTokenValuesAppend
+   * @description
+   * A callback function, which should be `called`
    * when want to append a new token to the end of the token list.
+   *
+   * @returns {void}
    */
   onNewTokenValuesAppend: (appendTokenValues: ValueType[]) => void;
 
   /**
-   * A callback function, which should be `invoked`
+   * @prop {function} onLastTokenDelete
+   * @description
+   * A callback function, which should be `called`
    * when want to `delete` the last token from the token list.
+   *
+   * @returns {void}
    */
   onLastTokenDelete: () => void;
-};
+}
 
 const TokenCreator = forwardRef(function TokenCreator<ValueType>(
-  props: Props<ValueType>,
+  props: TokenCreatorProps<ValueType>,
 
   // Cannot set AutosizeInput as ref, because it get error when ref={ref}
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -230,7 +291,7 @@ const TokenCreator = forwardRef(function TokenCreator<ValueType>(
     </div>
   );
 }) as <ValueType>(
-  p: Props<ValueType> & { ref: Ref<HTMLInputElement> }
+  p: TokenCreatorProps<ValueType> & { ref: Ref<HTMLInputElement> }
 ) => ReactElement | null;
 
 export default TokenCreator;

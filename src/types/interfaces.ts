@@ -3,24 +3,30 @@ import { InputString } from './mix';
 import { TokenIndex, TokenMeta } from './token';
 
 /**
+ * @callback OnInputValueChange
+ * @description
  * A callback function invoked when end-user typing but not become token yet
  *
+ * @example
+ * ```js
  * onInputValueChange(newValue, previousValue)
+ * ```
  *
- * @ newValue
- * Type: InputString
- * Description: end-user's input string
+ * @param {InputString} newValue
+ * The end-user's input string
  *
- * @ previousValue
- * Type: InputString
- * Description: previous end-user's input string
+ * @param {InputString} previousValue
+ * The previous input string
+ *
+ * @returns {void}
  */
-export type OnInputValueChange = (
-  newValue: InputString,
-  previousValue: InputString
-) => void;
+export interface OnInputValueChange {
+  (newValue: InputString, previousValue: InputString): void;
+}
 
 /**
+ * @callback OnPreprocess
+ * @description
  * A callback function to `preprocessing` the user input string.
  *
  * Note: This function execute after `split by TokenSeparator[]` but before `onBuildTokenValue`
@@ -34,216 +40,256 @@ export type OnInputValueChange = (
  * For example, the user input string is `www.google.com`,
  * and we want to auto-fit it into `http://www.google.com` and `https://www.google.com`.
  *
+ * @example
+ * ```js
  * onPreprocess(inputStringValues)
+ * ```
  *
- * @ inputStringValues
- * Type: InputString[]
- * Description:
- * The user input string values // (split by the `separators`)
+ * @param {InputString[]} inputStringValues
+ * The user input string values
+ * (An array of string, which split from the original input string via the `separators`)
  *
- * @ return
- * Type: InputString[]
- * Description: The values after preprocess
+ * @returns {InputString[]}
+ * An array of string
  */
-export type OnPreprocess = (values: InputString[]) => InputString[];
+export interface OnPreprocess {
+  (values: InputString[]): InputString[];
+}
 
 /**
+ * @template ValueType
+ * @callback OnBuildTokenValue
+ * @description
  * A callback function to build `user input string value` into
- * the `tokenValue` (customize data structure).
+ * the `tokenValue` (customized data structure).
  *
  * Note: You could make your normalize process in this function too.
  *
+ * @example
+ * ```js
  * onBuildTokenValue(inputString)
+ * ```
  *
- * @ inputString
- * Type: InputString
- * Description: The user input value // (A value split by TokenSeparator[])
+ * @param {InputString} inputString
+ * The user input value // (A value split by TokenSeparator[])
  * Example:
  * - Input string "ABC, DEF" and separators is `,`
- * - buildDefaultTokenValue will be called twice
+ * - The `onBuildTokenValue` will be called twice as
+ * ```
  * onBuildTokenValue('ABC') and onBuildTokenValue('DEF')
+ * ```
  *
- * @ return
- * Type: ValueType
- * Description:
- * Customize data structure data
- * Could be string | number | object | customize data structure...etc.
+ * @returns {ValueType}
+ * The customized data structure data
+ * Could be string | number | object | customized data structure...etc.
  */
-export type OnBuildTokenValue<ValueType> = (
-  inputValue: InputString
-) => ValueType;
+export interface OnBuildTokenValue<ValueType> {
+  (inputValue: InputString): ValueType;
+}
 
 /**
+ * @template ValueType
+ * @callback OnTokenValuesChange
+ * @description
  * A callback function invoked when tokenValues update
  *
+ * @example
+ * ```js
  * onTokenValuesChange(modifiedTokenValues)
+ * ```
  *
- * @ modifiedTokenValues
- * Type: ValueType[]
- * Description: the new tokenValues
+ * @param {ValueType[]} modifiedTokenValues
+ * The new tokenValues
+ *
+ * @returns {void}
  */
-export type OnTokenValuesChange<ValueType> = (
-  modifiedTokenValues: ValueType[]
-) => void;
+export interface OnTokenValuesChange<ValueType> {
+  (modifiedTokenValues: ValueType[]): void;
+}
 
 /**
+ * @template ValueType, ErrorType
+ * @callback OnTokenValueValidate
+ * @description
  * A callback function to validate a tokenValue
- * (The returned result will be use by `onGetTokenErrorMessage`)
+ * (The returned result will be set into the TokenMeta & pass to `onGetTokenErrorMessage`)
  *
+ * @example
+ * ```js
  * onTokenValueValidate(tokenValue, tokenIndex, tokenValues)
+ * ```
  *
- * @ tokenValue
- * Type: ValueType
- * Description: The tokenValue build by `onBuildTokenValue`
+ * @param {ValueType} tokenValue
+ * The tokenValue build by `onBuildTokenValue`
  *
- * @ tokenIndex
- * Type: number
- * Description: The array index of this tokenValue in tokenValues
+ * @param {TokenIndex} tokenIndex
+ * The array index of this tokenValue in tokenValues
  *
- * @ tokenValues
- * Type: ValueType[]
- * Description: The array of tokenValue of TokenInput
+ * @param {ValueType[]} tokenValues
+ * The array of tokenValue of TokenInput
  *
- * @ return
- * Type: TokenMeta<ErrorType>['error']
- * Description:
- * The customize error.
+ * @returns {TokenMeta<ErrorType>['error']}
+ * The customized error.
  * Specific the token's validate status or errorMessage.
  * Could be `an error message` to display, or an error object for further operations.
  *
- * Return `Nullish` types means the token is valid.
+ * @see TokenMeta for more information about TokenMeta<ErrorType>['error']
+ *
+ * Note: Return `Nullish` types means the token is valid.
+ * @see Nullish
  */
-export type OnTokenValueValidate<ValueType, ErrorType> = (
-  tokenValue: ValueType,
-  tokenIndex: TokenIndex,
-  tokenValues: ValueType[]
-) => TokenMeta<ErrorType>['error'];
+export interface OnTokenValueValidate<ValueType, ErrorType> {
+  (
+    tokenValue: ValueType,
+    tokenIndex: TokenIndex,
+    tokenValues: ValueType[]
+  ): TokenMeta<ErrorType>['error'];
+}
 
 /**
+ * @template ValueType, ErrorType
+ * @callback OnGetTokenClassName
+ * @description
  * A callback function to getting customizes `className` to set on a `token`
  *
+ * ```js
  * onGetTokenClassName(tokenValue, tokenMeta)
+ * ```
  *
- * @ tokenValue
- * Type: ValueType
- * Description: The tokenValue build by `onBuildTokenValue`
+ * @param {ValueType} tokenValue
+ * The tokenValue build by `onBuildTokenValue`
  *
- * @ tokenMeta
- * Type: TokenMeta<ErrorType>
- * Description: token's meta data
+ * @param {TokenMeta<ErrorType>} tokenMeta
+ * The token's meta data
  *
- * @ return
- * Type: string
- * Description: The customizes className
+ * @returns {undefined | string}
+ * The customizes className
  */
-export type OnGetTokenClassName<ValueType, ErrorType> = (
-  tokenValue: ValueType,
-  tokenMeta: TokenMeta<ErrorType>
-) => undefined | string;
+export interface OnGetTokenClassName<ValueType, ErrorType> {
+  (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>): undefined | string;
+}
 
 /**
+ * @template ValueType, ErrorType
+ * @callback OnGetTokenDisplayLabel
+ * @description
  * A callback function to getting displayable `label` of a token
  * Apply this to customize the token's content
  * For example, render token with `icon` or `Additional text`
  *
+ * @example
+ * ```js
  * onGetTokenDisplayLabel(tokenValue, tokenMeta)
+ * ```
  *
- * @ tokenValue
- * Type: ValueType
- * Description: The tokenValue build by `onBuildTokenValue`
+ * @param {ValueType} tokenValue
+ * The tokenValue build by `onBuildTokenValue`
  *
- * @ tokenMeta
- * Type: TokenMeta<ErrorType>
- * Description: token's meta data
+ * @param {TokenMeta<ErrorType>} tokenMeta
+ * The token's meta data
  *
- * @ return
- * Type: InputString | ReactNode
- * Description: The token's content.
- * By default, will apply `getDefaultTokenEditableValue`
+ * @returns {InputString | ReactNode}
+ * The token's display content.
  */
-export type OnGetTokenDisplayLabel<ValueType, ErrorType> = (
-  tokenValue: ValueType,
-  tokenMeta: TokenMeta<ErrorType>
-) => InputString | ReactNode;
+export interface OnGetTokenDisplayLabel<ValueType, ErrorType> {
+  (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>):
+    | InputString
+    | ReactNode;
+}
 
 /**
+ * @callback OnRenderTokenDeleteButtonContent
+ * @description
  * A callback function to render content of the delete button of token
- * Apply this to customize the token's content of the delete button
+ * Apply this to customize the token's content of the delete button.
  * For example, replace the build-in `x` by Google font material-icons
  *
+ * @example
+ * ```js
  * onRenderTokenDeleteButtonContent()
+ * ```
  *
- * @ return
- * Type: ReactNode
- * Description: The content of the delete button of the token.
- * By default, TokenInput render a build-in `x` icon
+ * @returns {ReactNode}
+ * The content of the delete button of the token.
  */
-export type OnRenderTokenDeleteButtonContent = () => ReactNode;
+export interface OnRenderTokenDeleteButtonContent {
+  (): ReactNode;
+}
 
 /**
+ * @template ValueType, ErrorType
+ * @callback OnGetIsTokenEditable
+ * @description
  * A callback function to determine whether the token is `inline editable`.
  *
+ * @example
+ * ```js
  * onGetIsTokenEditable(tokenValue, tokenMeta)
+ * ```
  *
- * @ tokenValue
- * Type: ValueType
- * Description: The tokenValue build by `onBuildTokenValue`
+ * @param {ValueType} tokenValue
+ * The tokenValue build by `onBuildTokenValue`
  *
- * @ tokenMeta
- * Type: TokenMeta<ErrorType>
- * Description: token's meta data
+ * @param {TokenMeta<ErrorType>} tokenMeta
+ * The token's meta data
  *
- * @ return
- * Type: boolean
- * Description: `true` if editable. `false` if not.
+ * @returns {boolean}
+ * - `true`: Editable.
+ * - `false`: Not editable.
  */
-export type OnGetIsTokenEditable<ValueType, ErrorType> = (
-  tokenValue: ValueType,
-  tokenMeta: TokenMeta<ErrorType>
-) => boolean;
+export interface OnGetIsTokenEditable<ValueType, ErrorType> {
+  (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>): boolean;
+}
 
 /**
+ * @template ValueType, ErrorType
+ * @callback OnGetTokenEditableValue
+ * @description
  * A callback function to getting `string input value`
  * from `tokenValue` for the end-user to perform `inline edit`
  *
+ * @example
+ * ```js
  * onGetTokenEditableValue(tokenValue, tokenMeta)
+ * ```
  *
- * @ tokenValue
- * Type: ValueType
- * Description: The tokenValue build by `onBuildTokenValue`
+ * @param {ValueType} tokenValue
+ * The tokenValue build by `onBuildTokenValue`
  *
- * @ tokenMeta
- * Type: TokenMeta<ErrorType>
- * Description: token's meta data
+ * @param {TokenMeta<ErrorType>} tokenMeta
+ * The token's meta data
  *
- * @ return
- * Type: InputString
- * Description: The value for end-user to `edit` in an input field
+ * @returns {InputString}
+ * The value for end-user to `edit` in an input field
  */
-export type OnGetTokenEditableValue<ValueType, ErrorType> = (
-  tokenValue: ValueType,
-  tokenMeta: TokenMeta<ErrorType>
-) => InputString;
+export interface OnGetTokenEditableValue<ValueType, ErrorType> {
+  (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>): InputString;
+}
 
 /**
- * A callback function to getting the error message from the customize error
- * The `customize error` is generate by `onTokenValueValidate`
+ * @template ValueType, ErrorType
+ * @callback OnGetTokenErrorMessage
+ * @description
+ * A callback function to getting the error message from the customized error
+ * The `customized error` is generate by `onTokenValueValidate`
  *
+ * @example
+ * ```js
  * onGetTokenErrorMessage(tokenValue, tokenMeta)
+ * ```
  *
- * @ tokenValue
- * Type: ValueType
- * Description: The tokenValue build by `onBuildTokenValue`
+ * @param {ValueType} tokenValue
+ * The tokenValue build by `onBuildTokenValue`
  *
- * @ tokenMeta
- * Type: TokenMeta<ErrorType>
- * Description: token's meta data
+ * @param {TokenMeta<ErrorType>} tokenMeta
+ * The token's meta data
  *
- * @ return
- * Type: TokenMeta<ErrorType>['error']
- * Description: The error message to describe an invalid token
+ * @returns {TokenMeta<ErrorType>['error']}
+ * The `error` of the token.
+ * The return value should be a `string` when apply build-in Token component
  */
-export type OnGetTokenErrorMessage<ValueType, ErrorType> = (
-  tokenValue: ValueType,
-  tokenMeta: TokenMeta<ErrorType>
-) => TokenMeta<ErrorType>['error'];
+export interface OnGetTokenErrorMessage<ValueType, ErrorType> {
+  (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>):
+    | string
+    | TokenMeta<ErrorType>['error'];
+}
