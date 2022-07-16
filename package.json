@@ -19,7 +19,7 @@
     "lint:eslint": "eslint --max-warnings 0 --ext .jsx,.js,.tsx,.ts src examples",
     "lint:style": "stylelint --custom-syntax postcss-scss 'src/**/*.scss' --fix",
     "test": "jest --coverage",
-    "dev": "cd examples; webpack && webpack serve --hot --inline --host 0.0.0.0 --port 8000 --content-base ../docs"
+    "dev": "cd examples; webpack && webpack serve"
   },
   "husky": {
     "hooks": {
@@ -118,6 +118,6 @@
     "typescript": "^4.7.4",
     "webpack": "^5.73.0",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^3.11.3"
+    "webpack-dev-server": "^4.9.3"
   }
 }
