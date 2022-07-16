@@ -1,5 +1,6 @@
+import React from 'react';
 interface ActionFunction {
-    (keyDownEvent: KeyboardEvent): void;
+    (keyDownEvent: React.KeyboardEvent): void;
 }
 interface KeyDownHandlerProxyActions {
     onBackspace?: ActionFunction;
@@ -7,5 +8,5 @@ interface KeyDownHandlerProxyActions {
     onEnter?: ActionFunction;
     onEscape?: ActionFunction;
 }
-declare const keyDownHandlerProxy: (keyDownEvent: KeyboardEvent, actions: KeyDownHandlerProxyActions) => void;
+declare const keyDownHandlerProxy: (keyDownEvent: React.KeyboardEvent, actions: KeyDownHandlerProxyActions) => void;
 export default keyDownHandlerProxy;

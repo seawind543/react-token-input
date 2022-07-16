@@ -71,7 +71,7 @@ function usePredefinedKeyDownHandlers({
   }, [onBackspace, inputValue, onLastTokenDelete]);
 
   const handleTabKeyDown = useCallback(
-    (keyDownEvent: KeyboardEvent) => {
+    (keyDownEvent: React.KeyboardEvent) => {
       handleKeyDown({
         keyDownHandlerConfig: onTab,
         predefinedHandler: () => {

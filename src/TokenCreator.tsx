@@ -1,11 +1,4 @@
-import React, {
-  useState,
-  useMemo,
-  useCallback,
-  forwardRef,
-  type ReactElement,
-  type Ref,
-} from 'react';
+import React, { useState, useMemo, useCallback, forwardRef } from 'react';
 import AutosizeInput from 'react-input-autosize';
 
 import keyDownHandlerProxy from './utils/keyDownHandlerProxy';
@@ -131,7 +124,7 @@ const TokenCreator = forwardRef(function TokenCreator<ValueType>(
 
   // Cannot set AutosizeInput as ref, because it get error when ref={ref}
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ref: Ref<any>
+  ref: React.Ref<any>
 ) {
   const {
     placeholder,
@@ -210,7 +203,7 @@ const TokenCreator = forwardRef(function TokenCreator<ValueType>(
    * Event handlers
    */
   const handleInputValueChange = useCallback(
-    (e) => {
+    (e: React.ChangeEvent<HTMLInputElement>) => {
       // console.log('TokenCreator > handleInputValueChange');
       const { value: newInputValue } = e.target;
       const lastChar = newInputValue.substring(newInputValue.length - 1);
@@ -242,7 +235,7 @@ const TokenCreator = forwardRef(function TokenCreator<ValueType>(
   });
 
   const handleKeyDown = useCallback(
-    (e) => {
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
       // console.log('TokenCreator > handleKeyDown');
       keyDownHandlerProxy(e, {
         onBackspace: handleBackspaceKeyDown,
@@ -266,7 +259,7 @@ const TokenCreator = forwardRef(function TokenCreator<ValueType>(
   }, [handleTokensCreate, inputValue, onBlur]);
 
   const handlePaste = useCallback(
-    (e) => {
+    (e: React.ClipboardEvent<HTMLInputElement>) => {
       // console.log('TokenCreator > handlePaste');
       e.preventDefault();
       const pastedText = e.clipboardData.getData('text');
@@ -291,7 +284,7 @@ const TokenCreator = forwardRef(function TokenCreator<ValueType>(
     </div>
   );
 }) as <ValueType>(
-  p: TokenCreatorProps<ValueType> & { ref: Ref<HTMLInputElement> }
-) => ReactElement | null;
+  p: TokenCreatorProps<ValueType> & { ref: React.Ref<HTMLInputElement> }
+) => React.ReactElement | null;
 
 export default TokenCreator;

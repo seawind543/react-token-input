@@ -1,6 +1,6 @@
-import { type ReactNode } from 'react';
+import React from 'react';
 interface DeleteButtonProps {
-    onRenderContent?: () => ReactNode;
+    onRenderContent?: () => React.ReactNode;
 }
 declare const DeleteButton: (props: DeleteButtonProps) => JSX.Element;
 export default DeleteButton;

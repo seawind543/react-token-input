@@ -27,7 +27,7 @@ import {
 
 import styles from './styles.scss';
 
-import type { TokenSeparator } from './types/mix';
+import type { InputString, TokenSeparator } from './types/mix';
 import type { SpecialKeyDownConfig } from './types/specialKeyDown';
 import type {
   OnInputValueChange,
@@ -483,7 +483,7 @@ const TokenInput = <ValueType, ErrorType>(
   });
 
   const handleNewTokenValuesAppend = useCallback(
-    (appendTokenValues) => {
+    (appendTokenValues: ValueType[]) => {
       if (appendTokenValues.length === 0) {
         // Avoid meaningless update
         return;
@@ -496,7 +496,7 @@ const TokenInput = <ValueType, ErrorType>(
   );
 
   const handleInputValuesPreprocess = useCallback(
-    (inputValues) => {
+    (inputValues: InputString[]) => {
       // console.log('handleInputValuesPreprocess', inputValues);
       if (typeof onPreprocess !== 'function') {
         return inputValues;
