@@ -382,8 +382,8 @@ export interface TokenInputProps<ValueType, ErrorType> {
    * @template ValueType, ErrorType
    * @prop {OnGetTokenErrorMessage<ValueType, ErrorType>} [onGetTokenErrorMessage=defaultGetTokenErrorMessage]
    * @description
-   * A callback function to getting the error message from the customized error
-   * The `customized error` is generate by `onTokenValueValidate`
+   * A callback function to getting the `Error Message` to
+   * apply into the `title` attribute of the built-in Token Component
    *
    * @example
    * ```js
@@ -396,9 +396,10 @@ export interface TokenInputProps<ValueType, ErrorType> {
    * @param {TokenMeta<ErrorType>} tokenMeta
    * The token's meta data
    *
-   * @returns {TokenMeta<ErrorType>['error']}
-   * The `error` of the token
-   * The return value should be a `string` when apply build-in Token component
+   * @returns {string | Nullish}
+   * The `Error Message` of the token.
+   * Return `string type` will let the build-in Token component apply the message
+   * into the `title` attribute. Otherwise, will simply be ignored
    */
   onGetTokenErrorMessage?: OnGetTokenErrorMessage<ValueType, ErrorType>;
 

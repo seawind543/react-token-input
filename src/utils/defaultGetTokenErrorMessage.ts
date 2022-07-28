@@ -1,13 +1,11 @@
-import type { Nullish } from '../types/mix';
 import type { TokenMeta } from '../types/token';
 
 /**
  * @template ValueType
  * @type {OnGetTokenErrorMessage<ValueType, string>} defaultGetTokenErrorMessage
  * @description
- * Default function to get the errorMessage,
- * which throw an TypeError if the `ErrorType` is
- * NOT `string` nor Nullish
+ * Default function to get the `Error Message` from tokenMeta
+ * for built-in Token Component
  *
  * @example
  * ```js
@@ -20,31 +18,22 @@ import type { TokenMeta } from '../types/token';
  * @param {TokenMeta<ErrorType>} tokenMeta
  * The token's meta data
  *
- * @returns {Nullish | string}
- * The error message (string) to describe the invalid token
+ * @returns {string | undefined}
+ * The Error Message (string) to describe the invalid token.
+ * Will return `undefined` when `tokenMeta.error` is not `string`
  */
 const defaultGetTokenErrorMessage = <ValueType, ErrorType>(
   _: ValueType,
   tokenMeta: TokenMeta<ErrorType>
-): Nullish | string => {
+): string | undefined => {
   // Check if the tokenMeta.error is `string`, or `Nullish`
   const { error } = tokenMeta;
 
-  if (error === null) {
-    return null;
-  }
-
-  if (
-    // (typeof error === 'object' && error === null) ||
-    typeof error === 'undefined' ||
-    typeof error === 'string'
-  ) {
+  if (typeof error === 'string') {
     return error;
   }
 
-  throw new TypeError(
-    '"onGetTokenErrorMessage" is required when "ErrorType" not "string"'
-  );
+  return undefined;
 };
 
 export default defaultGetTokenErrorMessage;
