@@ -144,7 +144,7 @@ interface TokenInputProps<ValueType, ErrorType> {
    * Current only apply to the `TokenCreator`
    *
    * The settings to control the behavior of specials keyDown's event handler.
-   * Recommend to use the build-in constant `KEY_DOWN_HANDLER_CONFIG_OPTION` to config the setting.
+   * Recommend to use the built-in constant `KEY_DOWN_HANDLER_CONFIG_OPTION` to config the setting.
    *
    * @see KEY_DOWN_HANDLER_CONFIG_OPTION for the accepted config values
    * @see DEFAULT_SPECIAL_KEY_DOWN_CONFIG for the default settings
@@ -349,7 +349,7 @@ interface TokenInputProps<ValueType, ErrorType> {
    * @description
    * A callback function to render content of the delete button of token
    * Apply this to customize the token's content of the delete button.
-   * For example, replace the build-in `x` by Google font material-icons
+   * For example, replace the built-in `x` by Google font material-icons
    *
    * @example
    * ```js
@@ -358,7 +358,7 @@ interface TokenInputProps<ValueType, ErrorType> {
    *
    * @returns {ReactNode}
    * The content of the delete button of the token.
-   * By default, TokenInput render a build-in `x` icon
+   * By default, TokenInput render a built-in `x` icon
    */
   onRenderTokenDeleteButtonContent?: OnRenderTokenDeleteButtonContent;
 
@@ -412,8 +412,8 @@ interface TokenInputProps<ValueType, ErrorType> {
    * @template ValueType, ErrorType
    * @prop {OnGetTokenErrorMessage<ValueType, ErrorType>} [onGetTokenErrorMessage=defaultGetTokenErrorMessage]
    * @description
-   * A callback function to getting the error message from the customized error
-   * The `customized error` is generate by `onTokenValueValidate`
+   * A callback function to getting the `Error Message` to
+   * apply into the `title` attribute of the built-in Token Component
    *
    * @example
    * ```js
@@ -426,9 +426,10 @@ interface TokenInputProps<ValueType, ErrorType> {
    * @param {TokenMeta<ErrorType>} tokenMeta
    * The token's meta data
    *
-   * @returns {TokenMeta<ErrorType>['error']}
-   * The `error` of the token
-   * The return value should be a `string` when apply build-in Token component
+   * @returns {string | Nullish}
+   * The `Error Message` of the token.
+   * Return `string type` will let the built-in Token component apply the message
+   * into the `title` attribute. Otherwise, will simply be ignored
    */
   onGetTokenErrorMessage?: OnGetTokenErrorMessage<ValueType, ErrorType>;
 }

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { InputString } from './mix';
+import { InputString, Nullish } from './mix';
 import { TokenIndex, TokenMeta } from './token';
 export interface OnInputValueChange {
     (newValue: InputString, previousValue: InputString): void;
@@ -32,5 +32,5 @@ export interface OnGetTokenEditableValue<ValueType, ErrorType> {
     (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>): InputString;
 }
 export interface OnGetTokenErrorMessage<ValueType, ErrorType> {
-    (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>): string | TokenMeta<ErrorType>['error'];
+    (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>): string | Nullish;
 }
