@@ -41,7 +41,7 @@ const handleGetTokenDisplayLabel = (tokenValue, tokenMeta) => {
 
 // const handleTokenValueValidate = (tokenValue) => {
 //   if (!WEATHERS.includes(tokenValue)) {
-//     return "I'm not weather";
+//     return new Error("I'm not weather");
 //   }
 
 //   return undefined;
