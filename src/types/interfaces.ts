@@ -202,7 +202,7 @@ export interface OnGetTokenDisplayLabel<ValueType, ErrorType> {
  * @description
  * A callback function to render content of the delete button of token
  * Apply this to customize the token's content of the delete button.
- * For example, replace the build-in `x` by Google font material-icons
+ * For example, replace the built-in `x` by Google font material-icons
  *
  * @example
  * ```js
@@ -286,7 +286,7 @@ export interface OnGetTokenEditableValue<ValueType, ErrorType> {
  *
  * @returns {string | Nullish}
  * The `Error Message` of the token.
- * Return `string type` will let the build-in Token component apply the message
+ * Return `string type` will let the built-in Token component apply the message
  * into the `title` attribute. Otherwise, will simply be ignored
  */
 export interface OnGetTokenErrorMessage<ValueType, ErrorType> {

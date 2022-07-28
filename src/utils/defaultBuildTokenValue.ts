@@ -1,6 +1,6 @@
 import type { InputString } from '../types/mix';
 
-// The type which build-in default functions take
+// The type which built-in default functions take
 type DefaultValueType = string;
 
 /**
