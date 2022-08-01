@@ -1,6 +1,6 @@
 /**
  * @typedef {string} InputString
- * @description A string which can be inputed in an `HTML input` element
+ * @description A string which can be inputted in an `HTML input` element
  */
 export type InputString = string;
 

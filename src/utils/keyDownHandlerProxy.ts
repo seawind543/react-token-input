@@ -1,7 +1,8 @@
+import React from 'react';
 import keyDownKey from 'keydown-key';
 
 interface ActionFunction {
-  (keyDownEvent: KeyboardEvent): void;
+  (keyDownEvent: React.KeyboardEvent): void;
 }
 
 interface KeyDownHandlerProxyActions {
@@ -14,7 +15,7 @@ interface KeyDownHandlerProxyActions {
 /**
  * Help function to proxy keyDown event to handler
  *
- * @param {KeyboardEvent} keyDownEvent - The keyDown event
+ * @param {React.KeyboardEvent} keyDownEvent - The keyDown event
  * @param {KeyDownHandlerProxyActions} actions
  * @param {ActionFunction} [actions.onBackspace] - The handler for `backspace` keyDown event
  * @param {ActionFunction} [actions.onTab] - The handler for `tab` keyDown event
@@ -22,12 +23,12 @@ interface KeyDownHandlerProxyActions {
  * @param {ActionFunction} [actions.onEscape] - The handler for `escape` keyDown event
  */
 const keyDownHandlerProxy = (
-  keyDownEvent: KeyboardEvent,
+  keyDownEvent: React.KeyboardEvent,
   actions: KeyDownHandlerProxyActions
 ): void => {
   const { onBackspace, onTab, onEnter, onEscape } = actions;
 
-  const { key: eventKey } = keyDownKey(keyDownEvent);
+  const { key: eventKey } = keyDownKey(keyDownEvent.nativeEvent);
 
   switch (eventKey) {
     case 'Backspace':

@@ -45,14 +45,19 @@ const handleTokenValueValidate = (tokenValue) => {
   const num = handleGetTokenEditableValue(tokenValue);
 
   if (typeof num !== 'number' || Number.isNaN(num) === true) {
-    return 'Input value is not a number';
+    return new Error('Input value is not a number');
   }
 
   return null;
 };
 
-const handleGetTokenErrorMessage = (tokenValue, tokenMeta) => {
-  return tokenMeta.error;
+const handleGetTokenErrorMessage = (_, tokenMeta) => {
+  const { error } = tokenMeta;
+  if (error instanceof Error) {
+    return error.message;
+  }
+
+  return undefined;
 };
 
 const ExampleCustomizeDataStructure = () => {

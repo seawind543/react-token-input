@@ -1,4 +1,4 @@
-import { type ReactElement, type Ref } from 'react';
+import React from 'react';
 import type { HandleTokenInputFocus, HandleTokenInputBlur } from './hooks/useTokenInputFocusEffect';
 import type { TokenSeparator } from './types/mix';
 import type { SpecialKeyDownConfig } from './types/specialKeyDown';
@@ -17,6 +17,6 @@ interface TokenCreatorProps<ValueType> {
     onLastTokenDelete: () => void;
 }
 declare const TokenCreator: <ValueType>(p: TokenCreatorProps<ValueType> & {
-    ref: Ref<HTMLInputElement>;
-}) => ReactElement | null;
+    ref: React.Ref<HTMLInputElement>;
+}) => React.ReactElement | null;
 export default TokenCreator;

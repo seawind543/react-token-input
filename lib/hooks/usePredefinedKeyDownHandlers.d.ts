@@ -10,7 +10,7 @@ interface Params {
 }
 declare function usePredefinedKeyDownHandlers({ specialKeyDownConfig, inputInitValue, inputValue, onLastTokenDelete, handleInputValueUpdate, handleTokensCreate, }: Params): {
     handleBackspaceKeyDown: () => void;
-    handleTabKeyDown: (keyDownEvent: KeyboardEvent) => void;
+    handleTabKeyDown: (keyDownEvent: React.KeyboardEvent) => void;
     handleEnterKeyDown: () => void;
     handleEscapeKeyDown: () => void;
 };

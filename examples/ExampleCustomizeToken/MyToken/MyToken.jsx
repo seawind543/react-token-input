@@ -29,7 +29,7 @@ const MyToken = ({
 
   /**
    * Could ignore below props(Replace by self implementation)
-   * when override build-in Token component.
+   * when override built-in Token component.
    *
    * Because basically they are as same as what you passed into the TokenInput.
    * That is, you already know what is their implementation.

@@ -103,15 +103,14 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
-  // https://webpack.github.io/docs/webpack-dev-server.html#additional-configuration-options
+  // https://webpack.js.org/configuration/dev-server/#root
   devServer: {
-    disableHostCheck: true,
-    noInfo: false,
-    lazy: false,
-    // https://webpack.github.io/docs/node.js-api.html#compiler
-    watchOptions: {
-      poll: true, // use polling instead of native watchers
-      ignored: /node_modules/,
+    static: {
+      directory: path.resolve(__dirname, '../docs'),
     },
+    allowedHosts: 'auto',
+    hot: true,
+    host: '0.0.0.0',
+    port: 8000,
   },
 };

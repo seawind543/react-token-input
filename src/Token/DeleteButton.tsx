@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 
 import CloseIcon from './CloseIcon';
@@ -7,7 +7,7 @@ import styles from '../styles.scss';
 import { JS__TOKEN__DELETE_BUTTON__CLASS_NAME } from '../constants';
 
 interface DeleteButtonProps {
-  onRenderContent?: () => ReactNode;
+  onRenderContent?: () => React.ReactNode;
 }
 
 const DeleteButton = (props: DeleteButtonProps) => {

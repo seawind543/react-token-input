@@ -4,7 +4,6 @@ import React, {
   useMemo,
   useRef,
   useEffect,
-  type MouseEvent,
 } from 'react';
 import classNames from 'classnames';
 import AutosizeInput from 'react-input-autosize';
@@ -30,7 +29,7 @@ import type {
   OnGetTokenErrorMessage,
 } from '../types/interfaces';
 
-const handleInlineEditClick = (e: MouseEvent<HTMLDivElement>) => {
+const handleInlineEditClick = (e: React.MouseEvent<HTMLDivElement>) => {
   e.stopPropagation();
 };
 
@@ -250,7 +249,7 @@ const Token = <ValueType, ErrorType>(
    * Event handlers
    */
   const handleTokenClick = useCallback(
-    (e) => {
+    (e: React.MouseEvent<HTMLDivElement>) => {
       // console.log('handleTokenClick');
       e.stopPropagation();
 
@@ -260,7 +259,7 @@ const Token = <ValueType, ErrorType>(
 
       // Check does the click on the delete button
       // That is, the Element or its parents matched the `selector`
-      const isOnDeleteButton = !!e.target.closest(
+      const isOnDeleteButton = !!(e.target as Element).closest(
         `.${styles.token} .${JS__TOKEN__DELETE_BUTTON__CLASS_NAME}`
       );
       if (isOnDeleteButton) {
@@ -276,7 +275,7 @@ const Token = <ValueType, ErrorType>(
   );
 
   const handleInputValueChange = useCallback(
-    (e) => {
+    (e: React.ChangeEvent<HTMLInputElement>) => {
       const { value } = e.target;
       setInputValue(value);
     },
@@ -284,7 +283,7 @@ const Token = <ValueType, ErrorType>(
   );
 
   const handleKeyDown = useCallback(
-    (e) => {
+    (e: React.KeyboardEvent) => {
       keyDownHandlerProxy(e, {
         onEscape: () => handleEditEnd({ reset: true }),
         onEnter: () => handleEditEnd(),
