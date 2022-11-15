@@ -7,6 +7,7 @@ export const DEFAULT_VALUE_TYPE = {
     tokenValue: 'hello world',
     tokenMeta: {
       key: '"hello world"-1609556645000-0',
+      index: 0,
       activated: false,
       error: undefined,
     },
@@ -16,6 +17,7 @@ export const DEFAULT_VALUE_TYPE = {
     tokenValue: 'hello world',
     tokenMeta: {
       key: '"hello world"-1609556645000-0',
+      index: 0,
       activated: true,
       error: undefined,
     },
@@ -25,6 +27,7 @@ export const DEFAULT_VALUE_TYPE = {
     tokenValue: 'hello world',
     tokenMeta: {
       key: '"hello world"-1609556645000-0',
+      index: 0,
       activated: false,
       error: 'This is an invalid token',
     },
@@ -34,6 +37,7 @@ export const DEFAULT_VALUE_TYPE = {
     tokenValue: 'hello world',
     tokenMeta: {
       key: '"hello world"-1609556645000-0',
+      index: 0,
       activated: true,
       error: 'This is an invalid token',
     },
@@ -43,6 +47,7 @@ export const DEFAULT_VALUE_TYPE = {
     tokenValue: 'hello world',
     tokenMeta: {
       key: '"hello world"-1609556645000-0',
+      index: 0,
       activated: false,
       error: true,
     },
@@ -58,6 +63,7 @@ export const NUMBER_VALUE_TYPE = {
     tokenValue: 123,
     tokenMeta: {
       key: '123-1609556645000-0',
+      index: 0,
       activated: false,
       error: undefined,
     },
@@ -67,6 +73,7 @@ export const NUMBER_VALUE_TYPE = {
     tokenValue: 123,
     tokenMeta: {
       key: '123-1609556645000-0',
+      index: 0,
       activated: true,
       error: undefined,
     },
@@ -76,6 +83,7 @@ export const NUMBER_VALUE_TYPE = {
     tokenValue: 123,
     tokenMeta: {
       key: '123-1609556645000-0',
+      index: 0,
       activated: false,
       error: 'This is an invalid token',
     },
@@ -85,6 +93,7 @@ export const NUMBER_VALUE_TYPE = {
     tokenValue: 123,
     tokenMeta: {
       key: '123-1609556645000-0',
+      index: 0,
       activated: true,
       error: 'This is an invalid token',
     },
@@ -102,6 +111,7 @@ export const OBJECT_VALUE_TYPE = {
     },
     tokenMeta: {
       key: '{"number":123}-1609556645000-0',
+      index: 0,
       activated: false,
       error: null,
     },
@@ -113,6 +123,7 @@ export const OBJECT_VALUE_TYPE = {
     },
     tokenMeta: {
       key: '{"number":123}-1609556645000-0',
+      index: 0,
       activated: true,
       error: null,
     },
@@ -124,6 +135,7 @@ export const OBJECT_VALUE_TYPE = {
     },
     tokenMeta: {
       key: '{"number":123}-1609556645000-0',
+      index: 0,
       activated: false,
       error: 'This is an invalid token',
     },
@@ -135,6 +147,7 @@ export const OBJECT_VALUE_TYPE = {
     },
     tokenMeta: {
       key: '{"number":123}-1609556645000-0',
+      index: 0,
       activated: true,
       error: 'This is an invalid token',
     },
@@ -146,6 +159,7 @@ export const OBJECT_VALUE_TYPE = {
     },
     tokenMeta: {
       key: '{"number":123}-1609556645000-0',
+      index: 0,
       activated: false,
       error: {
         reason: 'Not weather',

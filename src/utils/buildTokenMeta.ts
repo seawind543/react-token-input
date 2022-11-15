@@ -32,6 +32,7 @@ const buildTokenMeta = <ValueType, ErrorType>(
   return {
     // TODO: Consider uuid
     key: `${JSON.stringify(tokenValue)}-${Date.now()}-${tokenIndex}`,
+    index: tokenIndex,
     activated: false,
     error: customizeError,
   };

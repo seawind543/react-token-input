@@ -20,6 +20,11 @@ export interface TokenMeta<ErrorType> {
   key: string;
 
   /**
+   * @prop {TokenIndex} index - The array index of token in the tokens
+   */
+  index: TokenIndex;
+
+  /**
    * @prop {boolean} activated - Specific the token is `editing` or not
    */
   activated: boolean;
