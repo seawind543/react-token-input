@@ -147,6 +147,31 @@ export interface OnTokenValueValidate<ValueType, ErrorType> {
 }
 
 /**
+ * @template ValueType
+ * @callback OnGenTokenMetaKey
+ * @description
+ * A callback function to gen the react for key render
+ * (The returned result will be set into the TokenMeta)
+ *
+ * @example
+ * ```js
+ * onGenTokenMetaKey(tokenValue, tokenIndex)
+ * ```
+ *
+ * @param {ValueType} tokenValue
+ * The tokenValue build by `onBuildTokenValue`
+ *
+ * @param {TokenIndex} tokenIndex
+ * The array index of this tokenValue in tokenValues
+ *
+ * @returns {string}
+ * The key used when react render
+ */
+export interface OnGenTokenMetaKey<ValueType> {
+  (tokenValue: ValueType, tokenIndex: TokenIndex): string;
+}
+
+/**
  * @template ValueType, ErrorType
  * @callback OnGetTokenClassName
  * @description

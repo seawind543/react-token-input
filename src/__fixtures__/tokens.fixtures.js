@@ -6,7 +6,7 @@ export const DEFAULT_VALUE_TYPE = {
   BASED: {
     tokenValue: 'hello world',
     tokenMeta: {
-      key: '"hello world"-1609556645000-0',
+      key: '"hello world"-0',
       index: 0,
       activated: false,
       error: undefined,
@@ -16,7 +16,7 @@ export const DEFAULT_VALUE_TYPE = {
   ACTIVATED: {
     tokenValue: 'hello world',
     tokenMeta: {
-      key: '"hello world"-1609556645000-0',
+      key: '"hello world"-0',
       index: 0,
       activated: true,
       error: undefined,
@@ -26,7 +26,7 @@ export const DEFAULT_VALUE_TYPE = {
   WITH_ERROR: {
     tokenValue: 'hello world',
     tokenMeta: {
-      key: '"hello world"-1609556645000-0',
+      key: '"hello world"-0',
       index: 0,
       activated: false,
       error: 'This is an invalid token',
@@ -36,7 +36,7 @@ export const DEFAULT_VALUE_TYPE = {
   ACTIVATED_WITH_ERROR: {
     tokenValue: 'hello world',
     tokenMeta: {
-      key: '"hello world"-1609556645000-0',
+      key: '"hello world"-0',
       index: 0,
       activated: true,
       error: 'This is an invalid token',
@@ -46,7 +46,7 @@ export const DEFAULT_VALUE_TYPE = {
   BOOLEAN_TYPE_ERROR: {
     tokenValue: 'hello world',
     tokenMeta: {
-      key: '"hello world"-1609556645000-0',
+      key: '"hello world"-0',
       index: 0,
       activated: false,
       error: true,
@@ -62,7 +62,7 @@ export const NUMBER_VALUE_TYPE = {
   BASED: {
     tokenValue: 123,
     tokenMeta: {
-      key: '123-1609556645000-0',
+      key: '123-0',
       index: 0,
       activated: false,
       error: undefined,
@@ -72,7 +72,7 @@ export const NUMBER_VALUE_TYPE = {
   ACTIVATED: {
     tokenValue: 123,
     tokenMeta: {
-      key: '123-1609556645000-0',
+      key: '123-0',
       index: 0,
       activated: true,
       error: undefined,
@@ -82,7 +82,7 @@ export const NUMBER_VALUE_TYPE = {
   WITH_ERROR: {
     tokenValue: 123,
     tokenMeta: {
-      key: '123-1609556645000-0',
+      key: '123-0',
       index: 0,
       activated: false,
       error: 'This is an invalid token',
@@ -92,7 +92,7 @@ export const NUMBER_VALUE_TYPE = {
   ACTIVATED_WITH_ERROR: {
     tokenValue: 123,
     tokenMeta: {
-      key: '123-1609556645000-0',
+      key: '123-0',
       index: 0,
       activated: true,
       error: 'This is an invalid token',
@@ -110,7 +110,7 @@ export const OBJECT_VALUE_TYPE = {
       number: 123,
     },
     tokenMeta: {
-      key: '{"number":123}-1609556645000-0',
+      key: '{"number":123}-0',
       index: 0,
       activated: false,
       error: null,
@@ -122,7 +122,7 @@ export const OBJECT_VALUE_TYPE = {
       number: 123,
     },
     tokenMeta: {
-      key: '{"number":123}-1609556645000-0',
+      key: '{"number":123}-0',
       index: 0,
       activated: true,
       error: null,
@@ -134,7 +134,7 @@ export const OBJECT_VALUE_TYPE = {
       number: 123,
     },
     tokenMeta: {
-      key: '{"number":123}-1609556645000-0',
+      key: '{"number":123}-0',
       index: 0,
       activated: false,
       error: 'This is an invalid token',
@@ -146,7 +146,7 @@ export const OBJECT_VALUE_TYPE = {
       number: 123,
     },
     tokenMeta: {
-      key: '{"number":123}-1609556645000-0',
+      key: '{"number":123}-0',
       index: 0,
       activated: true,
       error: 'This is an invalid token',
@@ -158,7 +158,7 @@ export const OBJECT_VALUE_TYPE = {
       number: 123,
     },
     tokenMeta: {
-      key: '{"number":123}-1609556645000-0',
+      key: '{"number":123}-0',
       index: 0,
       activated: false,
       error: {

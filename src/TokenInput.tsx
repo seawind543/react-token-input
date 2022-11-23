@@ -16,6 +16,7 @@ import useTokenDelete from './hooks/useTokenDelete';
 // Build-in default props
 import defaultTokenValueValidate from './utils/defaultTokenValueValidate';
 import defaultBuildTokenValue from './utils/defaultBuildTokenValue';
+import defaultGenTokenMetaKey from './utils/defaultGenTokenMetaKey';
 import defaultGetIsTokenEditable from './utils/defaultGetIsTokenEditable';
 import defaultGetTokenEditableValue from './utils/defaultGetTokenEditableValue';
 import defaultGetTokenErrorMessage from './utils/defaultGetTokenErrorMessage';
@@ -34,6 +35,7 @@ import type {
   OnPreprocess,
   OnBuildTokenValue,
   OnTokenValueValidate,
+  OnGenTokenMetaKey,
   OnTokenValuesChange,
   OnGetTokenClassName,
   OnGetTokenDisplayLabel,
@@ -254,6 +256,29 @@ export interface TokenInputProps<ValueType, ErrorType> {
   onBuildTokenValue?: OnBuildTokenValue<ValueType>;
 
   /**
+   * @template ValueType
+   * @callback OnGenTokenMetaKey
+   * @description
+   * A callback function to gen the key for react render
+   * (The returned result will be set into the TokenMeta)
+   *
+   * @example
+   * ```js
+   * OnGenTokenMetaKey(tokenValue, error)
+   * ```
+   *
+   * @param {ValueType} tokenValue
+   * The tokenValue build by `onBuildTokenValue`
+   *
+   * @param {TokenIndex} tokenIndex
+   * The array index of this tokenValue in tokenValues
+   *
+   * @returns {string}
+   * The key used when react render
+   */
+  onGenTokenMetaKey?: OnGenTokenMetaKey<ValueType>;
+
+  /**
    * @prop {Component} [customizeTokenComponent]
    * A customize react component to rendering a token
    * Apply this to customize all token function.
@@ -435,6 +460,8 @@ const TokenInput = <ValueType, ErrorType>(
 
     onBuildTokenValue = defaultBuildTokenValue,
 
+    onGenTokenMetaKey = defaultGenTokenMetaKey,
+
     customizeTokenComponent,
 
     onGetTokenClassName,
@@ -465,6 +492,7 @@ const TokenInput = <ValueType, ErrorType>(
   } = useTokensUpdate({
     tokenValues,
     onTokenValueValidate,
+    onGenTokenMetaKey,
   });
 
   // TODO: Handle cursor focus after end of editing (typing)
