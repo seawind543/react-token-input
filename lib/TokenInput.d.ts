@@ -2,7 +2,7 @@ import { type CSSProperties, type ReactElement } from 'react';
 import { type TokenProps } from './Token';
 import type { TokenSeparator } from './types/mix';
 import type { SpecialKeyDownConfig } from './types/specialKeyDown';
-import type { OnInputValueChange, OnPreprocess, OnBuildTokenValue, OnTokenValueValidate, OnTokenValuesChange, OnGetTokenClassName, OnGetTokenDisplayLabel, OnRenderTokenDeleteButtonContent, OnGetIsTokenEditable, OnGetTokenEditableValue, OnGetTokenErrorMessage } from './types/interfaces';
+import type { OnInputValueChange, OnPreprocess, OnBuildTokenValue, OnTokenValueValidate, OnGenTokenMetaKey, OnTokenValuesChange, OnGetTokenClassName, OnGetTokenDisplayLabel, OnRenderTokenDeleteButtonContent, OnGetIsTokenEditable, OnGetTokenEditableValue, OnGetTokenErrorMessage } from './types/interfaces';
 export interface TokenInputProps<ValueType, ErrorType> {
     style?: CSSProperties;
     className?: string;
@@ -17,6 +17,7 @@ export interface TokenInputProps<ValueType, ErrorType> {
     onTokenValueValidate?: OnTokenValueValidate<ValueType, ErrorType>;
     onTokenValuesChange?: OnTokenValuesChange<ValueType>;
     onBuildTokenValue?: OnBuildTokenValue<ValueType>;
+    onGenTokenMetaKey?: OnGenTokenMetaKey<ValueType>;
     customizeTokenComponent?: (props: TokenProps<ValueType, ErrorType>) => ReactElement | null;
     onGetTokenClassName?: OnGetTokenClassName<ValueType, ErrorType>;
     onGetTokenDisplayLabel?: OnGetTokenDisplayLabel<ValueType, ErrorType>;

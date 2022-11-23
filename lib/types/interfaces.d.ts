@@ -16,6 +16,9 @@ export interface OnTokenValuesChange<ValueType> {
 export interface OnTokenValueValidate<ValueType, ErrorType> {
     (tokenValue: ValueType, tokenIndex: TokenIndex, tokenValues: ValueType[]): TokenMeta<ErrorType>['error'];
 }
+export interface OnGenTokenMetaKey<ValueType> {
+    (tokenValue: ValueType, tokenIndex: TokenIndex): string;
+}
 export interface OnGetTokenClassName<ValueType, ErrorType> {
     (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>): undefined | string;
 }
