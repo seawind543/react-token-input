@@ -66,7 +66,7 @@ Note: Sources code of Examples in the folder `examples`
  * @template ValueType, ErrorType
  * @typedef {Object} TokenInputProps
  */
-interface TokenInputProps<ValueType, ErrorType> {
+interface TokenInputProps<ValueType = string, ErrorType = string> {
   /**
    * @prop {CSSProperties} [style]
    * @description An optional prop for assign style to the TokenInput
@@ -519,7 +519,7 @@ Could also reference this [Example Demo](https://seawind543.github.io/react-toke
  * @template ValueType, ErrorType
  * @typedef {Object} TokenProps
  */
-export interface TokenProps<ValueType, ErrorType> {
+export interface TokenProps<ValueType = string, ErrorType = string> {
   /**
    * @property {boolean} readOnly
    * @description
