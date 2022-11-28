@@ -25,7 +25,7 @@ import type {
  * @template ValueType
  * @typedef {Object} TokenCreatorProps
  */
-interface TokenCreatorProps<ValueType> {
+interface TokenCreatorProps<ValueType = string> {
   /**
    * @prop {string} [placeholder]
    * @description
@@ -119,7 +119,7 @@ interface TokenCreatorProps<ValueType> {
   onLastTokenDelete: () => void;
 }
 
-const TokenCreator = forwardRef(function TokenCreator<ValueType>(
+const TokenCreator = forwardRef(function TokenCreator<ValueType = string>(
   props: TokenCreatorProps<ValueType>,
 
   // Cannot set AutosizeInput as ref, because it get error when ref={ref}
@@ -283,7 +283,7 @@ const TokenCreator = forwardRef(function TokenCreator<ValueType>(
       />
     </div>
   );
-}) as <ValueType>(
+}) as <ValueType = string>(
   p: TokenCreatorProps<ValueType> & { ref: React.Ref<HTMLInputElement> }
 ) => React.ReactElement | null;
 

@@ -13,7 +13,7 @@ export type TokenIndex = number;
  * @prop {boolean} activated - Specific the token is `editing` or not
  * @prop {Nullish | ErrorType} error
  */
-export interface TokenMeta<ErrorType> {
+export interface TokenMeta<ErrorType = string> {
   /**
    * @prop {string} key - A private key for render
    */

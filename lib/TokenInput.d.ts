@@ -3,7 +3,7 @@ import { type TokenProps } from './Token';
 import type { TokenSeparator } from './types/mix';
 import type { SpecialKeyDownConfig } from './types/specialKeyDown';
 import type { OnInputValueChange, OnPreprocess, OnBuildTokenValue, OnTokenValueValidate, OnTokenValuesChange, OnGetTokenClassName, OnGetTokenDisplayLabel, OnRenderTokenDeleteButtonContent, OnGetIsTokenEditable, OnGetTokenEditableValue, OnGetTokenErrorMessage } from './types/interfaces';
-export interface TokenInputProps<ValueType, ErrorType> {
+export interface TokenInputProps<ValueType = string, ErrorType = string> {
     style?: CSSProperties;
     className?: string;
     placeholder?: string;
@@ -25,5 +25,5 @@ export interface TokenInputProps<ValueType, ErrorType> {
     onGetTokenEditableValue?: OnGetTokenEditableValue<ValueType, ErrorType>;
     onGetTokenErrorMessage?: OnGetTokenErrorMessage<ValueType, ErrorType>;
 }
-declare const TokenInput: <ValueType, ErrorType>(props: TokenInputProps<ValueType, ErrorType>) => JSX.Element;
+declare const TokenInput: <ValueType = string, ErrorType = string>(props: TokenInputProps<ValueType, ErrorType>) => JSX.Element;
 export default TokenInput;

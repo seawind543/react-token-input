@@ -37,7 +37,7 @@ const handleInlineEditClick = (e: React.MouseEvent<HTMLDivElement>) => {
  * @template ValueType, ErrorType
  * @typedef {Object} TokenProps
  */
-export interface TokenProps<ValueType, ErrorType> {
+export interface TokenProps<ValueType = string, ErrorType = string> {
   /**
    * @prop {boolean} readOnly
    * @description
@@ -186,7 +186,7 @@ export interface TokenProps<ValueType, ErrorType> {
   onDelete: () => void;
 }
 
-const Token = <ValueType, ErrorType>(
+const Token = <ValueType = string, ErrorType = string>(
   props: TokenProps<ValueType, ErrorType>
 ) => {
   const {
