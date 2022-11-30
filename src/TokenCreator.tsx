@@ -8,11 +8,6 @@ import { DEFAULT_INPUT_INIT_VALUE } from './constants';
 
 import styles from './styles.scss';
 
-import type {
-  HandleTokenInputFocus,
-  HandleTokenInputBlur,
-} from './hooks/useTokenInputFocusEffect';
-
 import type { InputString, TokenSeparator } from './types/mix';
 import type { SpecialKeyDownConfig } from './types/specialKeyDown';
 import type {
@@ -47,7 +42,7 @@ interface TokenCreatorProps<ValueType = string> {
   autoFocus: boolean;
 
   /**
-   * @prop {HandleTokenInputFocus} onFocus
+   * @prop {React.FocusEventHandler} onFocus
    * @description
    * A callback function, which should be `called`
    * when end-user `focus` into the TokenInput
@@ -55,10 +50,10 @@ interface TokenCreatorProps<ValueType = string> {
    * Note:
    * Call this function to tell TokenInput to set the `focused` CSS effect
    */
-  onFocus: HandleTokenInputFocus;
+  onFocus: React.FocusEventHandler<HTMLInputElement>;
 
   /**
-   * @prop {HandleTokenInputBlur} onBlur
+   * @prop {React.FocusEventHandler} onBlur
    * @description
    * A callback function, which should be `called`
    * when end-user `blur` from the TokenInput
@@ -66,7 +61,7 @@ interface TokenCreatorProps<ValueType = string> {
    * Note:
    * Call this function to tell TokenInput to remove the `focused` CSS effect
    */
-  onBlur: HandleTokenInputBlur;
+  onBlur: React.FocusEventHandler<HTMLInputElement>;
 
   // Token
 
@@ -259,13 +254,16 @@ const TokenCreator = forwardRef(function TokenCreator<ValueType = string>(
     ]
   );
 
-  const handleBlur = useCallback(() => {
-    // console.log('TokenCreator > handleBlur');
-    if (!noChangeOnBlur) {
-      handleTokensCreate(inputValue);
-    }
-    onBlur();
-  }, [noChangeOnBlur, handleTokensCreate, inputValue, onBlur]);
+  const handleBlur = useCallback(
+    (e: React.FocusEvent<HTMLInputElement>) => {
+      // console.log('TokenCreator > handleBlur');
+      if (!noChangeOnBlur) {
+        handleTokensCreate(inputValue);
+      }
+      onBlur(e);
+    },
+    [noChangeOnBlur, handleTokensCreate, inputValue, onBlur]
+  );
 
   const handlePaste = useCallback(
     (e: React.ClipboardEvent<HTMLInputElement>) => {

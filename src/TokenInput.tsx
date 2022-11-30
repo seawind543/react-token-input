@@ -409,6 +409,9 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
    */
   onGetTokenErrorMessage?: OnGetTokenErrorMessage<ValueType, ErrorType>;
 
+  onCreatorFocus?: React.FocusEventHandler<HTMLInputElement>;
+  onCreatorBlur?: React.FocusEventHandler<HTMLInputElement>;
+
   // TODO: Consider add more callback
   // onFocus
   // onBlur
@@ -455,6 +458,9 @@ const TokenInput = <ValueType = string, ErrorType = string>(
     onGetTokenEditableValue = defaultGetTokenEditableValue,
 
     onGetTokenErrorMessage = defaultGetTokenErrorMessage,
+
+    onCreatorFocus,
+    onCreatorBlur,
 
     // Rest
     ...restProps
@@ -519,6 +525,22 @@ const TokenInput = <ValueType = string, ErrorType = string>(
     [onPreprocess]
   );
 
+  const handleCreatorFocus = useCallback(
+    (e: React.FocusEvent<HTMLInputElement>) => {
+      handleTokenInputFocus();
+      onCreatorFocus?.(e);
+    },
+    [onCreatorFocus, handleTokenInputFocus]
+  );
+
+  const handleCreatorBlur = useCallback(
+    (e: React.FocusEvent<HTMLInputElement>) => {
+      handleTokenInputBlur();
+      onCreatorBlur?.(e);
+    },
+    [onCreatorBlur, handleTokenInputBlur]
+  );
+
   const TokenComponent = customizeTokenComponent || Token;
 
   return (
@@ -564,8 +586,8 @@ const TokenInput = <ValueType = string, ErrorType = string>(
           placeholder={placeholder}
           autoFocus={autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
           noChangeOnBlur={noChangeOnBlur}
-          onFocus={handleTokenInputFocus}
-          onBlur={handleTokenInputBlur}
+          onFocus={handleCreatorFocus}
+          onBlur={handleCreatorBlur}
           separators={separators}
           specialKeyDown={specialKeyDown}
           onInputValueChange={onInputValueChange}
