@@ -1,12 +1,10 @@
-export interface HandleTokenInputFocus {
-    (): void;
-}
-export interface HandleTokenInputBlur {
-    (): void;
+/// <reference types="react" />
+export interface TokenInputFocusHandler {
+    (e?: React.FocusEvent<HTMLInputElement>): void;
 }
 declare function useTokenInputFocus(): {
     isTokenInputFocused: boolean;
-    handleTokenInputFocus: HandleTokenInputFocus;
-    handleTokenInputBlur: HandleTokenInputBlur;
+    handleTokenInputFocus: TokenInputFocusHandler;
+    handleTokenInputBlur: TokenInputFocusHandler;
 };
 export default useTokenInputFocus;

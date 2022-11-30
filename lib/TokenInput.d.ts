@@ -1,4 +1,4 @@
-import { type CSSProperties, type ReactElement } from 'react';
+import React, { type CSSProperties, type ReactElement } from 'react';
 import { type TokenProps } from './Token';
 import type { TokenSeparator } from './types/mix';
 import type { SpecialKeyDownConfig } from './types/specialKeyDown';
@@ -8,6 +8,7 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
     className?: string;
     placeholder?: string;
     readOnly?: boolean;
+    noChangeOnBlur?: boolean;
     autoFocus?: boolean;
     tokenValues: ValueType[];
     separators?: TokenSeparator[];
@@ -24,6 +25,8 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
     onGetIsTokenEditable?: OnGetIsTokenEditable<ValueType, ErrorType>;
     onGetTokenEditableValue?: OnGetTokenEditableValue<ValueType, ErrorType>;
     onGetTokenErrorMessage?: OnGetTokenErrorMessage<ValueType, ErrorType>;
+    onCreatorFocus?: React.FocusEventHandler<HTMLInputElement>;
+    onCreatorBlur?: React.FocusEventHandler<HTMLInputElement>;
 }
 declare const TokenInput: <ValueType = string, ErrorType = string>(props: TokenInputProps<ValueType, ErrorType>) => JSX.Element;
 export default TokenInput;
