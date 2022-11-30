@@ -68,9 +68,15 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
 
   /**
    * @prop {boolean} [readOnly = false]
-   * @description An optional prop to specific TokenInput is `readOnly` mode or not
+   * @description An optional prop to control TokenInput is `readOnly mode` or not
    */
   readOnly?: boolean;
+
+  /**
+   * @prop {boolean} [noChangeOnBlur = false]
+   * @description An optional prop to control TokenInput create a new token on blur or not
+   */
+  noChangeOnBlur?: boolean;
 
   /**
    * @prop {boolean} [autoFocus = false]
@@ -415,6 +421,7 @@ const TokenInput = <ValueType = string, ErrorType = string>(
     className,
     placeholder,
     readOnly = false,
+    noChangeOnBlur = false,
     autoFocus = false,
 
     tokenValues,
@@ -556,6 +563,7 @@ const TokenInput = <ValueType = string, ErrorType = string>(
           ref={tokenCreatorRef}
           placeholder={placeholder}
           autoFocus={autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
+          noChangeOnBlur={noChangeOnBlur}
           onFocus={handleTokenInputFocus}
           onBlur={handleTokenInputBlur}
           separators={separators}

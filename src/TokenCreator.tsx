@@ -34,6 +34,12 @@ interface TokenCreatorProps<ValueType = string> {
   placeholder?: string;
 
   /**
+   * @prop {boolean} [noChangeOnBlur]
+   * Same as TokenInputProps {@see TokenInputProps[noChangeOnBlur]}
+   */
+  noChangeOnBlur: boolean;
+
+  /**
    * @prop {boolean} autoFocus
    * @description
    * Same as TokenInputProps {@see TokenInputProps[autoFocus]}
@@ -128,6 +134,7 @@ const TokenCreator = forwardRef(function TokenCreator<ValueType = string>(
 ) {
   const {
     placeholder,
+    noChangeOnBlur,
     autoFocus,
     onFocus,
     onBlur,
@@ -254,9 +261,11 @@ const TokenCreator = forwardRef(function TokenCreator<ValueType = string>(
 
   const handleBlur = useCallback(() => {
     // console.log('TokenCreator > handleBlur');
-    handleTokensCreate(inputValue);
+    if (!noChangeOnBlur) {
+      handleTokensCreate(inputValue);
+    }
     onBlur();
-  }, [handleTokensCreate, inputValue, onBlur]);
+  }, [noChangeOnBlur, handleTokensCreate, inputValue, onBlur]);
 
   const handlePaste = useCallback(
     (e: React.ClipboardEvent<HTMLInputElement>) => {
