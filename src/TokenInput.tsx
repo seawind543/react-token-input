@@ -6,7 +6,7 @@ import React, {
   type ReactElement,
 } from 'react';
 import classNames from 'classnames';
-import TokenCreator from './TokenCreator';
+import TokenCreator, { type TokenCreatorRef } from './TokenCreator';
 import Token, { type TokenProps } from './Token';
 
 import useTokenInputFocusEffect from './hooks/useTokenInputFocusEffect';
@@ -46,9 +46,9 @@ import type {
 } from './types/interfaces';
 
 export interface TokenInputRef {
-  focus: () => void;
-  setCreatorValue: (value: InputString) => void;
-  createTokens: (value: InputString) => void;
+  focus: TokenCreatorRef['focus'];
+  setCreatorValue: TokenCreatorRef['setValue'];
+  createTokens: TokenCreatorRef['createTokens'];
 }
 
 /**
@@ -81,10 +81,10 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
   readOnly?: boolean;
 
   /**
-   * @prop {boolean} [noChangeOnBlur = false]
-   * @description An optional prop to control TokenInput create a new token on blur or not
+   * @prop {boolean} [disableAutoTokenCreate = false]
+   * @description An optional prop to control TokenInput auto-create a new token or not
    */
-  noChangeOnBlur?: boolean;
+  disableAutoTokenCreate?: boolean;
 
   /**
    * @prop {boolean} [autoFocus = false]
@@ -419,6 +419,7 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
 
   onCreatorFocus?: React.FocusEventHandler<HTMLInputElement>;
   onCreatorBlur?: React.FocusEventHandler<HTMLInputElement>;
+  onCreatorKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
 
   // TODO: Consider add more callback
   // onFocus
@@ -433,7 +434,7 @@ const TokenInput = <ValueType, ErrorType>(
     className,
     placeholder,
     readOnly = false,
-    noChangeOnBlur = false,
+    disableAutoTokenCreate = false,
     autoFocus = false,
 
     tokenValues,
@@ -470,6 +471,7 @@ const TokenInput = <ValueType, ErrorType>(
 
     onCreatorFocus,
     onCreatorBlur,
+    onCreatorKeyDown,
 
     // Rest
     ...restProps
@@ -554,10 +556,8 @@ const TokenInput = <ValueType, ErrorType>(
     ref,
     () => ({
       focus: () => tokenCreatorRef.current?.focus(),
-      setCreatorValue: (value: InputString) =>
-        tokenCreatorRef.current?.setValue(value),
-      createTokens: (value: InputString) =>
-        tokenCreatorRef.current?.createTokens(value),
+      setCreatorValue: (value) => tokenCreatorRef.current?.setValue(value),
+      createTokens: (value) => tokenCreatorRef.current?.createTokens(value),
     }),
     [tokenCreatorRef]
   );
@@ -606,9 +606,10 @@ const TokenInput = <ValueType, ErrorType>(
           ref={tokenCreatorRef}
           placeholder={placeholder}
           autoFocus={autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
-          noChangeOnBlur={noChangeOnBlur}
+          disableAutoTokenCreate={disableAutoTokenCreate}
           onFocus={handleCreatorFocus}
           onBlur={handleCreatorBlur}
+          onKeyDown={onCreatorKeyDown}
           separators={separators}
           specialKeyDown={specialKeyDown}
           onInputValueChange={onInputValueChange}

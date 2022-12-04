@@ -26,7 +26,7 @@ import type {
 export interface TokenCreatorRef {
   focus: () => void;
   setValue: (value: InputString) => void;
-  createTokens: (value: InputString) => void;
+  createTokens: (value?: InputString) => void;
 }
 
 /**
@@ -42,10 +42,10 @@ interface TokenCreatorProps<ValueType = string> {
   placeholder?: string;
 
   /**
-   * @prop {boolean} [noChangeOnBlur]
-   * Same as TokenInputProps {@see TokenInputProps[noChangeOnBlur]}
+   * @prop {boolean} [disableAutoTokenCreate]
+   * Same as TokenInputProps {@see TokenInputProps[disableAutoTokenCreate]}
    */
-  noChangeOnBlur: boolean;
+  disableAutoTokenCreate: boolean;
 
   /**
    * @prop {boolean} autoFocus
@@ -75,6 +75,14 @@ interface TokenCreatorProps<ValueType = string> {
    * Call this function to tell TokenInput to remove the `focused` CSS effect
    */
   onBlur: React.FocusEventHandler<HTMLInputElement>;
+
+  /**
+   * @prop {React.KeyboardEventHandler} onKeyDown
+   * @description
+   * A callback function, which should be `called`
+   * when end-user `keyDown` on the TokenInput
+   */
+  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
 
   // Token
 
@@ -139,10 +147,11 @@ const TokenCreator = <ValueType,>(
 ) => {
   const {
     placeholder,
-    noChangeOnBlur,
+    disableAutoTokenCreate,
     autoFocus,
     onFocus,
     onBlur,
+    onKeyDown,
 
     separators,
     specialKeyDown,
@@ -179,7 +188,7 @@ const TokenCreator = <ValueType,>(
   );
 
   const handleTokensCreate = useCallback(
-    (inputString: InputString) => {
+    (inputString: InputString = inputValue) => {
       // console.log('handleTokensCreate', `${inputString}`);
 
       /**
@@ -207,12 +216,23 @@ const TokenCreator = <ValueType,>(
       handleInputValueUpdate(DEFAULT_INPUT_INIT_VALUE);
     },
     [
+      inputValue,
       splitPattens,
       onPreprocess,
       onBuildTokenValue,
       onNewTokenValuesAppend,
       handleInputValueUpdate,
     ]
+  );
+
+  const handleAutoTokensCreate = useCallback(
+    (inputString: InputString) => {
+      // console.log('wrappedTokensCreate', `${inputString}`);
+      if (!disableAutoTokenCreate) {
+        handleTokensCreate(inputString);
+      }
+    },
+    [disableAutoTokenCreate, handleTokensCreate]
   );
 
   /*
@@ -225,15 +245,21 @@ const TokenCreator = <ValueType,>(
       const lastChar = newInputValue.substring(newInputValue.length - 1);
 
       const isTypingSeparators = splitPattens.test(lastChar);
-      if (isTypingSeparators === true) {
+      if (!disableAutoTokenCreate && isTypingSeparators === true) {
         // User input a `Separator`, so create a token
-        handleTokensCreate(inputValue);
+        handleAutoTokensCreate(inputValue);
         return;
       }
 
       handleInputValueUpdate(newInputValue);
     },
-    [splitPattens, handleTokensCreate, inputValue, handleInputValueUpdate]
+    [
+      disableAutoTokenCreate,
+      splitPattens,
+      handleAutoTokensCreate,
+      inputValue,
+      handleInputValueUpdate,
+    ]
   );
 
   const {
@@ -247,7 +273,7 @@ const TokenCreator = <ValueType,>(
     inputValue,
     onLastTokenDelete,
     handleInputValueUpdate,
-    handleTokensCreate,
+    handleTokensCreate: handleAutoTokensCreate,
   });
 
   const handleKeyDown = useCallback(
@@ -259,8 +285,10 @@ const TokenCreator = <ValueType,>(
         onEnter: handleEnterKeyDown,
         onEscape: handleEscapeKeyDown,
       });
+      onKeyDown?.(e);
     },
     [
+      onKeyDown,
       handleBackspaceKeyDown,
       handleTabKeyDown,
       handleEnterKeyDown,
@@ -271,12 +299,10 @@ const TokenCreator = <ValueType,>(
   const handleBlur = useCallback(
     (e: React.FocusEvent<HTMLInputElement>) => {
       // console.log('TokenCreator > handleBlur');
-      if (!noChangeOnBlur) {
-        handleTokensCreate(inputValue);
-      }
+      handleAutoTokensCreate(inputValue);
       onBlur(e);
     },
-    [noChangeOnBlur, handleTokensCreate, inputValue, onBlur]
+    [handleAutoTokensCreate, inputValue, onBlur]
   );
 
   const handlePaste = useCallback(
