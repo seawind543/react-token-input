@@ -1,4 +1,11 @@
-import React, { useState, useMemo, useCallback, forwardRef } from 'react';
+import React, {
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+  useState,
+  useMemo,
+  useCallback,
+} from 'react';
 import AutosizeInput from 'react-input-autosize';
 
 import keyDownHandlerProxy from './utils/keyDownHandlerProxy';
@@ -15,6 +22,11 @@ import type {
   OnPreprocess,
   OnBuildTokenValue,
 } from './types/interfaces';
+
+export interface TokenCreatorHandle {
+  focus: () => void;
+  setValue: (value: InputString) => void;
+}
 
 /**
  * @template ValueType
@@ -120,13 +132,10 @@ interface TokenCreatorProps<ValueType = string> {
   onLastTokenDelete: () => void;
 }
 
-const TokenCreator = forwardRef(function TokenCreator<ValueType = string>(
+const TokenCreator = <ValueType,>(
   props: TokenCreatorProps<ValueType>,
-
-  // Cannot set AutosizeInput as ref, because it get error when ref={ref}
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ref: React.Ref<any>
-) {
+  ref: React.ForwardedRef<TokenCreatorHandle>
+) => {
   const {
     placeholder,
     noChangeOnBlur,
@@ -142,6 +151,10 @@ const TokenCreator = forwardRef(function TokenCreator<ValueType = string>(
     onNewTokenValuesAppend,
     onLastTokenDelete,
   } = props;
+  // Cannot set AutosizeInput as ref, because it get error when ref={inputRef}
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const inputRef = useRef<any>(null);
+
   const [inputValue, setInputValue] = useState(DEFAULT_INPUT_INIT_VALUE);
 
   const splitPattens = useMemo(
@@ -275,10 +288,25 @@ const TokenCreator = forwardRef(function TokenCreator<ValueType = string>(
     [handleTokensCreate]
   );
 
+  useImperativeHandle(
+    ref,
+    (): TokenCreatorHandle => {
+      return {
+        focus: () => {
+          if (inputRef?.current) {
+            inputRef.current.getInput().focus();
+          }
+        },
+        setValue: handleInputValueUpdate,
+      };
+    },
+    [handleInputValueUpdate]
+  );
+
   return (
     <div className={styles['autosized-wrapper']}>
       <AutosizeInput
-        ref={ref}
+        ref={inputRef}
         autoFocus={autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
         placeholder={placeholder}
         value={inputValue}
@@ -290,8 +318,14 @@ const TokenCreator = forwardRef(function TokenCreator<ValueType = string>(
       />
     </div>
   );
-}) as <ValueType = string>(
-  p: TokenCreatorProps<ValueType> & { ref: React.Ref<HTMLInputElement> }
-) => React.ReactElement | null;
+};
 
-export default TokenCreator;
+const WrappedTokenCreator = forwardRef(TokenCreator) as <ValueType = string>(
+  p: TokenCreatorProps<ValueType> & {
+    ref: React.ForwardedRef<TokenCreatorHandle>;
+  }
+) => ReturnType<typeof TokenCreator>;
+// Apply Type assertion to allow TypeScript type the generic type `ValueType`
+// https://fettblog.eu/typescript-react-generic-forward-refs/
+
+export default WrappedTokenCreator;
