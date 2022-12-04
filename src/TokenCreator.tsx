@@ -23,9 +23,10 @@ import type {
   OnBuildTokenValue,
 } from './types/interfaces';
 
-export interface TokenCreatorMethods {
+export interface TokenCreatorRef {
   focus: () => void;
   setValue: (value: InputString) => void;
+  createTokens: (value: InputString) => void;
 }
 
 /**
@@ -134,7 +135,7 @@ interface TokenCreatorProps<ValueType = string> {
 
 const TokenCreator = <ValueType,>(
   props: TokenCreatorProps<ValueType>,
-  ref: React.ForwardedRef<TokenCreatorMethods>
+  ref: React.ForwardedRef<TokenCreatorRef>
 ) => {
   const {
     placeholder,
@@ -290,17 +291,12 @@ const TokenCreator = <ValueType,>(
 
   useImperativeHandle(
     ref,
-    (): TokenCreatorMethods => {
-      return {
-        focus: () => {
-          if (inputRef?.current) {
-            inputRef.current.getInput().focus();
-          }
-        },
-        setValue: handleInputValueUpdate,
-      };
-    },
-    [handleInputValueUpdate]
+    () => ({
+      focus: () => inputRef.current?.getInput().focus(),
+      setValue: handleInputValueUpdate,
+      createTokens: handleTokensCreate,
+    }),
+    [handleInputValueUpdate, handleTokensCreate]
   );
 
   return (
@@ -322,7 +318,7 @@ const TokenCreator = <ValueType,>(
 
 const WrappedTokenCreator = forwardRef(TokenCreator) as <ValueType = string>(
   p: TokenCreatorProps<ValueType> & {
-    ref: React.ForwardedRef<TokenCreatorMethods>;
+    ref: React.ForwardedRef<TokenCreatorRef>;
   }
 ) => ReturnType<typeof TokenCreator>;
 // Apply Type assertion to allow TypeScript type the generic type `ValueType`

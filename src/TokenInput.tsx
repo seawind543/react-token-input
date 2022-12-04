@@ -1,4 +1,6 @@
 import React, {
+  forwardRef,
+  useImperativeHandle,
   useCallback,
   type CSSProperties,
   type ReactElement,
@@ -42,6 +44,12 @@ import type {
   OnGetTokenEditableValue,
   OnGetTokenErrorMessage,
 } from './types/interfaces';
+
+export interface TokenInputRef {
+  focus: () => void;
+  setCreatorValue: (value: InputString) => void;
+  createTokens: (value: InputString) => void;
+}
 
 /**
  * @template ValueType, ErrorType
@@ -417,8 +425,9 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
   // onBlur
 }
 
-const TokenInput = <ValueType = string, ErrorType = string>(
-  props: TokenInputProps<ValueType, ErrorType>
+const TokenInput = <ValueType, ErrorType>(
+  props: TokenInputProps<ValueType, ErrorType>,
+  ref?: React.ForwardedRef<TokenInputRef>
 ) => {
   const {
     className,
@@ -541,6 +550,18 @@ const TokenInput = <ValueType = string, ErrorType = string>(
     [onCreatorBlur, handleTokenInputBlur]
   );
 
+  useImperativeHandle(
+    ref,
+    () => ({
+      focus: () => tokenCreatorRef.current?.focus(),
+      setCreatorValue: (value: InputString) =>
+        tokenCreatorRef.current?.setValue(value),
+      createTokens: (value: InputString) =>
+        tokenCreatorRef.current?.createTokens(value),
+    }),
+    [tokenCreatorRef]
+  );
+
   const TokenComponent = customizeTokenComponent || Token;
 
   return (
@@ -601,4 +622,15 @@ const TokenInput = <ValueType = string, ErrorType = string>(
   );
 };
 
-export default TokenInput;
+const WrappedTokenInput = forwardRef(TokenInput) as <
+  ValueType = string,
+  ErrorType = string
+>(
+  p: TokenInputProps<ValueType, ErrorType> & {
+    ref?: React.ForwardedRef<TokenInputRef>;
+  }
+) => ReturnType<typeof TokenInput>;
+// Apply Type assertion to allow TypeScript type the generic type `ValueType` and `ErrorType`
+// https://fettblog.eu/typescript-react-generic-forward-refs/
+
+export default WrappedTokenInput;
