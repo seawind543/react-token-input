@@ -13,7 +13,7 @@ import useTokensUpdate from './hooks/useTokensUpdate';
 import useTokenEdit from './hooks/useTokenEdit';
 import useTokenDelete from './hooks/useTokenDelete';
 
-// Build-in default props
+// Built-in default props
 import defaultTokenValueValidate from './utils/defaultTokenValueValidate';
 import defaultBuildTokenValue from './utils/defaultBuildTokenValue';
 import defaultGetIsTokenEditable from './utils/defaultGetIsTokenEditable';
