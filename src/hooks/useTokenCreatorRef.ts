@@ -1,8 +1,8 @@
 import { useRef, useCallback } from 'react';
-import type { TokenCreatorHandle } from '../TokenCreator';
+import type { TokenCreatorMethods } from '../TokenCreator';
 
 function useTokenCreatorRef() {
-  const tokenCreatorRef = useRef<TokenCreatorHandle>(null);
+  const tokenCreatorRef = useRef<TokenCreatorMethods>(null);
 
   const focusTokenCreator = useCallback(() => {
     // console.log('handleTokenCreatorFocus');
