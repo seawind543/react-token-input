@@ -57,6 +57,14 @@ interface TokenCreatorProps<ValueType = string> {
    */
   onBlur: React.FocusEventHandler<HTMLInputElement>;
 
+  /**
+   * @prop {React.KeyboardEventHandler<HTMLInputElement>} onKeyDown
+   * @description
+   * A callback function, which should be `called`
+   * when end-user `keyDown` on the TokenCreator
+   */
+  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
+
   // Token
 
   /**
@@ -126,6 +134,7 @@ const TokenCreator = forwardRef(function TokenCreator<ValueType = string>(
     autoFocus,
     onFocus,
     onBlur,
+    onKeyDown,
 
     separators,
     specialKeyDown,
@@ -238,8 +247,11 @@ const TokenCreator = forwardRef(function TokenCreator<ValueType = string>(
         onEnter: handleEnterKeyDown,
         onEscape: handleEscapeKeyDown,
       });
+
+      onKeyDown?.(e);
     },
     [
+      onKeyDown,
       handleBackspaceKeyDown,
       handleTabKeyDown,
       handleEnterKeyDown,

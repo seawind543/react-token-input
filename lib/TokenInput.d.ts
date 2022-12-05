@@ -26,6 +26,7 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
     onGetTokenErrorMessage?: OnGetTokenErrorMessage<ValueType, ErrorType>;
     onCreatorFocus?: React.FocusEventHandler<HTMLInputElement>;
     onCreatorBlur?: React.FocusEventHandler<HTMLInputElement>;
+    onCreatorKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
 }
 declare const TokenInput: <ValueType = string, ErrorType = string>(props: TokenInputProps<ValueType, ErrorType>) => JSX.Element;
 export default TokenInput;

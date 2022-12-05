@@ -7,6 +7,7 @@ interface TokenCreatorProps<ValueType = string> {
     autoFocus: boolean;
     onFocus: React.FocusEventHandler<HTMLInputElement>;
     onBlur: React.FocusEventHandler<HTMLInputElement>;
+    onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
     separators: TokenSeparator[];
     specialKeyDown: SpecialKeyDownConfig;
     onInputValueChange?: OnInputValueChange;
