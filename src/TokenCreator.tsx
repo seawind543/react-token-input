@@ -8,11 +8,6 @@ import { DEFAULT_INPUT_INIT_VALUE } from './constants';
 
 import styles from './styles.scss';
 
-import type {
-  HandleTokenInputFocus,
-  HandleTokenInputBlur,
-} from './hooks/useTokenInputFocusEffect';
-
 import type { InputString, TokenSeparator } from './types/mix';
 import type { SpecialKeyDownConfig } from './types/specialKeyDown';
 import type {
@@ -41,26 +36,26 @@ interface TokenCreatorProps<ValueType = string> {
   autoFocus: boolean;
 
   /**
-   * @prop {HandleTokenInputFocus} onFocus
+   * @prop {React.FocusEventHandler<HTMLInputElement>} onFocus
    * @description
    * A callback function, which should be `called`
-   * when end-user `focus` into the TokenInput
+   * when end-user `focus` on the TokenCreator
    *
    * Note:
    * Call this function to tell TokenInput to set the `focused` CSS effect
    */
-  onFocus: HandleTokenInputFocus;
+  onFocus: React.FocusEventHandler<HTMLInputElement>;
 
   /**
-   * @prop {HandleTokenInputBlur} onBlur
+   * @prop {React.FocusEventHandler<HTMLInputElement>} onBlur
    * @description
    * A callback function, which should be `called`
-   * when end-user `blur` from the TokenInput
+   * when end-user `blur` on the TokenCreator
    *
    * Note:
    * Call this function to tell TokenInput to remove the `focused` CSS effect
    */
-  onBlur: HandleTokenInputBlur;
+  onBlur: React.FocusEventHandler<HTMLInputElement>;
 
   // Token
 
@@ -252,11 +247,14 @@ const TokenCreator = forwardRef(function TokenCreator<ValueType = string>(
     ]
   );
 
-  const handleBlur = useCallback(() => {
-    // console.log('TokenCreator > handleBlur');
-    handleTokensCreate(inputValue);
-    onBlur();
-  }, [handleTokensCreate, inputValue, onBlur]);
+  const handleBlur = useCallback(
+    (e: React.FocusEvent<HTMLInputElement>) => {
+      // console.log('TokenCreator > handleBlur');
+      handleTokensCreate(inputValue);
+      onBlur(e);
+    },
+    [handleTokensCreate, inputValue, onBlur]
+  );
 
   const handlePaste = useCallback(
     (e: React.ClipboardEvent<HTMLInputElement>) => {

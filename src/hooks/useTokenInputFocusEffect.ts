@@ -1,54 +1,84 @@
 import { useState, useCallback } from 'react';
 
 /**
- * @callback HandleTokenInputFocus
+ * @callback TokenInputFocusHandler
  * @description
  * A callback function, which should be `invoked`
- * when end-user `focus` into the TokenInput
+ * when end-user `focus/blur` on the TokenInput
  *
  * Note:
  * Call this function to tell TokenInput to set the `focused` CSS effect
  *
  * @returns {void}
  */
-export interface HandleTokenInputFocus {
-  (): void;
+export interface TokenInputFocusHandler {
+  (e?: React.FocusEvent<HTMLInputElement>): void;
 }
 
-/**
- * @callback HandleTokenInputBlur
- * @description
- * A callback function, which should be `invoked`
- * when end-user `blur` from the TokenInput
- *
- * Note:
- * Call this function to tell TokenInput to remove the `focused` CSS effect
- *
- * @returns {void}
- */
-export interface HandleTokenInputBlur {
-  (): void;
+interface Params {
+  onCreatorFocus?: React.FocusEventHandler<HTMLInputElement>;
+  onCreatorBlur?: React.FocusEventHandler<HTMLInputElement>;
 }
 
-function useTokenInputFocus() {
+function useTokenInputFocusEffect(params: Params) {
+  const { onCreatorFocus, onCreatorBlur } = params;
+
   const [isTokenInputFocused, setIsTokenInputFocused] =
     useState<boolean>(false);
 
-  const handleTokenInputFocus: HandleTokenInputFocus = useCallback(() => {
+  /**
+   * @callback handleTokenInputFocus
+   * @description
+   * A callback function, which should be `invoked`
+   * when end-user `focus` into the TokenInput
+   *
+   * Call this function to tell TokenInput to set the `focused` CSS effect
+   *
+   * @returns {void}
+   */
+  const handleTokenInputFocus: TokenInputFocusHandler = useCallback(() => {
     // console.log('handleTokenInputFocus');
     setIsTokenInputFocused(true);
   }, []);
 
-  const handleTokenInputBlur: HandleTokenInputBlur = useCallback(() => {
+  /**
+   * @callback handleTokenInputBlur
+   * @description
+   * A callback function, which should be `invoked`
+   * when end-user `blur` from the TokenInput
+   *
+   * Call this function to tell TokenInput to remove the `focused` CSS effect
+   *
+   * @returns {void}
+   */
+  const handleTokenInputBlur: TokenInputFocusHandler = useCallback(() => {
     // console.log('handleTokenInputBlur');
     setIsTokenInputFocused(false);
   }, []);
+
+  const handleCreatorFocus = useCallback(
+    (e: React.FocusEvent<HTMLInputElement>) => {
+      handleTokenInputFocus();
+      onCreatorFocus?.(e);
+    },
+    [onCreatorFocus, handleTokenInputFocus]
+  );
+
+  const handleCreatorBlur = useCallback(
+    (e: React.FocusEvent<HTMLInputElement>) => {
+      handleTokenInputBlur();
+      onCreatorBlur?.(e);
+    },
+    [onCreatorBlur, handleTokenInputBlur]
+  );
 
   return {
     isTokenInputFocused,
     handleTokenInputFocus,
     handleTokenInputBlur,
+    handleCreatorFocus,
+    handleCreatorBlur,
   };
 }
 
-export default useTokenInputFocus;
+export default useTokenInputFocusEffect;

@@ -403,6 +403,40 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
    */
   onGetTokenErrorMessage?: OnGetTokenErrorMessage<ValueType, ErrorType>;
 
+  /**
+   * @prop {React.FocusEventHandler<HTMLInputElement>} [onCreatorFocus]
+   * @description
+   * A callback function invoked on TokenCreator focused
+   *
+   * @example
+   * ```js
+   * onCreatorFocus(e)
+   * ```
+   *
+   * @param {React.FocusEvent<HTMLInputElement>} event
+   * The FocusEvent of the input of TokenCreator
+   *
+   * @returns {void}
+   */
+  onCreatorFocus?: React.FocusEventHandler<HTMLInputElement>;
+
+  /**
+   * @prop {React.FocusEventHandler<HTMLInputElement>} [onCreatorBlur]
+   * @description
+   * A callback function invoked on TokenCreator blur
+   *
+   * @example
+   * ```js
+   * onCreatorBlur(e)
+   * ```
+   *
+   * @param {React.FocusEvent<HTMLInputElement>} event
+   * The FocusEvent of the input of TokenCreator
+   *
+   * @returns {void}
+   */
+  onCreatorBlur?: React.FocusEventHandler<HTMLInputElement>;
+
   // TODO: Consider add more callback
   // onFocus
   // onBlur
@@ -449,12 +483,23 @@ const TokenInput = <ValueType = string, ErrorType = string>(
 
     onGetTokenErrorMessage = defaultGetTokenErrorMessage,
 
+    onCreatorFocus,
+    onCreatorBlur,
+
     // Rest
     ...restProps
   } = props;
 
-  const { isTokenInputFocused, handleTokenInputFocus, handleTokenInputBlur } =
-    useTokenInputFocusEffect();
+  const {
+    isTokenInputFocused,
+    handleTokenInputFocus,
+    handleTokenInputBlur,
+    handleCreatorFocus,
+    handleCreatorBlur,
+  } = useTokenInputFocusEffect({
+    onCreatorFocus,
+    onCreatorBlur,
+  });
   const { tokenCreatorRef, focusTokenCreator } = useTokenCreatorRef();
 
   const {
@@ -556,8 +601,8 @@ const TokenInput = <ValueType = string, ErrorType = string>(
           ref={tokenCreatorRef}
           placeholder={placeholder}
           autoFocus={autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
-          onFocus={handleTokenInputFocus}
-          onBlur={handleTokenInputBlur}
+          onFocus={handleCreatorFocus}
+          onBlur={handleCreatorBlur}
           separators={separators}
           specialKeyDown={specialKeyDown}
           onInputValueChange={onInputValueChange}

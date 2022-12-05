@@ -1,13 +1,12 @@
 import React from 'react';
-import type { HandleTokenInputFocus, HandleTokenInputBlur } from './hooks/useTokenInputFocusEffect';
 import type { TokenSeparator } from './types/mix';
 import type { SpecialKeyDownConfig } from './types/specialKeyDown';
 import type { OnInputValueChange, OnPreprocess, OnBuildTokenValue } from './types/interfaces';
 interface TokenCreatorProps<ValueType = string> {
     placeholder?: string;
     autoFocus: boolean;
-    onFocus: HandleTokenInputFocus;
-    onBlur: HandleTokenInputBlur;
+    onFocus: React.FocusEventHandler<HTMLInputElement>;
+    onBlur: React.FocusEventHandler<HTMLInputElement>;
     separators: TokenSeparator[];
     specialKeyDown: SpecialKeyDownConfig;
     onInputValueChange?: OnInputValueChange;

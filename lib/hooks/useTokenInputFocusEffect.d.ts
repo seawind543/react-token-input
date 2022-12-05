@@ -1,12 +1,16 @@
-export interface HandleTokenInputFocus {
-    (): void;
+/// <reference types="react" />
+export interface TokenInputFocusHandler {
+    (e?: React.FocusEvent<HTMLInputElement>): void;
 }
-export interface HandleTokenInputBlur {
-    (): void;
+interface Params {
+    onCreatorFocus?: React.FocusEventHandler<HTMLInputElement>;
+    onCreatorBlur?: React.FocusEventHandler<HTMLInputElement>;
 }
-declare function useTokenInputFocus(): {
+declare function useTokenInputFocusEffect(params: Params): {
     isTokenInputFocused: boolean;
-    handleTokenInputFocus: HandleTokenInputFocus;
-    handleTokenInputBlur: HandleTokenInputBlur;
+    handleTokenInputFocus: TokenInputFocusHandler;
+    handleTokenInputBlur: TokenInputFocusHandler;
+    handleCreatorFocus: (e: React.FocusEvent<HTMLInputElement>) => void;
+    handleCreatorBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
 };
-export default useTokenInputFocus;
+export default useTokenInputFocusEffect;
