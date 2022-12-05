@@ -9,11 +9,9 @@ interface Params<ValueType> {
   focusTokenCreator: () => void; // TODO: Update type by shared one
 }
 
-function useTokenDelete<ValueType>({
-  tokenValues,
-  onTokenValuesChange,
-  focusTokenCreator,
-}: Params<ValueType>) {
+function useTokenDelete<ValueType>(params: Params<ValueType>) {
+  const { tokenValues, onTokenValuesChange, focusTokenCreator } = params;
+
   const deleteToken = useCallback(
     (targetIndex: TokenIndex) => {
       const newTokenValues = [...tokenValues];

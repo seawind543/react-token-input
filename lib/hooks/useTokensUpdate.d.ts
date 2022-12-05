@@ -3,7 +3,7 @@ interface Params<ValueType, ErrorType> {
     tokenValues: ValueType[];
     onTokenValueValidate: OnTokenValueValidate<ValueType, ErrorType>;
 }
-declare function useTokensUpdate<ValueType, ErrorType>({ tokenValues, onTokenValueValidate, }: Params<ValueType, ErrorType>): {
+declare function useTokensUpdate<ValueType, ErrorType>(params: Params<ValueType, ErrorType>): {
     hasInvalidToken: boolean;
     internalTokenValues: ValueType[];
     tokenMetas: import("../types/token").TokenMeta<ErrorType>[];

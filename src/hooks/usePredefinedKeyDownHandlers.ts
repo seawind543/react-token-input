@@ -40,14 +40,16 @@ const handleKeyDown = ({
   }
 };
 
-function usePredefinedKeyDownHandlers({
-  specialKeyDownConfig,
-  inputInitValue,
-  inputValue,
-  onLastTokenDelete,
-  handleInputValueUpdate,
-  handleTokensCreate,
-}: Params) {
+function usePredefinedKeyDownHandlers(params: Params) {
+  const {
+    specialKeyDownConfig,
+    inputInitValue,
+    inputValue,
+    onLastTokenDelete,
+    handleInputValueUpdate,
+    handleTokensCreate,
+  } = params;
+
   // console.log('specialKeyDownConfig', specialKeyDownConfig);
   const {
     onBackspace,
