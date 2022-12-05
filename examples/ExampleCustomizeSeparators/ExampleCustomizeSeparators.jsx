@@ -54,6 +54,26 @@ const ExampleCustomizeSeparators = () => {
 />
         `}
       </pre>
+
+      <p>
+        Hint: Could import DEFAULT_SEPARATORS to extending the built-in
+        separators.
+      </p>
+      <pre>
+        {`
+import TokenInput, { DEFAULT_SEPARATORS } from 'react-customize-token-input';
+
+<TokenInput
+  separators={[
+    ...DEFAULT_SEPARATORS,
+    '\\+', // Plus-symbol
+    ' ', // Blank
+  ]}
+  tokenValues={values}
+  onTokenValuesChange={handleTokenValuesChange}
+/>
+        `}
+      </pre>
     </>
   );
 };
