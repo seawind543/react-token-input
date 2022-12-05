@@ -214,7 +214,7 @@ interface TokenInputProps<ValueType = string, ErrorType = string> {
    * ```
    *
    * @param {ValueType} tokenValue
-   * The tokenValue build by `onBuildTokenValue`
+   * The tokenValue built by `onBuildTokenValue`
    *
    * @param {TokenIndex} tokenIndex
    * The array index of this tokenValue in tokenValues
@@ -310,7 +310,7 @@ interface TokenInputProps<ValueType = string, ErrorType = string> {
    * ```
    *
    * @param {ValueType} tokenValue
-   * The tokenValue build by `onBuildTokenValue`
+   * The tokenValue built by `onBuildTokenValue`
    *
    * @param {TokenMeta<ErrorType>} tokenMeta
    * The token's meta data
@@ -334,7 +334,7 @@ interface TokenInputProps<ValueType = string, ErrorType = string> {
    * ```
    *
    * @param {ValueType} tokenValue
-   * The tokenValue build by `onBuildTokenValue`
+   * The tokenValue built by `onBuildTokenValue`
    *
    * @param {TokenMeta<ErrorType>} tokenMeta
    * The token's meta data
@@ -374,7 +374,7 @@ interface TokenInputProps<ValueType = string, ErrorType = string> {
    * ```
    *
    * @param {ValueType} tokenValue
-   * The tokenValue build by `onBuildTokenValue`
+   * The tokenValue built by `onBuildTokenValue`
    *
    * @param {TokenMeta<ErrorType>} tokenMeta
    * The token's meta data
@@ -398,7 +398,7 @@ interface TokenInputProps<ValueType = string, ErrorType = string> {
    * ```
    *
    * @param {ValueType} tokenValue
-   * The tokenValue build by `onBuildTokenValue`
+   * The tokenValue built by `onBuildTokenValue`
    *
    * @param {TokenMeta<ErrorType>} tokenMeta
    * The token's meta data
@@ -421,7 +421,7 @@ interface TokenInputProps<ValueType = string, ErrorType = string> {
    * ```
    *
    * @param {ValueType} tokenValue
-   * The tokenValue build by `onBuildTokenValue`
+   * The tokenValue built by `onBuildTokenValue`
    *
    * @param {TokenMeta<ErrorType>} tokenMeta
    * The token's meta data
@@ -669,7 +669,7 @@ export interface TokenProps<ValueType = string, ErrorType = string> {
    * ```
    *
    * @param {ValueType} [newTokenValue]
-   * The new tokenValue build by `onBuildTokenValue.
+   * The new tokenValue built by `onBuildTokenValue.
    *
    * Note:
    * if `newTokenValue` is `undefined`,

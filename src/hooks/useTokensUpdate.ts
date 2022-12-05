@@ -9,10 +9,11 @@ interface Params<ValueType, ErrorType> {
   onTokenValueValidate: OnTokenValueValidate<ValueType, ErrorType>;
 }
 
-function useTokensUpdate<ValueType, ErrorType>({
-  tokenValues,
-  onTokenValueValidate,
-}: Params<ValueType, ErrorType>) {
+function useTokensUpdate<ValueType, ErrorType>(
+  params: Params<ValueType, ErrorType>
+) {
+  const { tokenValues, onTokenValueValidate } = params;
+
   const { tokenMetas, setTokenMetas, setTokenActivated } =
     useTokenMetas<ErrorType>();
   const [hasInvalidToken, setHasInvalidToken] = useState<boolean>(false);

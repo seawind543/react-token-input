@@ -14,7 +14,7 @@ export type KeyDownHandlerConfigOption =
  * Current only apply to the `TokenCreator`
  *
  * The settings to control the behavior of specials keyDown's event handler.
- * Recommend to use the build-in constant `KEY_DOWN_HANDLER_CONFIG_OPTION` to config the setting.
+ * Recommend to use the built-in constant `KEY_DOWN_HANDLER_CONFIG_OPTION` to config the setting.
  *
  * @prop {KeyDownHandlerConfigOption} [onBackspace] - The config value to control the behavior of `backspace` keyDown event handler
  * @prop {KeyDownHandlerConfigOption} [onTab] - The config value to control the behavior of `tab` keyDown event handler

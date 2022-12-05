@@ -60,7 +60,7 @@ export interface OnPreprocess {
  * @template ValueType
  * @callback OnBuildTokenValue
  * @description
- * A callback function to build `user input string value` into
+ * A callback function to built `user input string value` into
  * the `tokenValue` (customized data structure).
  *
  * Note: You could make your normalize process in this function too.
@@ -120,7 +120,7 @@ export interface OnTokenValuesChange<ValueType> {
  * ```
  *
  * @param {ValueType} tokenValue
- * The tokenValue build by `onBuildTokenValue`
+ * The tokenValue built by `onBuildTokenValue`
  *
  * @param {TokenIndex} tokenIndex
  * The array index of this tokenValue in tokenValues
@@ -157,7 +157,7 @@ export interface OnTokenValueValidate<ValueType, ErrorType> {
  * ```
  *
  * @param {ValueType} tokenValue
- * The tokenValue build by `onBuildTokenValue`
+ * The tokenValue built by `onBuildTokenValue`
  *
  * @param {TokenMeta<ErrorType>} tokenMeta
  * The token's meta data
@@ -183,7 +183,7 @@ export interface OnGetTokenClassName<ValueType, ErrorType> {
  * ```
  *
  * @param {ValueType} tokenValue
- * The tokenValue build by `onBuildTokenValue`
+ * The tokenValue built by `onBuildTokenValue`
  *
  * @param {TokenMeta<ErrorType>} tokenMeta
  * The token's meta data
@@ -228,7 +228,7 @@ export interface OnRenderTokenDeleteButtonContent {
  * ```
  *
  * @param {ValueType} tokenValue
- * The tokenValue build by `onBuildTokenValue`
+ * The tokenValue built by `onBuildTokenValue`
  *
  * @param {TokenMeta<ErrorType>} tokenMeta
  * The token's meta data
@@ -254,7 +254,7 @@ export interface OnGetIsTokenEditable<ValueType, ErrorType> {
  * ```
  *
  * @param {ValueType} tokenValue
- * The tokenValue build by `onBuildTokenValue`
+ * The tokenValue built by `onBuildTokenValue`
  *
  * @param {TokenMeta<ErrorType>} tokenMeta
  * The token's meta data
@@ -279,7 +279,7 @@ export interface OnGetTokenEditableValue<ValueType, ErrorType> {
  * ```
  *
  * @param {ValueType} tokenValue
- * The tokenValue build by `onBuildTokenValue`
+ * The tokenValue built by `onBuildTokenValue`
  *
  * @param {TokenMeta<ErrorType>} tokenMeta
  * The token's meta data

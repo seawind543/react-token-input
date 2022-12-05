@@ -13,7 +13,7 @@ import useTokensUpdate from './hooks/useTokensUpdate';
 import useTokenEdit from './hooks/useTokenEdit';
 import useTokenDelete from './hooks/useTokenDelete';
 
-// Build-in default props
+// The built-in default props
 import defaultTokenValueValidate from './utils/defaultTokenValueValidate';
 import defaultBuildTokenValue from './utils/defaultBuildTokenValue';
 import defaultGetIsTokenEditable from './utils/defaultGetIsTokenEditable';
@@ -184,7 +184,7 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
    * ```
    *
    * @param {ValueType} tokenValue
-   * The tokenValue build by `onBuildTokenValue`
+   * The tokenValue built by `onBuildTokenValue`
    *
    * @param {TokenIndex} tokenIndex
    * The array index of this tokenValue in tokenValues
@@ -280,7 +280,7 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
    * ```
    *
    * @param {ValueType} tokenValue
-   * The tokenValue build by `onBuildTokenValue`
+   * The tokenValue built by `onBuildTokenValue`
    *
    * @param {TokenMeta<ErrorType>} tokenMeta
    * The token's meta data
@@ -304,7 +304,7 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
    * ```
    *
    * @param {ValueType} tokenValue
-   * The tokenValue build by `onBuildTokenValue`
+   * The tokenValue built by `onBuildTokenValue`
    *
    * @param {TokenMeta<ErrorType>} tokenMeta
    * The token's meta data
@@ -344,7 +344,7 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
    * ```
    *
    * @param {ValueType} tokenValue
-   * The tokenValue build by `onBuildTokenValue`
+   * The tokenValue built by `onBuildTokenValue`
    *
    * @param {TokenMeta<ErrorType>} tokenMeta
    * The token's meta data
@@ -368,7 +368,7 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
    * ```
    *
    * @param {ValueType} tokenValue
-   * The tokenValue build by `onBuildTokenValue`
+   * The tokenValue built by `onBuildTokenValue`
    *
    * @param {TokenMeta<ErrorType>} tokenMeta
    * The token's meta data
@@ -391,7 +391,7 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
    * ```
    *
    * @param {ValueType} tokenValue
-   * The tokenValue build by `onBuildTokenValue`
+   * The tokenValue built by `onBuildTokenValue`
    *
    * @param {TokenMeta<ErrorType>} tokenMeta
    * The token's meta data

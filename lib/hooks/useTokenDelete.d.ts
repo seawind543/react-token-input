@@ -5,7 +5,7 @@ interface Params<ValueType> {
     onTokenValuesChange?: OnTokenValuesChange<ValueType>;
     focusTokenCreator: () => void;
 }
-declare function useTokenDelete<ValueType>({ tokenValues, onTokenValuesChange, focusTokenCreator, }: Params<ValueType>): {
+declare function useTokenDelete<ValueType>(params: Params<ValueType>): {
     handleTokenDelete: (targetIndex: TokenIndex) => () => void;
     handleLastTokenDelete: () => void;
 };

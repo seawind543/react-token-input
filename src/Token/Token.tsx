@@ -154,7 +154,7 @@ export interface TokenProps<ValueType = string, ErrorType = string> {
    * ```
    *
    * @param {ValueType} [newTokenValue]
-   * The new tokenValue build by `onBuildTokenValue.
+   * The new tokenValue built by `onBuildTokenValue.
    *
    * Note:
    * if `newTokenValue` is `undefined`,
