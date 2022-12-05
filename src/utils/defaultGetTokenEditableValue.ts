@@ -17,7 +17,7 @@ import type { TokenMeta } from '../types/token';
  * ```
  *
  * @param {ValueType} tokenValue
- * This token's tokenValue build by `onBuildTokenValue`
+ * This token's tokenValue built by `onBuildTokenValue`
  *
  * @param {TokenMeta<ErrorType>} tokenMeta
  * This token's meta data

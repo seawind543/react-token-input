@@ -16,7 +16,7 @@ import type { TokenIndex, TokenMeta } from '../types/token';
  * The return of callback `onTokenValueValidate`
  *
  * @param {ValueType} tokenValue
- * The tokenValue build by callback `onBuildTokenValue`
+ * The tokenValue built by callback `onBuildTokenValue`
  *
  * @param {TokenIndex} tokenIndex
  * The array index of this tokenValue in tokenValues
