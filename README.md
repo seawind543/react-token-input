@@ -466,6 +466,23 @@ interface TokenInputProps<ValueType = string, ErrorType = string> {
    * @returns {void}
    */
   onCreatorBlur?: React.FocusEventHandler<HTMLInputElement>;
+
+  /**
+   * @prop {React.KeyboardEventHandler<HTMLInputElement>} [onCreatorKeyDown]
+   * @description
+   * A callback function invoked when keyDown on TokenCreator
+   *
+   * @example
+   * ```js
+   * onCreatorKeyDown(e)
+   * ```
+   *
+   * @param {React.KeyboardEvent<HTMLInputElement>} event
+   * The KeyboardEvent of the input of TokenCreator
+   *
+   * @returns {void}
+   */
+  onCreatorKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
 }
 ```
 

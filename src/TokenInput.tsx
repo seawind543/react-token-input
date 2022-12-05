@@ -437,6 +437,23 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
    */
   onCreatorBlur?: React.FocusEventHandler<HTMLInputElement>;
 
+  /**
+   * @prop {React.KeyboardEventHandler<HTMLInputElement>} [onCreatorKeyDown]
+   * @description
+   * A callback function invoked when keyDown on TokenCreator
+   *
+   * @example
+   * ```js
+   * onCreatorKeyDown(e)
+   * ```
+   *
+   * @param {React.KeyboardEvent<HTMLInputElement>} event
+   * The KeyboardEvent of the input of TokenCreator
+   *
+   * @returns {void}
+   */
+  onCreatorKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
+
   // TODO: Consider add more callback
   // onFocus
   // onBlur
@@ -485,6 +502,7 @@ const TokenInput = <ValueType = string, ErrorType = string>(
 
     onCreatorFocus,
     onCreatorBlur,
+    onCreatorKeyDown,
 
     // Rest
     ...restProps
@@ -603,6 +621,7 @@ const TokenInput = <ValueType = string, ErrorType = string>(
           autoFocus={autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
           onFocus={handleCreatorFocus}
           onBlur={handleCreatorBlur}
+          onKeyDown={onCreatorKeyDown}
           separators={separators}
           specialKeyDown={specialKeyDown}
           onInputValueChange={onInputValueChange}
