@@ -432,6 +432,40 @@ interface TokenInputProps<ValueType = string, ErrorType = string> {
    * into the `title` attribute. Otherwise, will simply be ignored
    */
   onGetTokenErrorMessage?: OnGetTokenErrorMessage<ValueType, ErrorType>;
+
+  /**
+   * @prop {React.FocusEventHandler<HTMLInputElement>} [onCreatorFocus]
+   * @description
+   * A callback function invoked on TokenCreator focused
+   *
+   * @example
+   * ```js
+   * onCreatorFocus(e)
+   * ```
+   *
+   * @param {React.FocusEvent<HTMLInputElement>} event
+   * The FocusEvent of the input of TokenCreator
+   *
+   * @returns {void}
+   */
+  onCreatorFocus?: React.FocusEventHandler<HTMLInputElement>;
+
+  /**
+   * @prop {React.FocusEventHandler<HTMLInputElement>} [onCreatorBlur]
+   * @description
+   * A callback function invoked on TokenCreator blur
+   *
+   * @example
+   * ```js
+   * onCreatorBlur(e)
+   * ```
+   *
+   * @param {React.FocusEvent<HTMLInputElement>} event
+   * The FocusEvent of the input of TokenCreator
+   *
+   * @returns {void}
+   */
+  onCreatorBlur?: React.FocusEventHandler<HTMLInputElement>;
 }
 ```
 
