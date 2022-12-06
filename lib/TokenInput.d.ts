@@ -15,6 +15,7 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
     className?: string;
     placeholder?: string;
     readOnly?: boolean;
+    disableCreateOnBlur?: boolean;
     autoFocus?: boolean;
     tokenValues: ValueType[];
     separators?: TokenSeparator[];

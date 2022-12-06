@@ -10,6 +10,7 @@ export interface TokenCreatorRef {
 }
 interface TokenCreatorProps<ValueType = string> {
     placeholder?: string;
+    disableCreateOnBlur?: boolean;
     autoFocus: boolean;
     onFocus: React.FocusEventHandler<HTMLInputElement>;
     onBlur: React.FocusEventHandler<HTMLInputElement>;
