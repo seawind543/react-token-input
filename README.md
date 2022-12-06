@@ -613,7 +613,7 @@ export interface TokenProps<ValueType = string, ErrorType = string> {
   /**
    * @property {boolean} readOnly
    * @description
-   * Same as TokenInputProps {@see TokenInputProps[readOnly]}
+   * Same as TokenInputProps {@see 'TokenInputProps['readOnly']}
    */
   readOnly: boolean;
 
@@ -633,7 +633,7 @@ export interface TokenProps<ValueType = string, ErrorType = string> {
    * @template ValueType, ErrorType
    * @prop {OnGetTokenClassName<ValueType, ErrorType>} [onGetClassName]
    * @description
-   * Same as TokenInputProps {@see TokenInputProps[onGetTokenClassName]}
+   * Same as TokenInputProps {@see TokenInputProps['onGetTokenClassName']}
    */
   onGetClassName?: OnGetTokenClassName<ValueType, ErrorType>;
 
@@ -641,14 +641,14 @@ export interface TokenProps<ValueType = string, ErrorType = string> {
    * @template ValueType, ErrorType
    * @prop  {OnGetTokenDisplayLabel<ValueType, ErrorType>} [onGetTokenDisplayLabel=defaultGetTokenEditableValue]
    * @description
-   * Same as TokenInputProps {@see TokenInputProps[onGetTokenDisplayLabel]}
+   * Same as TokenInputProps {@see TokenInputProps['onGetTokenDisplayLabel']}
    */
   onGetDisplayLabel: OnGetTokenDisplayLabel<ValueType, ErrorType>;
 
   /**
    * @callback OnRenderTokenDeleteButtonContent
    * @description
-   * Same as TokenInputProps {@see TokenInputProps[onRenderTokenDeleteButtonContent]}
+   * Same as TokenInputProps {@see TokenInputProps['onRenderTokenDeleteButtonContent']}
    */
   onRenderDeleteButtonContent?: OnRenderTokenDeleteButtonContent;
 
@@ -656,7 +656,7 @@ export interface TokenProps<ValueType = string, ErrorType = string> {
    * @template ValueType, ErrorType
    * @callback OnGetIsTokenEditable
    * @description
-   * Same as TokenInputProps {@see TokenInputProps[onGetIsTokenEditable]}
+   * Same as TokenInputProps {@see TokenInputProps['onGetIsTokenEditable']}
    */
   onGetIsEditable: OnGetIsTokenEditable<ValueType, ErrorType>;
 
@@ -664,7 +664,7 @@ export interface TokenProps<ValueType = string, ErrorType = string> {
    * @template ValueType, ErrorType
    * @callback OnGetTokenEditableValue
    * @description
-   * Same as TokenInputProps {@see TokenInputProps[onGetTokenEditableValue]}
+   * Same as TokenInputProps {@see TokenInputProps['onGetTokenEditableValue']}
    */
   onGetEditableValue: OnGetTokenEditableValue<ValueType, ErrorType>;
 
@@ -672,7 +672,7 @@ export interface TokenProps<ValueType = string, ErrorType = string> {
    * @template ValueType
    * @callback OnBuildTokenValue
    * @description
-   * Same as TokenInputProps {@see TokenInputProps[onBuildTokenValue]}
+   * Same as TokenInputProps {@see TokenInputProps['onBuildTokenValue']}
    */
   onBuildTokenValue: OnBuildTokenValue<ValueType>;
 
@@ -680,7 +680,7 @@ export interface TokenProps<ValueType = string, ErrorType = string> {
    * @template ValueType, ErrorType
    * @callback OnGetTokenErrorMessage
    * @description
-   * Same as TokenInputProps {@see TokenInputProps[onGetTokenErrorMessage]}
+   * Same as TokenInputProps {@see TokenInputProps['onGetTokenErrorMessage']}
    */
   onGetErrorMessage: OnGetTokenErrorMessage<ValueType, ErrorType>;
 
