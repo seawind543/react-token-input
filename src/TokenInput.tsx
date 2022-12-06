@@ -96,6 +96,19 @@ export interface TokenInputRef {
    * @returns {InputString}
    */
   getCreatorValue: () => InputString;
+
+  /**
+   * @prop {function} createTokens
+   * @description
+   * Trigger tokens create
+   *
+   * @param {InputString} [value]
+   * The value for create tokens.
+   * If undefined, then apply the value of TokenCreator directly.
+   *
+   * @returns {void}
+   */
+  createTokens: (value?: InputString) => void;
 }
 
 /**
@@ -581,6 +594,7 @@ const TokenInput = <ValueType, ErrorType>(
     focusTokenCreator,
     setCreatorValue,
     getCreatorValue,
+    createTokens,
   } = useTokenCreatorRef();
 
   const {
@@ -651,8 +665,9 @@ const TokenInput = <ValueType, ErrorType>(
       focus: focusTokenCreator,
       setCreatorValue,
       getCreatorValue,
+      createTokens,
     }),
-    [focusTokenCreator, setCreatorValue, getCreatorValue]
+    [focusTokenCreator, setCreatorValue, getCreatorValue, createTokens]
   );
 
   return (

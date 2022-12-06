@@ -20,11 +20,17 @@ function useTokenCreatorRef() {
     return tokenCreatorRef.current?.getValue() ?? DEFAULT_INPUT_INIT_VALUE;
   }, []);
 
+  const createTokens: TokenCreatorRef['createTokens'] = useCallback(
+    (value) => tokenCreatorRef.current?.createTokens(value),
+    []
+  );
+
   return {
     tokenCreatorRef,
     focusTokenCreator,
     setCreatorValue,
     getCreatorValue,
+    createTokens,
   };
 }
 

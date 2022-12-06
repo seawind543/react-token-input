@@ -6,6 +6,7 @@ export interface TokenCreatorRef {
     focus: HTMLInputElement['focus'];
     setValue: (value: InputString) => void;
     getValue: () => InputString;
+    createTokens: (value?: InputString) => void;
 }
 interface TokenCreatorProps<ValueType = string> {
     placeholder?: string;

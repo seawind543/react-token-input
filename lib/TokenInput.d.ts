@@ -8,6 +8,7 @@ export interface TokenInputRef {
     focus: TokenCreatorRef['focus'];
     setCreatorValue: TokenCreatorRef['setValue'];
     getCreatorValue: () => InputString;
+    createTokens: (value?: InputString) => void;
 }
 export interface TokenInputProps<ValueType = string, ErrorType = string> {
     style?: CSSProperties;

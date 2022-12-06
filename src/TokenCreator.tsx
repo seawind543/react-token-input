@@ -59,6 +59,19 @@ export interface TokenCreatorRef {
    * @returns {InputString}
    */
   getValue: () => InputString;
+
+  /**
+   * @prop {function} createTokens
+   * @description
+   * Trigger tokens create
+   *
+   * @param {InputString} [value]
+   * The value for create tokens.
+   * If undefined, then apply the value of TokenCreator directly.
+   *
+   * @returns {void}
+   */
+  createTokens: (value?: InputString) => void;
 }
 
 /**
@@ -213,7 +226,7 @@ const TokenCreator = <ValueType,>(
   );
 
   const handleTokensCreate = useCallback(
-    (inputString: InputString) => {
+    (inputString: InputString = inputValue) => {
       // console.log('handleTokensCreate', `${inputString}`);
 
       /**
@@ -241,6 +254,7 @@ const TokenCreator = <ValueType,>(
       handleInputValueUpdate(DEFAULT_INPUT_INIT_VALUE);
     },
     [
+      inputValue,
       splitPattens,
       onPreprocess,
       onBuildTokenValue,
@@ -330,8 +344,9 @@ const TokenCreator = <ValueType,>(
       focus: (options) => inputRef.current?.getInput().focus(options),
       setValue: handleInputValueUpdate,
       getValue: () => inputValue,
+      createTokens: handleTokensCreate,
     }),
-    [handleInputValueUpdate, inputValue]
+    [handleInputValueUpdate, inputValue, handleTokensCreate]
   );
 
   return (
