@@ -5,6 +5,7 @@ import type { OnInputValueChange, OnPreprocess, OnBuildTokenValue } from './type
 export interface TokenCreatorRef {
     focus: HTMLInputElement['focus'];
     setValue: (value: InputString) => void;
+    getValue: () => InputString;
 }
 interface TokenCreatorProps<ValueType = string> {
     placeholder?: string;

@@ -50,6 +50,15 @@ export interface TokenCreatorRef {
    * @returns {void}
    */
   setValue: (value: InputString) => void;
+
+  /**
+   * @prop {function} [setValue]
+   * @description
+   * Get value of TokenCreator
+   *
+   * @returns {InputString}
+   */
+  getValue: () => InputString;
 }
 
 /**
@@ -320,8 +329,9 @@ const TokenCreator = <ValueType,>(
     () => ({
       focus: (options) => inputRef.current?.getInput().focus(options),
       setValue: handleInputValueUpdate,
+      getValue: () => inputValue,
     }),
-    [handleInputValueUpdate]
+    [handleInputValueUpdate, inputValue]
   );
 
   return (

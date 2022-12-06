@@ -496,6 +496,7 @@ Method     | Description   | Parameter     | Return
 ---------- | :------------ | :------------ | :------------
 focus  | Set focus on TokenInput. It will focus on the creator not the inline-editor | Same as [HTMLElement.focus()](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) | void |
 setCreatorValue  | Set value of TokenCreator | value: string | void
+getCreatorValue  | Get value of TokenCreator | void | string
 
 Could reference [Demo](https://seawind543.github.io/react-token-input/#example-ref-methods), and its source code `ExampleRefMethods` in the folder `examples/`.
 
