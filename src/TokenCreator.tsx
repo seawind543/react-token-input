@@ -280,18 +280,16 @@ const TokenCreator = <ValueType,>(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       // console.log('TokenCreator > handleInputValueChange');
       const { value: newInputValue } = e.target;
-      const lastChar = newInputValue.substring(newInputValue.length - 1);
-
-      const isTypingSeparators = splitPattens.test(lastChar);
-      if (isTypingSeparators === true) {
-        // User input a `Separator`, so create a token
-        handleTokensCreate(inputValue);
+      const isIncludesSeparators = splitPattens.test(newInputValue);
+      if (isIncludesSeparators) {
+        // User input includes `separator`, so trigger token creation
+        handleTokensCreate(newInputValue);
         return;
       }
 
       handleInputValueUpdate(newInputValue);
     },
-    [splitPattens, handleTokensCreate, inputValue, handleInputValueUpdate]
+    [splitPattens, handleTokensCreate, handleInputValueUpdate]
   );
 
   const {
