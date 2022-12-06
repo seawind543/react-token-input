@@ -1,11 +1,13 @@
 import React, { type CSSProperties, type ReactElement } from 'react';
 import { type TokenCreatorRef } from './TokenCreator';
 import { type TokenProps } from './Token';
-import type { TokenSeparator } from './types/mix';
+import type { InputString, TokenSeparator } from './types/mix';
 import type { SpecialKeyDownConfig } from './types/specialKeyDown';
 import type { OnInputValueChange, OnPreprocess, OnBuildTokenValue, OnTokenValueValidate, OnTokenValuesChange, OnGetTokenClassName, OnGetTokenDisplayLabel, OnRenderTokenDeleteButtonContent, OnGetIsTokenEditable, OnGetTokenEditableValue, OnGetTokenErrorMessage } from './types/interfaces';
 export interface TokenInputRef {
     focus: TokenCreatorRef['focus'];
+    setCreatorValue: TokenCreatorRef['setValue'];
+    getCreatorValue: () => InputString;
 }
 export interface TokenInputProps<ValueType = string, ErrorType = string> {
     style?: CSSProperties;

@@ -1,9 +1,11 @@
 import React from 'react';
-import type { TokenSeparator } from './types/mix';
+import type { InputString, TokenSeparator } from './types/mix';
 import type { SpecialKeyDownConfig } from './types/specialKeyDown';
 import type { OnInputValueChange, OnPreprocess, OnBuildTokenValue } from './types/interfaces';
 export interface TokenCreatorRef {
     focus: HTMLInputElement['focus'];
+    setValue: (value: InputString) => void;
+    getValue: () => InputString;
 }
 interface TokenCreatorProps<ValueType = string> {
     placeholder?: string;

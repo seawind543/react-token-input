@@ -65,6 +65,37 @@ export interface TokenInputRef {
    * @returns {void}
    */
   focus: TokenCreatorRef['focus'];
+
+  /**
+   * @prop {TokenCreatorRef['setValue']} [setCreatorValue]
+   * @description
+   * Set value of TokenCreator
+   *
+   * @example
+   * ```js
+   * tokenInputRef.current?.setCreatorValue('example');
+   * ```
+   *
+   * @param {InputString} value
+   * The value to set
+   *
+   * @returns {void}
+   */
+  setCreatorValue: TokenCreatorRef['setValue'];
+
+  /**
+   * @prop {function} [getCreatorValue]
+   * @description
+   * Get value of TokenCreator
+   *
+   * @example
+   * ```js
+   * tokenInputRef.current?.getCreatorValue();
+   * ```
+   *
+   * @returns {InputString}
+   */
+  getCreatorValue: () => InputString;
 }
 
 /**
@@ -545,7 +576,12 @@ const TokenInput = <ValueType, ErrorType>(
     onCreatorFocus,
     onCreatorBlur,
   });
-  const { tokenCreatorRef, focusTokenCreator } = useTokenCreatorRef();
+  const {
+    tokenCreatorRef,
+    focusTokenCreator,
+    setCreatorValue,
+    getCreatorValue,
+  } = useTokenCreatorRef();
 
   const {
     hasInvalidToken,
@@ -613,8 +649,10 @@ const TokenInput = <ValueType, ErrorType>(
     ref,
     () => ({
       focus: focusTokenCreator,
+      setCreatorValue,
+      getCreatorValue,
     }),
-    [focusTokenCreator]
+    [focusTokenCreator, setCreatorValue, getCreatorValue]
   );
 
   return (
