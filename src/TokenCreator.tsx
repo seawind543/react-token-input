@@ -23,8 +23,21 @@ import type {
   OnBuildTokenValue,
 } from './types/interfaces';
 
+/**
+ * @typedef {Object} TokenCreatorRef
+ */
 export interface TokenCreatorRef {
-  focus: () => void;
+  /**
+   * @prop {HTMLInputElement['focus']} [focus]
+   * @description
+   * Sets focus on TokenCreator
+   *
+   * @param {FocusOptions} options
+   * The focus options
+   *
+   * @returns {void}
+   */
+  focus: HTMLInputElement['focus'];
 }
 
 /**
@@ -293,7 +306,7 @@ const TokenCreator = <ValueType,>(
   useImperativeHandle(
     ref,
     () => ({
-      focus: () => inputRef.current?.getInput().focus(),
+      focus: (options) => inputRef.current?.getInput().focus(options),
     }),
     []
   );

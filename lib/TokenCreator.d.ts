@@ -3,7 +3,7 @@ import type { TokenSeparator } from './types/mix';
 import type { SpecialKeyDownConfig } from './types/specialKeyDown';
 import type { OnInputValueChange, OnPreprocess, OnBuildTokenValue } from './types/interfaces';
 export interface TokenCreatorRef {
-    focus: () => void;
+    focus: HTMLInputElement['focus'];
 }
 interface TokenCreatorProps<ValueType = string> {
     placeholder?: string;
