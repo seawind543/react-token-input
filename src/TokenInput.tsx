@@ -50,7 +50,7 @@ import type {
  */
 export interface TokenInputRef {
   /**
-   * @prop {TokenCreatorRef['focus']} [focus]
+   * @prop {TokenCreatorRef['focus']} focus
    * @description
    * Set focus on TokenCreator
    *
@@ -59,7 +59,7 @@ export interface TokenInputRef {
    * tokenInputRef.current?.focus();
    * ```
    *
-   * @param {FocusOptions} options
+   * @param {FocusOptions} [options]
    * The focus options
    *
    * @returns {void}
@@ -67,7 +67,7 @@ export interface TokenInputRef {
   focus: TokenCreatorRef['focus'];
 
   /**
-   * @prop {TokenCreatorRef['setValue']} [setCreatorValue]
+   * @prop {TokenCreatorRef['setValue']} setCreatorValue
    * @description
    * Set value of TokenCreator
    *
@@ -84,7 +84,7 @@ export interface TokenInputRef {
   setCreatorValue: TokenCreatorRef['setValue'];
 
   /**
-   * @prop {function} [getCreatorValue]
+   * @prop {function} getCreatorValue
    * @description
    * Get value of TokenCreator
    *

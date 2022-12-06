@@ -28,11 +28,11 @@ import type {
  */
 export interface TokenCreatorRef {
   /**
-   * @prop {HTMLInputElement['focus']} [focus]
+   * @prop {HTMLInputElement['focus']} focus
    * @description
    * Set focus on TokenCreator
    *
-   * @param {FocusOptions} options
+   * @param {FocusOptions} [options]
    * The focus options
    *
    * @returns {void}
@@ -40,7 +40,7 @@ export interface TokenCreatorRef {
   focus: HTMLInputElement['focus'];
 
   /**
-   * @prop {function} [setValue]
+   * @prop {function} setValue
    * @description
    * Set value of TokenCreator
    *
@@ -52,7 +52,7 @@ export interface TokenCreatorRef {
   setValue: (value: InputString) => void;
 
   /**
-   * @prop {function} [setValue]
+   * @prop {function} getValue
    * @description
    * Get value of TokenCreator
    *
