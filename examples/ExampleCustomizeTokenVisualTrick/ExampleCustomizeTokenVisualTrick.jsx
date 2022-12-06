@@ -56,7 +56,7 @@ const ExampleCustomizeTokenVisualTrick = () => {
         You could make a <b>Trick</b> by prop <b>onGetTokenDisplayLabel</b> to
         make the HTML element re-layout.
         <br />
-        Could be very helpful, in case the build-in HTML structure of{' '}
+        Could be very helpful, in case the built-in HTML structure of{' '}
         <b>Token</b> is not suited for you to customize visuals through only
         customizing CSS styles and you do NOT want to rebuild the whole{' '}
         <b>Token component</b> functionality.
@@ -108,13 +108,13 @@ const handleGetTokenDisplayLabel = (tokenValue, tokenMeta) => {
       </pre>
 
       <p>
-        To hide the <b>build-in delete button</b>. Use CSS selector with either
+        To hide the <b>built-in delete button</b>. Use CSS selector with either
         className or <b>{`[data-component-name="DeleteButton"]`}</b>
       </p>
       <pre>
         {`
 .example-customize-token-visual-trick [data-component-name="DeleteButton"] {
-  // Hide the build-in delete button
+  // Hide the built-in delete button
   display: none !important;
 }
         `}

@@ -21,6 +21,7 @@ import ExampleCustomizeSeparators from './ExampleCustomizeSeparators';
 import ExampleCustomizeToken from './ExampleCustomizeToken';
 import ExampleReadOnly from './ExampleReadOnly';
 import ExampleEditable from './ExampleEditable';
+import ExampleRefMethods from './ExampleRefMethods';
 import ExampleWithFormLibrary from './ExampleWithFormLibrary';
 import ExampleSpecialKeyDown from './ExampleSpecialKeyDown';
 
@@ -44,6 +45,7 @@ const examples = [
   <ExampleCustomizeToken key="ExampleCustomizeToken" />,
   <ExampleReadOnly key="ExampleReadOnly" />,
   <ExampleEditable key="ExampleEditable" />,
+  <ExampleRefMethods key="ExampleRefMethods" />,
   <ExampleWithFormLibrary key="ExampleWithFormLibrary" />,
   <ExampleSpecialKeyDown key="ExampleSpecialKeyDown" />,
 ];

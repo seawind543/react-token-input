@@ -69,19 +69,19 @@ Note: Sources code of Examples in the folder `examples`
 interface TokenInputProps<ValueType = string, ErrorType = string> {
   /**
    * @prop {CSSProperties} [style]
-   * @description An optional prop for assign style to the TokenInput
+   * @description An optional prop for assign style to TokenInput
    */
   style?: CSSProperties;
 
   /**
    * @prop {string} [className]
-   * @description An optional prop for assign class name to the TokenInput
+   * @description An optional prop for assign class name to TokenInput
    */
   className?: string;
 
   /**
    * @prop {string} [placeholder]
-   * @description An optional prop for assign placeholder to the TokenInput
+   * @description An optional prop for assign placeholder to TokenInput
    */
   placeholder?: string;
 
@@ -93,7 +93,9 @@ interface TokenInputProps<ValueType = string, ErrorType = string> {
 
   /**
    * @prop {boolean} [autoFocus = false]
-   * @description An optional prop to specific TokenInput is `autoFocus` mode or not
+   * @description
+   * An optional prop to specific TokenInput is `autoFocus` mode or not.
+   * Will be deprecated in the next major release. Took ref.current.focus() instead.
    */
   autoFocus?: boolean;
 
@@ -486,6 +488,31 @@ interface TokenInputProps<ValueType = string, ErrorType = string> {
 }
 ```
 
+## Methods in ref of TokenInput
+
+TokenInput provide the following method in the ref of it.
+
+Method    | Description   | Note
+---------- | :------------ | :---
+focus  | Sets focus on TokenInput. | It will focus on the creator not the inline-editor
+
+If you are using TypeScript, reference the code below for the typing of useRef.
+
+```TypeScript
+import TokenInput, { type TokenInputRef } from 'react-customize-token-input';
+const tokenInputRef = useRef<TokenInputRef>(null);
+// ... omit
+const handleFocusButtonClick = () => {
+  tokenInputRef.current?.focus();
+}
+// ... omit
+<TokenInput
+  ref={tokenInputRef}
+  tokenValues={values}
+  onTokenValuesChange={setValues}
+/>
+```
+
 ## Predefined KeyDown Event Handlers
 
 TokenInput has the following **Predefined** KeyDown event handlers.
@@ -561,7 +588,7 @@ Enter      | End editing and apply the new value. In case the new value is an `e
 
 ## Props of customizeTokenComponent
 
-Your CustomizeTokenComponent will receive these props from the TokenInput. You could decide where & how to use them to Customize your Token component.
+Your CustomizeTokenComponent will receive these props from TokenInput. You could decide where & how to use them to `customize` your Token component.
 
 Could also reference this [Example Demo](https://seawind543.github.io/react-token-input/#example-customize-token-component) and its source code `ExampleCustomizeToken` from the folder `examples`.
 

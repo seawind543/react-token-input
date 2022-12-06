@@ -2,6 +2,9 @@ import React from 'react';
 import type { TokenSeparator } from './types/mix';
 import type { SpecialKeyDownConfig } from './types/specialKeyDown';
 import type { OnInputValueChange, OnPreprocess, OnBuildTokenValue } from './types/interfaces';
+export interface TokenCreatorRef {
+    focus: HTMLInputElement['focus'];
+}
 interface TokenCreatorProps<ValueType = string> {
     placeholder?: string;
     autoFocus: boolean;
@@ -16,7 +19,8 @@ interface TokenCreatorProps<ValueType = string> {
     onNewTokenValuesAppend: (appendTokenValues: ValueType[]) => void;
     onLastTokenDelete: () => void;
 }
-declare const TokenCreator: <ValueType = string>(p: TokenCreatorProps<ValueType> & {
-    ref: React.Ref<HTMLInputElement>;
-}) => React.ReactElement | null;
-export default TokenCreator;
+declare const TokenCreator: <ValueType>(props: TokenCreatorProps<ValueType>, ref: React.ForwardedRef<TokenCreatorRef>) => JSX.Element;
+declare const WrappedTokenCreator: <ValueType = string>(p: TokenCreatorProps<ValueType> & {
+    ref: React.ForwardedRef<TokenCreatorRef>;
+}) => ReturnType<typeof TokenCreator>;
+export default WrappedTokenCreator;

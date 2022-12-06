@@ -1,10 +1,12 @@
 import React, {
+  forwardRef,
+  useImperativeHandle,
   useCallback,
   type CSSProperties,
   type ReactElement,
 } from 'react';
 import classNames from 'classnames';
-import TokenCreator from './TokenCreator';
+import TokenCreator, { type TokenCreatorRef } from './TokenCreator';
 import Token, { type TokenProps } from './Token';
 
 import useTokenInputFocusEffect from './hooks/useTokenInputFocusEffect';
@@ -44,25 +46,47 @@ import type {
 } from './types/interfaces';
 
 /**
+ * @typedef {Object} TokenInputRef
+ */
+export interface TokenInputRef {
+  /**
+   * @prop {TokenCreatorRef['focus']} [focus]
+   * @description
+   * Sets focus on TokenCreator
+   *
+   * @example
+   * ```js
+   * tokenInputRef.current?.focus();
+   * ```
+   *
+   * @param {FocusOptions} options
+   * The focus options
+   *
+   * @returns {void}
+   */
+  focus: TokenCreatorRef['focus'];
+}
+
+/**
  * @template ValueType, ErrorType
  * @typedef {Object} TokenInputProps
  */
 export interface TokenInputProps<ValueType = string, ErrorType = string> {
   /**
    * @prop {CSSProperties} [style]
-   * @description An optional prop for assign style to the TokenInput
+   * @description An optional prop for assign style to TokenInput
    */
   style?: CSSProperties;
 
   /**
    * @prop {string} [className]
-   * @description An optional prop for assign class name to the TokenInput
+   * @description An optional prop for assign class name to TokenInput
    */
   className?: string;
 
   /**
    * @prop {string} [placeholder]
-   * @description An optional prop for assign placeholder to the TokenInput
+   * @description An optional prop for assign placeholder to TokenInput
    */
   placeholder?: string;
 
@@ -74,7 +98,9 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
 
   /**
    * @prop {boolean} [autoFocus = false]
-   * @description An optional prop to specific TokenInput is `autoFocus` mode or not
+   * @description
+   * An optional prop to specific TokenInput is `autoFocus` mode or not.
+   * Will be deprecated in the next major release. Took ref.current.focus() instead.
    */
   autoFocus?: boolean;
 
@@ -459,8 +485,9 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
   // onBlur
 }
 
-const TokenInput = <ValueType = string, ErrorType = string>(
-  props: TokenInputProps<ValueType, ErrorType>
+const TokenInput = <ValueType, ErrorType>(
+  props: TokenInputProps<ValueType, ErrorType>,
+  ref?: React.ForwardedRef<TokenInputRef>
 ) => {
   const {
     className,
@@ -577,6 +604,14 @@ const TokenInput = <ValueType = string, ErrorType = string>(
 
   const TokenComponent = customizeTokenComponent || Token;
 
+  useImperativeHandle(
+    ref,
+    () => ({
+      focus: (options) => tokenCreatorRef.current?.focus(options),
+    }),
+    [tokenCreatorRef]
+  );
+
   return (
     <div
       data-component-name="TokenInput" // FIXME: This is a hack to get the component name.
@@ -635,4 +670,15 @@ const TokenInput = <ValueType = string, ErrorType = string>(
   );
 };
 
-export default TokenInput;
+const WrappedTokenInput = forwardRef(TokenInput) as <
+  ValueType = string,
+  ErrorType = string
+>(
+  p: TokenInputProps<ValueType, ErrorType> & {
+    ref?: React.ForwardedRef<TokenInputRef>;
+  }
+) => ReturnType<typeof TokenInput>;
+// Apply Type assertion to allow TypeScript type the generic type `ValueType` and `ErrorType`
+// https://fettblog.eu/typescript-react-generic-forward-refs/
+
+export default WrappedTokenInput;

@@ -1,8 +1,12 @@
 import React, { type CSSProperties, type ReactElement } from 'react';
+import { type TokenCreatorRef } from './TokenCreator';
 import { type TokenProps } from './Token';
 import type { TokenSeparator } from './types/mix';
 import type { SpecialKeyDownConfig } from './types/specialKeyDown';
 import type { OnInputValueChange, OnPreprocess, OnBuildTokenValue, OnTokenValueValidate, OnTokenValuesChange, OnGetTokenClassName, OnGetTokenDisplayLabel, OnRenderTokenDeleteButtonContent, OnGetIsTokenEditable, OnGetTokenEditableValue, OnGetTokenErrorMessage } from './types/interfaces';
+export interface TokenInputRef {
+    focus: TokenCreatorRef['focus'];
+}
 export interface TokenInputProps<ValueType = string, ErrorType = string> {
     style?: CSSProperties;
     className?: string;
@@ -28,5 +32,8 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
     onCreatorBlur?: React.FocusEventHandler<HTMLInputElement>;
     onCreatorKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
 }
-declare const TokenInput: <ValueType = string, ErrorType = string>(props: TokenInputProps<ValueType, ErrorType>) => JSX.Element;
-export default TokenInput;
+declare const TokenInput: <ValueType, ErrorType>(props: TokenInputProps<ValueType, ErrorType>, ref?: React.ForwardedRef<TokenInputRef>) => JSX.Element;
+declare const WrappedTokenInput: <ValueType = string, ErrorType = string>(p: TokenInputProps<ValueType, ErrorType> & {
+    ref?: React.ForwardedRef<TokenInputRef> | undefined;
+}) => ReturnType<typeof TokenInput>;
+export default WrappedTokenInput;

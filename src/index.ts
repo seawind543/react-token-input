@@ -1,4 +1,7 @@
-import TokenInput, { type TokenInputProps } from './TokenInput';
+import TokenInput, {
+  type TokenInputRef,
+  type TokenInputProps,
+} from './TokenInput';
 import type { TokenProps } from './Token';
 import {
   JS__TOKEN__DELETE_BUTTON__CLASS_NAME,
@@ -7,6 +10,12 @@ import {
 } from './constants';
 
 export {
+  /**
+   * @description
+   * The ref type of component TokenInput
+   */
+  TokenInputRef,
+
   /**
    * @description
    * The type of props of component TokenInput
