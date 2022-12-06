@@ -118,25 +118,25 @@ export interface TokenInputRef {
 export interface TokenInputProps<ValueType = string, ErrorType = string> {
   /**
    * @prop {CSSProperties} [style]
-   * @description An optional prop for assign style to TokenInput
+   * @description An optional prop, for assigning style to TokenInput
    */
   style?: CSSProperties;
 
   /**
    * @prop {string} [className]
-   * @description An optional prop for assign class name to TokenInput
+   * @description An optional prop, for assigning class name to TokenInput
    */
   className?: string;
 
   /**
    * @prop {string} [placeholder]
-   * @description An optional prop for assign placeholder to TokenInput
+   * @description An optional prop, for assigning placeholder to TokenInput
    */
   placeholder?: string;
 
   /**
    * @prop {boolean} [readOnly = false]
-   * @description An optional prop to control TokenInput is `readOnly mode` or not
+   * @description An optional prop, to control TokenInput is `readOnly mode`
    */
   readOnly?: boolean;
 
@@ -149,7 +149,7 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
   /**
    * @prop {boolean} [autoFocus = false]
    * @description
-   * An optional prop to control TokenInput is `autoFocus mode` or not.
+   * An optional prop, to control TokenInput is `autoFocus mode`.
    * Will be deprecated in the next major release. Took ref.current.focus() instead.
    */
   autoFocus?: boolean;

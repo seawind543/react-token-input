@@ -40,18 +40,22 @@ const ExampleRefMethods = () => {
     tokenInputRef.current?.createTokens(value);
   }, []);
 
+  const handleTokensCreateDefault = useCallback(() => {
+    tokenInputRef.current?.createTokens();
+  }, []);
+
   return (
     <>
       <h2>
         Methods in ref of TokenInput
         <CopyAnchor hashTag="example-ref-methods" />
       </h2>
-
       <p>
         This example demonstrates how to use ref to control TokenInput.
         <br />
-        Click the button to see the effect.
+        Note: Prop <b>disableCreateOnBlur</b> is applied in this example too.
       </p>
+      Click the button to see the effect.
       <ul>
         <li>
           <button onClick={handleFocusButtonClick}>Set focus</button>
@@ -66,12 +70,15 @@ const ExampleRefMethods = () => {
         <li>
           <button onClick={handleTokensCreate}>Create Token</button> with{' '}
           <input ref={createValueInputRef} defaultValue="abc, def," />
+          <br />
+          <button onClick={handleTokensCreateDefault}>Create Token</button> with
+          value in the creator.
         </li>
       </ul>
       <br />
-
       <TokenInput
         ref={tokenInputRef}
+        disableCreateOnBlur
         tokenValues={values}
         onTokenValuesChange={setValues}
         onCreatorFocus={handleCreatorFocus}
@@ -88,6 +95,7 @@ const handleFocusButtonClick = () => {
 
 <TokenInput
   ref={tokenInputRef}
+  disableCreateOnBlur
   tokenValues={values}
   onTokenValuesChange={setValues}
 />
