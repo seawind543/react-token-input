@@ -87,6 +87,13 @@ interface TokenCreatorProps<ValueType = string> {
   placeholder?: string;
 
   /**
+   * @prop {boolean} [disableCreateOnBlur]
+   * @description
+   * Same as TokenInputProps {@see TokenInputProps[disableCreateOnBlur]}
+   */
+  disableCreateOnBlur?: boolean;
+
+  /**
    * @prop {boolean} autoFocus
    * @description
    * Same as TokenInputProps {@see TokenInputProps[autoFocus]}
@@ -186,6 +193,8 @@ const TokenCreator = <ValueType,>(
 ) => {
   const {
     placeholder,
+
+    disableCreateOnBlur,
     autoFocus,
     onFocus,
     onBlur,
@@ -193,6 +202,7 @@ const TokenCreator = <ValueType,>(
 
     separators,
     specialKeyDown,
+
     onInputValueChange,
     onPreprocess,
     onBuildTokenValue,
@@ -322,10 +332,12 @@ const TokenCreator = <ValueType,>(
   const handleBlur = useCallback(
     (e: React.FocusEvent<HTMLInputElement>) => {
       // console.log('TokenCreator > handleBlur');
-      handleTokensCreate(inputValue);
+      if (!disableCreateOnBlur) {
+        handleTokensCreate(inputValue);
+      }
       onBlur(e);
     },
-    [handleTokensCreate, inputValue, onBlur]
+    [disableCreateOnBlur, handleTokensCreate, inputValue, onBlur]
   );
 
   const handlePaste = useCallback(

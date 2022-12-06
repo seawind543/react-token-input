@@ -141,6 +141,12 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
   readOnly?: boolean;
 
   /**
+   * @prop {boolean} [disableCreateOnBlur]
+   * @description An optional prop, to control TokenInput creates a new token when blurring on the creator
+   */
+  disableCreateOnBlur?: boolean;
+
+  /**
    * @prop {boolean} [autoFocus = false]
    * @description
    * An optional prop to control TokenInput is `autoFocus mode` or not.
@@ -538,6 +544,7 @@ const TokenInput = <ValueType, ErrorType>(
     placeholder,
     readOnly = false,
     autoFocus = false,
+    disableCreateOnBlur,
 
     tokenValues,
 
@@ -712,6 +719,7 @@ const TokenInput = <ValueType, ErrorType>(
           ref={tokenCreatorRef}
           placeholder={placeholder}
           autoFocus={autoFocus} // eslint-disable-line jsx-a11y/no-autofocus
+          disableCreateOnBlur={disableCreateOnBlur}
           onFocus={handleCreatorFocus}
           onBlur={handleCreatorBlur}
           onKeyDown={onCreatorKeyDown}
