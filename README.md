@@ -87,14 +87,14 @@ interface TokenInputProps<ValueType = string, ErrorType = string> {
 
   /**
    * @prop {boolean} [readOnly = false]
-   * @description An optional prop to specific TokenInput is `readOnly` mode or not
+   * @description An optional prop to control TokenInput is `readOnly mode` or not
    */
   readOnly?: boolean;
 
   /**
    * @prop {boolean} [autoFocus = false]
    * @description
-   * An optional prop to specific TokenInput is `autoFocus` mode or not.
+   * An optional prop to control TokenInput is `autoFocus mode` or not.
    * Will be deprecated in the next major release. Took ref.current.focus() instead.
    */
   autoFocus?: boolean;
