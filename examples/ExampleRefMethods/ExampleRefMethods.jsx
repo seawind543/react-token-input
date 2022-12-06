@@ -24,6 +24,12 @@ const ExampleRefMethods = () => {
     tokenInputRef.current?.focus();
   }, []);
 
+  const inputRef = useRef(null);
+  const handleSetValueButtonClick = useCallback(() => {
+    const value = inputRef.current?.value;
+    tokenInputRef.current?.setCreatorValue(value);
+  }, []);
+
   return (
     <>
       <h2>
@@ -39,6 +45,10 @@ const ExampleRefMethods = () => {
       <ul>
         <li>
           <button onClick={handleFocusButtonClick}>Set focus</button>
+        </li>
+        <li>
+          <button onClick={handleSetValueButtonClick}>Set value</button>
+          <input ref={inputRef} defaultValue="test" />
         </li>
       </ul>
       <br />

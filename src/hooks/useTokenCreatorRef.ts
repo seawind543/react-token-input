@@ -12,9 +12,14 @@ function useTokenCreatorRef() {
     []
   );
 
+  const setCreatorValue: TokenCreatorRef['setValue'] = useCallback((value) => {
+    tokenCreatorRef.current?.setValue(value);
+  }, []);
+
   return {
     tokenCreatorRef,
     focusTokenCreator,
+    setCreatorValue,
   };
 }
 

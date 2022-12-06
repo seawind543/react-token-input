@@ -6,6 +6,7 @@ import type { SpecialKeyDownConfig } from './types/specialKeyDown';
 import type { OnInputValueChange, OnPreprocess, OnBuildTokenValue, OnTokenValueValidate, OnTokenValuesChange, OnGetTokenClassName, OnGetTokenDisplayLabel, OnRenderTokenDeleteButtonContent, OnGetIsTokenEditable, OnGetTokenEditableValue, OnGetTokenErrorMessage } from './types/interfaces';
 export interface TokenInputRef {
     focus: TokenCreatorRef['focus'];
+    setCreatorValue: TokenCreatorRef['setValue'];
 }
 export interface TokenInputProps<ValueType = string, ErrorType = string> {
     style?: CSSProperties;
