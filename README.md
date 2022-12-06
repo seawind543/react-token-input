@@ -494,7 +494,7 @@ TokenInput provide the following method in the ref of it.
 
 Method    | Description   | Note
 ---------- | :------------ | :---
-focus  | Sets focus on TokenInput. | It will focus on the creator not the inline-editor
+focus  | Set focus on TokenInput. | It will focus on the creator not the inline-editor
 
 If you are using TypeScript, reference the code below for the typing of useRef.
 

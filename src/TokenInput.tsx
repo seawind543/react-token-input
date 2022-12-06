@@ -52,7 +52,7 @@ export interface TokenInputRef {
   /**
    * @prop {TokenCreatorRef['focus']} [focus]
    * @description
-   * Sets focus on TokenCreator
+   * Set focus on TokenCreator
    *
    * @example
    * ```js

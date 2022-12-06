@@ -37,7 +37,7 @@ const ExampleRefMethods = () => {
         Click the button to see the effect.
       </p>
       <div>
-        <button onClick={handleFocusButtonClick}>Make focus</button>
+        <button onClick={handleFocusButtonClick}>Set focus</button>
       </div>
       <br />
       <TokenInput

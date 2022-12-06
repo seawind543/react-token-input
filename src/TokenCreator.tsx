@@ -30,7 +30,7 @@ export interface TokenCreatorRef {
   /**
    * @prop {HTMLInputElement['focus']} [focus]
    * @description
-   * Sets focus on TokenCreator
+   * Set focus on TokenCreator
    *
    * @param {FocusOptions} options
    * The focus options
