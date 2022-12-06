@@ -50,7 +50,7 @@ import type {
  */
 export interface TokenInputRef {
   /**
-   * @prop {TokenCreatorRef['focus']} [focus]
+   * @prop {TokenCreatorRef['focus']} focus
    * @description
    * Set focus on TokenCreator
    *
@@ -59,7 +59,7 @@ export interface TokenInputRef {
    * tokenInputRef.current?.focus();
    * ```
    *
-   * @param {FocusOptions} options
+   * @param {FocusOptions} [options]
    * The focus options
    *
    * @returns {void}
@@ -67,7 +67,7 @@ export interface TokenInputRef {
   focus: TokenCreatorRef['focus'];
 
   /**
-   * @prop {TokenCreatorRef['setValue']} [setCreatorValue]
+   * @prop {TokenCreatorRef['setValue']} setCreatorValue
    * @description
    * Set value of TokenCreator
    *
@@ -84,7 +84,7 @@ export interface TokenInputRef {
   setCreatorValue: TokenCreatorRef['setValue'];
 
   /**
-   * @prop {function} [getCreatorValue]
+   * @prop {function} getCreatorValue
    * @description
    * Get value of TokenCreator
    *
@@ -96,6 +96,19 @@ export interface TokenInputRef {
    * @returns {InputString}
    */
   getCreatorValue: () => InputString;
+
+  /**
+   * @prop {function} createTokens
+   * @description
+   * Trigger tokens create
+   *
+   * @param {InputString} [value]
+   * The value for create tokens.
+   * If undefined, then apply the value of TokenCreator directly.
+   *
+   * @returns {void}
+   */
+  createTokens: (value?: InputString) => void;
 }
 
 /**
@@ -581,6 +594,7 @@ const TokenInput = <ValueType, ErrorType>(
     focusTokenCreator,
     setCreatorValue,
     getCreatorValue,
+    createTokens,
   } = useTokenCreatorRef();
 
   const {
@@ -651,8 +665,9 @@ const TokenInput = <ValueType, ErrorType>(
       focus: focusTokenCreator,
       setCreatorValue,
       getCreatorValue,
+      createTokens,
     }),
-    [focusTokenCreator, setCreatorValue, getCreatorValue]
+    [focusTokenCreator, setCreatorValue, getCreatorValue, createTokens]
   );
 
   return (

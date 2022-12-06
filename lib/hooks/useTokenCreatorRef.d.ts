@@ -4,5 +4,6 @@ declare function useTokenCreatorRef(): {
     focusTokenCreator: (options?: FocusOptions | undefined) => void;
     setCreatorValue: (value: string) => void;
     getCreatorValue: () => string;
+    createTokens: (value?: string | undefined) => void;
 };
 export default useTokenCreatorRef;
