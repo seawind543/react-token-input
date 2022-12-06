@@ -1,3 +1,3 @@
-export declare type InputString = string;
-export declare type TokenSeparator = string;
-export declare type Nullish = null | undefined;
+export type InputString = string;
+export type TokenSeparator = string;
+export type Nullish = null | undefined;
