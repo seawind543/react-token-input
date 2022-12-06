@@ -4,7 +4,7 @@ import { useState, useCallback } from 'react';
  * @callback TokenInputFocusHandler
  * @description
  * A callback function, which should be `invoked`
- * when end-user `focus/blur` on the TokenInput
+ * when end-user `focus/blur` on TokenInput
  *
  * Note:
  * Call this function to tell TokenInput to set the `focused` CSS effect
@@ -30,7 +30,7 @@ function useTokenInputFocusEffect(params: Params) {
    * @callback handleTokenInputFocus
    * @description
    * A callback function, which should be `invoked`
-   * when end-user `focus` into the TokenInput
+   * when end-user `focus` into TokenInput
    *
    * Call this function to tell TokenInput to set the `focused` CSS effect
    *
@@ -45,7 +45,7 @@ function useTokenInputFocusEffect(params: Params) {
    * @callback handleTokenInputBlur
    * @description
    * A callback function, which should be `invoked`
-   * when end-user `blur` from the TokenInput
+   * when end-user `blur` from TokenInput
    *
    * Call this function to tell TokenInput to remove the `focused` CSS effect
    *
