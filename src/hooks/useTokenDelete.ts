@@ -6,7 +6,7 @@ import type { OnTokenValuesChange } from '../types/interfaces';
 interface Params<ValueType> {
   tokenValues: ValueType[];
   onTokenValuesChange?: OnTokenValuesChange<ValueType>;
-  focusTokenCreator: () => void; // TODO: Update type by shared one
+  focusTokenCreator: HTMLInputElement['focus'];
 }
 
 function useTokenDelete<ValueType>(params: Params<ValueType>) {

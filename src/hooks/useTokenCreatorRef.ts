@@ -4,10 +4,13 @@ import type { TokenCreatorRef } from '../TokenCreator';
 function useTokenCreatorRef() {
   const tokenCreatorRef = useRef<TokenCreatorRef>(null);
 
-  const focusTokenCreator = useCallback(() => {
-    // console.log('handleTokenCreatorFocus');
-    tokenCreatorRef.current?.focus();
-  }, []);
+  const focusTokenCreator: HTMLInputElement['focus'] = useCallback(
+    (options) => {
+      // console.log('handleTokenCreatorFocus');
+      tokenCreatorRef.current?.focus(options);
+    },
+    []
+  );
 
   return {
     tokenCreatorRef,

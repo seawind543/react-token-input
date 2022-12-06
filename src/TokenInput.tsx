@@ -602,14 +602,19 @@ const TokenInput = <ValueType, ErrorType>(
     [onPreprocess]
   );
 
+  const handleClick = useCallback(
+    () => focusTokenCreator(),
+    [focusTokenCreator]
+  );
+
   const TokenComponent = customizeTokenComponent || Token;
 
   useImperativeHandle(
     ref,
     () => ({
-      focus: (options) => tokenCreatorRef.current?.focus(options),
+      focus: focusTokenCreator,
     }),
-    [tokenCreatorRef]
+    [focusTokenCreator]
   );
 
   return (
@@ -620,7 +625,7 @@ const TokenInput = <ValueType, ErrorType>(
         [styles['container--focused']]: isTokenInputFocused,
         [styles['container--errors']]: hasInvalidToken,
       })}
-      onClick={focusTokenCreator}
+      onClick={handleClick}
       role="presentation"
     >
       <div className={styles['token-list']}>
