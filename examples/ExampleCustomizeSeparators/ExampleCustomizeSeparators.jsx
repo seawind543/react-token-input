@@ -24,19 +24,21 @@ const ExampleCustomizeSeparators = () => {
       </h2>
       <p>
         In this example, you can use the <b>Plus-symbol</b> (+), the{' '}
-        <b>Blank</b> ( ) or the <b>Enter</b> to separate the input string into
-        tokens.
+        <b>Blank</b> ( ), the <b>Enter</b>, or even an <b>emoji</b> (💩) to
+        separate the input string into tokens.
       </p>
       <p>
-        Hint: Following input string will be separate into 3 tokens. Copy and
+        Hint: Following input string will be separate into 4 tokens. Copy and
         Paste to see the result.
       </p>
-      <pre>aaa+bbbb cc</pre>
+      <pre>aaa+bbbb cc💩ddd</pre>
 
       <TokenInput
         separators={[
           '\\+', // Plus-symbol
-          ' ', // Blank
+          '\\s', // Blank
+          '💩', // emoji
+          '\\t',
         ]}
         tokenValues={values}
         onTokenValuesChange={handleTokenValuesChange}
@@ -46,8 +48,9 @@ const ExampleCustomizeSeparators = () => {
         {`
 <TokenInput
   separators={[
-    '\\+', // Plus-symbol
-    ' ', // Blank
+    '\\\\+', // Plus-symbol
+    '\\\\s', // Blank
+    '💩', // emoji
   ]}
   tokenValues={values}
   onTokenValuesChange={handleTokenValuesChange}
@@ -66,8 +69,7 @@ import TokenInput, { DEFAULT_SEPARATORS } from 'react-customize-token-input';
 <TokenInput
   separators={[
     ...DEFAULT_SEPARATORS,
-    '\\+', // Plus-symbol
-    ' ', // Blank
+    '\\\\+', // Plus-symbol
   ]}
   tokenValues={values}
   onTokenValuesChange={handleTokenValuesChange}
