@@ -36,10 +36,13 @@ const ExampleRefMethods = () => {
         <br />
         Click the button to see the effect.
       </p>
-      <div>
-        <button onClick={handleFocusButtonClick}>Set focus</button>
-      </div>
+      <ul>
+        <li>
+          <button onClick={handleFocusButtonClick}>Set focus</button>
+        </li>
+      </ul>
       <br />
+
       <TokenInput
         ref={tokenInputRef}
         tokenValues={values}
