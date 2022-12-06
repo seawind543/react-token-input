@@ -57,7 +57,7 @@ It could be helpful to reproduce a single value into multiple values too. [Demo]
 
 See Live Examples: https://seawind543.github.io/react-token-input/
 
-Note: Sources code of Examples in the folder `examples`
+Note: Sources code of Examples in the folder `examples/`
 
 ## Props
 
@@ -492,9 +492,11 @@ interface TokenInputProps<ValueType = string, ErrorType = string> {
 
 TokenInput provide the following method in the ref of it.
 
-Method    | Description   | Note
----------- | :------------ | :---
-focus  | Sets focus on TokenInput. | It will focus on the creator not the inline-editor
+Method     | Description   | Parameter     | Return
+---------- | :------------ | :------------ | :------------
+focus  | Set focus on TokenInput. It will focus on the creator not the inline-editor | Same as [HTMLElement.focus()](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) | void |
+
+Could reference [Demo](https://seawind543.github.io/react-token-input/#example-ref-methods), and its source code `ExampleRefMethods` in the folder `examples/`.
 
 If you are using TypeScript, reference the code below for the typing of useRef.
 
@@ -590,7 +592,7 @@ Enter      | End editing and apply the new value. In case the new value is an `e
 
 Your CustomizeTokenComponent will receive these props from TokenInput. You could decide where & how to use them to `customize` your Token component.
 
-Could also reference this [Example Demo](https://seawind543.github.io/react-token-input/#example-customize-token-component) and its source code `ExampleCustomizeToken` from the folder `examples`.
+Could also reference this [Demo](https://seawind543.github.io/react-token-input/#example-customize-token-component) and its source code `ExampleCustomizeToken` in the folder `examples/`.
 
 ```JavaScript
 /**
