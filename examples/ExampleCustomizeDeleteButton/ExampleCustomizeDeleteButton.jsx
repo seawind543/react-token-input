@@ -37,7 +37,7 @@ const ExampleCustomizeDeleteButton = () => {
         Use prop <b>onRenderTokenDeleteButtonContent</b> to customize the
         content of the Delete Button of Token.
         <br />
-        For example, replace the <b>Build-in x</b> by{' '}
+        For example, replace the <b>Built-in x</b> by{' '}
         <a
           href="https://fonts.google.com/icons"
           target="_blank"

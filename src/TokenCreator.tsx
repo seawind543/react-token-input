@@ -82,21 +82,21 @@ interface TokenCreatorProps<ValueType = string> {
   /**
    * @prop {string} [placeholder]
    * @description
-   * Same as TokenInputProps {@see TokenInputProps[placeholder]}
+   * Same as TokenInputProps {@see TokenInputProps['placeholder']}
    */
   placeholder?: string;
 
   /**
    * @prop {boolean} [disableCreateOnBlur]
    * @description
-   * Same as TokenInputProps {@see TokenInputProps[disableCreateOnBlur]}
+   * Same as TokenInputProps {@see TokenInputProps['disableCreateOnBlur']}
    */
   disableCreateOnBlur?: boolean;
 
   /**
    * @prop {boolean} autoFocus
    * @description
-   * Same as TokenInputProps {@see TokenInputProps[autoFocus]}
+   * Same as TokenInputProps {@see TokenInputProps['autoFocus']}
    */
   autoFocus: boolean;
 
@@ -135,34 +135,34 @@ interface TokenCreatorProps<ValueType = string> {
   /**
    * @prop {TokenSeparator[]} separators
    * @description
-   * Same as TokenInputProps {@see TokenInputProps[separators]}
+   * Same as TokenInputProps {@see TokenInputProps['separators']}
    */
   separators: TokenSeparator[];
 
   /**
    * @prop {SpecialKeyDownConfig} specialKeyDown
    * @description
-   * Same as TokenInputProps {@see TokenInputProps[specialKeyDown]}
+   * Same as TokenInputProps {@see TokenInputProps['specialKeyDown']}
    */
   specialKeyDown: SpecialKeyDownConfig;
 
   /**
    * @prop {OnInputValueChange} [onInputValueChange]
    * @description
-   * Same as TokenInputProps {@see TokenInputProps[specialKeyDown]}
+   * Same as TokenInputProps {@see TokenInputProps['onInputValueChange']}
    */
   onInputValueChange?: OnInputValueChange;
 
   /**
    * @prop {SpecialKeyDownConfig} onPreprocess
    * @description
-   * Same as TokenInputProps {@see TokenInputProps[onPreprocess]}
+   * Same as TokenInputProps {@see TokenInputProps['onPreprocess']}
    */
   onPreprocess: OnPreprocess;
   /**
    * @prop {OnBuildTokenValue<ValueType>} onBuildTokenValue
    * @description
-   * Same as TokenInputProps {@see TokenInputProps[onBuildTokenValue]}
+   * Same as TokenInputProps {@see TokenInputProps['onBuildTokenValue']}
    */
   onBuildTokenValue: OnBuildTokenValue<ValueType>;
 
