@@ -15,16 +15,16 @@ import type { TokenMeta } from '../types/token';
  * @param {VT} tokenValue
  * The tokenValue built by `onBuildTokenValue`
  *
- * @param {TokenMeta<ErrorType>} tokenMeta
+ * @param {TokenMeta<ET>} tokenMeta
  * The token's meta data
  *
  * @returns {string | undefined}
  * The Error Message (string) to describe the invalid token.
  * Will return `undefined` when `tokenMeta.error` is not `string`
  */
-const defaultGetTokenErrorMessage = <VT, ErrorType>(
+const defaultGetTokenErrorMessage = <VT, ET>(
   _: VT,
-  tokenMeta: TokenMeta<ErrorType>,
+  tokenMeta: TokenMeta<ET>,
 ): string | undefined => {
   // Check if the tokenMeta.error is `string`, or `Nullish`
   const { error } = tokenMeta;

@@ -1,8 +1,8 @@
 import type { TokenIndex, TokenMeta } from '../types/token';
 
 /**
- * @template VT, ErrorType
- * @callback buildTokenMeta<VT, ErrorType>
+ * @template VT, ET
+ * @callback buildTokenMeta<VT, ET>
  * @description
  * Internal function for TokenInput to
  * build token data and meta with customize data
@@ -12,7 +12,7 @@ import type { TokenIndex, TokenMeta } from '../types/token';
  * buildTokenMeta(customizeError, tokenValue, tokenIndex)
  * ```
  *
- * @param {TokenMeta<ErrorType>['error']} customizeError
+ * @param {TokenMeta<ET>['error']} customizeError
  * The return of callback `onTokenValueValidate`
  *
  * @param {VT} tokenValue
@@ -21,14 +21,14 @@ import type { TokenIndex, TokenMeta } from '../types/token';
  * @param {TokenIndex} tokenIndex
  * The array index of this tokenValue in tokenValues
  *
- * @returns {TokenMeta<ErrorType>}
+ * @returns {TokenMeta<ET>}
  * The token's meta data
  */
-const buildTokenMeta = <VT, ErrorType>(
-  customizeError: TokenMeta<ErrorType>['error'],
+const buildTokenMeta = <VT, ET>(
+  customizeError: TokenMeta<ET>['error'],
   tokenValue: VT,
   tokenIndex: TokenIndex,
-): TokenMeta<ErrorType> => {
+): TokenMeta<ET> => {
   return {
     // TODO: Consider uuid
     key: `${JSON.stringify(tokenValue)}-${Date.now()}-${tokenIndex}`,

@@ -4,16 +4,15 @@ import buildTokenMeta from '../utils/buildTokenMeta';
 
 import type { OnTokenValueValidate } from '../types/interfaces';
 
-interface Params<VT, ErrorType> {
+interface Params<VT, ET> {
   tokenValues: VT[];
-  onTokenValueValidate: OnTokenValueValidate<VT, ErrorType>;
+  onTokenValueValidate: OnTokenValueValidate<VT, ET>;
 }
 
-function useTokensUpdate<VT, ErrorType>(params: Params<VT, ErrorType>) {
+function useTokensUpdate<VT, ET>(params: Params<VT, ET>) {
   const { tokenValues, onTokenValueValidate } = params;
 
-  const { tokenMetas, setTokenMetas, setTokenActivated } =
-    useTokenMetas<ErrorType>();
+  const { tokenMetas, setTokenMetas, setTokenActivated } = useTokenMetas<ET>();
   const [hasInvalidToken, setHasInvalidToken] = useState<boolean>(false);
 
   // Use this internalTokenValues to `render` to avoid

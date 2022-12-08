@@ -108,7 +108,7 @@ export interface OnTokenValuesChange<VT> {
 }
 
 /**
- * @template VT, ErrorType
+ * @template VT, ET
  * @callback OnTokenValueValidate
  * @description
  * A callback function to validate a tokenValue
@@ -128,26 +128,26 @@ export interface OnTokenValuesChange<VT> {
  * @param {VT[]} tokenValues
  * The array of tokenValue of TokenInput
  *
- * @returns {TokenMeta<ErrorType>['error']}
+ * @returns {TokenMeta<ET>['error']}
  * The customized error.
  * Specific the token's validate status or errorMessage.
  * Could be `an error message` to display, or an error object for further operations.
  *
- * @see TokenMeta for more information about TokenMeta<ErrorType>['error']
+ * @see TokenMeta for more information about TokenMeta<ET>['error']
  *
  * Note: Return `Nullish` types means the token is valid.
  * @see Nullish
  */
-export interface OnTokenValueValidate<VT, ErrorType> {
+export interface OnTokenValueValidate<VT, ET> {
   (
     tokenValue: VT,
     tokenIndex: TokenIndex,
     tokenValues: VT[],
-  ): TokenMeta<ErrorType>['error'];
+  ): TokenMeta<ET>['error'];
 }
 
 /**
- * @template VT, ErrorType
+ * @template VT, ET
  * @callback OnGetTokenClassName
  * @description
  * A callback function to getting customizes `className` to set on a `token`
@@ -159,18 +159,18 @@ export interface OnTokenValueValidate<VT, ErrorType> {
  * @param {VT} tokenValue
  * The tokenValue built by `onBuildTokenValue`
  *
- * @param {TokenMeta<ErrorType>} tokenMeta
+ * @param {TokenMeta<ET>} tokenMeta
  * The token's meta data
  *
  * @returns {undefined | string}
  * The customizes className
  */
-export interface OnGetTokenClassName<VT, ErrorType> {
-  (tokenValue: VT, tokenMeta: TokenMeta<ErrorType>): undefined | string;
+export interface OnGetTokenClassName<VT, ET> {
+  (tokenValue: VT, tokenMeta: TokenMeta<ET>): undefined | string;
 }
 
 /**
- * @template VT, ErrorType
+ * @template VT, ET
  * @callback OnGetTokenDisplayLabel
  * @description
  * A callback function to getting displayable `label` of a token
@@ -185,14 +185,14 @@ export interface OnGetTokenClassName<VT, ErrorType> {
  * @param {VT} tokenValue
  * The tokenValue built by `onBuildTokenValue`
  *
- * @param {TokenMeta<ErrorType>} tokenMeta
+ * @param {TokenMeta<ET>} tokenMeta
  * The token's meta data
  *
  * @returns {InputString | ReactNode}
  * The token's display content.
  */
-export interface OnGetTokenDisplayLabel<VT, ErrorType> {
-  (tokenValue: VT, tokenMeta: TokenMeta<ErrorType>): InputString | ReactNode;
+export interface OnGetTokenDisplayLabel<VT, ET> {
+  (tokenValue: VT, tokenMeta: TokenMeta<ET>): InputString | ReactNode;
 }
 
 /**
@@ -215,7 +215,7 @@ export interface OnRenderTokenDeleteButtonContent {
 }
 
 /**
- * @template VT, ErrorType
+ * @template VT, ET
  * @callback OnGetIsTokenEditable
  * @description
  * A callback function to determine whether the token is `inline editable`.
@@ -228,19 +228,19 @@ export interface OnRenderTokenDeleteButtonContent {
  * @param {VT} tokenValue
  * The tokenValue built by `onBuildTokenValue`
  *
- * @param {TokenMeta<ErrorType>} tokenMeta
+ * @param {TokenMeta<ET>} tokenMeta
  * The token's meta data
  *
  * @returns {boolean}
  * - `true`: Editable.
  * - `false`: Not editable.
  */
-export interface OnGetIsTokenEditable<VT, ErrorType> {
-  (tokenValue: VT, tokenMeta: TokenMeta<ErrorType>): boolean;
+export interface OnGetIsTokenEditable<VT, ET> {
+  (tokenValue: VT, tokenMeta: TokenMeta<ET>): boolean;
 }
 
 /**
- * @template VT, ErrorType
+ * @template VT, ET
  * @callback OnGetTokenEditableValue
  * @description
  * A callback function to getting `string input value`
@@ -254,18 +254,18 @@ export interface OnGetIsTokenEditable<VT, ErrorType> {
  * @param {VT} tokenValue
  * The tokenValue built by `onBuildTokenValue`
  *
- * @param {TokenMeta<ErrorType>} tokenMeta
+ * @param {TokenMeta<ET>} tokenMeta
  * The token's meta data
  *
  * @returns {InputString}
  * The value for end-user to `edit` in an input field
  */
-export interface OnGetTokenEditableValue<VT, ErrorType> {
-  (tokenValue: VT, tokenMeta: TokenMeta<ErrorType>): InputString;
+export interface OnGetTokenEditableValue<VT, ET> {
+  (tokenValue: VT, tokenMeta: TokenMeta<ET>): InputString;
 }
 
 /**
- * @template VT, ErrorType
+ * @template VT, ET
  * @callback OnGetTokenErrorMessage
  * @description
  * A callback function to getting the `Error Message` to
@@ -279,7 +279,7 @@ export interface OnGetTokenEditableValue<VT, ErrorType> {
  * @param {VT} tokenValue
  * The tokenValue built by `onBuildTokenValue`
  *
- * @param {TokenMeta<ErrorType>} tokenMeta
+ * @param {TokenMeta<ET>} tokenMeta
  * The token's meta data
  *
  * @returns {string | Nullish}
@@ -287,6 +287,6 @@ export interface OnGetTokenEditableValue<VT, ErrorType> {
  * Return `string type` will let the built-in Token component apply the message
  * into the `title` attribute. Otherwise, will simply be ignored
  */
-export interface OnGetTokenErrorMessage<VT, ErrorType> {
-  (tokenValue: VT, tokenMeta: TokenMeta<ErrorType>): string | Nullish;
+export interface OnGetTokenErrorMessage<VT, ET> {
+  (tokenValue: VT, tokenMeta: TokenMeta<ET>): string | Nullish;
 }

@@ -12,15 +12,15 @@ interface HandleTokenEditEnd<VT> {
   (targetIndex: TokenIndex): (newTokenValue?: VT) => void;
 }
 
-interface Params<VT, ErrorType> {
+interface Params<VT, ET> {
   tokenValues: VT[];
   onTokenValuesChange?: OnTokenValuesChange<VT>;
-  setTokenActivated: SetTokenActivated<ErrorType>;
+  setTokenActivated: SetTokenActivated<ET>;
   handleTokenInputFocus: TokenInputFocusHandler;
   handleTokenInputBlur: TokenInputFocusHandler;
 }
 
-function useTokenEdit<VT, ErrorType>(params: Params<VT, ErrorType>) {
+function useTokenEdit<VT, ET>(params: Params<VT, ET>) {
   const {
     tokenValues,
     onTokenValuesChange,
