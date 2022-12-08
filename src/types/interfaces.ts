@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { InputString, Nullish } from './mix';
-import { TokenIndex, TokenMeta } from './token';
+import { Index, TokenMeta } from './token';
 
 /**
  * @callback OnInputValueChange
@@ -116,13 +116,13 @@ export interface OnTokenValuesChange<VT> {
  *
  * @example
  * ```js
- * onTokenValueValidate(tokenValue, tokenIndex, tokenValues)
+ * onTokenValueValidate(tokenValue, index, tokenValues)
  * ```
  *
  * @param {VT} tokenValue
  * The tokenValue built by `onBuildTokenValue`
  *
- * @param {TokenIndex} tokenIndex
+ * @param {Index} index
  * The array index of this tokenValue in tokenValues
  *
  * @param {VT[]} tokenValues
@@ -139,11 +139,7 @@ export interface OnTokenValuesChange<VT> {
  * @see Nullish
  */
 export interface OnTokenValueValidate<VT, ET> {
-  (
-    tokenValue: VT,
-    tokenIndex: TokenIndex,
-    tokenValues: VT[],
-  ): TokenMeta<ET>['error'];
+  (tokenValue: VT, index: Index, tokenValues: VT[]): TokenMeta<ET>['error'];
 }
 
 /**

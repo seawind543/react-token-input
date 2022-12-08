@@ -1,10 +1,10 @@
 import type { Nullish } from './mix';
 
 /**
- * @typedef {number} TokenIndex
+ * @typedef {number} Index
  * @description The array index of token in the tokens
  */
-export type TokenIndex = number;
+export type Index = number;
 
 /**
  * @template ET

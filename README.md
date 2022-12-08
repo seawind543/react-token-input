@@ -218,13 +218,13 @@ interface TokenInputProps<VT = string, ET = string> {
    *
    * @example
    * ```js
-   * onTokenValueValidate(tokenValue, tokenIndex, tokenValues)
+   * onTokenValueValidate(tokenValue, index, tokenValues)
    * ```
    *
    * @param {VT} tokenValue
    * The tokenValue built by `onBuildTokenValue`
    *
-   * @param {TokenIndex} tokenIndex
+   * @param {Index} index
    * The array index of this tokenValue in tokenValues
    *
    * @param {VT[]} tokenValues

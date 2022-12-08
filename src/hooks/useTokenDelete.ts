@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-import type { TokenIndex } from '../types/token';
+import type { Index } from '../types/token';
 import type { OnTokenValuesChange } from '../types/interfaces';
 
 interface Params<VT> {
@@ -13,7 +13,7 @@ function useTokenDelete<VT>(params: Params<VT>) {
   const { tokenValues, onTokenValuesChange, focusTokenCreator } = params;
 
   const deleteToken = useCallback(
-    (targetIndex: TokenIndex) => {
+    (targetIndex: Index) => {
       const newTokenValues = [...tokenValues];
       newTokenValues.splice(targetIndex, 1);
       onTokenValuesChange?.(newTokenValues);
@@ -28,7 +28,7 @@ function useTokenDelete<VT>(params: Params<VT>) {
   );
 
   const handleTokenDelete = useCallback(
-    (targetIndex: TokenIndex) => () => {
+    (targetIndex: Index) => () => {
       // console.log('handleTokenDelete', targetIndex);
       deleteToken(targetIndex);
     },

@@ -1,9 +1,9 @@
 import { useState, useCallback } from 'react';
 
-import type { TokenMeta, TokenIndex } from '../types/token';
+import type { TokenMeta, Index } from '../types/token';
 
 export interface SetTokenActivated<ET> {
-  (targetIndex: TokenIndex, activated: TokenMeta<ET>['activated']): void;
+  (targetIndex: Index, activated: TokenMeta<ET>['activated']): void;
 }
 
 function useTokenMetas<ET>() {

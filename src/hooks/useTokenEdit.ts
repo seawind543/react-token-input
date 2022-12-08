@@ -1,15 +1,15 @@
 import { useCallback } from 'react';
 
 import type { OnTokenValuesChange } from '../types/interfaces';
-import type { TokenIndex } from '../types/token';
+import type { Index } from '../types/token';
 import type { SetTokenActivated } from './useTokenMetas';
 import type { TokenInputFocusHandler } from './useTokenInputFocusEffect';
 
 interface HandleTokenEditStart {
-  (targetIndex: TokenIndex): () => void;
+  (targetIndex: Index): () => void;
 }
 interface HandleTokenEditEnd<VT> {
-  (targetIndex: TokenIndex): (newTokenValue?: VT) => void;
+  (targetIndex: Index): (newTokenValue?: VT) => void;
 }
 
 interface Params<VT, ET> {
@@ -30,7 +30,7 @@ function useTokenEdit<VT, ET>(params: Params<VT, ET>) {
   } = params;
 
   const handleTokenEditStart: HandleTokenEditStart = useCallback(
-    (targetIndex: TokenIndex) => () => {
+    (targetIndex: Index) => () => {
       // console.log('handleTokenEditStart; targetIndex', targetIndex);
       setTokenActivated(targetIndex, true);
       handleTokenInputFocus();
@@ -39,7 +39,7 @@ function useTokenEdit<VT, ET>(params: Params<VT, ET>) {
   );
 
   const handleTokenEditEnd: HandleTokenEditEnd<VT> = useCallback(
-    (targetIndex: TokenIndex) => (newTokenValue) => {
+    (targetIndex: Index) => (newTokenValue) => {
       // console.log(
       //   'handleTokenEditEnd; targetIndex',
       //   targetIndex,
