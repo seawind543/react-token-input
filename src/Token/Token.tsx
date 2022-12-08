@@ -34,10 +34,10 @@ const handleInlineEditClick = (e: React.MouseEvent<HTMLDivElement>) => {
 };
 
 /**
- * @template ValueType, ErrorType
+ * @template VT, ErrorType
  * @typedef {Object} TokenProps
  */
-export interface TokenProps<ValueType = string, ErrorType = string> {
+export interface TokenProps<VT = string, ErrorType = string> {
   /**
    * @prop {boolean} readOnly
    * @description
@@ -46,10 +46,10 @@ export interface TokenProps<ValueType = string, ErrorType = string> {
   readOnly: boolean;
 
   /**
-   * @type {ValueType}
+   * @type {VT}
    * @description This token's tokenValue
    */
-  tokenValue: ValueType;
+  tokenValue: VT;
 
   /**
    * @template ErrorType
@@ -59,20 +59,20 @@ export interface TokenProps<ValueType = string, ErrorType = string> {
   tokenMeta: TokenMeta<ErrorType>;
 
   /**
-   * @template ValueType, ErrorType
-   * @prop {OnGetTokenClassName<ValueType, ErrorType>} [onGetClassName]
+   * @template VT, ErrorType
+   * @prop {OnGetTokenClassName<VT, ErrorType>} [onGetClassName]
    * @description
    * Same as TokenInputProps {@see TokenInputProps['onGetTokenClassName']}
    */
-  onGetClassName?: OnGetTokenClassName<ValueType, ErrorType>;
+  onGetClassName?: OnGetTokenClassName<VT, ErrorType>;
 
   /**
-   * @template ValueType, ErrorType
-   * @prop  {OnGetTokenDisplayLabel<ValueType, ErrorType>} [onGetTokenDisplayLabel=defaultGetTokenEditableValue]
+   * @template VT, ErrorType
+   * @prop  {OnGetTokenDisplayLabel<VT, ErrorType>} [onGetTokenDisplayLabel=defaultGetTokenEditableValue]
    * @description
    * Same as TokenInputProps {@see TokenInputProps['onGetTokenDisplayLabel']}
    */
-  onGetDisplayLabel: OnGetTokenDisplayLabel<ValueType, ErrorType>;
+  onGetDisplayLabel: OnGetTokenDisplayLabel<VT, ErrorType>;
 
   /**
    * @callback OnRenderTokenDeleteButtonContent
@@ -82,36 +82,36 @@ export interface TokenProps<ValueType = string, ErrorType = string> {
   onRenderDeleteButtonContent?: OnRenderTokenDeleteButtonContent;
 
   /**
-   * @template ValueType, ErrorType
+   * @template VT, ErrorType
    * @callback OnGetIsTokenEditable
    * @description
    * Same as TokenInputProps {@see TokenInputProps['onGetIsTokenEditable']}
    */
-  onGetIsEditable: OnGetIsTokenEditable<ValueType, ErrorType>;
+  onGetIsEditable: OnGetIsTokenEditable<VT, ErrorType>;
 
   /**
-   * @template ValueType, ErrorType
+   * @template VT, ErrorType
    * @callback OnGetTokenEditableValue
    * @description
    * Same as TokenInputProps {@see TokenInputProps['onGetTokenEditableValue']}
    */
-  onGetEditableValue: OnGetTokenEditableValue<ValueType, ErrorType>;
+  onGetEditableValue: OnGetTokenEditableValue<VT, ErrorType>;
 
   /**
-   * @template ValueType
+   * @template VT
    * @callback OnBuildTokenValue
    * @description
    * Same as TokenInputProps {@see TokenInputProps['onBuildTokenValue']}
    */
-  onBuildTokenValue: OnBuildTokenValue<ValueType>;
+  onBuildTokenValue: OnBuildTokenValue<VT>;
 
   /**
-   * @template ValueType, ErrorType
+   * @template VT, ErrorType
    * @callback OnGetTokenErrorMessage
    * @description
    * Same as TokenInputProps {@see TokenInputProps['onGetTokenErrorMessage']}
    */
-  onGetErrorMessage: OnGetTokenErrorMessage<ValueType, ErrorType>;
+  onGetErrorMessage: OnGetTokenErrorMessage<VT, ErrorType>;
 
   /**
    * @callback
@@ -153,7 +153,7 @@ export interface TokenProps<ValueType = string, ErrorType = string> {
    * onEditEnd();
    * ```
    *
-   * @param {ValueType} [newTokenValue]
+   * @param {VT} [newTokenValue]
    * The new tokenValue built by `onBuildTokenValue.
    *
    * Note:
@@ -163,7 +163,7 @@ export interface TokenProps<ValueType = string, ErrorType = string> {
    *
    * @returns {void}
    */
-  onEditEnd: (newTokenValue?: ValueType) => void;
+  onEditEnd: (newTokenValue?: VT) => void;
 
   /**
    * @callback
@@ -186,8 +186,8 @@ export interface TokenProps<ValueType = string, ErrorType = string> {
   onDelete: () => void;
 }
 
-const Token = <ValueType = string, ErrorType = string>(
-  props: TokenProps<ValueType, ErrorType>,
+const Token = <VT = string, ErrorType = string>(
+  props: TokenProps<VT, ErrorType>,
 ) => {
   const {
     readOnly,

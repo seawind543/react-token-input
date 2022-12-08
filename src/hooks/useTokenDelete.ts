@@ -3,13 +3,13 @@ import { useCallback } from 'react';
 import type { TokenIndex } from '../types/token';
 import type { OnTokenValuesChange } from '../types/interfaces';
 
-interface Params<ValueType> {
-  tokenValues: ValueType[];
-  onTokenValuesChange?: OnTokenValuesChange<ValueType>;
+interface Params<VT> {
+  tokenValues: VT[];
+  onTokenValuesChange?: OnTokenValuesChange<VT>;
   focusTokenCreator: HTMLInputElement['focus'];
 }
 
-function useTokenDelete<ValueType>(params: Params<ValueType>) {
+function useTokenDelete<VT>(params: Params<VT>) {
   const { tokenValues, onTokenValuesChange, focusTokenCreator } = params;
 
   const deleteToken = useCallback(

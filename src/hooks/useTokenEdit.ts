@@ -8,21 +8,19 @@ import type { TokenInputFocusHandler } from './useTokenInputFocusEffect';
 interface HandleTokenEditStart {
   (targetIndex: TokenIndex): () => void;
 }
-interface HandleTokenEditEnd<ValueType> {
-  (targetIndex: TokenIndex): (newTokenValue?: ValueType) => void;
+interface HandleTokenEditEnd<VT> {
+  (targetIndex: TokenIndex): (newTokenValue?: VT) => void;
 }
 
-interface Params<ValueType, ErrorType> {
-  tokenValues: ValueType[];
-  onTokenValuesChange?: OnTokenValuesChange<ValueType>;
+interface Params<VT, ErrorType> {
+  tokenValues: VT[];
+  onTokenValuesChange?: OnTokenValuesChange<VT>;
   setTokenActivated: SetTokenActivated<ErrorType>;
   handleTokenInputFocus: TokenInputFocusHandler;
   handleTokenInputBlur: TokenInputFocusHandler;
 }
 
-function useTokenEdit<ValueType, ErrorType>(
-  params: Params<ValueType, ErrorType>,
-) {
+function useTokenEdit<VT, ErrorType>(params: Params<VT, ErrorType>) {
   const {
     tokenValues,
     onTokenValuesChange,
@@ -40,7 +38,7 @@ function useTokenEdit<ValueType, ErrorType>(
     [setTokenActivated, handleTokenInputFocus],
   );
 
-  const handleTokenEditEnd: HandleTokenEditEnd<ValueType> = useCallback(
+  const handleTokenEditEnd: HandleTokenEditEnd<VT> = useCallback(
     (targetIndex: TokenIndex) => (newTokenValue) => {
       // console.log(
       //   'handleTokenEditEnd; targetIndex',

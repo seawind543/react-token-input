@@ -1,8 +1,8 @@
 import type { TokenMeta } from '../types/token';
 
 /**
- * @template ValueType
- * @type {OnGetTokenErrorMessage<ValueType, string>} defaultGetTokenErrorMessage
+ * @template VT
+ * @type {OnGetTokenErrorMessage<VT, string>} defaultGetTokenErrorMessage
  * @description
  * Default function to get the `Error Message` from tokenMeta
  * for built-in Token Component
@@ -12,7 +12,7 @@ import type { TokenMeta } from '../types/token';
  * defaultGetTokenErrorMessage(tokenValue, tokenMeta)
  * ```
  *
- * @param {ValueType} tokenValue
+ * @param {VT} tokenValue
  * The tokenValue built by `onBuildTokenValue`
  *
  * @param {TokenMeta<ErrorType>} tokenMeta
@@ -22,8 +22,8 @@ import type { TokenMeta } from '../types/token';
  * The Error Message (string) to describe the invalid token.
  * Will return `undefined` when `tokenMeta.error` is not `string`
  */
-const defaultGetTokenErrorMessage = <ValueType, ErrorType>(
-  _: ValueType,
+const defaultGetTokenErrorMessage = <VT, ErrorType>(
+  _: VT,
   tokenMeta: TokenMeta<ErrorType>,
 ): string | undefined => {
   // Check if the tokenMeta.error is `string`, or `Nullish`

@@ -4,7 +4,7 @@ import type { InputString } from '../types/mix';
 type DefaultValueType = string;
 
 /**
- * @type {OnBuildTokenValue<ValueType>} defaultBuildTokenValue
+ * @type {OnBuildTokenValue<VT>} defaultBuildTokenValue
  * @description
  * Default function for TokenInput to
  * build default token value from user input value
@@ -25,12 +25,10 @@ type DefaultValueType = string;
  *
  * @returns {string} The token's valueType (string)
  */
-const defaultBuildTokenValue = <ValueType>(
-  inputString: InputString,
-): ValueType => {
-  // A trick to make the type DefaultValueType to pass type check of ValueType
+const defaultBuildTokenValue = <VT>(inputString: InputString): VT => {
+  // A trick to make the type DefaultValueType to pass type check of VT
   // https://www.zhenghao.io/posts/type-functions
-  return inputString.trim() as DefaultValueType & ValueType;
+  return inputString.trim() as DefaultValueType & VT;
 };
 
 export default defaultBuildTokenValue;

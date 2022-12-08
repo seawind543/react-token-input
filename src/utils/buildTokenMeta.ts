@@ -1,8 +1,8 @@
 import type { TokenIndex, TokenMeta } from '../types/token';
 
 /**
- * @template ValueType, ErrorType
- * @callback buildTokenMeta<ValueType, ErrorType>
+ * @template VT, ErrorType
+ * @callback buildTokenMeta<VT, ErrorType>
  * @description
  * Internal function for TokenInput to
  * build token data and meta with customize data
@@ -15,7 +15,7 @@ import type { TokenIndex, TokenMeta } from '../types/token';
  * @param {TokenMeta<ErrorType>['error']} customizeError
  * The return of callback `onTokenValueValidate`
  *
- * @param {ValueType} tokenValue
+ * @param {VT} tokenValue
  * The tokenValue built by callback `onBuildTokenValue`
  *
  * @param {TokenIndex} tokenIndex
@@ -24,9 +24,9 @@ import type { TokenIndex, TokenMeta } from '../types/token';
  * @returns {TokenMeta<ErrorType>}
  * The token's meta data
  */
-const buildTokenMeta = <ValueType, ErrorType>(
+const buildTokenMeta = <VT, ErrorType>(
   customizeError: TokenMeta<ErrorType>['error'],
-  tokenValue: ValueType,
+  tokenValue: VT,
   tokenIndex: TokenIndex,
 ): TokenMeta<ErrorType> => {
   return {
