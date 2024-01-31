@@ -5825,10 +5825,10 @@ jsonfile@^6.0.1:
     array-includes "^3.1.5"
     object.assign "^4.1.3"
 
-keydown-key@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/keydown-key/-/keydown-key-1.2.2.tgz#1d3e7305a546806bcc556add13b39d485ef32f1f"
-  integrity sha512-GYw02O3jU1sIzNTTphPZfWb7mxbuHEPjrn9sHJ8UlOPtoAQlBbfdgPg69u7JAM0ANaO/OPXH3d08KXdimU/eeA==
+keydown-key@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/keydown-key/-/keydown-key-1.4.0.tgz#331386bc43270b9b39a299c4388432a371525f25"
+  integrity sha512-79mTaTnhPBd/U5/D0rDKr1FIJaoAYgniQ+IVFnZu99UeO6AmbJwrsU25kph933PwxfRyYUZt7Piz8lURly8DAg==
 
 kind-of@^6.0.2, kind-of@^6.0.3:
   version "6.0.3"
