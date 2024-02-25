@@ -1,3 +1,3 @@
 import type { TokenMeta } from '../types/token';
-declare const defaultGetTokenErrorMessage: <ValueType, ErrorType>(_: ValueType, tokenMeta: TokenMeta<ErrorType>) => string | undefined;
+declare const defaultGetTokenErrorMessage: <VT, ET>(_: VT, meta: TokenMeta<ET>) => string | undefined;
 export default defaultGetTokenErrorMessage;

@@ -1,20 +1,20 @@
 import React from 'react';
 import type { TokenMeta } from '../types/token';
 import type { OnBuildTokenValue, OnGetTokenClassName, OnGetTokenDisplayLabel, OnRenderTokenDeleteButtonContent, OnGetIsTokenEditable, OnGetTokenEditableValue, OnGetTokenErrorMessage } from '../types/interfaces';
-export interface TokenProps<ValueType = string, ErrorType = string> {
+export interface TokenProps<VT = string, ET = string> {
     readOnly: boolean;
-    tokenValue: ValueType;
-    tokenMeta: TokenMeta<ErrorType>;
-    onGetClassName?: OnGetTokenClassName<ValueType, ErrorType>;
-    onGetDisplayLabel: OnGetTokenDisplayLabel<ValueType, ErrorType>;
+    tokenValue: VT;
+    tokenMeta: TokenMeta<ET>;
+    onGetClassName?: OnGetTokenClassName<VT, ET>;
+    onGetDisplayLabel: OnGetTokenDisplayLabel<VT, ET>;
     onRenderDeleteButtonContent?: OnRenderTokenDeleteButtonContent;
-    onGetIsEditable: OnGetIsTokenEditable<ValueType, ErrorType>;
-    onGetEditableValue: OnGetTokenEditableValue<ValueType, ErrorType>;
-    onBuildTokenValue: OnBuildTokenValue<ValueType>;
-    onGetErrorMessage: OnGetTokenErrorMessage<ValueType, ErrorType>;
+    onGetIsEditable: OnGetIsTokenEditable<VT, ET>;
+    onGetEditableValue: OnGetTokenEditableValue<VT, ET>;
+    onBuildTokenValue: OnBuildTokenValue<VT>;
+    onGetErrorMessage: OnGetTokenErrorMessage<VT, ET>;
     onEditStart: () => void;
-    onEditEnd: (newTokenValue?: ValueType) => void;
+    onEditEnd: (newTokenValue?: VT) => void;
     onDelete: () => void;
 }
-declare const Token: <ValueType = string, ErrorType = string>(props: TokenProps<ValueType, ErrorType>) => React.JSX.Element;
+declare const Token: <VT = string, ET = string>(props: TokenProps<VT, ET>) => React.JSX.Element;
 export default Token;

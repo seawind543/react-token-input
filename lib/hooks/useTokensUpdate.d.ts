@@ -1,12 +1,12 @@
 import type { OnTokenValueValidate } from '../types/interfaces';
-interface Params<ValueType, ErrorType> {
-    tokenValues: ValueType[];
-    onTokenValueValidate: OnTokenValueValidate<ValueType, ErrorType>;
+interface Params<VT, ET> {
+    tokenValues: VT[];
+    onTokenValueValidate: OnTokenValueValidate<VT, ET>;
 }
-declare function useTokensUpdate<ValueType, ErrorType>(params: Params<ValueType, ErrorType>): {
+declare function useTokensUpdate<VT, ET>(params: Params<VT, ET>): {
     hasInvalidToken: boolean;
-    internalTokenValues: ValueType[];
-    tokenMetas: import("../types/token").TokenMeta<ErrorType>[];
-    setTokenActivated: import("./useTokenMetas").SetTokenActivated<ErrorType>;
+    internalTokenValues: VT[];
+    tokenMetas: import("../types/token").TokenMeta<ET>[];
+    setTokenActivated: import("./useTokenMetas").SetTokenActivated<ET>;
 };
 export default useTokensUpdate;
