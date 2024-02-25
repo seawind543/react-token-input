@@ -13,11 +13,11 @@ const ExampleDefault = () => {
         'tokenValues before',
         values,
         'newTokenValues',
-        newTokenValues
+        newTokenValues,
       );
       setValues(newTokenValues);
     },
-    [values]
+    [values],
   );
 
   return (

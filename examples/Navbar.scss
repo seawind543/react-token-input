@@ -187,6 +187,7 @@
 
 .navbar-brand {
   float: left;
+
   // height: 50px;
   padding: 15px;
   font-size: 18px;
@@ -302,7 +303,8 @@
   margin: 8px -15px;
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
     0 1px 0 rgba(255, 255, 255, 0.1);
 }
 

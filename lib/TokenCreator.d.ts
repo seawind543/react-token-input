@@ -23,7 +23,7 @@ interface TokenCreatorProps<ValueType = string> {
     onNewTokenValuesAppend: (appendTokenValues: ValueType[]) => void;
     onLastTokenDelete: () => void;
 }
-declare const TokenCreator: <ValueType>(props: TokenCreatorProps<ValueType>, ref: React.ForwardedRef<TokenCreatorRef>) => JSX.Element;
+declare const TokenCreator: <ValueType>(props: TokenCreatorProps<ValueType>, ref: React.ForwardedRef<TokenCreatorRef>) => React.JSX.Element;
 declare const WrappedTokenCreator: <ValueType = string>(p: TokenCreatorProps<ValueType> & {
     ref: React.ForwardedRef<TokenCreatorRef>;
 }) => ReturnType<typeof TokenCreator>;

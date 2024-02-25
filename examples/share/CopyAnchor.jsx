@@ -11,7 +11,7 @@ const CopyAnchor = ({ hashTag }) => {
       url.hash = hashTag;
       navigator.clipboard.writeText(url.href);
     },
-    [hashTag]
+    [hashTag],
   );
 
   return (

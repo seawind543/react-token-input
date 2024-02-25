@@ -12,7 +12,7 @@ describe('buildTokenMeta() with default string type tokenValue', () => {
 
     it('should return `tokenMeta`', () => {
       expect(
-        buildTokenMeta(tokenMeta.error, tokenValue, MOCK_TOKEN_INDEX)
+        buildTokenMeta(tokenMeta.error, tokenValue, MOCK_TOKEN_INDEX),
       ).toEqual(tokenMeta);
     });
   });
@@ -22,7 +22,7 @@ describe('buildTokenMeta() with default string type tokenValue', () => {
 
     it('should return `tokenMeta`', () => {
       expect(
-        buildTokenMeta(tokenMeta.error, tokenValue, MOCK_TOKEN_INDEX)
+        buildTokenMeta(tokenMeta.error, tokenValue, MOCK_TOKEN_INDEX),
       ).toEqual(tokenMeta);
     });
   });
@@ -32,7 +32,7 @@ describe('buildTokenMeta() with default string type tokenValue', () => {
 
     it('should return `tokenMeta`', () => {
       expect(
-        buildTokenMeta(tokenMeta.error, tokenValue, MOCK_TOKEN_INDEX)
+        buildTokenMeta(tokenMeta.error, tokenValue, MOCK_TOKEN_INDEX),
       ).toEqual(tokenMeta);
     });
   });
@@ -44,7 +44,7 @@ describe('buildTokenMeta() with object type tokenValue', () => {
 
     it('should return `tokenMeta`', () => {
       expect(
-        buildTokenMeta(tokenMeta.error, tokenValue, MOCK_TOKEN_INDEX)
+        buildTokenMeta(tokenMeta.error, tokenValue, MOCK_TOKEN_INDEX),
       ).toEqual(tokenMeta);
     });
   });
@@ -54,7 +54,7 @@ describe('buildTokenMeta() with object type tokenValue', () => {
 
     it('should return `tokenMeta`', () => {
       expect(
-        buildTokenMeta(tokenMeta.error, tokenValue, MOCK_TOKEN_INDEX)
+        buildTokenMeta(tokenMeta.error, tokenValue, MOCK_TOKEN_INDEX),
       ).toEqual(tokenMeta);
     });
   });
@@ -64,7 +64,7 @@ describe('buildTokenMeta() with object type tokenValue', () => {
 
     it('should return `tokenMeta`', () => {
       expect(
-        buildTokenMeta(tokenMeta.error, tokenValue, MOCK_TOKEN_INDEX)
+        buildTokenMeta(tokenMeta.error, tokenValue, MOCK_TOKEN_INDEX),
       ).toEqual(tokenMeta);
     });
   });

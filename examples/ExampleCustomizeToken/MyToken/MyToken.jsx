@@ -88,7 +88,7 @@ const MyToken = ({
 
       onEditEnd(newTokenValue);
     },
-    [inputValue, onEditEnd]
+    [inputValue, onEditEnd],
   );
 
   /*
@@ -108,7 +108,7 @@ const MyToken = ({
 
       handleEditStart();
     },
-    [onDelete, handleEditStart]
+    [onDelete, handleEditStart],
   );
 
   const handleTokenDelete = useCallback(
@@ -117,7 +117,7 @@ const MyToken = ({
 
       onDelete();
     },
-    [onDelete]
+    [onDelete],
   );
 
   const handleInputValueChange = useCallback(
@@ -125,7 +125,7 @@ const MyToken = ({
       const { value } = e.target;
       setInputValue(value);
     },
-    [setInputValue]
+    [setInputValue],
   );
 
   const handleKeyDown = useCallback(
@@ -135,7 +135,7 @@ const MyToken = ({
         onEnter: () => handleEditEnd(),
       });
     },
-    [handleEditEnd]
+    [handleEditEnd],
   );
 
   const handleBlur = useCallback(() => {
@@ -150,7 +150,7 @@ const MyToken = ({
       {
         [styles.error]: error,
         [styles.pass]: !error,
-      }
+      },
     );
   }, [error]);
 
@@ -178,7 +178,7 @@ const MyToken = ({
               className={classNames(
                 'material-icons',
                 styles['button-icon'],
-                styles['edit-icon']
+                styles['edit-icon'],
               )}
               role="button"
               aria-hidden="true"

@@ -189,7 +189,7 @@ interface TokenCreatorProps<ValueType = string> {
 
 const TokenCreator = <ValueType,>(
   props: TokenCreatorProps<ValueType>,
-  ref: React.ForwardedRef<TokenCreatorRef>
+  ref: React.ForwardedRef<TokenCreatorRef>,
 ) => {
   const {
     placeholder,
@@ -217,7 +217,7 @@ const TokenCreator = <ValueType,>(
 
   const splitPattens = useMemo(
     () => new RegExp(separators.join('|')),
-    [separators]
+    [separators],
   );
 
   const handleInputValueUpdate = useCallback(
@@ -232,7 +232,7 @@ const TokenCreator = <ValueType,>(
 
       onInputValueChange?.(newValue, inputValue);
     },
-    [onInputValueChange, inputValue, setInputValue]
+    [onInputValueChange, inputValue, setInputValue],
   );
 
   const handleTokensCreate = useCallback(
@@ -270,7 +270,7 @@ const TokenCreator = <ValueType,>(
       onBuildTokenValue,
       onNewTokenValuesAppend,
       handleInputValueUpdate,
-    ]
+    ],
   );
 
   /*
@@ -289,7 +289,7 @@ const TokenCreator = <ValueType,>(
 
       handleInputValueUpdate(newInputValue);
     },
-    [splitPattens, handleTokensCreate, handleInputValueUpdate]
+    [splitPattens, handleTokensCreate, handleInputValueUpdate],
   );
 
   const {
@@ -324,7 +324,7 @@ const TokenCreator = <ValueType,>(
       handleTabKeyDown,
       handleEnterKeyDown,
       handleEscapeKeyDown,
-    ]
+    ],
   );
 
   const handleBlur = useCallback(
@@ -335,7 +335,7 @@ const TokenCreator = <ValueType,>(
       }
       onBlur(e);
     },
-    [disableCreateOnBlur, handleTokensCreate, inputValue, onBlur]
+    [disableCreateOnBlur, handleTokensCreate, inputValue, onBlur],
   );
 
   const handlePaste = useCallback(
@@ -345,7 +345,7 @@ const TokenCreator = <ValueType,>(
       const pastedText = e.clipboardData.getData('text');
       handleTokensCreate(pastedText);
     },
-    [handleTokensCreate]
+    [handleTokensCreate],
   );
 
   useImperativeHandle(
@@ -356,7 +356,7 @@ const TokenCreator = <ValueType,>(
       getValue: () => inputValue,
       createTokens: handleTokensCreate,
     }),
-    [handleInputValueUpdate, inputValue, handleTokensCreate]
+    [handleInputValueUpdate, inputValue, handleTokensCreate],
   );
 
   return (
@@ -379,7 +379,7 @@ const TokenCreator = <ValueType,>(
 const WrappedTokenCreator = forwardRef(TokenCreator) as <ValueType = string>(
   p: TokenCreatorProps<ValueType> & {
     ref: React.ForwardedRef<TokenCreatorRef>;
-  }
+  },
 ) => ReturnType<typeof TokenCreator>;
 // Apply Type assertion to allow TypeScript type the generic type `ValueType`
 // https://fettblog.eu/typescript-react-generic-forward-refs/

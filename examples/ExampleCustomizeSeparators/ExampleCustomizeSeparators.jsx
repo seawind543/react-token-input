@@ -13,7 +13,7 @@ const ExampleCustomizeSeparators = () => {
 
       setValues(newTokenValues);
     },
-    [values]
+    [values],
   );
 
   return (

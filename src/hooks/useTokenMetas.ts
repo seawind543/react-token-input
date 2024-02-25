@@ -22,7 +22,7 @@ function useTokenMetas<ErrorType>() {
 
       if (targetIndex >= tokenMetas.length) {
         throw new Error(
-          `setTokenActivated out of tokenMetas scope; targetIndex ${targetIndex}; tokenMetas.length ${tokenMetas.length}`
+          `setTokenActivated out of tokenMetas scope; targetIndex ${targetIndex}; tokenMetas.length ${tokenMetas.length}`,
         );
       }
 
@@ -30,7 +30,7 @@ function useTokenMetas<ErrorType>() {
       newTokenMetas[targetIndex].activated = activated;
       setTokenMetas(newTokenMetas);
     },
-    [tokenMetas]
+    [tokenMetas],
   );
 
   return {

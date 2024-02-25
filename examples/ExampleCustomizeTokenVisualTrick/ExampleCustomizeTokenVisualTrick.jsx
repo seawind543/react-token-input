@@ -43,7 +43,7 @@ const ExampleCustomizeTokenVisualTrick = () => {
 
       setValues(newTokenValues);
     },
-    [setValues]
+    [setValues],
   );
 
   return (

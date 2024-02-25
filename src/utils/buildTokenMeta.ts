@@ -27,7 +27,7 @@ import type { TokenIndex, TokenMeta } from '../types/token';
 const buildTokenMeta = <ValueType, ErrorType>(
   customizeError: TokenMeta<ErrorType>['error'],
   tokenValue: ValueType,
-  tokenIndex: TokenIndex
+  tokenIndex: TokenIndex,
 ): TokenMeta<ErrorType> => {
   return {
     // TODO: Consider uuid

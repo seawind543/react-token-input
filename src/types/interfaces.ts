@@ -142,7 +142,7 @@ export interface OnTokenValueValidate<ValueType, ErrorType> {
   (
     tokenValue: ValueType,
     tokenIndex: TokenIndex,
-    tokenValues: ValueType[]
+    tokenValues: ValueType[],
   ): TokenMeta<ErrorType>['error'];
 }
 
@@ -192,9 +192,10 @@ export interface OnGetTokenClassName<ValueType, ErrorType> {
  * The token's display content.
  */
 export interface OnGetTokenDisplayLabel<ValueType, ErrorType> {
-  (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>):
-    | InputString
-    | ReactNode;
+  (
+    tokenValue: ValueType,
+    tokenMeta: TokenMeta<ErrorType>,
+  ): InputString | ReactNode;
 }
 
 /**

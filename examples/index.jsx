@@ -5,7 +5,8 @@ import React, { useState, useEffect } from 'react';
  * ReactDOM is only use for build the `live demo page` and `dev`,
  * so keep it in devDependencies
  */
-import ReactDOM from 'react-dom'; // eslint-disable-line import/no-extraneous-dependencies
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { createRoot } from 'react-dom/client';
 
 import Navbar from './Navbar';
 import Section from './Section';
@@ -99,4 +100,5 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById('container'));
+const root = createRoot(document.getElementById('container'));
+root.render(<App />);

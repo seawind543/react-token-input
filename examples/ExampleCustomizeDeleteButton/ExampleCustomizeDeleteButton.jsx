@@ -24,7 +24,7 @@ const ExampleCustomizeDeleteButton = () => {
 
       setValues(newTokenValues);
     },
-    [setValues]
+    [setValues],
   );
 
   return (

@@ -44,7 +44,7 @@ describe('useTokenInputFocusEffect()', () => {
     const { result } = renderHook(() =>
       useTokenInputFocusEffect({
         onCreatorFocus,
-      })
+      }),
     );
 
     expect(result.current.isTokenInputFocused).toBe(false);
@@ -62,7 +62,7 @@ describe('useTokenInputFocusEffect()', () => {
     const { result } = renderHook(() =>
       useTokenInputFocusEffect({
         onCreatorBlur,
-      })
+      }),
     );
 
     // init

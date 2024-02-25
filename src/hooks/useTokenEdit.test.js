@@ -19,7 +19,7 @@ describe('useTokenEdit() with default string type tokenValue', () => {
           setTokenActivated,
           handleTokenInputFocus,
           handleTokenInputBlur,
-        })
+        }),
       );
 
       expect(typeof result.current.handleTokenEditStart).toBe('function');
@@ -53,7 +53,7 @@ describe('useTokenEdit() with default string type tokenValue', () => {
           setTokenActivated,
           handleTokenInputFocus,
           handleTokenInputBlur,
-        })
+        }),
       );
 
       expect(typeof result.current.handleTokenEditEnd).toBe('function');
@@ -83,7 +83,7 @@ describe('useTokenEdit() with default string type tokenValue', () => {
           setTokenActivated,
           handleTokenInputFocus,
           handleTokenInputBlur,
-        })
+        }),
       );
 
       expect(typeof result.current.handleTokenEditEnd).toBe('function');

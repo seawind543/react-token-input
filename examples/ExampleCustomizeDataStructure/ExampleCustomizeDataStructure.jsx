@@ -27,7 +27,7 @@ const handleGetTokenDisplayLabel = (tokenValue, tokenMeta) => {
     'tokenValue',
     tokenValue,
     'tokenMeta',
-    tokenMeta
+    tokenMeta,
   );
 
   if (tokenMeta.error) {
@@ -69,7 +69,7 @@ const ExampleCustomizeDataStructure = () => {
 
       setCustomizeData(newTokenValues);
     },
-    [setCustomizeData]
+    [setCustomizeData],
   );
 
   return (

@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import type { TokenMeta, TokenIndex } from '../types/token';
 export interface SetTokenActivated<ErrorType> {
     (targetIndex: TokenIndex, activated: TokenMeta<ErrorType>['activated']): void;

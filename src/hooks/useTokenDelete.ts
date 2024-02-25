@@ -24,7 +24,7 @@ function useTokenDelete<ValueType>(params: Params<ValueType>) {
        */
       focusTokenCreator();
     },
-    [tokenValues, onTokenValuesChange, focusTokenCreator]
+    [tokenValues, onTokenValuesChange, focusTokenCreator],
   );
 
   const handleTokenDelete = useCallback(
@@ -32,7 +32,7 @@ function useTokenDelete<ValueType>(params: Params<ValueType>) {
       // console.log('handleTokenDelete', targetIndex);
       deleteToken(targetIndex);
     },
-    [deleteToken]
+    [deleteToken],
   );
 
   const handleLastTokenDelete = useCallback(() => {

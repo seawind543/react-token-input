@@ -26,7 +26,7 @@ type DefaultValueType = string;
  * @returns {string} The token's valueType (string)
  */
 const defaultBuildTokenValue = <ValueType>(
-  inputString: InputString
+  inputString: InputString,
 ): ValueType => {
   // A trick to make the type DefaultValueType to pass type check of ValueType
   // https://www.zhenghao.io/posts/type-functions

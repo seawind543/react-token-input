@@ -5,7 +5,7 @@ describe('defaultBuildTokenValue()', () => {
   it('should return trimmed `inputValue`', () => {
     MOCK_INPUT.forEach((testData) => {
       expect(defaultBuildTokenValue(testData.inputValue)).toBe(
-        testData.expectTokenValue
+        testData.expectTokenValue,
       );
     });
   });

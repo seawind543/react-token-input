@@ -20,7 +20,7 @@ const handleGetTokenDisplayLabel = (tokenValue, tokenMeta) => {
     'tokenValue',
     tokenValue,
     'tokenMeta',
-    tokenMeta
+    tokenMeta,
   );
 
   const emoji =
@@ -56,7 +56,7 @@ const ExampleCustomizeTokenLabel = () => {
 
       setWeathers(newTokenValues);
     },
-    [setWeathers]
+    [setWeathers],
   );
 
   return (

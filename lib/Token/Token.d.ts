@@ -1,3 +1,4 @@
+import React from 'react';
 import type { TokenMeta } from '../types/token';
 import type { OnBuildTokenValue, OnGetTokenClassName, OnGetTokenDisplayLabel, OnRenderTokenDeleteButtonContent, OnGetIsTokenEditable, OnGetTokenEditableValue, OnGetTokenErrorMessage } from '../types/interfaces';
 export interface TokenProps<ValueType = string, ErrorType = string> {
@@ -15,5 +16,5 @@ export interface TokenProps<ValueType = string, ErrorType = string> {
     onEditEnd: (newTokenValue?: ValueType) => void;
     onDelete: () => void;
 }
-declare const Token: <ValueType = string, ErrorType = string>(props: TokenProps<ValueType, ErrorType>) => JSX.Element;
+declare const Token: <ValueType = string, ErrorType = string>(props: TokenProps<ValueType, ErrorType>) => React.JSX.Element;
 export default Token;

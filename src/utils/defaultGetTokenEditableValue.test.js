@@ -6,7 +6,7 @@ describe('defaultGetTokenEditableValue()', () => {
     const { tokenValue, tokenMeta } = DEFAULT_VALUE_TYPE.BASED;
 
     expect(defaultGetTokenEditableValue(tokenValue, tokenMeta)).toBe(
-      `${tokenValue}`
+      `${tokenValue}`,
     );
   });
 });

@@ -19,7 +19,7 @@ const DeleteButton = (props: DeleteButtonProps) => {
       role="button"
       className={classNames(
         JS__TOKEN__DELETE_BUTTON__CLASS_NAME,
-        styles['token__delete-button']
+        styles['token__delete-button'],
       )}
       aria-hidden="true"
     >
