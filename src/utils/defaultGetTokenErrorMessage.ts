@@ -12,10 +12,10 @@ import type { TokenMeta } from '../types/token';
  * defaultGetTokenErrorMessage(tokenValue, tokenMeta)
  * ```
  *
- * @param {VT} tokenValue
+ * @param {VT} _
  * The tokenValue built by `onBuildTokenValue`
  *
- * @param {TokenMeta<ET>} tokenMeta
+ * @param {TokenMeta<ET>} meta
  * The token's meta data
  *
  * @returns {string | undefined}
@@ -24,10 +24,10 @@ import type { TokenMeta } from '../types/token';
  */
 const defaultGetTokenErrorMessage = <VT, ET>(
   _: VT,
-  tokenMeta: TokenMeta<ET>,
+  meta: TokenMeta<ET>,
 ): string | undefined => {
   // Check if the tokenMeta.error is `string`, or `Nullish`
-  const { error } = tokenMeta;
+  const { error } = meta;
 
   if (typeof error === 'string') {
     return error;

@@ -15,7 +15,7 @@ import type { Index, TokenMeta } from '../types/token';
  * @param {TokenMeta<ET>['error']} customizeError
  * The return of callback `onTokenValueValidate`
  *
- * @param {VT} tokenValue
+ * @param {VT} value
  * The tokenValue built by callback `onBuildTokenValue`
  *
  * @param {Index} index
@@ -26,12 +26,12 @@ import type { Index, TokenMeta } from '../types/token';
  */
 const buildTokenMeta = <VT, ET>(
   customizeError: TokenMeta<ET>['error'],
-  tokenValue: VT,
+  value: VT,
   index: Index,
 ): TokenMeta<ET> => {
   return {
     // TODO: Consider uuid
-    key: `${JSON.stringify(tokenValue)}-${Date.now()}-${index}`,
+    key: `${JSON.stringify(value)}-${Date.now()}-${index}`,
     activated: false,
     error: customizeError,
   };

@@ -16,20 +16,20 @@ import type { TokenMeta } from '../types/token';
  * getDefaultTokenEditableValue(tokenValue)
  * ```
  *
- * @param {VT} tokenValue
+ * @param {VT} value
  * This token's tokenValue built by `onBuildTokenValue`
  *
- * @param {TokenMeta<ET>} tokenMeta
+ * @param {TokenMeta<ET>} meta
  * This token's meta data
  *
  * @returns {InputString}
  * The value for end-user to `edit` in an input field
  */
 const defaultGetTokenEditableValue = <VT, ET>(
-  tokenValue: VT,
-  tokenMeta: TokenMeta<ET>,
+  value: VT,
+  meta: TokenMeta<ET>,
 ): InputString => {
-  return `${tokenValue}`;
+  return `${value}`;
 };
 
 export default defaultGetTokenEditableValue;

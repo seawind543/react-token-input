@@ -12,7 +12,7 @@ import { Index, TokenMeta } from './token';
  * onInputValueChange(newValue, previousValue)
  * ```
  *
- * @param {InputString} newValue
+ * @param {InputString} inputValue
  * The end-user's input string
  *
  * @param {InputString} previousValue
@@ -21,7 +21,7 @@ import { Index, TokenMeta } from './token';
  * @returns {void}
  */
 export interface OnInputValueChange {
-  (newValue: InputString, previousValue: InputString): void;
+  (inputValue: InputString, previousValue: InputString): void;
 }
 
 /**
@@ -45,7 +45,7 @@ export interface OnInputValueChange {
  * onPreprocess(inputStringValues)
  * ```
  *
- * @param {InputString[]} inputStringValues
+ * @param {InputString[]} inputValues
  * The user input string values
  * (An array of string, which split from the original input string via the `separators`)
  *
@@ -53,7 +53,7 @@ export interface OnInputValueChange {
  * An array of string
  */
 export interface OnPreprocess {
-  (values: InputString[]): InputString[];
+  (inputValues: InputString[]): InputString[];
 }
 
 /**
@@ -70,7 +70,7 @@ export interface OnPreprocess {
  * onBuildTokenValue(inputString)
  * ```
  *
- * @param {InputString} inputString
+ * @param {InputString} inputValue
  * The user input value // (A value split by TokenSeparator[])
  * Example:
  * - Input string "ABC, DEF" and separators is `,`
@@ -98,13 +98,13 @@ export interface OnBuildTokenValue<VT> {
  * onTokenValuesChange(modifiedTokenValues)
  * ```
  *
- * @param {VT[]} modifiedTokenValues
+ * @param {VT[]} values
  * The new tokenValues
  *
  * @returns {void}
  */
 export interface OnTokenValuesChange<VT> {
-  (modifiedTokenValues: VT[]): void;
+  (values: VT[]): void;
 }
 
 /**
@@ -119,13 +119,13 @@ export interface OnTokenValuesChange<VT> {
  * onTokenValueValidate(tokenValue, index, tokenValues)
  * ```
  *
- * @param {VT} tokenValue
+ * @param {VT} value
  * The tokenValue built by `onBuildTokenValue`
  *
  * @param {Index} index
  * The array index of this tokenValue in tokenValues
  *
- * @param {VT[]} tokenValues
+ * @param {VT[]} values
  * The array of tokenValue of TokenInput
  *
  * @returns {TokenMeta<ET>['error']}
@@ -139,7 +139,7 @@ export interface OnTokenValuesChange<VT> {
  * @see Nullish
  */
 export interface OnTokenValueValidate<VT, ET> {
-  (tokenValue: VT, index: Index, tokenValues: VT[]): TokenMeta<ET>['error'];
+  (value: VT, index: Index, values: VT[]): TokenMeta<ET>['error'];
 }
 
 /**
@@ -152,17 +152,17 @@ export interface OnTokenValueValidate<VT, ET> {
  * onGetTokenClassName(tokenValue, tokenMeta)
  * ```
  *
- * @param {VT} tokenValue
+ * @param {VT} value
  * The tokenValue built by `onBuildTokenValue`
  *
- * @param {TokenMeta<ET>} tokenMeta
+ * @param {TokenMeta<ET>} meta
  * The token's meta data
  *
  * @returns {undefined | string}
  * The customizes className
  */
 export interface OnGetTokenClassName<VT, ET> {
-  (tokenValue: VT, tokenMeta: TokenMeta<ET>): undefined | string;
+  (value: VT, meta: TokenMeta<ET>): undefined | string;
 }
 
 /**
@@ -178,17 +178,17 @@ export interface OnGetTokenClassName<VT, ET> {
  * onGetTokenDisplayLabel(tokenValue, tokenMeta)
  * ```
  *
- * @param {VT} tokenValue
+ * @param {VT} value
  * The tokenValue built by `onBuildTokenValue`
  *
- * @param {TokenMeta<ET>} tokenMeta
+ * @param {TokenMeta<ET>} meta
  * The token's meta data
  *
  * @returns {InputString | ReactNode}
  * The token's display content.
  */
 export interface OnGetTokenDisplayLabel<VT, ET> {
-  (tokenValue: VT, tokenMeta: TokenMeta<ET>): InputString | ReactNode;
+  (value: VT, meta: TokenMeta<ET>): InputString | ReactNode;
 }
 
 /**
@@ -221,10 +221,10 @@ export interface OnRenderTokenDeleteButtonContent {
  * onGetIsTokenEditable(tokenValue, tokenMeta)
  * ```
  *
- * @param {VT} tokenValue
+ * @param {VT} value
  * The tokenValue built by `onBuildTokenValue`
  *
- * @param {TokenMeta<ET>} tokenMeta
+ * @param {TokenMeta<ET>} meta
  * The token's meta data
  *
  * @returns {boolean}
@@ -232,7 +232,7 @@ export interface OnRenderTokenDeleteButtonContent {
  * - `false`: Not editable.
  */
 export interface OnGetIsTokenEditable<VT, ET> {
-  (tokenValue: VT, tokenMeta: TokenMeta<ET>): boolean;
+  (value: VT, meta: TokenMeta<ET>): boolean;
 }
 
 /**
@@ -247,17 +247,17 @@ export interface OnGetIsTokenEditable<VT, ET> {
  * onGetTokenEditableValue(tokenValue, tokenMeta)
  * ```
  *
- * @param {VT} tokenValue
+ * @param {VT} value
  * The tokenValue built by `onBuildTokenValue`
  *
- * @param {TokenMeta<ET>} tokenMeta
+ * @param {TokenMeta<ET>} meta
  * The token's meta data
  *
  * @returns {InputString}
  * The value for end-user to `edit` in an input field
  */
 export interface OnGetTokenEditableValue<VT, ET> {
-  (tokenValue: VT, tokenMeta: TokenMeta<ET>): InputString;
+  (value: VT, meta: TokenMeta<ET>): InputString;
 }
 
 /**
@@ -272,10 +272,10 @@ export interface OnGetTokenEditableValue<VT, ET> {
  * onGetTokenErrorMessage(tokenValue, tokenMeta)
  * ```
  *
- * @param {VT} tokenValue
+ * @param {VT} value
  * The tokenValue built by `onBuildTokenValue`
  *
- * @param {TokenMeta<ET>} tokenMeta
+ * @param {TokenMeta<ET>} meta
  * The token's meta data
  *
  * @returns {string | Nullish}
@@ -284,5 +284,5 @@ export interface OnGetTokenEditableValue<VT, ET> {
  * into the `title` attribute. Otherwise, will simply be ignored
  */
 export interface OnGetTokenErrorMessage<VT, ET> {
-  (tokenValue: VT, tokenMeta: TokenMeta<ET>): string | Nullish;
+  (value: VT, meta: TokenMeta<ET>): string | Nullish;
 }
