@@ -13,7 +13,7 @@ describe('useTokenDelete() with default string type tokenValue', () => {
         tokenValues,
         onTokenValuesChange,
         focusTokenCreator,
-      })
+      }),
     );
 
     expect(typeof result.current.handleTokenDelete).toBe('function');

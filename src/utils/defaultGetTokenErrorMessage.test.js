@@ -10,7 +10,7 @@ describe('defaultGetTokenErrorMessage()', () => {
 
     it('should return tokenMeta.error`', () => {
       expect(defaultGetTokenErrorMessage(tokenValue, tokenMeta)).toBe(
-        tokenMeta.error
+        tokenMeta.error,
       );
     });
   });
@@ -20,7 +20,7 @@ describe('defaultGetTokenErrorMessage()', () => {
 
     it('should return `undefined`', () => {
       expect(
-        defaultGetTokenErrorMessage(tokenValue, tokenMeta)
+        defaultGetTokenErrorMessage(tokenValue, tokenMeta),
       ).toBeUndefined();
     });
   });
@@ -30,7 +30,7 @@ describe('defaultGetTokenErrorMessage()', () => {
 
     it('should return tokenMeta.error`', () => {
       expect(
-        defaultGetTokenErrorMessage(tokenValue, tokenMeta)
+        defaultGetTokenErrorMessage(tokenValue, tokenMeta),
       ).toBeUndefined();
     });
   });
@@ -40,7 +40,7 @@ describe('defaultGetTokenErrorMessage()', () => {
 
     it('should return `undefined``', () => {
       expect(
-        defaultGetTokenErrorMessage(tokenValue, tokenMeta)
+        defaultGetTokenErrorMessage(tokenValue, tokenMeta),
       ).toBeUndefined();
     });
   });

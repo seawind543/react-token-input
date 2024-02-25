@@ -61,7 +61,7 @@ function useTokenInputFocusEffect(params: Params) {
       handleTokenInputFocus();
       onCreatorFocus?.(e);
     },
-    [onCreatorFocus, handleTokenInputFocus]
+    [onCreatorFocus, handleTokenInputFocus],
   );
 
   const handleCreatorBlur = useCallback(
@@ -69,7 +69,7 @@ function useTokenInputFocusEffect(params: Params) {
       handleTokenInputBlur();
       onCreatorBlur?.(e);
     },
-    [onCreatorBlur, handleTokenInputBlur]
+    [onCreatorBlur, handleTokenInputBlur],
   );
 
   return {

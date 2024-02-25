@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import type { TokenCreatorRef } from '../TokenCreator';
 declare function useTokenCreatorRef(): {
     tokenCreatorRef: import("react").RefObject<TokenCreatorRef>;

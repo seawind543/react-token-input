@@ -24,7 +24,7 @@ import type { TokenMeta } from '../types/token';
  */
 const defaultGetTokenErrorMessage = <ValueType, ErrorType>(
   _: ValueType,
-  tokenMeta: TokenMeta<ErrorType>
+  tokenMeta: TokenMeta<ErrorType>,
 ): string | undefined => {
   // Check if the tokenMeta.error is `string`, or `Nullish`
   const { error } = tokenMeta;

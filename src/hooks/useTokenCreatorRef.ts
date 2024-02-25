@@ -8,12 +8,12 @@ function useTokenCreatorRef() {
 
   const focusTokenCreator: HTMLInputElement['focus'] = useCallback(
     (options) => tokenCreatorRef.current?.focus(options),
-    []
+    [],
   );
 
   const setCreatorValue: TokenCreatorRef['setValue'] = useCallback(
     (value) => tokenCreatorRef.current?.setValue(value),
-    []
+    [],
   );
 
   const getCreatorValue: TokenCreatorRef['getValue'] = useCallback(() => {
@@ -22,7 +22,7 @@ function useTokenCreatorRef() {
 
   const createTokens: TokenCreatorRef['createTokens'] = useCallback(
     (value) => tokenCreatorRef.current?.createTokens(value),
-    []
+    [],
   );
 
   return {

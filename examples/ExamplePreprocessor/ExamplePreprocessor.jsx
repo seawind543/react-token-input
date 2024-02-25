@@ -44,7 +44,7 @@ const ExamplePreprocessor = () => {
 
       setUrls(newTokenValues);
     },
-    [setUrls]
+    [setUrls],
   );
 
   return (

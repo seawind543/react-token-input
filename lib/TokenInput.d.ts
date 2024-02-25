@@ -36,7 +36,7 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
     onCreatorBlur?: React.FocusEventHandler<HTMLInputElement>;
     onCreatorKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
 }
-declare const TokenInput: <ValueType, ErrorType>(props: TokenInputProps<ValueType, ErrorType>, ref?: React.ForwardedRef<TokenInputRef>) => JSX.Element;
+declare const TokenInput: <ValueType, ErrorType>(props: TokenInputProps<ValueType, ErrorType>, ref?: React.ForwardedRef<TokenInputRef>) => React.JSX.Element;
 declare const WrappedTokenInput: <ValueType = string, ErrorType = string>(p: TokenInputProps<ValueType, ErrorType> & {
     ref?: React.ForwardedRef<TokenInputRef> | undefined;
 }) => ReturnType<typeof TokenInput>;

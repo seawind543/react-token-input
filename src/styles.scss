@@ -1,5 +1,5 @@
-$tokenBackgroundColor: #cceaf5;
-$errorTokenBackgroundColor: #f9b5b5;
+$token-background-color: #cceaf5;
+$error-token-background-color: #f9b5b5;
 
 .container {
   // https://www.paulirish.com/2012/box-sizing-border-box-ftw/
@@ -54,11 +54,11 @@ $errorTokenBackgroundColor: #f9b5b5;
   .token-list .token {
     display: flex;
     flex-flow: row nowrap;
-    align-content: center;
+    place-content: center center;
     align-items: center;
-    justify-content: center;
     float: left;
     max-width: 100%;
+
     // TODO: Set minimum?
     // min-width: 100px;
 
@@ -69,7 +69,7 @@ $errorTokenBackgroundColor: #f9b5b5;
     color: #0096cc;
     white-space: nowrap;
     cursor: default;
-    background-color: $tokenBackgroundColor;
+    background-color: $token-background-color;
     border: 0;
     border-radius: 4px;
 
@@ -79,7 +79,7 @@ $errorTokenBackgroundColor: #f9b5b5;
 
     &.token--error {
       color: #db3d44;
-      background-color: $errorTokenBackgroundColor;
+      background-color: $error-token-background-color;
 
       &:hover {
         background-color: #ffdada;
@@ -89,12 +89,12 @@ $errorTokenBackgroundColor: #f9b5b5;
     &.token--read-only {
       // Hint: add customer read-only style here
       &:hover {
-        background-color: $tokenBackgroundColor;
+        background-color: $token-background-color;
       }
 
       &.token--error {
         &:hover {
-          background-color: $errorTokenBackgroundColor;
+          background-color: $error-token-background-color;
         }
       }
     }
@@ -106,9 +106,8 @@ $errorTokenBackgroundColor: #f9b5b5;
     &.token--active {
       .autosized-wrapper {
         display: flex;
-        align-content: center;
+        place-content: center center;
         align-items: center;
-        justify-content: center;
         height: 32px;
         margin: 4px 8px;
 
@@ -129,9 +128,8 @@ $errorTokenBackgroundColor: #f9b5b5;
     .token__delete-button {
       display: flex;
       flex: 0 0 0;
-      align-content: center;
+      place-content: center center;
       align-items: center;
-      justify-content: center;
       height: 100%;
       padding: 2px 8px;
       cursor: pointer;

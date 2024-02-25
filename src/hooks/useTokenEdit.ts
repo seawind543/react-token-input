@@ -21,7 +21,7 @@ interface Params<ValueType, ErrorType> {
 }
 
 function useTokenEdit<ValueType, ErrorType>(
-  params: Params<ValueType, ErrorType>
+  params: Params<ValueType, ErrorType>,
 ) {
   const {
     tokenValues,
@@ -37,7 +37,7 @@ function useTokenEdit<ValueType, ErrorType>(
       setTokenActivated(targetIndex, true);
       handleTokenInputFocus();
     },
-    [setTokenActivated, handleTokenInputFocus]
+    [setTokenActivated, handleTokenInputFocus],
   );
 
   const handleTokenEditEnd: HandleTokenEditEnd<ValueType> = useCallback(
@@ -62,7 +62,7 @@ function useTokenEdit<ValueType, ErrorType>(
       modifiedTokenValues[targetIndex] = newTokenValue;
       onTokenValuesChange?.(modifiedTokenValues);
     },
-    [tokenValues, onTokenValuesChange, setTokenActivated, handleTokenInputBlur]
+    [tokenValues, onTokenValuesChange, setTokenActivated, handleTokenInputBlur],
   );
 
   return {

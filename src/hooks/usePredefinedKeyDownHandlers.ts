@@ -82,7 +82,7 @@ function usePredefinedKeyDownHandlers(params: Params) {
         },
       });
     },
-    [onTab, inputValue, handleTokensCreate]
+    [onTab, inputValue, handleTokensCreate],
   );
 
   const handleEnterKeyDown = useCallback(() => {

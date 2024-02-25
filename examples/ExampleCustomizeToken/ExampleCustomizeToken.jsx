@@ -29,7 +29,7 @@ const ExampleCustomizeToken = () => {
 
       setValues(newTokenValues);
     },
-    [setValues]
+    [setValues],
   );
 
   return (

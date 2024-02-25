@@ -187,7 +187,7 @@ export interface TokenProps<ValueType = string, ErrorType = string> {
 }
 
 const Token = <ValueType = string, ErrorType = string>(
-  props: TokenProps<ValueType, ErrorType>
+  props: TokenProps<ValueType, ErrorType>,
 ) => {
   const {
     readOnly,
@@ -242,7 +242,7 @@ const Token = <ValueType = string, ErrorType = string>(
       const newTokenValue = onBuildTokenValue(inputValue);
       onEditEnd(newTokenValue);
     },
-    [inputValue, onBuildTokenValue, onEditEnd]
+    [inputValue, onBuildTokenValue, onEditEnd],
   );
 
   /*
@@ -260,7 +260,7 @@ const Token = <ValueType = string, ErrorType = string>(
       // Check does the click on the delete button
       // That is, the Element or its parents matched the `selector`
       const isOnDeleteButton = !!(e.target as Element).closest(
-        `.${styles.token} .${JS__TOKEN__DELETE_BUTTON__CLASS_NAME}`
+        `.${styles.token} .${JS__TOKEN__DELETE_BUTTON__CLASS_NAME}`,
       );
       if (isOnDeleteButton) {
         onDelete();
@@ -271,7 +271,7 @@ const Token = <ValueType = string, ErrorType = string>(
         handleEditStart();
       }
     },
-    [readOnly, isEditable, onDelete, handleEditStart]
+    [readOnly, isEditable, onDelete, handleEditStart],
   );
 
   const handleInputValueChange = useCallback(
@@ -279,7 +279,7 @@ const Token = <ValueType = string, ErrorType = string>(
       const { value } = e.target;
       setInputValue(value);
     },
-    [setInputValue]
+    [setInputValue],
   );
 
   const handleKeyDown = useCallback(
@@ -289,7 +289,7 @@ const Token = <ValueType = string, ErrorType = string>(
         onEnter: () => handleEditEnd(),
       });
     },
-    [handleEditEnd]
+    [handleEditEnd],
   );
 
   const handleBlur = useCallback(() => {
@@ -307,7 +307,7 @@ const Token = <ValueType = string, ErrorType = string>(
         [styles['token--editable']]: isEditable && !readOnly,
         [styles['token--active']]: activated,
         [styles['token--error']]: error && !activated,
-      }
+      },
     );
   }, [
     onGetClassName,

@@ -27,7 +27,7 @@ import type { TokenMeta } from '../types/token';
  */
 const defaultGetTokenEditableValue = <ValueType, ErrorType>(
   tokenValue: ValueType,
-  tokenMeta: TokenMeta<ErrorType>
+  tokenMeta: TokenMeta<ErrorType>,
 ): InputString => {
   return `${tokenValue}`;
 };

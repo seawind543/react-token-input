@@ -25,7 +25,7 @@ describe('usePredefinedKeyDownHandlers() default setting', () => {
         onLastTokenDelete,
         handleInputValueUpdate,
         handleTokensCreate,
-      })
+      }),
     );
 
     expect(typeof result.current.handleBackspaceKeyDown).toBe('function');
@@ -51,7 +51,7 @@ describe('usePredefinedKeyDownHandlers() default setting', () => {
         onLastTokenDelete,
         handleInputValueUpdate,
         handleTokensCreate,
-      })
+      }),
     );
 
     expect(typeof result.current.handleBackspaceKeyDown).toBe('function');
@@ -66,10 +66,10 @@ describe('usePredefinedKeyDownHandlers() default setting', () => {
         onLastTokenDelete,
         handleInputValueUpdate,
         handleTokensCreate,
-      })
+      }),
     );
     expect(typeof emptyInputValueResult.current.handleBackspaceKeyDown).toBe(
-      'function'
+      'function',
     );
     emptyInputValueResult.current.handleBackspaceKeyDown(KEY_DOWN_EVENT);
     expect(onLastTokenDelete).toBeCalledTimes(1);
@@ -91,7 +91,7 @@ describe('usePredefinedKeyDownHandlers() default setting', () => {
         onLastTokenDelete,
         handleInputValueUpdate,
         handleTokensCreate,
-      })
+      }),
     );
 
     expect(typeof result.current.handleTabKeyDown).toBe('function');
@@ -116,7 +116,7 @@ describe('usePredefinedKeyDownHandlers() default setting', () => {
         onLastTokenDelete,
         handleInputValueUpdate,
         handleTokensCreate,
-      })
+      }),
     );
 
     expect(typeof result.current.handleEnterKeyDown).toBe('function');
@@ -141,7 +141,7 @@ describe('usePredefinedKeyDownHandlers() default setting', () => {
         onLastTokenDelete,
         handleInputValueUpdate,
         handleTokensCreate,
-      })
+      }),
     );
 
     expect(typeof result.current.handleEscapeKeyDown).toBe('function');
@@ -170,7 +170,7 @@ describe('usePredefinedKeyDownHandlers().handleBackspaceKeyDown()', () => {
           onLastTokenDelete,
           handleInputValueUpdate,
           handleTokensCreate,
-        })
+        }),
       );
 
       expect(typeof result.current.handleBackspaceKeyDown).toBe('function');
@@ -185,10 +185,10 @@ describe('usePredefinedKeyDownHandlers().handleBackspaceKeyDown()', () => {
           onLastTokenDelete,
           handleInputValueUpdate,
           handleTokensCreate,
-        })
+        }),
       );
       expect(typeof emptyInputValueResult.current.handleBackspaceKeyDown).toBe(
-        'function'
+        'function',
       );
       emptyInputValueResult.current.handleBackspaceKeyDown(KEY_DOWN_EVENT);
       expect(onLastTokenDelete).toBeCalledTimes(1);
@@ -215,7 +215,7 @@ describe('usePredefinedKeyDownHandlers().handleBackspaceKeyDown()', () => {
           onLastTokenDelete,
           handleInputValueUpdate,
           handleTokensCreate,
-        })
+        }),
       );
       expect(typeof result.current.handleBackspaceKeyDown).toBe('function');
       result.current.handleBackspaceKeyDown(KEY_DOWN_EVENT);
@@ -242,7 +242,7 @@ describe('usePredefinedKeyDownHandlers().handleTabKeyDown()', () => {
           onLastTokenDelete,
           handleInputValueUpdate,
           handleTokensCreate,
-        })
+        }),
       );
 
       expect(typeof result.current.handleTabKeyDown).toBe('function');
@@ -269,7 +269,7 @@ describe('usePredefinedKeyDownHandlers().handleTabKeyDown()', () => {
           onLastTokenDelete,
           handleInputValueUpdate,
           handleTokensCreate,
-        })
+        }),
       );
 
       expect(typeof result.current.handleTabKeyDown).toBe('function');

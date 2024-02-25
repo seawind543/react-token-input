@@ -342,7 +342,7 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
    * @returns {ReactElement | null}
    */
   customizeTokenComponent?: (
-    props: TokenProps<ValueType, ErrorType>
+    props: TokenProps<ValueType, ErrorType>,
   ) => ReactElement | null;
 
   /**
@@ -537,7 +537,7 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
 
 const TokenInput = <ValueType, ErrorType>(
   props: TokenInputProps<ValueType, ErrorType>,
-  ref?: React.ForwardedRef<TokenInputRef>
+  ref?: React.ForwardedRef<TokenInputRef>,
 ) => {
   const {
     className,
@@ -640,7 +640,7 @@ const TokenInput = <ValueType, ErrorType>(
       const newTokenValues = [...tokenValues, ...appendTokenValues];
       onTokenValuesChange?.(newTokenValues);
     },
-    [tokenValues, onTokenValuesChange]
+    [tokenValues, onTokenValuesChange],
   );
 
   const handleInputValuesPreprocess = useCallback(
@@ -656,12 +656,12 @@ const TokenInput = <ValueType, ErrorType>(
       }
       return processedValues;
     },
-    [onPreprocess]
+    [onPreprocess],
   );
 
   const handleClick = useCallback(
     () => focusTokenCreator(),
-    [focusTokenCreator]
+    [focusTokenCreator],
   );
 
   const TokenComponent = customizeTokenComponent || Token;
@@ -674,7 +674,7 @@ const TokenInput = <ValueType, ErrorType>(
       getCreatorValue,
       createTokens,
     }),
-    [focusTokenCreator, setCreatorValue, getCreatorValue, createTokens]
+    [focusTokenCreator, setCreatorValue, getCreatorValue, createTokens],
   );
 
   return (
@@ -738,11 +738,11 @@ const TokenInput = <ValueType, ErrorType>(
 
 const WrappedTokenInput = forwardRef(TokenInput) as <
   ValueType = string,
-  ErrorType = string
+  ErrorType = string,
 >(
   p: TokenInputProps<ValueType, ErrorType> & {
     ref?: React.ForwardedRef<TokenInputRef>;
-  }
+  },
 ) => ReturnType<typeof TokenInput>;
 // Apply Type assertion to allow TypeScript type the generic type `ValueType` and `ErrorType`
 // https://fettblog.eu/typescript-react-generic-forward-refs/

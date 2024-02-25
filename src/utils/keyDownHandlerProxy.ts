@@ -24,7 +24,7 @@ interface KeyDownHandlerProxyActions {
  */
 const keyDownHandlerProxy = (
   keyDownEvent: React.KeyboardEvent,
-  actions: KeyDownHandlerProxyActions
+  actions: KeyDownHandlerProxyActions,
 ): void => {
   const { onBackspace, onTab, onEnter, onEscape } = actions;
 

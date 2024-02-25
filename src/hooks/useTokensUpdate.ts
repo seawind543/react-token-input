@@ -10,7 +10,7 @@ interface Params<ValueType, ErrorType> {
 }
 
 function useTokensUpdate<ValueType, ErrorType>(
-  params: Params<ValueType, ErrorType>
+  params: Params<ValueType, ErrorType>,
 ) {
   const { tokenValues, onTokenValueValidate } = params;
 
@@ -21,7 +21,7 @@ function useTokensUpdate<ValueType, ErrorType>(
   // Use this internalTokenValues to `render` to avoid
   // not synced between tokenMetas and  tokenValues
   const [internalTokenValues, setInternalTokenValues] = useState<ValueType[]>(
-    []
+    [],
   );
 
   useLayoutEffect(() => {

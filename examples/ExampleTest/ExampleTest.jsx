@@ -111,7 +111,7 @@ const ExampleTest = () => {
 
       setValues(newTokenValues);
     },
-    [values]
+    [values],
   );
 
   return (

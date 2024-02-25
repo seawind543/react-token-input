@@ -5,7 +5,7 @@ import { KEY_DOWN_HANDLER_CONFIG_OPTION } from '../constants';
  * @description The accept values of SpecialKeyDownConfig.onXXXX
  */
 export type KeyDownHandlerConfigOption =
-  typeof KEY_DOWN_HANDLER_CONFIG_OPTION[keyof typeof KEY_DOWN_HANDLER_CONFIG_OPTION];
+  (typeof KEY_DOWN_HANDLER_CONFIG_OPTION)[keyof typeof KEY_DOWN_HANDLER_CONFIG_OPTION];
 
 /**
  * @typedef {Object} SpecialKeyDownConfig

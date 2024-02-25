@@ -3,3 +3,4 @@ coverage/
 docs/
 dist/
 lib/
+src/**/*.scss.d.ts
