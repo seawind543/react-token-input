@@ -10,34 +10,34 @@ export interface TokenInputRef {
     getCreatorValue: () => InputString;
     createTokens: (value?: InputString) => void;
 }
-export interface TokenInputProps<ValueType = string, ErrorType = string> {
+export interface TokenInputProps<VT = string, ET = string> {
     style?: CSSProperties;
     className?: string;
     placeholder?: string;
     readOnly?: boolean;
     disableCreateOnBlur?: boolean;
     autoFocus?: boolean;
-    tokenValues: ValueType[];
+    tokenValues: VT[];
     separators?: TokenSeparator[];
     specialKeyDown?: SpecialKeyDownConfig;
     onInputValueChange?: OnInputValueChange;
     onPreprocess?: OnPreprocess;
-    onTokenValueValidate?: OnTokenValueValidate<ValueType, ErrorType>;
-    onTokenValuesChange?: OnTokenValuesChange<ValueType>;
-    onBuildTokenValue?: OnBuildTokenValue<ValueType>;
-    customizeTokenComponent?: (props: TokenProps<ValueType, ErrorType>) => ReactElement | null;
-    onGetTokenClassName?: OnGetTokenClassName<ValueType, ErrorType>;
-    onGetTokenDisplayLabel?: OnGetTokenDisplayLabel<ValueType, ErrorType>;
+    onTokenValueValidate?: OnTokenValueValidate<VT, ET>;
+    onTokenValuesChange?: OnTokenValuesChange<VT>;
+    onBuildTokenValue?: OnBuildTokenValue<VT>;
+    customizeTokenComponent?: (props: TokenProps<VT, ET>) => ReactElement | null;
+    onGetTokenClassName?: OnGetTokenClassName<VT, ET>;
+    onGetTokenDisplayLabel?: OnGetTokenDisplayLabel<VT, ET>;
     onRenderTokenDeleteButtonContent?: OnRenderTokenDeleteButtonContent;
-    onGetIsTokenEditable?: OnGetIsTokenEditable<ValueType, ErrorType>;
-    onGetTokenEditableValue?: OnGetTokenEditableValue<ValueType, ErrorType>;
-    onGetTokenErrorMessage?: OnGetTokenErrorMessage<ValueType, ErrorType>;
+    onGetIsTokenEditable?: OnGetIsTokenEditable<VT, ET>;
+    onGetTokenEditableValue?: OnGetTokenEditableValue<VT, ET>;
+    onGetTokenErrorMessage?: OnGetTokenErrorMessage<VT, ET>;
     onCreatorFocus?: React.FocusEventHandler<HTMLInputElement>;
     onCreatorBlur?: React.FocusEventHandler<HTMLInputElement>;
     onCreatorKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
 }
-declare const TokenInput: <ValueType, ErrorType>(props: TokenInputProps<ValueType, ErrorType>, ref?: React.ForwardedRef<TokenInputRef>) => React.JSX.Element;
-declare const WrappedTokenInput: <ValueType = string, ErrorType = string>(p: TokenInputProps<ValueType, ErrorType> & {
+declare const TokenInput: <VT, ET>(props: TokenInputProps<VT, ET>, ref?: React.ForwardedRef<TokenInputRef>) => React.JSX.Element;
+declare const WrappedTokenInput: <VT = string, ET = string>(p: TokenInputProps<VT, ET> & {
     ref?: React.ForwardedRef<TokenInputRef> | undefined;
 }) => ReturnType<typeof TokenInput>;
 export default WrappedTokenInput;

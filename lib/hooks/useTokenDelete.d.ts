@@ -1,12 +1,12 @@
-import type { TokenIndex } from '../types/token';
+import type { Index } from '../types/token';
 import type { OnTokenValuesChange } from '../types/interfaces';
-interface Params<ValueType> {
-    tokenValues: ValueType[];
-    onTokenValuesChange?: OnTokenValuesChange<ValueType>;
+interface Params<VT> {
+    tokenValues: VT[];
+    onTokenValuesChange?: OnTokenValuesChange<VT>;
     focusTokenCreator: HTMLInputElement['focus'];
 }
-declare function useTokenDelete<ValueType>(params: Params<ValueType>): {
-    handleTokenDelete: (targetIndex: TokenIndex) => () => void;
+declare function useTokenDelete<VT>(params: Params<VT>): {
+    handleTokenDelete: (targetIndex: Index) => () => void;
     handleLastTokenDelete: () => void;
 };
 export default useTokenDelete;

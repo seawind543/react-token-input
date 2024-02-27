@@ -1,37 +1,37 @@
-import type { TokenIndex, TokenMeta } from '../types/token';
+import type { Index, TokenMeta } from '../types/token';
 
 /**
- * @template ValueType, ErrorType
- * @callback buildTokenMeta<ValueType, ErrorType>
+ * @template VT, ET
+ * @callback buildTokenMeta<VT, ET>
  * @description
  * Internal function for TokenInput to
  * build token data and meta with customize data
  *
  * @example
  * ```js
- * buildTokenMeta(customizeError, tokenValue, tokenIndex)
+ * buildTokenMeta(customizeError, tokenValue, index)
  * ```
  *
- * @param {TokenMeta<ErrorType>['error']} customizeError
+ * @param {TokenMeta<ET>['error']} customizeError
  * The return of callback `onTokenValueValidate`
  *
- * @param {ValueType} tokenValue
+ * @param {VT} value
  * The tokenValue built by callback `onBuildTokenValue`
  *
- * @param {TokenIndex} tokenIndex
+ * @param {Index} index
  * The array index of this tokenValue in tokenValues
  *
- * @returns {TokenMeta<ErrorType>}
+ * @returns {TokenMeta<ET>}
  * The token's meta data
  */
-const buildTokenMeta = <ValueType, ErrorType>(
-  customizeError: TokenMeta<ErrorType>['error'],
-  tokenValue: ValueType,
-  tokenIndex: TokenIndex,
-): TokenMeta<ErrorType> => {
+const buildTokenMeta = <VT, ET>(
+  customizeError: TokenMeta<ET>['error'],
+  value: VT,
+  index: Index,
+): TokenMeta<ET> => {
   return {
     // TODO: Consider uuid
-    key: `${JSON.stringify(tokenValue)}-${Date.now()}-${tokenIndex}`,
+    key: `${JSON.stringify(value)}-${Date.now()}-${index}`,
     activated: false,
     error: customizeError,
   };

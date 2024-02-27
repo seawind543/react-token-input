@@ -8,7 +8,7 @@ export interface TokenCreatorRef {
     getValue: () => InputString;
     createTokens: (value?: InputString) => void;
 }
-interface TokenCreatorProps<ValueType = string> {
+interface TokenCreatorProps<VT = string> {
     placeholder?: string;
     disableCreateOnBlur?: boolean;
     autoFocus: boolean;
@@ -19,12 +19,12 @@ interface TokenCreatorProps<ValueType = string> {
     specialKeyDown: SpecialKeyDownConfig;
     onInputValueChange?: OnInputValueChange;
     onPreprocess: OnPreprocess;
-    onBuildTokenValue: OnBuildTokenValue<ValueType>;
-    onNewTokenValuesAppend: (appendTokenValues: ValueType[]) => void;
+    onBuildTokenValue: OnBuildTokenValue<VT>;
+    onNewTokenValuesAppend: (appendTokenValues: VT[]) => void;
     onLastTokenDelete: () => void;
 }
-declare const TokenCreator: <ValueType>(props: TokenCreatorProps<ValueType>, ref: React.ForwardedRef<TokenCreatorRef>) => React.JSX.Element;
-declare const WrappedTokenCreator: <ValueType = string>(p: TokenCreatorProps<ValueType> & {
+declare const TokenCreator: <VT>(props: TokenCreatorProps<VT>, ref: React.ForwardedRef<TokenCreatorRef>) => React.JSX.Element;
+declare const WrappedTokenCreator: <VT = string>(p: TokenCreatorProps<VT> & {
     ref: React.ForwardedRef<TokenCreatorRef>;
 }) => ReturnType<typeof TokenCreator>;
 export default WrappedTokenCreator;

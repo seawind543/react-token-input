@@ -75,10 +75,10 @@ export interface TokenCreatorRef {
 }
 
 /**
- * @template ValueType
+ * @template VT
  * @typedef {Object} TokenCreatorProps
  */
-interface TokenCreatorProps<ValueType = string> {
+interface TokenCreatorProps<VT = string> {
   /**
    * @prop {string} [placeholder]
    * @description
@@ -160,11 +160,11 @@ interface TokenCreatorProps<ValueType = string> {
    */
   onPreprocess: OnPreprocess;
   /**
-   * @prop {OnBuildTokenValue<ValueType>} onBuildTokenValue
+   * @prop {OnBuildTokenValue<VT>} onBuildTokenValue
    * @description
    * Same as TokenInputProps {@see TokenInputProps['onBuildTokenValue']}
    */
-  onBuildTokenValue: OnBuildTokenValue<ValueType>;
+  onBuildTokenValue: OnBuildTokenValue<VT>;
 
   /**
    * @prop {function} onNewTokenValuesAppend
@@ -174,7 +174,7 @@ interface TokenCreatorProps<ValueType = string> {
    *
    * @returns {void}
    */
-  onNewTokenValuesAppend: (appendTokenValues: ValueType[]) => void;
+  onNewTokenValuesAppend: (appendTokenValues: VT[]) => void;
 
   /**
    * @prop {function} onLastTokenDelete
@@ -187,8 +187,8 @@ interface TokenCreatorProps<ValueType = string> {
   onLastTokenDelete: () => void;
 }
 
-const TokenCreator = <ValueType,>(
-  props: TokenCreatorProps<ValueType>,
+const TokenCreator = <VT,>(
+  props: TokenCreatorProps<VT>,
   ref: React.ForwardedRef<TokenCreatorRef>,
 ) => {
   const {
@@ -376,12 +376,12 @@ const TokenCreator = <ValueType,>(
   );
 };
 
-const WrappedTokenCreator = forwardRef(TokenCreator) as <ValueType = string>(
-  p: TokenCreatorProps<ValueType> & {
+const WrappedTokenCreator = forwardRef(TokenCreator) as <VT = string>(
+  p: TokenCreatorProps<VT> & {
     ref: React.ForwardedRef<TokenCreatorRef>;
   },
 ) => ReturnType<typeof TokenCreator>;
-// Apply Type assertion to allow TypeScript type the generic type `ValueType`
+// Apply Type assertion to allow TypeScript type the generic type `VT`
 // https://fettblog.eu/typescript-react-generic-forward-refs/
 
 export default WrappedTokenCreator;

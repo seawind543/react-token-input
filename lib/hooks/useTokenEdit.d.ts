@@ -1,22 +1,22 @@
 import type { OnTokenValuesChange } from '../types/interfaces';
-import type { TokenIndex } from '../types/token';
+import type { Index } from '../types/token';
 import type { SetTokenActivated } from './useTokenMetas';
 import type { TokenInputFocusHandler } from './useTokenInputFocusEffect';
 interface HandleTokenEditStart {
-    (targetIndex: TokenIndex): () => void;
+    (targetIndex: Index): () => void;
 }
-interface HandleTokenEditEnd<ValueType> {
-    (targetIndex: TokenIndex): (newTokenValue?: ValueType) => void;
+interface HandleTokenEditEnd<VT> {
+    (targetIndex: Index): (newTokenValue?: VT) => void;
 }
-interface Params<ValueType, ErrorType> {
-    tokenValues: ValueType[];
-    onTokenValuesChange?: OnTokenValuesChange<ValueType>;
-    setTokenActivated: SetTokenActivated<ErrorType>;
+interface Params<VT, ET> {
+    tokenValues: VT[];
+    onTokenValuesChange?: OnTokenValuesChange<VT>;
+    setTokenActivated: SetTokenActivated<ET>;
     handleTokenInputFocus: TokenInputFocusHandler;
     handleTokenInputBlur: TokenInputFocusHandler;
 }
-declare function useTokenEdit<ValueType, ErrorType>(params: Params<ValueType, ErrorType>): {
+declare function useTokenEdit<VT, ET>(params: Params<VT, ET>): {
     handleTokenEditStart: HandleTokenEditStart;
-    handleTokenEditEnd: HandleTokenEditEnd<ValueType>;
+    handleTokenEditEnd: HandleTokenEditEnd<VT>;
 };
 export default useTokenEdit;

@@ -1,28 +1,26 @@
 import { useCallback } from 'react';
 
 import type { OnTokenValuesChange } from '../types/interfaces';
-import type { TokenIndex } from '../types/token';
+import type { Index } from '../types/token';
 import type { SetTokenActivated } from './useTokenMetas';
 import type { TokenInputFocusHandler } from './useTokenInputFocusEffect';
 
 interface HandleTokenEditStart {
-  (targetIndex: TokenIndex): () => void;
+  (targetIndex: Index): () => void;
 }
-interface HandleTokenEditEnd<ValueType> {
-  (targetIndex: TokenIndex): (newTokenValue?: ValueType) => void;
+interface HandleTokenEditEnd<VT> {
+  (targetIndex: Index): (newTokenValue?: VT) => void;
 }
 
-interface Params<ValueType, ErrorType> {
-  tokenValues: ValueType[];
-  onTokenValuesChange?: OnTokenValuesChange<ValueType>;
-  setTokenActivated: SetTokenActivated<ErrorType>;
+interface Params<VT, ET> {
+  tokenValues: VT[];
+  onTokenValuesChange?: OnTokenValuesChange<VT>;
+  setTokenActivated: SetTokenActivated<ET>;
   handleTokenInputFocus: TokenInputFocusHandler;
   handleTokenInputBlur: TokenInputFocusHandler;
 }
 
-function useTokenEdit<ValueType, ErrorType>(
-  params: Params<ValueType, ErrorType>,
-) {
+function useTokenEdit<VT, ET>(params: Params<VT, ET>) {
   const {
     tokenValues,
     onTokenValuesChange,
@@ -32,7 +30,7 @@ function useTokenEdit<ValueType, ErrorType>(
   } = params;
 
   const handleTokenEditStart: HandleTokenEditStart = useCallback(
-    (targetIndex: TokenIndex) => () => {
+    (targetIndex: Index) => () => {
       // console.log('handleTokenEditStart; targetIndex', targetIndex);
       setTokenActivated(targetIndex, true);
       handleTokenInputFocus();
@@ -40,8 +38,8 @@ function useTokenEdit<ValueType, ErrorType>(
     [setTokenActivated, handleTokenInputFocus],
   );
 
-  const handleTokenEditEnd: HandleTokenEditEnd<ValueType> = useCallback(
-    (targetIndex: TokenIndex) => (newTokenValue) => {
+  const handleTokenEditEnd: HandleTokenEditEnd<VT> = useCallback(
+    (targetIndex: Index) => (newTokenValue) => {
       // console.log(
       //   'handleTokenEditEnd; targetIndex',
       //   targetIndex,

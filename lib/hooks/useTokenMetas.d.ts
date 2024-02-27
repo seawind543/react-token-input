@@ -1,11 +1,11 @@
 /// <reference types="react" />
-import type { TokenMeta, TokenIndex } from '../types/token';
-export interface SetTokenActivated<ErrorType> {
-    (targetIndex: TokenIndex, activated: TokenMeta<ErrorType>['activated']): void;
+import type { TokenMeta, Index } from '../types/token';
+export interface SetTokenActivated<ET> {
+    (targetIndex: Index, activated: TokenMeta<ET>['activated']): void;
 }
-declare function useTokenMetas<ErrorType>(): {
-    tokenMetas: TokenMeta<ErrorType>[];
-    setTokenMetas: import("react").Dispatch<import("react").SetStateAction<TokenMeta<ErrorType>[]>>;
-    setTokenActivated: SetTokenActivated<ErrorType>;
+declare function useTokenMetas<ET>(): {
+    tokenMetas: TokenMeta<ET>[];
+    setTokenMetas: import("react").Dispatch<import("react").SetStateAction<TokenMeta<ET>[]>>;
+    setTokenActivated: SetTokenActivated<ET>;
 };
 export default useTokenMetas;

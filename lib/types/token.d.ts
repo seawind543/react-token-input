@@ -1,7 +1,7 @@
 import type { Nullish } from './mix';
-export type TokenIndex = number;
-export interface TokenMeta<ErrorType = string> {
+export type Index = number;
+export interface TokenMeta<ET = string> {
     key: string;
     activated: boolean;
-    error: Nullish | ErrorType;
+    error: Nullish | ET;
 }

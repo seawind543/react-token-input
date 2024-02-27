@@ -1,36 +1,36 @@
 import type { ReactNode } from 'react';
 import { InputString, Nullish } from './mix';
-import { TokenIndex, TokenMeta } from './token';
+import { Index, TokenMeta } from './token';
 export interface OnInputValueChange {
-    (newValue: InputString, previousValue: InputString): void;
+    (inputValue: InputString, previousValue: InputString): void;
 }
 export interface OnPreprocess {
-    (values: InputString[]): InputString[];
+    (inputValues: InputString[]): InputString[];
 }
-export interface OnBuildTokenValue<ValueType> {
-    (inputValue: InputString): ValueType;
+export interface OnBuildTokenValue<VT> {
+    (inputValue: InputString): VT;
 }
-export interface OnTokenValuesChange<ValueType> {
-    (modifiedTokenValues: ValueType[]): void;
+export interface OnTokenValuesChange<VT> {
+    (values: VT[]): void;
 }
-export interface OnTokenValueValidate<ValueType, ErrorType> {
-    (tokenValue: ValueType, tokenIndex: TokenIndex, tokenValues: ValueType[]): TokenMeta<ErrorType>['error'];
+export interface OnTokenValueValidate<VT, ET> {
+    (value: VT, index: Index, values: VT[]): TokenMeta<ET>['error'];
 }
-export interface OnGetTokenClassName<ValueType, ErrorType> {
-    (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>): undefined | string;
+export interface OnGetTokenClassName<VT, ET> {
+    (value: VT, meta: TokenMeta<ET>): undefined | string;
 }
-export interface OnGetTokenDisplayLabel<ValueType, ErrorType> {
-    (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>): InputString | ReactNode;
+export interface OnGetTokenDisplayLabel<VT, ET> {
+    (value: VT, meta: TokenMeta<ET>): InputString | ReactNode;
 }
 export interface OnRenderTokenDeleteButtonContent {
     (): ReactNode;
 }
-export interface OnGetIsTokenEditable<ValueType, ErrorType> {
-    (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>): boolean;
+export interface OnGetIsTokenEditable<VT, ET> {
+    (value: VT, meta: TokenMeta<ET>): boolean;
 }
-export interface OnGetTokenEditableValue<ValueType, ErrorType> {
-    (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>): InputString;
+export interface OnGetTokenEditableValue<VT, ET> {
+    (value: VT, meta: TokenMeta<ET>): InputString;
 }
-export interface OnGetTokenErrorMessage<ValueType, ErrorType> {
-    (tokenValue: ValueType, tokenMeta: TokenMeta<ErrorType>): string | Nullish;
+export interface OnGetTokenErrorMessage<VT, ET> {
+    (value: VT, meta: TokenMeta<ET>): string | Nullish;
 }

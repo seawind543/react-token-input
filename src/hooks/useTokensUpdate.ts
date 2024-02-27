@@ -4,25 +4,20 @@ import buildTokenMeta from '../utils/buildTokenMeta';
 
 import type { OnTokenValueValidate } from '../types/interfaces';
 
-interface Params<ValueType, ErrorType> {
-  tokenValues: ValueType[];
-  onTokenValueValidate: OnTokenValueValidate<ValueType, ErrorType>;
+interface Params<VT, ET> {
+  tokenValues: VT[];
+  onTokenValueValidate: OnTokenValueValidate<VT, ET>;
 }
 
-function useTokensUpdate<ValueType, ErrorType>(
-  params: Params<ValueType, ErrorType>,
-) {
+function useTokensUpdate<VT, ET>(params: Params<VT, ET>) {
   const { tokenValues, onTokenValueValidate } = params;
 
-  const { tokenMetas, setTokenMetas, setTokenActivated } =
-    useTokenMetas<ErrorType>();
+  const { tokenMetas, setTokenMetas, setTokenActivated } = useTokenMetas<ET>();
   const [hasInvalidToken, setHasInvalidToken] = useState<boolean>(false);
 
   // Use this internalTokenValues to `render` to avoid
   // not synced between tokenMetas and  tokenValues
-  const [internalTokenValues, setInternalTokenValues] = useState<ValueType[]>(
-    [],
-  );
+  const [internalTokenValues, setInternalTokenValues] = useState<VT[]>([]);
 
   useLayoutEffect(() => {
     // console.log('useTokensUpdate > useLayoutEffect');

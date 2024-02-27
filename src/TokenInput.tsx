@@ -112,10 +112,10 @@ export interface TokenInputRef {
 }
 
 /**
- * @template ValueType, ErrorType
+ * @template VT, ET
  * @typedef {Object} TokenInputProps
  */
-export interface TokenInputProps<ValueType = string, ErrorType = string> {
+export interface TokenInputProps<VT = string, ET = string> {
   /**
    * @prop {CSSProperties} [style]
    * @description An optional prop, for assigning style to TokenInput
@@ -155,18 +155,18 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
   autoFocus?: boolean;
 
   /**
-   * @template ValueType
-   * @prop {ValueType[]} tokenValues
+   * @template VT
+   * @prop {VT[]} tokenValues
    * @description
    * The array of tokenValue of TokenInput.
    * This array will be used to render the tokens.
    *
-   * Type: ValueType
+   * Type: VT
    * Description:
    * Customize data structure data
    * Could be string | number | object | customized data structure...etc.
    */
-  tokenValues: ValueType[];
+  tokenValues: VT[];
 
   // TokenCreator props
 
@@ -248,43 +248,43 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
   onPreprocess?: OnPreprocess;
 
   /**
-   * @template ValueType, ErrorType
-   * @prop {OnTokenValueValidate<ValueType, ErrorType>} [onTokenValueValidate=defaultTokenValueValidate]
+   * @template VT, ET
+   * @prop {OnTokenValueValidate<VT, ET>} [onTokenValueValidate=defaultTokenValueValidate]
    * @description
    * A callback function to validate a tokenValue
    * (The returned result will be set into the TokenMeta & pass to `onGetTokenErrorMessage`)
    *
    * @example
    * ```js
-   * onTokenValueValidate(tokenValue, tokenIndex, tokenValues)
+   * onTokenValueValidate(tokenValue, index, tokenValues)
    * ```
    *
-   * @param {ValueType} tokenValue
+   * @param {VT} tokenValue
    * The tokenValue built by `onBuildTokenValue`
    *
-   * @param {TokenIndex} tokenIndex
+   * @param {Index} index
    * The array index of this tokenValue in tokenValues
    *
-   * @param {ValueType[]} tokenValues
+   * @param {VT[]} tokenValues
    * The array of tokenValue of TokenInput
    *
-   * @returns {TokenMeta<ErrorType>['error']}
+   * @returns {TokenMeta<ET>['error']}
    * The customized error.
    * Specific the token's validate status or errorMessage.
    * Could be `an error message` to display, or an error object for further operations.
    *
-   * @see TokenMeta for more information about TokenMeta<ErrorType>['error']
+   * @see TokenMeta for more information about TokenMeta<ET>['error']
    *
    * Note: Return `Nullish` types means the token is valid.
    * @see Nullish
    */
-  onTokenValueValidate?: OnTokenValueValidate<ValueType, ErrorType>;
+  onTokenValueValidate?: OnTokenValueValidate<VT, ET>;
 
   // Token related props
 
   /**
-   * @template ValueType
-   * @prop {OnTokenValuesChange<ValueType>} [onTokenValuesChange]
+   * @template VT
+   * @prop {OnTokenValuesChange<VT>} [onTokenValuesChange]
    * @description
    * A callback function invoked when tokenValues update
    *
@@ -293,16 +293,16 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
    * onTokenValuesChange(modifiedTokenValues)
    * ```
    *
-   * @param {ValueType[]} modifiedTokenValues
+   * @param {VT[]} modifiedTokenValues
    * The new tokenValues
    *
    * @returns {void}
    */
-  onTokenValuesChange?: OnTokenValuesChange<ValueType>;
+  onTokenValuesChange?: OnTokenValuesChange<VT>;
 
   /**
-   * @template ValueType
-   * @prop {OnBuildTokenValue<ValueType>} [onBuildTokenValue=defaultBuildTokenValue]
+   * @template VT
+   * @prop {OnBuildTokenValue<VT>} [onBuildTokenValue=defaultBuildTokenValue]
    * @description
    * A callback function to build `user input string value` into
    * the `tokenValue` (customized data structure).
@@ -323,11 +323,11 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
    * onBuildTokenValue('ABC') and onBuildTokenValue('DEF')
    * ```
    *
-   * @returns {ValueType}
+   * @returns {VT}
    * The customized data structure data
    * Could be string | number | object | customized data structure...etc.
    */
-  onBuildTokenValue?: OnBuildTokenValue<ValueType>;
+  onBuildTokenValue?: OnBuildTokenValue<VT>;
 
   /**
    * @prop {Component} [customizeTokenComponent]
@@ -341,13 +341,11 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
    *
    * @returns {ReactElement | null}
    */
-  customizeTokenComponent?: (
-    props: TokenProps<ValueType, ErrorType>,
-  ) => ReactElement | null;
+  customizeTokenComponent?: (props: TokenProps<VT, ET>) => ReactElement | null;
 
   /**
-   * @template ValueType, ErrorType
-   * @prop {OnGetTokenClassName<ValueType, ErrorType>} [onGetTokenClassName]
+   * @template VT, ET
+   * @prop {OnGetTokenClassName<VT, ET>} [onGetTokenClassName]
    * @description
    * A callback function to getting customizes `className` to set on a `token`
    *
@@ -355,20 +353,20 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
    * onGetTokenClassName(tokenValue, tokenMeta)
    * ```
    *
-   * @param {ValueType} tokenValue
+   * @param {VT} tokenValue
    * The tokenValue built by `onBuildTokenValue`
    *
-   * @param {TokenMeta<ErrorType>} tokenMeta
+   * @param {TokenMeta<ET>} tokenMeta
    * The token's meta data
    *
    * @returns {undefined | string}
    * The customizes className
    */
-  onGetTokenClassName?: OnGetTokenClassName<ValueType, ErrorType>;
+  onGetTokenClassName?: OnGetTokenClassName<VT, ET>;
 
   /**
-   * @template ValueType, ErrorType
-   * @prop  {OnGetTokenDisplayLabel<ValueType, ErrorType>} [onGetTokenDisplayLabel=defaultGetTokenEditableValue]
+   * @template VT, ET
+   * @prop  {OnGetTokenDisplayLabel<VT, ET>} [onGetTokenDisplayLabel=defaultGetTokenEditableValue]
    * @description
    * A callback function to getting displayable `label` of a token
    * Apply this to customize the token's content
@@ -379,16 +377,16 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
    * onGetTokenDisplayLabel(tokenValue, tokenMeta)
    * ```
    *
-   * @param {ValueType} tokenValue
+   * @param {VT} tokenValue
    * The tokenValue built by `onBuildTokenValue`
    *
-   * @param {TokenMeta<ErrorType>} tokenMeta
+   * @param {TokenMeta<ET>} tokenMeta
    * The token's meta data
    *
    * @returns {InputString | ReactNode}
    * The token's display content.
    */
-  onGetTokenDisplayLabel?: OnGetTokenDisplayLabel<ValueType, ErrorType>;
+  onGetTokenDisplayLabel?: OnGetTokenDisplayLabel<VT, ET>;
 
   /**
    * @prop {OnRenderTokenDeleteButtonContent} [onRenderTokenDeleteButtonContent]
@@ -409,8 +407,8 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
   onRenderTokenDeleteButtonContent?: OnRenderTokenDeleteButtonContent;
 
   /**
-   * @template ValueType, ErrorType
-   * @prop {OnGetIsTokenEditable<ValueType, ErrorType>} [onGetIsTokenEditable=defaultGetIsTokenEditable]
+   * @template VT, ET
+   * @prop {OnGetIsTokenEditable<VT, ET>} [onGetIsTokenEditable=defaultGetIsTokenEditable]
    * @description
    * A callback function to determine whether the token is `inline editable`.
    *
@@ -419,21 +417,21 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
    * onGetIsTokenEditable(tokenValue, tokenMeta)
    * ```
    *
-   * @param {ValueType} tokenValue
+   * @param {VT} tokenValue
    * The tokenValue built by `onBuildTokenValue`
    *
-   * @param {TokenMeta<ErrorType>} tokenMeta
+   * @param {TokenMeta<ET>} tokenMeta
    * The token's meta data
    *
    * @returns {boolean}
    * - `true`: Editable.
    * - `false`: Not editable.
    */
-  onGetIsTokenEditable?: OnGetIsTokenEditable<ValueType, ErrorType>;
+  onGetIsTokenEditable?: OnGetIsTokenEditable<VT, ET>;
 
   /**
-   * @template ValueType, ErrorType
-   * @prop {OnGetTokenEditableValue<ValueType, ErrorType>} [onGetTokenEditableValue=defaultGetTokenEditableValue]
+   * @template VT, ET
+   * @prop {OnGetTokenEditableValue<VT, ET>} [onGetTokenEditableValue=defaultGetTokenEditableValue]
    * @description
    * A callback function to getting `string input value`
    * from `tokenValue` for the end-user to perform `inline edit`
@@ -443,20 +441,20 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
    * onGetTokenEditableValue(tokenValue, tokenMeta)
    * ```
    *
-   * @param {ValueType} tokenValue
+   * @param {VT} tokenValue
    * The tokenValue built by `onBuildTokenValue`
    *
-   * @param {TokenMeta<ErrorType>} tokenMeta
+   * @param {TokenMeta<ET>} tokenMeta
    * The token's meta data
    *
    * @returns {InputString}
    * The value for end-user to `edit` in an input field
    */
-  onGetTokenEditableValue?: OnGetTokenEditableValue<ValueType, ErrorType>;
+  onGetTokenEditableValue?: OnGetTokenEditableValue<VT, ET>;
 
   /**
-   * @template ValueType, ErrorType
-   * @prop {OnGetTokenErrorMessage<ValueType, ErrorType>} [onGetTokenErrorMessage=defaultGetTokenErrorMessage]
+   * @template VT, ET
+   * @prop {OnGetTokenErrorMessage<VT, ET>} [onGetTokenErrorMessage=defaultGetTokenErrorMessage]
    * @description
    * A callback function to getting the `Error Message` to
    * apply into the `title` attribute of the built-in Token Component
@@ -466,10 +464,10 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
    * onGetTokenErrorMessage(tokenValue, tokenMeta)
    * ```
    *
-   * @param {ValueType} tokenValue
+   * @param {VT} tokenValue
    * The tokenValue built by `onBuildTokenValue`
    *
-   * @param {TokenMeta<ErrorType>} tokenMeta
+   * @param {TokenMeta<ET>} tokenMeta
    * The token's meta data
    *
    * @returns {string | Nullish}
@@ -477,7 +475,7 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
    * Return `string type` will let the built-in Token component apply the message
    * into the `title` attribute. Otherwise, will simply be ignored
    */
-  onGetTokenErrorMessage?: OnGetTokenErrorMessage<ValueType, ErrorType>;
+  onGetTokenErrorMessage?: OnGetTokenErrorMessage<VT, ET>;
 
   /**
    * @prop {React.FocusEventHandler<HTMLInputElement>} [onCreatorFocus]
@@ -535,8 +533,8 @@ export interface TokenInputProps<ValueType = string, ErrorType = string> {
   // onBlur
 }
 
-const TokenInput = <ValueType, ErrorType>(
-  props: TokenInputProps<ValueType, ErrorType>,
+const TokenInput = <VT, ET>(
+  props: TokenInputProps<VT, ET>,
   ref?: React.ForwardedRef<TokenInputRef>,
 ) => {
   const {
@@ -631,7 +629,7 @@ const TokenInput = <ValueType, ErrorType>(
   });
 
   const handleNewTokenValuesAppend = useCallback(
-    (appendTokenValues: ValueType[]) => {
+    (appendTokenValues: VT[]) => {
       if (appendTokenValues.length === 0) {
         // Avoid meaningless update
         return;
@@ -736,15 +734,12 @@ const TokenInput = <ValueType, ErrorType>(
   );
 };
 
-const WrappedTokenInput = forwardRef(TokenInput) as <
-  ValueType = string,
-  ErrorType = string,
->(
-  p: TokenInputProps<ValueType, ErrorType> & {
+const WrappedTokenInput = forwardRef(TokenInput) as <VT = string, ET = string>(
+  p: TokenInputProps<VT, ET> & {
     ref?: React.ForwardedRef<TokenInputRef>;
   },
 ) => ReturnType<typeof TokenInput>;
-// Apply Type assertion to allow TypeScript type the generic type `ValueType` and `ErrorType`
+// Apply Type assertion to allow TypeScript type the generic type `VT` and `ET`
 // https://fettblog.eu/typescript-react-generic-forward-refs/
 
 export default WrappedTokenInput;

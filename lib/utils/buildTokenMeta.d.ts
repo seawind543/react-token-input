@@ -1,3 +1,3 @@
-import type { TokenIndex, TokenMeta } from '../types/token';
-declare const buildTokenMeta: <ValueType, ErrorType>(customizeError: import("../types/mix").Nullish | ErrorType, tokenValue: ValueType, tokenIndex: TokenIndex) => TokenMeta<ErrorType>;
+import type { Index, TokenMeta } from '../types/token';
+declare const buildTokenMeta: <VT, ET>(customizeError: import("../types/mix").Nullish | ET, value: VT, index: Index) => TokenMeta<ET>;
 export default buildTokenMeta;
