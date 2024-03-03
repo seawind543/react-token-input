@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import useTokenDelete from './useTokenDelete.ts';
 
 import DEFAULT_VALUE_TYPE_DATA from '../__fixtures__/tokenValues.fixtures';
@@ -24,9 +24,9 @@ describe('useTokenDelete() with default string type tokenValue', () => {
 
     const newTokenValues = [...tokenValues];
     newTokenValues.splice(MOCK_TARGET_INDEX, 1);
-    expect(onTokenValuesChange).toBeCalledTimes(1);
-    expect(onTokenValuesChange).toBeCalledWith(newTokenValues);
+    expect(onTokenValuesChange).toHaveBeenCalledTimes(1);
+    expect(onTokenValuesChange).toHaveBeenCalledWith(newTokenValues);
 
-    expect(focusTokenCreator).toBeCalledTimes(1);
+    expect(focusTokenCreator).toHaveBeenCalledTimes(1);
   });
 });

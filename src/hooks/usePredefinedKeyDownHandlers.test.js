@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import usePredefinedKeyDownHandlers from './usePredefinedKeyDownHandlers.ts';
 import {
   KEY_DOWN_HANDLER_CONFIG_OPTION,
@@ -72,7 +72,7 @@ describe('usePredefinedKeyDownHandlers() default setting', () => {
       'function',
     );
     emptyInputValueResult.current.handleBackspaceKeyDown(KEY_DOWN_EVENT);
-    expect(onLastTokenDelete).toBeCalledTimes(1);
+    expect(onLastTokenDelete).toHaveBeenCalledTimes(1);
   });
 
   it('should return `handleTabKeyDown`', () => {
@@ -121,8 +121,8 @@ describe('usePredefinedKeyDownHandlers() default setting', () => {
 
     expect(typeof result.current.handleEnterKeyDown).toBe('function');
     result.current.handleEnterKeyDown(KEY_DOWN_EVENT);
-    expect(handleTokensCreate).toBeCalledTimes(1);
-    expect(handleTokensCreate).toBeCalledWith(inputValue);
+    expect(handleTokensCreate).toHaveBeenCalledTimes(1);
+    expect(handleTokensCreate).toHaveBeenCalledWith(inputValue);
   });
 
   it('should return `handleEscapeKeyDown`', () => {
@@ -146,8 +146,8 @@ describe('usePredefinedKeyDownHandlers() default setting', () => {
 
     expect(typeof result.current.handleEscapeKeyDown).toBe('function');
     result.current.handleEscapeKeyDown(KEY_DOWN_EVENT);
-    expect(handleInputValueUpdate).toBeCalledTimes(1);
-    expect(handleInputValueUpdate).toBeCalledWith(inputInitValue);
+    expect(handleInputValueUpdate).toHaveBeenCalledTimes(1);
+    expect(handleInputValueUpdate).toHaveBeenCalledWith(inputInitValue);
   });
 });
 
@@ -191,7 +191,7 @@ describe('usePredefinedKeyDownHandlers().handleBackspaceKeyDown()', () => {
         'function',
       );
       emptyInputValueResult.current.handleBackspaceKeyDown(KEY_DOWN_EVENT);
-      expect(onLastTokenDelete).toBeCalledTimes(1);
+      expect(onLastTokenDelete).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -274,9 +274,9 @@ describe('usePredefinedKeyDownHandlers().handleTabKeyDown()', () => {
 
       expect(typeof result.current.handleTabKeyDown).toBe('function');
       result.current.handleTabKeyDown(KEY_DOWN_EVENT);
-      expect(KEY_DOWN_EVENT.preventDefault).toBeCalledTimes(1);
-      expect(handleTokensCreate).toBeCalledTimes(1);
-      expect(handleTokensCreate).toBeCalledWith(inputValue);
+      expect(KEY_DOWN_EVENT.preventDefault).toHaveBeenCalledTimes(1);
+      expect(handleTokensCreate).toHaveBeenCalledTimes(1);
+      expect(handleTokensCreate).toHaveBeenCalledWith(inputValue);
     });
   });
 });

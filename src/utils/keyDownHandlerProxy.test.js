@@ -24,8 +24,10 @@ describe('keyDownHandlerProxy()', () => {
     it('should execute onBackspace()', () => {
       keyDownHandlerProxy(MOCK_KEY_DONE_EVENT, MOCK_ACTIONS);
 
-      expect(MOCK_ACTIONS.onBackspace).toBeCalledWith(MOCK_KEY_DONE_EVENT);
-      expect(MOCK_ACTIONS.onBackspace).toBeCalledTimes(1);
+      expect(MOCK_ACTIONS.onBackspace).toHaveBeenCalledWith(
+        MOCK_KEY_DONE_EVENT,
+      );
+      expect(MOCK_ACTIONS.onBackspace).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -39,8 +41,8 @@ describe('keyDownHandlerProxy()', () => {
     it('should execute onTab()', () => {
       keyDownHandlerProxy(MOCK_KEY_DONE_EVENT, MOCK_ACTIONS);
 
-      expect(MOCK_ACTIONS.onTab).toBeCalledWith(MOCK_KEY_DONE_EVENT);
-      expect(MOCK_ACTIONS.onTab).toBeCalledTimes(1);
+      expect(MOCK_ACTIONS.onTab).toHaveBeenCalledWith(MOCK_KEY_DONE_EVENT);
+      expect(MOCK_ACTIONS.onTab).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -54,8 +56,8 @@ describe('keyDownHandlerProxy()', () => {
     it('should execute onEnter()', () => {
       keyDownHandlerProxy(MOCK_KEY_DONE_EVENT, MOCK_ACTIONS);
 
-      expect(MOCK_ACTIONS.onEnter).toBeCalledWith(MOCK_KEY_DONE_EVENT);
-      expect(MOCK_ACTIONS.onEnter).toBeCalledTimes(1);
+      expect(MOCK_ACTIONS.onEnter).toHaveBeenCalledWith(MOCK_KEY_DONE_EVENT);
+      expect(MOCK_ACTIONS.onEnter).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -69,8 +71,8 @@ describe('keyDownHandlerProxy()', () => {
     it('should execute onEnter()', () => {
       keyDownHandlerProxy(MOCK_KEY_DONE_EVENT, MOCK_ACTIONS);
 
-      expect(MOCK_ACTIONS.onEscape).toBeCalledWith(MOCK_KEY_DONE_EVENT);
-      expect(MOCK_ACTIONS.onEscape).toBeCalledTimes(1);
+      expect(MOCK_ACTIONS.onEscape).toHaveBeenCalledWith(MOCK_KEY_DONE_EVENT);
+      expect(MOCK_ACTIONS.onEscape).toHaveBeenCalledTimes(1);
     });
   });
 });

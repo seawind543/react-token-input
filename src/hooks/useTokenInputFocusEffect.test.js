@@ -1,4 +1,4 @@
-import { renderHook, act } from '@testing-library/react-hooks';
+import { renderHook, act } from '@testing-library/react';
 import useTokenInputFocusEffect from './useTokenInputFocusEffect.ts';
 
 describe('useTokenInputFocusEffect()', () => {
@@ -51,7 +51,7 @@ describe('useTokenInputFocusEffect()', () => {
     act(() => {
       result.current.handleCreatorFocus(focusEvent);
     });
-    expect(onCreatorFocus).toBeCalledWith(focusEvent);
+    expect(onCreatorFocus).toHaveBeenCalledWith(focusEvent);
     expect(result.current.isTokenInputFocused).toBe(true);
   });
 
@@ -74,7 +74,7 @@ describe('useTokenInputFocusEffect()', () => {
     act(() => {
       result.current.handleCreatorBlur(focusEvent);
     });
-    expect(onCreatorBlur).toBeCalledWith(focusEvent);
+    expect(onCreatorBlur).toHaveBeenCalledWith(focusEvent);
     expect(result.current.isTokenInputFocused).toBe(false);
   });
 });
