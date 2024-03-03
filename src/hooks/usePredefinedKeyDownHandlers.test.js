@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import usePredefinedKeyDownHandlers from './usePredefinedKeyDownHandlers.ts';
 import {
   KEY_DOWN_HANDLER_CONFIG_OPTION,
