@@ -28,10 +28,10 @@ describe('useTokenEdit() with default string type tokenValue', () => {
       const MOCK_TARGET_INDEX = 2;
       result.current.handleTokenEditStart(MOCK_TARGET_INDEX)();
 
-      expect(setTokenActivated).toBeCalledTimes(1);
-      expect(setTokenActivated).toBeCalledWith(MOCK_TARGET_INDEX, true);
+      expect(setTokenActivated).toHaveBeenCalledTimes(1);
+      expect(setTokenActivated).toHaveBeenCalledWith(MOCK_TARGET_INDEX, true);
 
-      expect(handleTokenInputFocus).toBeCalledTimes(1);
+      expect(handleTokenInputFocus).toHaveBeenCalledTimes(1);
 
       expect(onTokenValuesChange).not.toBeCalled();
       expect(handleTokenInputBlur).not.toBeCalled();
@@ -62,10 +62,10 @@ describe('useTokenEdit() with default string type tokenValue', () => {
       const MOCK_TARGET_INDEX = 2;
       result.current.handleTokenEditEnd(MOCK_TARGET_INDEX)();
 
-      expect(setTokenActivated).toBeCalledTimes(1);
-      expect(setTokenActivated).toBeCalledWith(MOCK_TARGET_INDEX, false);
+      expect(setTokenActivated).toHaveBeenCalledTimes(1);
+      expect(setTokenActivated).toHaveBeenCalledWith(MOCK_TARGET_INDEX, false);
 
-      expect(handleTokenInputBlur).toBeCalledTimes(1);
+      expect(handleTokenInputBlur).toHaveBeenCalledTimes(1);
       expect(onTokenValuesChange).not.toBeCalled();
     });
 
@@ -93,15 +93,15 @@ describe('useTokenEdit() with default string type tokenValue', () => {
       const NEW_TOKEN_VALUE = 'new value';
       result.current.handleTokenEditEnd(MOCK_TARGET_INDEX)(NEW_TOKEN_VALUE);
 
-      expect(setTokenActivated).toBeCalledTimes(1);
-      expect(setTokenActivated).toBeCalledWith(MOCK_TARGET_INDEX, false);
+      expect(setTokenActivated).toHaveBeenCalledTimes(1);
+      expect(setTokenActivated).toHaveBeenCalledWith(MOCK_TARGET_INDEX, false);
 
-      expect(handleTokenInputBlur).toBeCalledTimes(1);
+      expect(handleTokenInputBlur).toHaveBeenCalledTimes(1);
 
       const modifiedTokenValues = [...tokenValues];
       modifiedTokenValues[MOCK_TARGET_INDEX] = NEW_TOKEN_VALUE;
-      expect(onTokenValuesChange).toBeCalledTimes(1);
-      expect(onTokenValuesChange).toBeCalledWith(modifiedTokenValues);
+      expect(onTokenValuesChange).toHaveBeenCalledTimes(1);
+      expect(onTokenValuesChange).toHaveBeenCalledWith(modifiedTokenValues);
     });
   });
 });
