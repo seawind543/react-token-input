@@ -1,4 +1,4 @@
-import Token, { type TokenProps } from './Token';
+import Token from './Token';
 
-export { TokenProps };
+export type { TokenProps } from './Token';
 export default Token;
