@@ -15,9 +15,10 @@
     "build:scss-types": "typed-scss-modules src --nameFormat none --exportType default",
     "build:webpack": "webpack",
     "build:examples": "cd examples; webpack",
-    "lint": "yarn run lint:eslint && yarn run lint:style",
+    "lint": "yarn run lint:eslint && yarn run lint:style && yarn run lint:type",
     "lint:eslint": "eslint --max-warnings 0 --ext .jsx,.js,.tsx,.ts src examples",
     "lint:style": "stylelint --custom-syntax postcss-scss '**/*.scss' --fix",
+    "lint:type": "tsc --noEmit true",
     "test": "jest --coverage",
     "dev": "cd examples; webpack && webpack serve"
   },
