@@ -1,4 +1,3 @@
-/// <reference types="react" />
 export interface TokenInputFocusHandler {
     (e?: React.FocusEvent<HTMLInputElement>): void;
 }
