@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import type { TokenMeta, Index } from '../types/token';
 export interface SetTokenActivated<ET> {
     (targetIndex: Index, activated: TokenMeta<ET>['activated']): void;

@@ -1,4 +1,5 @@
-import { renderHook, act } from '@testing-library/react';
+import { act } from 'react';
+import { renderHook } from '@testing-library/react';
 import useTokenMetas from './useTokenMetas.ts';
 
 import DEFAULT_VALUE_TYPE_DATA from '../__fixtures__/tokenValues.fixtures';

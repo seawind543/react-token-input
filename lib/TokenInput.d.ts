@@ -38,6 +38,6 @@ export interface TokenInputProps<VT = string, ET = string> {
 }
 declare const TokenInput: <VT, ET>(props: TokenInputProps<VT, ET>, ref?: React.ForwardedRef<TokenInputRef>) => React.JSX.Element;
 declare const WrappedTokenInput: <VT = string, ET = string>(p: TokenInputProps<VT, ET> & {
-    ref?: React.ForwardedRef<TokenInputRef> | undefined;
+    ref?: React.ForwardedRef<TokenInputRef>;
 }) => ReturnType<typeof TokenInput>;
 export default WrappedTokenInput;
