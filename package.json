@@ -1,7 +1,19 @@
 {
   "name": "react-customize-token-input",
-  "version": "2.6.0-beta.0",
+  "version": "2.6.0",
   "description": "A react token (tag) input component. Allow customize data structure and Look & Feel",
+  "keywords": [
+    "react",
+    "token",
+    "tag",
+    "token input",
+    "tag input",
+    "preprocess",
+    "inline edit",
+    "customize",
+    "customize data structure",
+    "customize render"
+  ],
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -29,18 +41,6 @@
   "author": "Mark Lin <marklin1106@gmail.com>",
   "homepage": "https://github.com/seawind543/react-token-input",
   "license": "MIT",
-  "keywords": [
-    "react",
-    "token",
-    "tag",
-    "token input",
-    "tag input",
-    "preprocess",
-    "inline edit",
-    "customize",
-    "customize data structure",
-    "customize render"
-  ],
   "peerDependencies": {
     "react": "^16.10.2 || ^17.0.0 || ^18.0.0"
   },
