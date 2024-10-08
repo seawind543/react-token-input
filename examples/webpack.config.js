@@ -52,6 +52,10 @@ module.exports = {
             options: {
               modules: {
                 localIdentName: `${localClassPrefix}-[local]`,
+                // Keep css-loader v6 behavior: Apply default export
+                // https://github.com/webpack-contrib/css-loader/blob/master/CHANGELOG.md#700-2024-04-04
+                namedExport: false,
+                exportLocalsConvention: 'as-is',
               },
             },
           },
