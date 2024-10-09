@@ -100,7 +100,7 @@
     "stylelint-webpack-plugin": "^5.0.1",
     "ts-loader": "^9.5.1",
     "typed-scss-modules": "^8.0.1",
-    "typescript": "^5.5.4",
+    "typescript": "^5.6.3",
     "webpack": "^5.95.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.1.0"
