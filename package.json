@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "classnames": "^2.5.1",
-    "keydown-key": "^1.4.1",
+    "keydown-key": "^1.4.2",
     "react-input-autosize": "^3.0.0"
   },
   "devDependencies": {

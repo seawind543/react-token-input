@@ -6588,10 +6588,10 @@ jsonfile@^6.0.1:
     object.assign "^4.1.4"
     object.values "^1.1.6"
 
-keydown-key@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/keydown-key/-/keydown-key-1.4.1.tgz#83234661529dd4644b58e673f8989cae8ba4fb2f"
-  integrity sha512-p58+TmVgxjRYb8meR4NJzAZfuDXS8jB7X+slY0W1pG7bSe2aQme+CcI5O7VOGQzgYXwKw2FzhrFcEfXBfVxHAw==
+keydown-key@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/keydown-key/-/keydown-key-1.4.2.tgz#aacffbf4e7942478cb0cfb1ded4928869d9eb571"
+  integrity sha512-08XCpf42KTiqI0oVY92UwXjn/SJiN0wZX8Fca0v6fRlOSpUijH5ynR/r6XOAEHpsD1o6+l7h6T6R2elLyyET3g==
 
 keyv@^4.5.3, keyv@^4.5.4:
   version "4.5.4"
