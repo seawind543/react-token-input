@@ -1,6 +1,6 @@
 import type { TokenCreatorRef } from '../TokenCreator';
 declare function useTokenCreatorRef(): {
-    tokenCreatorRef: import("react").RefObject<TokenCreatorRef>;
+    tokenCreatorRef: import("react").RefObject<TokenCreatorRef | null>;
     focusTokenCreator: (options?: FocusOptions) => void;
     setCreatorValue: (value: import("../types/mix").InputString) => void;
     getCreatorValue: () => import("../types/mix").InputString;
