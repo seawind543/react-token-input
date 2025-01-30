@@ -1,6 +1,6 @@
 {
   "name": "react-customize-token-input",
-  "version": "2.6.1",
+  "version": "2.6.2",
   "description": "A react token (tag) input component. Allow customize data structure and Look & Feel",
   "keywords": [
     "react",
