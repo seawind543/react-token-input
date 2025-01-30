@@ -6325,9 +6325,9 @@ jsonfile@^6.0.1:
     object.values "^1.1.6"
 
 keydown-key@^1.4.2:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/keydown-key/-/keydown-key-1.4.2.tgz#aacffbf4e7942478cb0cfb1ded4928869d9eb571"
-  integrity sha512-08XCpf42KTiqI0oVY92UwXjn/SJiN0wZX8Fca0v6fRlOSpUijH5ynR/r6XOAEHpsD1o6+l7h6T6R2elLyyET3g==
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/keydown-key/-/keydown-key-1.4.3.tgz#56449b0f1fa74614f7ff8e125ef57872085bb549"
+  integrity sha512-vSsj5EQqcT66qIAzTv/imLYeMT6orTah+ZbG1MYc5YHBU3YSFvEzt9MVbEd1ePVRhV6qlr6dDPP1d3xpHi2TkQ==
 
 keyv@^4.5.3:
   version "4.5.4"
