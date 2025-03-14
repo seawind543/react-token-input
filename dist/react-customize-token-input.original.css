@@ -10,27 +10,22 @@
   border-radius: 4px;
   outline: 0;
 }
-
 .token-input-container *,
 .token-input-container *::before,
 .token-input-container *::after {
   box-sizing: inherit;
 }
-
 .token-input-container.token-input-container--focused {
   border-color: #0096cc;
 }
-
 .token-input-container.token-input-container--errors {
   border-color: #db3d44;
 }
-
 .token-input-container .token-input-autosized-wrapper {
   float: left;
   margin-right: 4px;
   overflow: hidden;
 }
-
 .token-input-container .token-input-autosized-wrapper input {
   height: 32px;
   padding: 0;
@@ -42,7 +37,6 @@
   outline: 0;
   box-shadow: none;
 }
-
 .token-input-container .token-input-token-list .token-input-token {
   display: flex;
   flex-flow: row nowrap;
@@ -63,32 +57,25 @@
   border: 0;
   border-radius: 4px;
 }
-
 .token-input-container .token-input-token-list .token-input-token:hover {
   background-color: #e6f4fc;
 }
-
 .token-input-container .token-input-token-list .token-input-token.token-input-token--error {
   color: #db3d44;
   background-color: #f9b5b5;
 }
-
 .token-input-container .token-input-token-list .token-input-token.token-input-token--error:hover {
   background-color: #ffdada;
 }
-
 .token-input-container .token-input-token-list .token-input-token.token-input-token--read-only:hover {
   background-color: #cceaf5;
 }
-
 .token-input-container .token-input-token-list .token-input-token.token-input-token--read-only.token-input-token--error:hover {
   background-color: #f9b5b5;
 }
-
 .token-input-container .token-input-token-list .token-input-token.token-input-token--editable:hover {
   cursor: pointer;
 }
-
 .token-input-container .token-input-token-list .token-input-token.token-input-token--active .token-input-autosized-wrapper {
   display: flex;
   align-content: center;
@@ -98,19 +85,16 @@
   height: 32px;
   margin: 4px 8px;
 }
-
 .token-input-container .token-input-token-list .token-input-token.token-input-token--active .token-input-autosized-wrapper input {
   height: auto;
   border-bottom: 1px solid #aaa;
 }
-
 .token-input-container .token-input-token-list .token-input-token .token-input-token__label-wrapper {
   flex: 1 0 0;
   margin: 0 8px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button {
   display: flex;
   flex: 0 0 0;
@@ -125,37 +109,30 @@
   border-radius: 0 4px 4px 0;
   opacity: 0.3;
 }
-
 .token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-delete-button__close-icon {
   position: relative;
   width: 14px;
   height: 14px;
 }
-
 .token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-delete-button__close-icon::before, .token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-delete-button__close-icon::after {
   position: absolute;
   left: 6px;
   height: 14px;
-  content: '';
+  content: "";
   border-left: 2px solid #222;
 }
-
 .token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-delete-button__close-icon::before {
   transform: rotate(-45deg);
 }
-
 .token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button .token-input-delete-button__close-icon::after {
   transform: rotate(45deg);
 }
-
 .token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button:hover {
   background-color: #aaa;
   opacity: 1;
 }
-
 .token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button:hover .token-input-delete-button__close-icon::before, .token-input-container .token-input-token-list .token-input-token .token-input-token__delete-button:hover .token-input-delete-button__close-icon::after {
   border-color: #fff;
 }
-
 
 /*# sourceMappingURL=react-customize-token-input.original.css.map*/
